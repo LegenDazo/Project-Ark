@@ -15,7 +15,7 @@ include 'functions/barangayFunctions.php';
     <link rel="stylesheet" type="text/css" href="../datatables/datatables.css">
     <link rel="stylesheet" type="text/css" href="../datatables/datatables-bootstrap.css">
     <!--Add adult-->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+ <!--   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script> -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   </head>
   <body>
@@ -46,7 +46,7 @@ include 'functions/barangayFunctions.php';
                   <div class="panel-body">
                     <form method="post" id="brgyForm">
                     <div class="text-left">
-                      <a href="reliefHousehold.php" class="btn btn-warning">Cancel</a>
+                      <a href="household.php" class="btn btn-warning">Cancel</a>
                     </div>
                     <br>
                     <div class="row">
@@ -143,10 +143,10 @@ include 'functions/barangayFunctions.php';
     <!-- END of RIGHT COLUMN-->
     </div><!--end of row-->
     </div><!--END OF MAIN CONTIANER-->
-    <script src="jquery.min.js"></script>
-    <script src="bootstrap/js/bootstrap.js"></script>
-    <script src="bootstrap/js/bootstrap_alpha6.min.js"></script>
-    <script src="datatables/datatables-bootstrap.js"></script>
+    <script src="../js/jquery.min.js"></script>
+    <script src="../bootstrap/js/bootstrap.js"></script>
+    <script src="../bootstrap/js/bootstrap_alpha6.min.js"></script>
+    <script src="../datatables/datatables-bootstrap.js"></script>
     <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.15/js/jquery.dataTables.js"></script>     
     <script>
       $(document).ready( function () {

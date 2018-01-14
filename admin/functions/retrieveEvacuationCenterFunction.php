@@ -7,7 +7,7 @@
 		public $conn;
 		function __construct()
 		{
-			$this->conn = mysqli_connect("localhost","root","", "evacuation");
+			$this->conn = mysqli_connect("localhost","root","", "ark");
 		}
 
 		public function retrieveEvacuationCenter(){

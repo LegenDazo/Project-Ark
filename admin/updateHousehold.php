@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <?php include 'functions/householdFunctions.php'; 
       include 'functions/connection.php';
-      //include 'functions/retrieveUserIdFunctions.php';
+      include 'functions/barangayFunctions.php';
+//      include 'functions/retrieveUserIdFunctions.php';
 
 ?>
 <html lang="en">
@@ -13,8 +14,8 @@
   <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
   <link rel="stylesheet" href="../style.css">
   <link rel="stylesheet" href="../materialize/icons.css">
-  <link rel="stylesheet" type="text/css" href="datatables/datatables.css">
-  <link rel="stylesheet" type="text/css" href="datatables/datatables-bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="../datatables/datatables.css">
+  <link rel="stylesheet" type="text/css" href="../datatables/datatables-bootstrap.css">
   <!--Update ajax-->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -37,17 +38,17 @@
               $myrow = $obj->retrieveHouseholdData();
 
               foreach ($myrow as $row) {
+                if($row["household_id"] == $_GET["resident_id"]) {
+                  $resident_id = $row['resident_id'];
 
-                $resident_id = $row['resident_id'];
+                  $brgy_id = $row['brgy_id'];
 
-                $brgy_id = $row['brgy_id'];
-                $admin_id = $row['admin_id'];
-                $resident_id = $row['resident_id'];
-                //$user_id = $row['user_id'];
+                  $admin_id = $row['admin_id'];
+                  //$user_id = $row['user_id'];
 
-                $house_no = $row['house_no'];
-                $street = $row['street'];
-               
+                  $house_no = $row['house_no'];
+                  $street = $row['street'];
+                }
                 
               }
             }
@@ -64,7 +65,7 @@
                       <div class="container" style="margin-top: 5%">
                         <div class="col-md-12">
                         <div class="panel-body"> 
-                          <form method="post" action="functions/householdFunctions.php?resident_id=<?php echo $resident_id;?>">
+                          <form method="post" action="functions/householdFunctions.php?resident_id=<?php echo $_GET["resident_id"];?>">
 
                           <div class="text-left">
                             <a href="reliefHousehold.php" class="btn btn-warning">Cancel</a>
@@ -97,7 +98,8 @@
                               <?php
 
                                   $myrow  = $obj->retrieveHouseholdData();
-                                  foreach($myrow as $row ){ ?>
+                                  foreach($myrow as $row ){ 
+                                      if($row['household_id'] == $_GET['resident_id']) {?>
                                       <tr id="<?php echo $row['resident_id']; ?>">
 
                                         <td data-target="fname"><?php echo $row['fname']; ?></td>
@@ -105,13 +107,19 @@
                                         <td data-target="lname"><?php echo $row['lname']; ?></td>
                                         <td data-target="gender"><?php echo $row['gender']; ?></td>
                                         <td data-target="bday"><?php echo $row['bday']; ?></td>
-                                        <td data-target="age"><?php echo $row['age']; ?></td>
+                                        <?php
+                                          $bday = explode("-", $row["bday"]);
+
+                                          $age = (date("md", date("U", mktime(0, 0, 0, $bday[1], $bday[2], $bday[0]))) > date("md") ? ((date("Y") - $bday[0]) - 1) : (date("Y") - $bday[0]));
+                                        ?>
+                                        <td data-target="age"><?php echo $age; ?></td>
 
                                         <td data-target="house_memship"><?php echo $row['house_memship']; ?></td>
 
-                                        <td><a href="#" data-role="update" data-id="<?php echo $row['household_id'] ;?>">Update</a></td>
+                                        <td><a href="#" data-role="update" data-id="<?php echo $row['resident_id'] ;?>">Update</a></td>
                                       </tr>
                                  <?php } 
+                                    } 
                                ?>
                                
                             </tbody>
@@ -123,121 +131,74 @@
       <br>                    
 
       <div class="row">
-        <div class="form-group col-md-4">
+        <div class="form-group col-md-2">
           <label for="house_no"><b>House No.</b></label>
           <input type="text" class="form-control" value="<?php echo $house_no;?>" id="house_no" name="house_no"> 
         </div>
                                  
-        <div class="form-group col-md-8">
+        <div class="form-group col-md-5">
           <label for="street"><b>Street</b></label>
           <input type="text" class="form-control" value="<?php echo $street;?>" id="street" name="street"> 
         </div>
+
+        <div class="form-group col-md-5">
+          <label for="brgy_id"><b>Barangay</b></label>
+          <select name="brgy_id" id="brgy_id" class="form-control">
+            <?php
+                $barangay = $Functions->retrieve_barangayData();
+                foreach($barangay as $bar) {
+                  echo "<option value='".$bar["brgy_id"]."'"; 
+                  if($bar["brgy_id"] == $brgy_id) {
+                    echo "selected";
+                  }
+                  echo ">";
+                  echo $bar["brgy_name"];
+                  echo "</option>";
+                }
+            ?>
+          </select>
+          <!--  <input type="text" class="form-control" value="<?php// echo $brgy_id;?>" id="brgy_id" name="brgy_id"> -->
+        </div>
       </div>
 
-      <div class="row">
-        <div class="form-group col-md-3">
-          <label for="brgy_id"><b>Brgy. ID</b></label>
-          <input type="text" class="form-control" value="<?php echo $brgy_id;?>" id="brgy_id" name="brgy_id"> 
-        </div>
-
+<!--      <div class="row"> -->
+<!--
         <div class="form-group col-md-3">
           <label for="admin_id"><b>Admin ID</b></label>
-          <input type="text" class="form-control" value="<?php echo $admin_id;?>" id="admin_id" name="admin_id"> 
+          <input type="text" class="form-control" value="<?php //echo $admin_id;?>" id="admin_id" name="admin_id"> 
         </div>
-
-        <div class="form-group col-md-3">
+-->
+<!--        <div class="form-group col-md-3">
           <label for="household_id"><b>Household ID</b></label>
 
           <?php
-              $myrow = $obj->retrieveHouseholdData();
-              foreach ($myrow as $row) {
+           //   $myrow = $obj->retrieveHouseholdData();
+           //   foreach ($myrow as $row) {
           ?>
 
-          <input type="text" class="form-control" value="<?php echo $household_id;?>" id="household_id" name="admin_id">
+          <input type="text" class="form-control" value="<?php // echo $household_id;?>" id="household_id" name="admin_id">
 
-         <?php }?>
+         <?php //}?>
 
         </div>
+              -->
 
         
 
-        <div class="form-group col-md-3">
+<!--       <div class="form-group col-md-3">
           <label for="user_id"><b>User ID</b></label>
          
           <?php
-              $myrow = $obj->retrieveUserId();
-              foreach ($myrow as $row) {
+   //           $myrow = $obj->retrieveUserId();
+   //           foreach ($myrow as $row) {
           ?>
-          <input type="text" class="form-control" value="<?php echo $row['username'];?>"><?php echo $row['username'];?></option>
-          <?php }?>
+          <input type="text" class="form-control" value="<?php //echo $row['username'];?>"><?php //echo $row['username'];?></option>
+          <?php //}?>
 
 
         </div>
-      </div>
-
-
-
-
-
-
-                              <!-- Modal -->
-                              <div id="myModal" class="modal fade" role="dialog">
-                                <div class="modal-dialog">
-
-                                  <!-- Modal content-->
-                                  <div class="modal-content">
-                                    <div class="modal-header">
-                                      <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                      <h4 class="modal-title">Modal Header</h4>
-                                    </div>
-
-                                    <div class="modal-body">
-                                        <div class="form-group">
-                                          <label>First Name</label>
-                                          <input type="text" id="fname" class="form-control">
-                                        </div>
-
-                                        <div class="form-group">
-                                          <label>Middle Name</label>
-                                          <input type="text" id="mname" class="form-control">
-                                        </div>
-                                        
-                                        <div class="form-group">
-                                          <label>Last Name</label>
-                                          <input type="text" id="lname" class="form-control">
-                                        </div>
-                                        
-                                        <div class="form-group">
-                                          <label>Gender</label>
-                                          <input type="text" id="gender" class="form-control">
-                                        </div>
-
-                                        <div class="form-group">
-                                          <label>Birthday</label>
-                                          <input type="text" id="bday" class="form-control">
-                                        </div>
-
-                                        <div class="form-group">
-                                          <label>Age</label>
-                                          <input type="text" id="age" class="form-control">
-                                        </div>
-
-                                         <div class="form-group">
-                                          <label>Memship</label>
-                                          <input type="text" id="house_memship" class="form-control">
-                                        </div>
-
-                                          <input type="hidden" id="userId" class="form-control">
-                                    </div>
-
-                                    <div class="modal-footer">
-                                      <a href="#" id="save" class="btn btn-primary pull-right">Update</a>
-                                      <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-                                    </div>
-                                  </div>
-
-                                </div>
-                              </div>
+   -->
+ <!--     </div> -->
 
 
   
@@ -249,6 +210,7 @@
                           <div class="panel-footer">
                             <div class="text-right">
                             <button type="submit" id="action" class="btn btn-primary" name="updatehousehold">Update</button>
+                            <br><br>
                             </div>
                           </div>
 
@@ -267,16 +229,90 @@
 
 
 
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+<!-- Modal content-->
+    <div class="modal-content">
+      <form id="modalForm">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title"></h4>
+        </div>
+
+        <div class="modal-body">
+
+          <div class="form-group">
+            <label>First Name</label>
+            <input type="text" id="fname" class="form-control" required>
+          </div>
+
+          <div class="form-group">
+            <label>Middle Name</label>
+            <input type="text" id="mname" class="form-control" required>
+          </div>
+          
+          <div class="form-group">
+            <label>Last Name</label>
+            <input type="text" id="lname" class="form-control" required>
+          </div>
+          
+          <div class="form-group">
+            <label>Gender</label>
+            <input type="text" id="gender" class="form-control" required>
+          </div>
+
+          <div class="form-group">
+            <label>Birthday</label>
+            <input id="bday" class="form-control" type="date" required>
+            <!-- <input type="text" id="bday" class="form-control"> -->
+          </div>
+        
+          <div class="form-group">
+            <label>Membership</label>
+            <select id="house_memship" class="form-control" required>
+              <option value="dependent">Dependent</option>
+              <option value="head">Head</option>
+              <option value="head's spouse">Head's Spouse</option>
+            </select>
+          </div>
+    <!--
+          <div class="form-group">
+            <label>Age</label>
+            <input type="text" id="age" class="form-control">
+          </div>
+
+            <div class="form-group">
+            <label>Memship</label>
+            <input type="text" id="house_memship" class="form-control">
+          </div>
+    -->
+          <input type="hidden" id="userId" class="form-control">
+        </div>
+
+        <div class="modal-footer">
+          <button type="submit" id="save" class="btn btn-primary pull-right">Update</button>
+          <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
 
 
 
-<script src="jquery.min.js"></script>
-<script src="bootstrap/js/bootstrap.js"></script>
-<script src="bootstrap/js/bootstrap_alpha6.min.js"></script>
-<script src="datatables/datatables-bootstrap.js"></script>
+<script src="../js/jquery.min.js"></script>
+<script src="../bootstrap/js/bootstrap.js"></script>
+<script src="../bootstrap/js/bootstrap_alpha6.min.js"></script>
+<script src="../datatables/datatables-bootstrap.js"></script>
 <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.15/js/jquery.dataTables.js"></script>     
 <script>
   $(document).ready( function () {
+
+    $("#modalForm").submit(function(e) {
+      e.preventDefault(); 
+    });
+
   <?php 
     if(isset($_GET['inserted'])){
       echo "$('#viewkey').show();";
@@ -287,7 +323,7 @@
     }
   ?>
 
-    $('.close').click(function(){
+/*    $('.close').click(function(){
         $('#viewkey').hide();
         window.location.href='registerStudent.php';
     });
@@ -296,7 +332,7 @@
         $('#viewkeydel').hide();
         window.location.href='registerStudent.php';
     });
-
+*/
     $('#regStudent').DataTable();
 
 } );
@@ -308,54 +344,59 @@
   $(document).ready(function(){
 
     //  append values in input fields
-      $(document).on('click','a[data-role=update]',function(){
+      $(document).on('click','a[data-role=update]',function() {
             var id  = $(this).data('id');
             var fname  = $('#'+id).children('td[data-target=fname]').text();
             var mname  = $('#'+id).children('td[data-target=mname]').text();
             var lname  = $('#'+id).children('td[data-target=lname]').text();
             var gender  = $('#'+id).children('td[data-target=gender]').text();
             var bday  = $('#'+id).children('td[data-target=bday]').text();
-            var age  = $('#'+id).children('td[data-target=age]').text();
+//            var age  = $('#'+id).children('td[data-target=age]').text();
             var house_memship  = $('#'+id).children('td[data-target=house_memship]').text();
-            
 
             $('#fname').val(fname);
             $('#mname').val(mname);
             $('#lname').val(lname);
             $('#gender').val(gender);
             $('#bday').val(bday);
-            $('#age').val(age);
+//            $('#age').val(age);
             $('#house_memship').val(house_memship);
 
-            
             $('#userId').val(id);
             $('#myModal').modal('toggle');
       });
 
       // now create event to get data from fields and update in database 
 
-       $('#save').click(function(){
+       $('#save').click(function() {
           var id  = $('#userId').val(); 
           var fname =  $('#fname').val();
           var mname =  $('#mname').val();
           var lname =  $('#lname').val();
           var gender =  $('#gender').val();
           var bday =  $('#bday').val();
-          var age =  $('#age').val();
+        //  var age =  $('#age').val();
           var house_memship =  $('#house_memship').val();
-                    
 
           $.ajax({
-              url      : 'connection.php',
+              url      : 'functions/connection.php',
               method   : 'post', 
-              data     : {fname : fname , mname: mname , lname: lname , gender: gender , bday: bday , age : age , house_memship : house_memship , id: id},
+              data     : {fname : fname , mname: mname , lname: lname , gender: gender , bday: bday, house_memship : house_memship , id: id},
               success  : function(response){
+                  console.log(response);
                             // now update user record in table 
                              $('#'+id).children('td[data-target=fname]').text(fname);
                              $('#'+id).children('td[data-target=mname]').text(mname);
                              $('#'+id).children('td[data-target=lname]').text(lname);
                              $('#'+id).children('td[data-target=gender]').text(gender);
                              $('#'+id).children('td[data-target=bday]').text(bday);
+
+                             birthday = new Date(bday);
+
+                             var ageDifMs = Date.now() - birthday.getTime();
+                             var ageDate = new Date(ageDifMs);
+                             age = Math.abs(ageDate.getUTCFullYear() - 1970);
+
                              $('#'+id).children('td[data-target=age]').text(age);
                              $('#'+id).children('td[data-target=house_memship]').text(house_memship);
                              

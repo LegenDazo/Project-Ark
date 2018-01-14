@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 14, 2018 at 11:52 AM
+-- Generation Time: Jan 14, 2018 at 12:17 PM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 5.6.21
 
@@ -149,9 +149,20 @@ INSERT INTO `evacuationcenter` (`evac_id`, `location_name`, `population`, `capac
 --
 
 CREATE TABLE `household` (
+  `household_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `householdassignment`
+--
+
+CREATE TABLE `householdassignment` (
+  `assignment_id` int(11) NOT NULL,
   `household_id` int(11) NOT NULL,
-  `membership` varchar(25) NOT NULL,
-  `resident_id` int(11) NOT NULL
+  `resident_id` int(11) NOT NULL,
+  `memship` varchar(25) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -377,8 +388,13 @@ ALTER TABLE `evacuationcenter`
 -- Indexes for table `household`
 --
 ALTER TABLE `household`
-  ADD PRIMARY KEY (`household_id`),
-  ADD KEY `resident_id` (`resident_id`);
+  ADD PRIMARY KEY (`household_id`);
+
+--
+-- Indexes for table `householdassignment`
+--
+ALTER TABLE `householdassignment`
+  ADD PRIMARY KEY (`assignment_id`);
 
 --
 -- Indexes for table `item`
@@ -481,6 +497,11 @@ ALTER TABLE `evacuationcenter`
 ALTER TABLE `household`
   MODIFY `household_id` int(11) NOT NULL AUTO_INCREMENT;
 --
+-- AUTO_INCREMENT for table `householdassignment`
+--
+ALTER TABLE `householdassignment`
+  MODIFY `assignment_id` int(11) NOT NULL AUTO_INCREMENT;
+--
 -- AUTO_INCREMENT for table `item`
 --
 ALTER TABLE `item`
@@ -538,12 +559,6 @@ ALTER TABLE `disease`
 --
 ALTER TABLE `evacuationcenter`
   ADD CONSTRAINT `evacuationcenter_ibfk_2` FOREIGN KEY (`brgy_id`) REFERENCES `barangay` (`brgy_id`);
-
---
--- Constraints for table `household`
---
-ALTER TABLE `household`
-  ADD CONSTRAINT `household_ibfk_1` FOREIGN KEY (`resident_id`) REFERENCES `resident` (`resident_id`);
 
 --
 -- Constraints for table `item`

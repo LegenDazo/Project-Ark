@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 12, 2018 at 12:41 PM
+-- Generation Time: Jan 14, 2018 at 11:12 AM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 5.6.21
 
@@ -75,7 +75,9 @@ CREATE TABLE `attendance` (
 --
 
 INSERT INTO `attendance` (`attendance_id`, `date`, `resident_id`, `evac_id`) VALUES
-(7, '2018-01-10 12:03:56', 4, 2);
+(7, '2018-01-10 12:03:56', 4, 2),
+(8, '2018-01-14 06:47:42', 1, 2),
+(9, '2018-01-14 06:48:56', 3, 3);
 
 -- --------------------------------------------------------
 
@@ -276,6 +278,19 @@ INSERT INTO `sms` (`sms_id`, `content`, `datesent`, `admin_id`, `status`, `usern
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `smschecker`
+--
+
+CREATE TABLE `smschecker` (
+  `checker_id` int(11) NOT NULL,
+  `sms_id` int(11) NOT NULL,
+  `admin_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `sponsor`
 --
 
@@ -413,6 +428,12 @@ ALTER TABLE `sms`
   ADD KEY `username` (`username`);
 
 --
+-- Indexes for table `smschecker`
+--
+ALTER TABLE `smschecker`
+  ADD PRIMARY KEY (`checker_id`);
+
+--
 -- Indexes for table `sponsor`
 --
 ALTER TABLE `sponsor`
@@ -437,7 +458,7 @@ ALTER TABLE `announcement`
 -- AUTO_INCREMENT for table `attendance`
 --
 ALTER TABLE `attendance`
-  MODIFY `attendance_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `attendance_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT for table `barangay`
 --
@@ -478,6 +499,11 @@ ALTER TABLE `resident`
 --
 ALTER TABLE `sms`
   MODIFY `sms_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+--
+-- AUTO_INCREMENT for table `smschecker`
+--
+ALTER TABLE `smschecker`
+  MODIFY `checker_id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `sponsor`
 --

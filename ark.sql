@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 14, 2018 at 11:12 AM
+-- Generation Time: Jan 14, 2018 at 11:52 AM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 5.6.21
 
@@ -67,17 +67,18 @@ CREATE TABLE `attendance` (
   `attendance_id` int(11) NOT NULL,
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `resident_id` int(11) NOT NULL,
-  `evac_id` int(11) NOT NULL
+  `evac_id` int(11) NOT NULL,
+  `status` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `attendance`
 --
 
-INSERT INTO `attendance` (`attendance_id`, `date`, `resident_id`, `evac_id`) VALUES
-(7, '2018-01-10 12:03:56', 4, 2),
-(8, '2018-01-14 06:47:42', 1, 2),
-(9, '2018-01-14 06:48:56', 3, 3);
+INSERT INTO `attendance` (`attendance_id`, `date`, `resident_id`, `evac_id`, `status`) VALUES
+(7, '2018-01-10 12:03:56', 4, 2, 0),
+(8, '2018-01-14 06:47:42', 1, 2, 0),
+(9, '2018-01-14 06:48:56', 3, 3, 0);
 
 -- --------------------------------------------------------
 

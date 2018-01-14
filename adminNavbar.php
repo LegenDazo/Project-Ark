@@ -19,7 +19,7 @@
                       <a class="nav-link active" href="home.php"><i class="material-icons">home</i>  Home</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="residents.php"><i class="material-icons">people</i>  Community</a>
+                      <a class="nav-link" href="household.php"><i class="material-icons">people</i>  Community</a>
                     </li>
                     <li class="nav-item">
                       <a class="nav-link collapsed" href="#submenu1" data-toggle="collapse" data-target="#submenu1"><i class="material-icons">visibility</i>  Monitor</a>

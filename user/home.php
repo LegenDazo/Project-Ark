@@ -4,15 +4,15 @@
   <title>ARK</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="materialize/icons.css">
+  <link rel="stylesheet" href="../bootstrap/css/bootstrap.css">
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="../materialize/icons.css">
 </head>
 
 <body>
 
     <nav class="navbar navbar-light bg-faded">
-    <img src="images/ARK1.png">
+    <img src="../images/ARK1.png">
     <a href="functions/logout.php" style="color: white">Log Out</a>
     </nav>
 
@@ -21,7 +21,7 @@
 
           <div class="col-md-3"><!--START of LEFT COLUMN-->
                 <div class="card" id="profile" style="margin-top: 25px;">
-                <img src="images/user.png">
+                <img src="../images/user.png">
                   <center><label  class="name" >Mylene D. Pepito</label><br>
                   <label >Residents</label></center>
                 </div>
@@ -65,9 +65,9 @@
 
 
 
-<script src="js/jquery.min.js"></script>
-<script src="bootstrap/js/bootstrap.js"></script>
-<script src="bootstrap/js/bootstrap_alpha6.min.js"></script>
+<script src="../js/jquery.min.js"></script>
+<script src="../bootstrap/js/bootstrap.js"></script>
+<script src="../bootstrap/js/bootstrap_alpha6.min.js"></script>
 <script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script> 
 <script src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
 </body>

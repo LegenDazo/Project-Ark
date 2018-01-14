@@ -32,7 +32,7 @@
                       <center><h4>List of Registered Residents</h4></center>
                       <div class="container" style="margin-top: 5%; margin-bottom: 5%;">
                         <div class="col-md-12">
-                          <h5>Add Household &nbsp;<a href="residentsRegForm.php" class="btn btn-success"><i class="material-icons">add</i></a></h5>
+                          <h5>Add Household &nbsp;<a href="addHousehold.php" class="btn btn-success"><i class="material-icons">add</i></a></h5>
                           <br>
                           <table class="table table-hovered" id="residents">
                               <thead>

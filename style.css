@@ -1,0 +1,90 @@
+
+body{
+    background-color: #e9ebee;
+}
+
+.navbar img{
+    height: 60px;
+    width: 120px;
+}
+
+.navbar a{
+    color: black;
+    font-size: 18px;
+    padding-top: 30px;
+}
+
+.navbar{
+    background-color: #2C3E50;
+}
+
+.navbar-brand {
+    color: #f2f2f2;
+    text-align: center;
+    padding-left: 16px;
+    text-decoration: none;
+    font-size: 25px;
+}
+
+#logout{
+    color: #f2f2f2;
+    text-align: center;
+    padding-left: 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+#profile img {
+    display: block;
+    padding-top: 15px;
+    margin-left: auto;
+    margin-right: auto;
+    height: 10%;
+    width: 20%;
+}
+
+#profile label{
+    font-size: 14px;
+}
+
+#profile a{
+    color: #333333;
+    padding-left: 18px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-size: 14px;
+    border-top: 1px;
+    border-top-style: solid;
+    border-top-color: #CCC;
+}
+
+#profile li:hover{
+    background-color: #eeeeee;
+
+}
+
+.name{
+    padding - bottom: 0px;
+}
+
+#sidenav a{
+    color: #333333;
+    padding-left: 18px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-size: 14px;
+    border-bottom: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: #CCC;
+
+}
+
+#sidenav a:hover{
+    background-color: #eeeeee;
+}
+.nav-link[data-toggle].collapsed:after {
+    content: "▾";
+}
+.nav-link[data-toggle]:not(.collapsed):after {
+    content: "▴";
+}

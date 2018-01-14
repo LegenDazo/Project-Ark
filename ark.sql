@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.1
--- http://www.phpmyadmin.net
+-- version 4.6.5.2
+-- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 14, 2018 at 12:17 PM
--- Server version: 10.1.13-MariaDB
--- PHP Version: 5.6.21
+-- Generation Time: Jan 14, 2018 at 01:59 PM
+-- Server version: 10.1.21-MariaDB
+-- PHP Version: 7.1.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -152,18 +152,13 @@ CREATE TABLE `household` (
   `household_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- --------------------------------------------------------
-
 --
--- Table structure for table `householdassignment`
+-- Dumping data for table `household`
 --
 
-CREATE TABLE `householdassignment` (
-  `assignment_id` int(11) NOT NULL,
-  `household_id` int(11) NOT NULL,
-  `resident_id` int(11) NOT NULL,
-  `memship` varchar(25) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+INSERT INTO `household` (`household_id`) VALUES
+(1),
+(5);
 
 -- --------------------------------------------------------
 
@@ -243,22 +238,26 @@ CREATE TABLE `resident` (
   `lname` varchar(255) NOT NULL,
   `gender` varchar(6) NOT NULL,
   `bday` date NOT NULL,
-  `age` int(11) NOT NULL,
   `brgy_id` int(11) NOT NULL,
   `admin_id` varchar(25) NOT NULL,
   `house_no` int(11) NOT NULL,
-  `street` varchar(1000) NOT NULL
+  `street` varchar(1000) NOT NULL,
+  `house_memship` varchar(255) NOT NULL,
+  `household_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `resident`
 --
 
-INSERT INTO `resident` (`resident_id`, `fname`, `mname`, `lname`, `gender`, `bday`, `age`, `brgy_id`, `admin_id`, `house_no`, `street`) VALUES
-(1, 'Jorge Philip', 'Tarog', 'Codilla', 'Male', '2018-01-01', 0, 0, '', 324, 'V.Rama '),
-(2, 'John Kent', 'CabaÃ±ez', 'Virtudazo', 'Male', '2018-01-02', 0, 0, '', 6969, 'Gov. M. Cuenco Ave'),
-(3, 'Mylene', 'Delima', 'Pepito', 'Female', '2018-01-04', 0, 0, '', 123, 'Punta'),
-(4, 'Abigail', 'Inoc', 'Velasquez', 'Female', '2018-01-10', 0, 0, '', 789, 'Paknaan');
+INSERT INTO `resident` (`resident_id`, `fname`, `mname`, `lname`, `gender`, `bday`, `brgy_id`, `admin_id`, `house_no`, `street`, `house_memship`, `household_id`) VALUES
+(1, 'Jorge Philip', 'Tarog', 'Codilla', 'Male', '2018-01-01', 0, '', 324, 'V.Rama ', '', 1),
+(2, 'John Kent', 'CabaÃ±ez', 'Virtudazo', 'Male', '2018-01-02', 0, '', 6969, 'Gov. M. Cuenco Ave', '', 1),
+(3, 'Mylene', 'Delima', 'Pepito', 'Female', '2018-01-04', 0, '', 123, 'Punta', '', 1),
+(4, 'Abigail', 'Inoc', 'Velasquez', 'Female', '2018-01-10', 0, '', 789, 'Paknaan', '', 1),
+(5, '12', '12', '12', '12', '2018-12-31', 7, '', 12, '12', 'head', 1),
+(6, 'Max', 'Delante', 'Zuorba', 'Male', '2000-05-06', 7, '', 120, 'Nasipit, Talamban, Cebu', 'head', 5),
+(7, 'Monina', 'Garcia', 'So', 'Female', '1998-12-20', 7, '', 120, 'Nasipit, Talamban, Cebu', 'head\'s spouse', 5);
 
 -- --------------------------------------------------------
 
@@ -282,10 +281,10 @@ CREATE TABLE `sms` (
 INSERT INTO `sms` (`sms_id`, `content`, `datesent`, `admin_id`, `status`, `username`) VALUES
 (3, 'PROJECTARK ADVISORY! Habang ang bagyo ay papalapit sa Pilipinas! Ang pilipinas naman ay papalayo ng papalayo sa bagyo!!', '2018-01-10 15:55:39', '', 1, 'LegenDazo'),
 (4, 'PROJECTARK ADVISORY! Habang ang bagyo ay papalapit sa Pilipinas! Ang pilipinas naman ay papalayo ng papalayo sa bagyo!!', '2018-01-10 15:55:43', '', 1, 'bacolod'),
-(7, 'PROJECTARK ADVISORY! ayaw nya ko biraha, basin ma hulog ta sa usa''g usa - dazo', '2018-01-10 16:17:44', '', 1, 'bacolod'),
-(8, 'PROJECTARK ADVISORY! ayaw nya ko biraha, basin ma hulog ta sa usa''g usa - dazo', '2018-01-10 16:17:46', '', 1, 'LegenDazo'),
-(9, 'PROJECTARK ADVISORY! "wa ka nalipong? ganina rman gud ka si''g tuyok sa ako ulo"', '2018-01-10 16:29:48', '', 1, 'bacolod'),
-(10, 'PROJECTARK ADVISORY! "wa ka nalipong? ganina rman gud ka si''g tuyok sa ako ulo"', '2018-01-10 16:29:49', '', 1, 'LegenDazo');
+(7, 'PROJECTARK ADVISORY! ayaw nya ko biraha, basin ma hulog ta sa usa\'g usa - dazo', '2018-01-10 16:17:44', '', 1, 'bacolod'),
+(8, 'PROJECTARK ADVISORY! ayaw nya ko biraha, basin ma hulog ta sa usa\'g usa - dazo', '2018-01-10 16:17:46', '', 1, 'LegenDazo'),
+(9, 'PROJECTARK ADVISORY! \"wa ka nalipong? ganina rman gud ka si\'g tuyok sa ako ulo\"', '2018-01-10 16:29:48', '', 1, 'bacolod'),
+(10, 'PROJECTARK ADVISORY! \"wa ka nalipong? ganina rman gud ka si\'g tuyok sa ako ulo\"', '2018-01-10 16:29:49', '', 1, 'LegenDazo');
 
 -- --------------------------------------------------------
 
@@ -388,13 +387,8 @@ ALTER TABLE `evacuationcenter`
 -- Indexes for table `household`
 --
 ALTER TABLE `household`
-  ADD PRIMARY KEY (`household_id`);
-
---
--- Indexes for table `householdassignment`
---
-ALTER TABLE `householdassignment`
-  ADD PRIMARY KEY (`assignment_id`);
+  ADD PRIMARY KEY (`household_id`),
+  ADD KEY `household_id` (`household_id`);
 
 --
 -- Indexes for table `item`
@@ -434,7 +428,8 @@ ALTER TABLE `reliefpackage`
 -- Indexes for table `resident`
 --
 ALTER TABLE `resident`
-  ADD PRIMARY KEY (`resident_id`);
+  ADD PRIMARY KEY (`resident_id`),
+  ADD KEY `household_id` (`household_id`);
 
 --
 -- Indexes for table `sms`
@@ -495,12 +490,7 @@ ALTER TABLE `evacuationcenter`
 -- AUTO_INCREMENT for table `household`
 --
 ALTER TABLE `household`
-  MODIFY `household_id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `householdassignment`
---
-ALTER TABLE `householdassignment`
-  MODIFY `assignment_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `household_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `item`
 --
@@ -515,7 +505,7 @@ ALTER TABLE `reliefoperation`
 -- AUTO_INCREMENT for table `resident`
 --
 ALTER TABLE `resident`
-  MODIFY `resident_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `resident_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `sms`
 --
@@ -585,6 +575,12 @@ ALTER TABLE `packagedistribution`
 --
 ALTER TABLE `reliefoperation`
   ADD CONSTRAINT `reliefoperation_ibfk_1` FOREIGN KEY (`evac_id`) REFERENCES `evacuationcenter` (`evac_id`);
+
+--
+-- Constraints for table `resident`
+--
+ALTER TABLE `resident`
+  ADD CONSTRAINT `household` FOREIGN KEY (`household_id`) REFERENCES `household` (`household_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `sms`

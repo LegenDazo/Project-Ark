@@ -31,7 +31,8 @@
 
 		public function retrieveHouseholdData()
 		{
-			$sql = "SELECT * FROM resident";
+		//	$sql = "SELECT * FROM resident as a INNER JOIN household as b ON a.household_id = b.household_id WHERE a.house_memship = 'head' OR a.house_memship = 'head\'s spouse'";
+			$sql = "SELECT * FROM household";
 			$query = mysqli_query($this->conn, $sql);
 			$itemArray = array();
 			while ($row = mysqli_fetch_assoc($query)) {

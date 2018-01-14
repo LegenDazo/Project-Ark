@@ -51,7 +51,7 @@
                         ?>
                            <tr>
                              <td><?php echo $row['fname']; echo " "; echo $row['mname']; echo " "; echo $row['lname']?></td>
-                             <td><?php echo $row['age'];?></td>
+                          
                              <td><?php echo $row['gender'];?></td>
                              <td><?php echo $row['street'];?></td>
                          <td><?php echo $row['house_no'];?></td>

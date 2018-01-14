@@ -48,8 +48,32 @@
                                     foreach($myrow as $row ){ ?>
                                       <tr id="<?php echo $row['household_id']; ?>">        
 
-                               <td data-target="resident_id"><?php echo $row['resident_id']; ?></td>         
-                               <td><?php echo $row['fname']; echo " "; echo $row['mname']; echo " "; echo $row['lname']?></td>
+                               <td data-target="household_id"><?php echo $row['household_id']; ?></td>         
+                               <td><?php 
+                                $result = mysqli_query($obj->conn, "SELECT * FROM resident WHERE household_id = ".$row['household_id']." AND house_memship = 'head'");
+                                $rowH = mysqli_fetch_assoc($result);
+                                if($rowH['house_memship'] == 'head'){
+                                echo $rowH['fname']; 
+                                echo " "; 
+                                echo $rowH['mname']; 
+                                echo " "; 
+                                echo $rowH['lname'];
+                                }?>
+                             </td>
+                             <td>
+                               <?php 
+                                $result = mysqli_query($obj->conn, "SELECT * FROM resident WHERE household_id = ".$row['household_id']." AND house_memship = 'head\'s spouse'");
+                                $rowH = mysqli_fetch_assoc($result);
+
+                               if($rowH['house_memship'] == "head's spouse"){
+                                echo $rowH['fname']; 
+                                echo " "; 
+                                echo $rowH['mname']; 
+                                echo " "; 
+                                echo $rowH['lname'];
+                              }
+                               ?>
+                             </td>
                                <td>&nbsp;</td>
                                <td><a href="updateHousehold.php?resident_id=<?php echo $row['resident_id'];?>" class="btn btn-info">View Details</a>&nbsp;&nbsp;&nbsp;</td>&nbsp;                                    
                                       </tr>

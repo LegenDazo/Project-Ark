@@ -1,5 +1,8 @@
 <?php
-	Class DataOperations
+
+//include 'functions/retrieveEvacuationCenterFunction.php';
+
+	Class Functions
 	{
 		public $conn;
 		public function __construct()
@@ -7,9 +10,9 @@
 			$this->conn = mysqli_connect("localhost", "root", "", "ark");
 		}
 
-		public function insertAnnounce($an_what, $an_who, $an_when, $an_where)
+		public function insertAnnounce($admin_id, $an_what, $to_whom, $date_start, $date_end, $time_start, $time_end, $description)
 		{
-			$sql = "INSERT INTO announcement (an_what, an_who, an_when, an_where) VALUES ('".$an_what."','".$an_who."','".$an_when."','".$an_where."')";
+			$sql = "INSERT INTO announcement (admin_id, an_what, to_whom, date_start, date_end, time_start, time_end, description) VALUES ('".$admin_id."','".$an_what."','".$to_whom."','".$date_start."','".$date_end."','".$time_start."','".$time_end."','".$description."')";
 			$query = mysqli_query($this->conn, $sql);
 			if ($query) {
 				return true;
@@ -40,9 +43,9 @@
 			return $itemArray;
 		}
 
-		public function updateAnnounce($announcement_id, $an_what, $an_who, $an_when, $an_where)
+		public function updateAnnounce($admin_id, $an_what, $to_whom, $date_start, $date_end, $time_start, $time_end, $description)
 		{
-			$sql = "UPDATE announcement SET announcement_id='".$announcement_id."',an_what='".$an_what."',an_who='".$an_who."',an_when='".$an_when."',an_where='".$an_where."' WHERE announcement_id='".$announcement_id."'";
+			$sql = "UPDATE announcement SET announcement_id='".$announcement_id."',admin_id='".$admin_id."',an_what='".$an_what."',to_whom='".$to_whom."',date_start='".$date_start."',date_end='".$date_end."',time_start='".$time_start."',time_end='".$time_end."',description='".$description."' WHERE announcement_id='".$announcement_id."'";
 			$query = mysqli_query($this->conn, $sql);
 			if ($query) {
 				return true;
@@ -63,38 +66,45 @@
 		}
 	}
 
-	$obj = new DataOperations;
+	$func = new Functions;
 
 	if (isset($_POST['submitannounce'])) {
-
-		$an_what = mysqli_real_escape_string($obj->conn, $_POST['an_what']);
-		$an_who = mysqli_real_escape_string($obj->conn, $_POST['an_who']);
-		$an_when = mysqli_real_escape_string($obj->conn, $_POST['an_when']);
-		$an_where = mysqli_real_escape_string($obj->conn, $_POST['an_where']);
+		$admin_id = 1;
+		$an_what = mysqli_real_escape_string($func->conn, $_POST['an_what']);
+		$to_whom = mysqli_real_escape_string($func->conn, $_POST['to_whom']);
+		$date_start = mysqli_real_escape_string($func->conn, $_POST['date_start']);
+		$date_end = mysqli_real_escape_string($func->conn, $_POST['date_end']);
+		$time_start = mysqli_real_escape_string($func->conn, $_POST['time_start']);
+		$time_end = mysqli_real_escape_string($func->conn, $_POST['time_end']);
+		$description = mysqli_real_escape_string($func->conn, $_POST['description']);
 		
-		if ($obj->insertAnnounce($an_what, $an_who, $an_when, $an_where)) {
+		
+		if ($func->insertAnnounce($admin_id, $an_what, $to_whom, $date_start, $date_end, $time_start, $time_end, $description)) {
 			header("location:../announcement.php?inserted=1");
 		}
 	}
 
 	if (isset($_POST['updateannounce'])) {
 
-		$announcement_id = mysqli_real_escape_string($obj->conn, $_GET['announcement_id']);
-		$an_what = mysqli_real_escape_string($obj->conn, $_POST['an_what']);
-		$an_who = mysqli_real_escape_string($obj->conn, $_POST['an_who']);
-		$an_when = mysqli_real_escape_string($obj->conn, $_POST['an_when']);
-		$an_where = mysqli_real_escape_string($obj->conn, $_POST['an_where']);
+		$announcement_id = mysqli_real_escape_string($func->conn, $_GET['announcement_id']);
+		$an_what = mysqli_real_escape_string($func->conn, $_POST['an_what']);
+		$to_whom = mysqli_real_escape_string($func->conn, $_POST['to_whom']);
+		$date_start = mysqli_real_escape_string($func->conn, $_POST['date_start']);
+		$date_end = mysqli_real_escape_string($func->conn, $_POST['date_end']);
+		$time_start = mysqli_real_escape_string($func->conn, $_POST['time_start']);
+		$time_end = mysqli_real_escape_string($func->conn, $_POST['time_end']);
+		$description = mysqli_real_escape_string($func->conn, $_POST['description']);
 				
-		if ($obj->updateAnnounce($announcement_id, $an_what, $an_who, $an_when, $an_where)) {
+		if ($func->updateAnnounce($an_what, $to_whom, $date_start, $date_end, $time_start, $time_end, $description)) {
 			header("location:../viewAnnounceDetails.php?updated=1&announcement_id=$announcement_id");
 		}
 	}
 
 	if (isset($_GET['deleteannounce'])) {
-		$announcement_id = mysqli_real_escape_string($obj->conn, $_GET['announcement_id']);
+		$announcement_id = mysqli_real_escape_string($func->conn, $_GET['announcement_id']);
 
 		
-			if ($obj->deleteAnnounce($announcement_id)) {
+			if ($func->deleteAnnounce($announcement_id)) {
 			header("location:announcement.php?deleted=1");
 		}		
 	}

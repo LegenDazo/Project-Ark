@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <?php include 'functions/announceFunctions.php'; 
+      include 'functions/retrieveEvacuationCenterFunction.php';
 ?>
 <html lang="en">
 <head>
-  <title>Residents</title>
+  <title>Announcement</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="../bootstrap/css/bootstrap.css">
@@ -38,8 +39,8 @@
                   <div class="container" style="margin-top: 25px;">
                           <center><h6>Announcement Details</h6></center>
                           <div class="container" style="margin-top: 5%">
-                              <div class="col-md-12">
-                                  <form method="post" action="functions/announceFunctions.php">
+                              
+                                  <form method="POST" action="functions/announceFunctions.php">
                                      <div class="panel-body">  
                                         <div class="text-left">
                                           <a href="announcement.php" class="btn btn-warning">Cancel</a>
@@ -47,35 +48,86 @@
 
                                         <div class="row">
                                             <div class="form-group col-md-6">
-                                              <label for="an_what">WHAT</label>
+                                              <label for="an_what">What</label>
                                               <input type="text" class="form-control" id="an_what" name="an_what">
                                             </div>
 
                                             <div class="form-group col-md-6">
-                                              <label for="an_who">WHO</label>
-                                              <input type="text" class="form-control" id="an_who" name="an_who">
+                                              <label for="to_whom">Who</label>
+                                              <input type="text" class="form-control" id="to_whom" name="to_whom">
                                             </div>
                                         </div>
 
                                         <div class="row">
                                             <div class="form-group col-md-6">
-                                              <label for="an_when">WHEN /format: YYYY-MM-DD HH:MM:SS/</label>
-                                              <input type="text" class="form-control" id="an_when" name="an_when">
+                                              <label for="date_start">Date start</label>
+                                              <input type="date" class="form-control" id="date_start" name="date_start">
                                             </div>
 
                                             <div class="form-group col-md-6">
-                                              <label for="an_where">WHERE</label>
-                                              <input type="text" class="form-control" id="an_where" name="an_where">
+                                              <label for="date_end">Date end</label>
+                                              <input type="date" class="form-control" id="date_end" name="date_end">
                                             </div>
                                         </div>
-                                    </div>  <!--End of .panel-body-->     
+
+                                        <div class="row">
+
+                                            <div class="form-group col-md-2">
+                                              <!--<span class="col-md-2">-->
+                                              <label for="time_start">Time start</label><br>
+                                              <input type="time" class="form-control" id="time_start" name="time_start">
+                                                                     
+                                              <!--</span>-->
+                                            </div>                                                                     
+                                            
+
+                                            <div class="form-group col-md-2">
+                                              <label for="time_end">Time end</label><br>
+                                              <input type="time" class="form-control" id="time_end" name="time_end">
+                                              </div>
+
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="form-group col-md-6">
+                                              <label for="description">Description</label>
+                                              <input type="text" class="form-control" id="description" name="description">
+                                            </div>
+
+                                            <div class="form-group col-md-6">
+                                              <!--<label for="an_where">Location</label>
+                                              <input type="text" class="form-control" id="an_where" name="an_where">
+                                            -->
+                                              <label for="location_name">Location</label>
+                                              <select class="form-control" id="sel1" name="evac_id">
+                                              <option></option>
+                                              <?php
+                                                    $myrow = $obj->retrieveEvacuationCenter();
+                                                    foreach ($myrow as $row) {
+                                                ?>
+                                                <option value="<?php echo $row['evac_id'];?>"><?php echo $row['location_name'];?></option>
+                                                <?php }?>
+                                              </select>
+                                            </div> 
+
+                                        </div> 
+
+                                        <div>                                          
+                                            
+                                        </div>    
+
+                                    </div>  <!--End of .panel-body-->
+                                    <br>     
+                                    
                                         <div class="panel-footer">
                                           <div class="text-right">
                                           <button type="submit" class="btn btn-primary" name="submitannounce">Post</button>
                                           </div>
                                         </div>
+
                                   </form>
-                              </div>
+
+                              
                           </div>
                   </div>
               </div><!--END OF RIGHTCARD--> 

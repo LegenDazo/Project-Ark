@@ -29,13 +29,18 @@
           <?php
             if (isset($_GET['announcement_id'])) {
               $announcement_id = $_GET['announcement_id'];
-              $myrow = $obj->retrieveAnnounceItems($announcement_id);
+              $myrow = $func->retrieveAnnounceItems($announcement_id);
               foreach ($myrow as $row) {
                 $announcement_id = $row['announcement_id'];
                 $an_what = $row['an_what'];
-                $an_who = $row['an_who'];
-                $an_when = $row['an_when'];
-                $an_where = $row['an_where'];
+                $to_whom = $row['to_whom'];
+                $date_start = $row['date_start'];
+                $date_end = $row['date_end'];
+                $time_start = $row['time_start'];
+                $time_end = $row['time_end'];
+                $description = $row['description'];
+                $location = $row['location'];
+
               }
             }
           ?>

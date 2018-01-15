@@ -1,5 +1,9 @@
 <!DOCTYPE html>
 <?php include 'functions/announceFunctions.php'; 
+      include 'functions/retrieveEvacuationCenterFunction.php';
+      include 'functions/retrieveEvacIdFunction.php';
+
+
 ?>
 <html lang="en">
 <head>
@@ -40,29 +44,64 @@
                           <div class="col-md-12">
                                 <table class="table table-hovered" id="">
                                 <?php                              
-                                    $myrow = $obj->retrieveAnnounceItems($announcement_id);
+                                    $myrow = $func->retrieveAnnounceItems($announcement_id);
                                     foreach ($myrow as $row) {
                                         ?>
                                               
                                               <tr>
-                                                <td>WHAT</td>
+                                                <td>What</td>
                                                 <td><b><?php echo $row['an_what']?></b></td>
                                               </tr>
+
                                               <tr>
-                                                <td>WHO</td>
-                                                <td><b><?php echo $row['an_who'];?></b></td>
+                                                <td>Who</td>
+                                                <td><b><?php echo $row['to_whom'];?></b></td>
                                               </tr>
+
                                               <tr>
-                                                <td>WHEN</td>
-                                                <td><b><?php echo $row['an_when'];?></b></td>
+                                                <td>Date Start</td>
+                                                <td><b><?php echo $row['date_start'];?></b></td>
                                               </tr>
+
                                               <tr>
-                                                <td>WHERE</td>
-                                                <td><b><?php echo $row['an_where'];?></b></td>
+                                                <td>Date End</td>
+                                                <td><b><?php echo $row['date_end'];?></b></td>
                                               </tr>
+
+                                              <tr>
+                                                <td>Time Start</td>
+                                                <td><b><?php echo $row['time_start'];?></b></td>
+                                              </tr>
+
+                                              <tr>
+                                                <td>Time End</td>
+                                                <td><b><?php echo $row['time_end'];?></b></td>
+                                              </tr>
+
+                                              <tr>
+                                                <td>Description</td>
+                                                <td><b><?php echo $row['description'];?></b></td>
+                                              </tr>
+
+                                              <?php
+                                                $myrow = $obj->retrieveEvacId();
+                                                foreach ($myrow as $row) {
+                                                  $evac_id = $row['evac_id'];
+                                                ?>
+
+                                                <?php }?>
+
+                                              <tr>
+                                                <td>Location</td>
+                                                <td value="<?php echo $row['evac_id'];?>" ><b><?php echo $row['location_name'];?></b>
+                                                </td>
+                                              </tr>
+
                                               <tr>
                                                 <td><a href="updateAnnounce.php?announcement_id=<?php echo $row['announcement_id'];?>" class="btn btn-success btn-block">UPDATE</a></td>
+
                                                 <td><a href="announcement.php?deleteannounce=1&announcement_id=<?php echo $announcement_id;?>" class="btn btn-danger btn-block">DELETE</a></td>
+
                                                 <td><a href="announcement.php" class="btn btn-warning btn-block">BACK</a></td>
                                               </tr>  
 

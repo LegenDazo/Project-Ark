@@ -46,7 +46,7 @@
                               </thead>
 
                               <?php
-                                  $myrow = $obj->retrieveAnnounceData();
+                                  $myrow = $func->retrieveAnnounceData();
                                   foreach ($myrow as $row) {
                                     ?>
 

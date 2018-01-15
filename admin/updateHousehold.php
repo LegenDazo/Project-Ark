@@ -68,7 +68,7 @@
                           <form method="post" action="functions/householdFunctions.php?resident_id=<?php echo $_GET["resident_id"];?>">
 
                           <div class="text-left">
-                            <a href="reliefHousehold.php" class="btn btn-warning">Cancel</a>
+                            <a href="household.php" class="btn btn-warning">Cancel</a>
                           </div><br>
 
 

@@ -10,9 +10,9 @@
 			$this->conn = mysqli_connect("localhost", "root", "", "ark");
 		}
 
-		public function insertAnnounce($admin_id, $an_what, $to_whom, $date_start, $date_end, $time_start, $time_end, $description)
+		public function insertAnnounce($admin_id, $an_what, $to_whom, $date_start, $date_end, $time_start, $time_end, $description, $location)
 		{
-			$sql = "INSERT INTO announcement (admin_id, an_what, to_whom, date_start, date_end, time_start, time_end, description) VALUES ('".$admin_id."','".$an_what."','".$to_whom."','".$date_start."','".$date_end."','".$time_start."','".$time_end."','".$description."')";
+			$sql = "INSERT INTO announcement (admin_id, an_what, to_whom, date_start, date_end, time_start, time_end, description, location) VALUES ('".$admin_id."','".$an_what."','".$to_whom."','".$date_start."','".$date_end."','".$time_start."','".$time_end."','".$description."','".$location."')";
 			$query = mysqli_query($this->conn, $sql);
 			if ($query) {
 				return true;
@@ -43,9 +43,9 @@
 			return $itemArray;
 		}
 
-		public function updateAnnounce($admin_id, $an_what, $to_whom, $date_start, $date_end, $time_start, $time_end, $description)
+		public function updateAnnounce($announcement_id, $an_what, $to_whom, $date_start, $date_end, $time_start, $time_end, $description, $location)
 		{
-			$sql = "UPDATE announcement SET announcement_id='".$announcement_id."',admin_id='".$admin_id."',an_what='".$an_what."',to_whom='".$to_whom."',date_start='".$date_start."',date_end='".$date_end."',time_start='".$time_start."',time_end='".$time_end."',description='".$description."' WHERE announcement_id='".$announcement_id."'";
+			$sql = "UPDATE announcement SET announcement_id='".$announcement_id."',an_what='".$an_what."',to_whom='".$to_whom."',date_start='".$date_start."',date_end='".$date_end."',time_start='".$time_start."',time_end='".$time_end."',description='".$description."',location='".$location."' WHERE announcement_id='".$announcement_id."'";
 			$query = mysqli_query($this->conn, $sql);
 			if ($query) {
 				return true;
@@ -77,9 +77,10 @@
 		$time_start = mysqli_real_escape_string($func->conn, $_POST['time_start']);
 		$time_end = mysqli_real_escape_string($func->conn, $_POST['time_end']);
 		$description = mysqli_real_escape_string($func->conn, $_POST['description']);
+		$location = mysqli_real_escape_string($func->conn, $_POST['location']);
+
 		
-		
-		if ($func->insertAnnounce($admin_id, $an_what, $to_whom, $date_start, $date_end, $time_start, $time_end, $description)) {
+		if ($func->insertAnnounce($admin_id, $an_what, $to_whom, $date_start, $date_end, $time_start, $time_end, $description, $location)) {
 			header("location:../announcement.php?inserted=1");
 		}
 	}
@@ -94,8 +95,10 @@
 		$time_start = mysqli_real_escape_string($func->conn, $_POST['time_start']);
 		$time_end = mysqli_real_escape_string($func->conn, $_POST['time_end']);
 		$description = mysqli_real_escape_string($func->conn, $_POST['description']);
+		$location = mysqli_real_escape_string($func->conn, $_POST['location']);
+
 				
-		if ($func->updateAnnounce($an_what, $to_whom, $date_start, $date_end, $time_start, $time_end, $description)) {
+		if ($func->updateAnnounce($announcement_id, $an_what, $to_whom, $date_start, $date_end, $time_start, $time_end, $description, $location)) {
 			header("location:../viewAnnounceDetails.php?updated=1&announcement_id=$announcement_id");
 		}
 	}

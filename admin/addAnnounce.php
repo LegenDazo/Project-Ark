@@ -99,13 +99,13 @@
                                               <input type="text" class="form-control" id="an_where" name="an_where">
                                             -->
                                               <label for="location_name">Location</label>
-                                              <select class="form-control" id="sel1" name="evac_id">
+                                              <select class="form-control" id="sel1" name="location">
                                               <option></option>
                                               <?php
                                                     $myrow = $obj->retrieveEvacuationCenter();
                                                     foreach ($myrow as $row) {
                                                 ?>
-                                                <option value="<?php echo $row['evac_id'];?>"><?php echo $row['location_name'];?></option>
+                                                <option value="<?php echo $row['location_name'];?>"><?php echo $row['location_name'];?></option>
                                                 <?php }?>
                                               </select>
                                             </div> 

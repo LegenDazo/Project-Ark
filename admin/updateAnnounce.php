@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <?php include 'functions/announceFunctions.php'; 
+      include 'functions/retrieveEvacuationCenterFunction.php';
+
 ?>
 <html lang="en">
 <head>
@@ -58,25 +60,73 @@
                                     <a href="viewAnnounceDetails.php?announcement_id=<?php echo $announcement_id;?>" class="btn btn-warning">Cancel</a>
                                   </div><br>
 
-                                  <div class="form-group">
-                                    <label for="an_what">WHAT</label>
+                                <div class="row">
+                                  <div class="form-group col-md-6">
+                                    <label for="an_what">What</label>
                                     <input type="text" class="form-control" value="<?php echo $an_what;?>" id="an_what" name="an_what">
                                   </div>
                                     
                                   <div class="form-group">
-                                    <label for="an_who">WHO</label>
-                                    <input type="text" class="form-control" value="<?php echo $an_who;?>" id="an_who" name="an_who">  
+                                    <label for="an_who">Who</label>
+                                    <input type="text" class="form-control" value="<?php echo $to_whom;?>" name="to_whom">  
                                   </div>
+                                </div>
 
-                                  <div class="form-group">
-                                    <label for="an_when">WHEN /format: YYYY-MM-DD HH:MM:SS/</label>
-                                    <input type="text" class="form-control" value="<?php echo $an_when;?>" id="an_when" name="an_when">
-                                  </div>
 
-                                  <div class="form-group">
-                                    <label for="an_where">WHERE</label>
-                                    <input type="text" class="form-control" value="<?php echo $an_where;?>" id="an_where" name="an_where">
-                                  </div>
+                                <div class="row">
+                                    <div class="form-group col-md-6">
+                                      <label for="date_start">Date start</label>
+                                      <input type="date" class="form-control" value="<?php echo $date_start;?>" id="date_start" name="date_start">
+                                    </div>
+
+                                    <div class="form-group col-md-6">
+                                      <label for="date_end">Date end</label>
+                                      <input type="date" class="form-control" value="<?php echo $date_end;?>" id="date_end" name="date_end">
+                                    </div>
+                                </div>
+
+                                <div class="row">
+
+                                    <div class="form-group col-md-2">
+                                      <!--<span class="col-md-2">-->
+                                      <label for="time_start">Time start</label><br>
+                                      <input type="time" class="form-control" value="<?php echo $time_start;?>" id="time_start" name="time_start">
+                                                             
+                                      <!--</span>-->
+                                    </div>                                                                     
+                                    
+
+                                    <div class="form-group col-md-2">
+                                      <label for="time_end">Time end</label><br>
+                                      <input type="time" class="form-control" value="<?php echo $time_end;?>" id="time_end" name="time_end">
+                                      </div>
+
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-group col-md-6">
+                                      <label for="description">Description</label>
+                                      <input type="text" class="form-control" value="<?php echo $description;?>" id="description" name="description">
+                                    </div>
+
+                                    <div class="form-group col-md-6">
+                                      <!--<label for="an_where">Location</label>
+                                      <input type="text" class="form-control" id="an_where" name="an_where">
+                                    -->
+                                      <label for="location_name">Location</label>
+                                      <select class="form-control" id="sel1" name="location">
+                                      <option> <?php echo $location; ?></option>
+                                      <?php
+                                            $myrow = $obj->retrieveEvacuationCenter();
+                                            foreach ($myrow as $row) {
+                                        ?>
+                                        <option value="<?php echo $row['location_name'];?>"><?php echo $row['location_name'];?></option>
+                                        <?php }?>
+                                      </select>
+                                    </div> 
+
+                                </div> 
+
                                 </div>  <!--End of .panel-body-->     
                                   <div class="panel-footer">
                                     <div class="text-right">

@@ -83,22 +83,14 @@
                                                 <td><b><?php echo $row['description'];?></b></td>
                                               </tr>
 
-                                              <?php
-                                                $myrow = $obj->retrieveEvacId();
-                                                foreach ($myrow as $row) {
-                                                  $evac_id = $row['evac_id'];
-                                                ?>
-
-                                                <?php }?>
-
                                               <tr>
                                                 <td>Location</td>
-                                                <td value="<?php echo $row['evac_id'];?>" ><b><?php echo $row['location_name'];?></b>
+                                                <td><b><?php echo $row['location'];?></b>
                                                 </td>
                                               </tr>
-
+                                              
                                               <tr>
-                                                <td><a href="updateAnnounce.php?announcement_id=<?php echo $row['announcement_id'];?>" class="btn btn-success btn-block">UPDATE</a></td>
+                                                <td><a href="updateAnnounce.php?process=update&announcement_id=<?php echo $announcement_id?>" class="btn btn-success btn-block">UPDATE</a></td>
 
                                                 <td><a href="announcement.php?deleteannounce=1&announcement_id=<?php echo $announcement_id;?>" class="btn btn-danger btn-block">DELETE</a></td>
 

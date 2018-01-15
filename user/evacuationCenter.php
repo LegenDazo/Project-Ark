@@ -73,11 +73,12 @@
           $capacity = $row['capacity'];
           $house_no = $row['house_no'];
           $street = $row['street'];
-          $barangay = $row['barangay'];
+          $brgy_name = $row['brgy_name'];
           $city = $row['city'];
           $province = $row['province'];
+          
     
-          $address = $house_no.", ".$street.", ".$barangay.", ".$city.", ".$province;
+          $address = $house_no.", ".$street.", ".$brgy_name.", ".$city.", ".$province;
 
 
           echo "addMarker(new google.maps.LatLng(".$row['latitude'].",".$row['longitude']."),map,'$location','$population','$capacity','$address');";

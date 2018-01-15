@@ -19,7 +19,7 @@
                       <a class="nav-link active" href="home.php"><i class="material-icons">home</i>  Home</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="household.php"><i class="material-icons">people</i>  Community</a>
+                      <a class="nav-link" href="residents.php"><i class="material-icons">people</i>  Community</a>
                     </li>
                     <li class="nav-item">
                       <a class="nav-link collapsed" href="#submenu1" data-toggle="collapse" data-target="#submenu1"><i class="material-icons">visibility</i>  Monitor</a>
@@ -28,7 +28,6 @@
                                   <li class="nav-item"><a class="nav-link pt-1" href="attendance.php">Attendance</a></li>
                                   <li class="nav-item"><a class="nav-link pt-1" href="reliefHousehold.php">Relief/Household</a></li>
                                   <li class="nav-item"><a class="nav-link pt-1" href="itemResidents.php">Relief/Residents</a></li>
-                                  <li class="nav-item"><a class="nav-link pt-1" href="healthstatus.php">Health Status</a></li>
                               </ul>
                         </div>
                     </li>
@@ -47,8 +46,10 @@
                         <div class="collapse" id="submenu3" aria-expanded="false">
                               <ul class="flex-column pl-2 nav">
                                   <li class="nav-item"><a class="nav-link pt-1" href="barangay.php">Barangay</a></li>
+                                  <li class="nav-item"><a class="nav-link pt-1" href="reliefItems.php">Relief Items</a></li>
                                   <li class="nav-item"><a class="nav-link pt-1" href="reliefOperation.php">Relief Operation</a></li>
                                   <li class="nav-item"><a class="nav-link pt-1" href="reliefpackage.php">Relief Packages</a></li>
+                                  <li class="nav-item"><a class="nav-link pt-1" href="reliefSponsors.php">Relief Sponsors</a></li>
                               </ul>
                         </div>
                     </li>              

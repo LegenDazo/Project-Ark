@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<?php include 'functions/operationFunctions.php'; 
+<?php include 'functions/reliefItemsFunctions.php"'; 
 ?>
 <html lang="en">
 <head>
-  <title>ARK</title>
+  <title>Project Ark</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../bootstrap/css/bootstrap.css">
@@ -30,40 +30,39 @@
               <div class="card" style="margin-top: 25px;"><!--START OF RIGHTCARD-->    
 
               <div class="container" style="margin-top: 25px;">
-                <center><h6>List of Announcements</h6></center>
+                <center><h4>List of Items</h4></center>
                       <div class="container" style="margin-top: 5%">
                         <div class="col-md-12">
                           <div class="container" align="center">
-                          <h4>ADD OPERATION &nbsp;<a href="addOperation.php" class="btn btn-success"><i class="material-icons">add</i></a></h4>
+                          <h6>Add Relief Item &nbsp;<a href="addreliefItems.php" class="btn btn-success"><i class="material-icons">add</i></a></h6>
                           <table class="table table-hovered" id="regStudent">
                               <thead>
                                 <tr>
-                                  <th>ID</th>
-                                  <th>Operation Name</th>
-                                  <th>Evacuation Name</th>
-                                  <th>Action</th>
-                                  
+                                  <th>Item No.</th>
+                                  <th>Item Name</th>
+                                  <th>Quantity</th>
+                                  <th>Item Type</th>
+                                  <th>Sponsor ID</th>
+                                  <th>Package ID</th>
+                                  <th>Status</th>
                                 </tr>
                               </thead>
-
                               <?php
-                                  $myrow = $obj->retrieveOperationData();
-                                  foreach ($myrow as $row) {
-                                    ?>
-
-                                      <tr>
-                                        <td><?php echo $row['operation_id']?></td>
-                                        <td><?php echo $row['operation_name']?></td>
-                                        <td><?php echo $row['operation_name']?></td>
-                                        
-
-                                        <td><a href="reliefOperation.php?deleteoperation=1&operation_id=<?php echo $row['operation_id'];?>" class="btn btn-danger">DELETE</a></td>
-                                  
-                                         
-                                      </tr>
-                                    <?php    
-                                  }
-                              ?>
+                              $myrow = $Functions->retrieveItemData3();
+                              foreach ($myrow as $row) {
+                                ?>
+                                   <tr>
+                                     <td><?php echo $row['item_no']?></td>
+                                     <td><?php echo $row['item_name']?></td>
+                                     <td><?php echo $row['qty']?></td>
+                                     <td><?php echo $row['item_type']?></td>
+                                     <td><?php echo $row['sponsor_name']?></td>
+                                     <td><?php echo $row['package_name']?></td>
+                                     <td><a href="reliefItems.php?deleteItem=1&item_no=<?php echo $row['item_no'];?>" class="btn btn-danger">DELETE</a></td>
+                                  </tr>
+                                  <?php
+                              }
+                            ?> 
                           </table>
                         </div>
                         </div>
@@ -96,15 +95,6 @@
     }
   ?>
 
-    $('.close').click(function(){
-        $('#viewkey').hide();
-        window.location.href='registerStudent.php';
-    });
-
-    $('.close').click(function(){
-        $('#viewkeydel').hide();
-        window.location.href='registerStudent.php';
-    });
 
     $('#regStudent').DataTable();
 } );

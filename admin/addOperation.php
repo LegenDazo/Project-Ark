@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<?php include 'functions/operationFunctions.php'; 
+<?php 
+include 'functions/operationFunctions.php';
+include 'functions/retrieveEvacuationCenterFunction.php';  
 ?>
 <html lang="en">
 <head>
@@ -24,35 +26,45 @@
 
             <?php include '../adminNavbar.php'; ?>
 
-          <?php
-            if(isset($_GET['operation_id'])) {
-               $operation_id = $_GET['operation_id']; 
-          } 
-          ?>
-
 
             <div class="col-md-9"><!-- START of RIGHT COLUMN-->
               <div class="card" style="margin-top: 25px;" ><!--START OF RIGHTCARD-->
                 <div class="container" style="margin-top: 25px;">
-                      <center><h6>Create Operation</h6></center>
-                      <div class="container" style="margin-top: 5%">
+                      <center><h5>Create Operation</h5></center>
+                      <div class="container" style="margin-top: 5%; margin-bottom: 5%;">
                           <div class="col-md-12">
                               <div class="container" align="center">
-                                <div class="col-md-6">
-                                    <div class="panel-body"> 
-                                      <form method="post" action="adminOperationFunctions.php">
-                                        <div class="form-group">
-                                          <label for="operation_name">Operation Name</label>
-                                          <textarea class="form-control" rows="1" id="operation_name" name="operation_name" ></textarea>
-                                        </div>
+
+                                      <form method="POST" action="functions/operationFunctions.php">
+
+                                          <div class="form-group col-md-4">
+                                            <label for="operation_name">Operation Name</label>
+                                            <input  data-target="operation_name" type="text" class="form-control" id="operation_name" name="operation_name"> 
+                                          </div>
+
+                                          <div class="form-group col-md-4" style="margin-top: 5%">
+                                            <label for="evac_id">Evacuation Location</label>
+                                            <select id="evac" name="evac_id" class="form-control" required>
+                                              <option value="">Select a Evacuation</option>
+                                              <?php
+                                                $evac = $obj->retrieveEvacuationCenter();
+                                                foreach($evac as $bar) {
+                                                  echo "<option value='".$bar["evac_id"]."'>";
+                                                  echo $bar["location_name"];
+                                                  echo "</option>";
+                                                }
+                                              ?>
+                                            </select>
+                                          </div>       
+                                           
+
+                                           <a href="reliefOperation.php" class="btn btn-warning">Cancel</a>&nbsp;
+                                           <button type="submit" class="btn btn-primary" name="submitoperation">Submit</button>                
                                       </form>
-                                    </div>  <!--End of .panel-body-->     
-                                    <div class="panel-footer">
-                                      <div class="text-right">
-                                        <a href="reliefOperation.php" class="btn btn-warning">Cancel</a>&nbsp;<button type="submit" class="btn btn-primary" name="submitoperation">Submit</button>
-                                      </div>
-                                    </div>  
-                                </div>
+
+                                        
+
+
                               </div>
                           </div>
                       </div>

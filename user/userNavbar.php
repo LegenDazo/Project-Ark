@@ -2,7 +2,8 @@
                  <div class="card" id="profile" style="margin-top: 25px;">
                 <img src="../images/user.png">
                   <center><label  class="name"><b>John Kent C. Virtudazo</b></label><br>
-                  <label >November 13, 1997</label></center>
+                  <label >November 13, 1997</label><br>
+                </center>
                     <ul class="navbar-nav flex-column">
                       <li class="nav-item">
                         <a class="nav-link" href="viewProfile.php"><i class="material-icons">edit</i>  Manage Profile</a>

@@ -26,7 +26,17 @@
               <div class="card" style="margin-top: 25px;" ><!--START OF RIGHTCARD-->    
               <div class="container" style="margin-top: 25px;">
               <center><h5>Announcements</h5></center>
-
+              
+                <div class="col-md-12" style="border: solid #cecece 1px; border-radius: 5px;">
+                  <label>Admin: John Kent Virtudazo</label><br>
+                  <label>Date Posted: January 15, 2017</label>
+                  <h5>WHAT:</h5>
+                  <h5>WHO:</h5>
+                  <h5>LOCATION:</h5>
+                  <h5>TIME:</h5>
+                  <h5>DATE:</h5>
+                  <h5>DESCRIPTION:</h5>
+                </div>
               </div>
               </div><!--END OF RIGHTCARD--> 
           </div><!-- END of RIGHT COLUMN-->

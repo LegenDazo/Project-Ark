@@ -26,23 +26,24 @@
               <div class="card" style="margin-top: 25px;" ><!--START OF RIGHTCARD-->    
               <div class="container" style="margin-top: 25px;">
               <center><h5>Change Password</h5></center>
-              <form method="post" action="functions/updateProfile.php">
+              <form method="post" action="functions/changePasswordFunction.php">
+                <input type="hidden" name="username" value="<?php echo $_SESSION['username'];?>">
                 <div class="col-md-5">
                   <div class="form-group">
                     <label>Current Password</label>
-                    <input type="type" name="fname" class="form-control">
+                    <input type="text" name="curPassword" class="form-control">
                   </div>
                 </div> 
                 <div class="col-md-5">
                   <div class="form-group">
                     <label>New Password</label>
-                    <input type="type" name="mname" class="form-control">
+                    <input type="text" name="newPassword" class="form-control">
                   </div>
                 </div> 
                 <div class="col-md-5">
                   <div class="form-group">
                     <label>Confirm New Password</label>
-                    <input type="type" name="mname" class="form-control">
+                    <input type="text" name="conPassword" class="form-control">
                   </div>
                 </div> 
                 

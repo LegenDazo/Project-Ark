@@ -19,10 +19,10 @@
 
   <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
     <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-      <form class="form-inline">
-        <input type="text" class="form-control mr-sm-2" type="text" placeholder="Username">&nbsp;
-        <input type="password" class="form-control mr-sm-2" type="text" placeholder="Password">&nbsp;<br>
-        <button class="btn btn-outline-warning my-2 my-sm-0" type="submit">LOGIN</button>
+      <form class="form-inline" method="post" action="login.php">
+        <input type="text" class="form-control mr-sm-2" type="text" placeholder="Username" name="username">&nbsp;
+        <input type="password" class="form-control mr-sm-2" type="password" placeholder="Password" name="password">&nbsp;<br>
+        <button class="btn btn-outline-warning my-2 my-sm-0" type="submit" name="login">LOGIN</button>
       </form>
     </ul>
    
@@ -50,7 +50,7 @@
     <div class="col-md-4 bg-info text-white">
       <form method="post" action="./functions/signup.php" style="margin-top: 20px;">
               <h4 style="font-weight: bold;">Join Our Community</h4>
-              <?php echo $error; ?>
+            
               <div class="form-group">
                   <label for="First Name">First Name</label>
                       <input  type="text" class="form-control" name="firstname" required>         

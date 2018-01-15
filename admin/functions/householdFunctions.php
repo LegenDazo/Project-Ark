@@ -68,6 +68,8 @@
 
 	$obj = new DataOperations;
 
+
+
 	if (isset($_POST['submithousehold'])) {
 
 		//$resident_id = mysqli_real_escape_string($obj->conn, $_POST['resident_id']);
@@ -111,7 +113,7 @@
 
 	if (isset($_POST['updatehousehold'])) {
 
-		$id = mysqli_real_escape_string($obj->conn, $_GET['id']);
+		//$id = mysqli_real_escape_string($obj->conn, $_GET['resident_id']);
 		//$admin_id = mysqli_real_escape_string($obj->conn, $_POST['admin_id']);
 		//$user_id = mysqli_real_escape_string($obj->conn, $_POST['user_id']);
 	
@@ -135,18 +137,25 @@
 		//$house_memship = mysqli_real_escape_string($obj->conn, $_POST['house_memship']);
 
 		$brgy_id = mysqli_real_escape_string($obj->conn, $_POST['brgy_id']);
-		$admin_id = mysqli_real_escape_string($obj->conn, $_POST['admin_id']);
-		$household_id = mysqli_real_escape_string($obj->conn, $_POST['household_id']);
-		$user_id = mysqli_real_escape_string($obj->conn, $_POST['user_id']);
+	//	$admin_id = mysqli_real_escape_string($obj->conn, $_POST['admin_id']);
+		$household_id = mysqli_real_escape_string($obj->conn, $_GET['resident_id']);
+	//	$user_id = mysqli_real_escape_string($obj->conn, $_POST['user_id']);
 
 		$house_no = mysqli_real_escape_string($obj->conn, $_POST['house_no']);
 		$street = mysqli_real_escape_string($obj->conn, $_POST['street']);
 		
-		
-		
-		if ($obj->updateHousehold($brgy_id, $admin_id, $household_id, $user_id, $house_no, $street)) {
-			header("location:viewHouseholdDetails.php?updated=1&id=$id");
+		$sql = "UPDATE resident SET brgy_id=".$brgy_id.", house_no=".$house_no.", street='".$street."' WHERE household_id = ".$household_id."";
+		$query = mysqli_query($obj->conn, $sql);
+		if ($query) {
+			header("location: ../updateHousehold.php?resident_id=".$household_id."");
+		} else {
+			echo mysqli_error($obj->conn);
 		}
+		
+		
+	//	if ($obj->updateHousehold($brgy_id, $admin_id, $household_id, $user_id, $house_no, $street)) {
+	//		header("location:viewHouseholdDetails.php?updated=1&id=$id");
+	//	}
 		
 	}
 

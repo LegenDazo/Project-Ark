@@ -34,14 +34,14 @@
 
 	$obj = new HouseholdData;
 	
-	if(isset($_POST['household_id'])){
+	if(isset($_POST['house_memship'])){
 
-		$adult_fname = $_POST['adult_fname'];
-		$adult_mname = $_POST['adult_mname'];
-		$adult_lname = $_POST['adult_lname'];
-		$adult_gender = $_POST['adult_gender'];
-		$adult_bday = $_POST['adult_bday'];
-		$adult_age = $_POST['adult_age'];
+		$fname = $_POST['fname'];
+		$mname = $_POST['mname'];
+		$lname = $_POST['lname'];
+		$gender = $_POST['gender'];
+		$bday = $_POST['bday'];
+	//	$adult_age = $_POST['adult_age'];
 
 		$house_memship = $_POST['house_memship'];
 
@@ -53,7 +53,7 @@
 		//$house_no = $_POST['house_no'];
 		//$street = $_POST['street'];
 		
-		$household_id = $_POST['household_id'];
+		$id = $_POST['id'];
 		//$id = $_POST['id'];
 
 	//  query to update data 
@@ -64,8 +64,8 @@
 		echo 'data updated';
 	}*/
 
-	$result  = mysqli_query($conn , "UPDATE resident SET adult_fname='$adult_fname' , adult_mname='$adult_mname' , adult_lname = '$adult_lname' , adult_gender = '$adult_gender' , adult_bday = '$adult_bday' , adult_age = '$adult_age' , house_memship = '$house_memship', WHERE household_id='$household_id'");
-	if($result){
+	$result  = mysqli_query($obj->conn, "UPDATE resident SET fname='$fname' , mname='$mname' , lname = '$lname' , gender = '$gender' , bday = '$bday', house_memship = '$house_memship' WHERE resident_id= '$id'");
+	if($result) {
 		echo 'data updated';
 	}
 

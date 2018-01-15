@@ -74,7 +74,7 @@
                               }
                                ?>
                              </td>
-                               <td><a href="updateHousehold.php?resident_id=<?php echo $row['resident_id'];?>" class="btn btn-info">View Details</a>&nbsp;&nbsp;&nbsp;</td>
+                               <td><a href="updateHousehold.php?resident_id=<?php echo $row['household_id'];?>" class="btn btn-info">View Details</a>&nbsp;&nbsp;&nbsp;</td>
                                                             
                                       </tr>
 

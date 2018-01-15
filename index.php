@@ -1,4 +1,6 @@
-<!DOCTYPE html>
+<?php
+  $error = "";
+?>
 <html>
 <head>
   <link rel="icon" type="image/gif/png" href="logo.png">

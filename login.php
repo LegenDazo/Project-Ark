@@ -19,6 +19,16 @@ class Login
 			return true;
 		}
 	}
+	public function retrieveUserInfo($username)
+	{
+		$sql = "SELECT * FROM user WHERE username ='".$username."'";
+		$itemArray = array();
+		$query = mysqli_query($this->conn, $sql);
+		while ($row = mysqli_fetch_assoc($query)) {
+			$itemArray[] = $row;
+		}
+		return $itemArray;
+	}
 }
 
 
@@ -29,9 +39,13 @@ if (isset($_POST['login'])) {
 	$password = mysqli_real_escape_string($obj->conn, $_POST['password']);
 
 	if ($obj->loginUser($username, $password)) {
+		session_start();
+		$_SESSION['username'] = $username;
 		header("location:user/home.php");
 	} else {
-		header("location:index.php?error");
+		session_start();
+		$_SESSION['error'] = "Invalid username or password.";
+		header("location:index.php");
 	}
 }
 ?>

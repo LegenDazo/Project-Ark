@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 15, 2018 at 11:20 AM
+-- Generation Time: Jan 16, 2018 at 07:14 AM
 -- Server version: 5.6.16
 -- PHP Version: 5.5.11
 
@@ -133,14 +133,15 @@ CREATE TABLE IF NOT EXISTS `disease` (
   `disease_id` int(11) NOT NULL AUTO_INCREMENT,
   `disease_name` varchar(255) NOT NULL,
   PRIMARY KEY (`disease_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `disease`
 --
 
 INSERT INTO `disease` (`disease_id`, `disease_name`) VALUES
-(1, 'fever');
+(2, 'colds'),
+(3, 'fever');
 
 -- --------------------------------------------------------
 
@@ -198,7 +199,7 @@ CREATE TABLE IF NOT EXISTS `household` (
   `household_id` int(11) NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`household_id`),
   KEY `household_id` (`household_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `household`
@@ -206,7 +207,8 @@ CREATE TABLE IF NOT EXISTS `household` (
 
 INSERT INTO `household` (`household_id`) VALUES
 (1),
-(5);
+(5),
+(6);
 
 -- --------------------------------------------------------
 
@@ -303,7 +305,7 @@ CREATE TABLE IF NOT EXISTS `resident` (
   `household_id` int(11) NOT NULL,
   PRIMARY KEY (`resident_id`),
   KEY `household_id` (`household_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
 
 --
 -- Dumping data for table `resident`
@@ -316,7 +318,9 @@ INSERT INTO `resident` (`resident_id`, `fname`, `mname`, `lname`, `gender`, `bda
 (4, 'Abigail', 'Inoc', 'Velasquez', 'Female', '2018-01-10', 0, '', 789, 'Paknaan', '', 1),
 (5, '12', '12', '12', '12', '2018-12-31', 7, '', 12, '12', 'head', 1),
 (6, 'Max', 'Delante', 'Zuorba', 'Male', '2000-05-06', 7, '', 120, 'Nasipit, Talamban, Cebu', 'head', 5),
-(7, 'Monina', 'Garcia', 'So', 'Female', '1998-12-20', 7, '', 120, 'Nasipit, Talamban, Cebu', 'head''s spouse', 5);
+(7, 'Monina', 'Garcia', 'So', 'Female', '1998-12-20', 7, '', 120, 'Nasipit, Talamban, Cebu', 'head''s spouse', 5),
+(8, 'jon', 'snow', 'kent', 'male', '2018-01-10', 7, '', 2342354, 'dfgdrgd', 'head', 6),
+(9, 'emilia', 'clarke', 'sdfse', 'female', '2018-01-01', 7, '', 2342354, 'dfgdrgd', 'head''s spouse', 6);
 
 -- --------------------------------------------------------
 
@@ -425,8 +429,8 @@ ALTER TABLE `attendance`
 -- Constraints for table `diseaseacquired`
 --
 ALTER TABLE `diseaseacquired`
-  ADD CONSTRAINT `diseaseacquired_ibfk_2` FOREIGN KEY (`disease_id`) REFERENCES `disease` (`disease_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `diseaseacquired_ibfk_1` FOREIGN KEY (`resident_id`) REFERENCES `resident` (`resident_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `diseaseacquired_ibfk_1` FOREIGN KEY (`resident_id`) REFERENCES `resident` (`resident_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `diseaseacquired_ibfk_2` FOREIGN KEY (`disease_id`) REFERENCES `disease` (`disease_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `evacuationcenter`

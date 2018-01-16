@@ -43,50 +43,42 @@ include 'functions/residentDiseaseFunctions.php';
                             $resident_id = $_GET['resident_id'];
                           }
                         ?>
-                          <a href="updateResidentDisease.php?process=update&resident_id=<?php echo $resident_id?>" class="btn btn-success btn-block">Update Record</a>
-                          <button id='delete' class='btn btn-danger btn-block'>Delete Record</button>
                           <a href="diseaseAcquired.php" class="btn btn-warning btn-block">Back</a>
-                        </div>
+                        </div><br>
                         <div class="col-md-9 col-lg-9"> 
+                          <h6>Disease Acquired:</h6>
                         <?php
                           if (isset($_GET['resident_id'])) {
                             $resident_id = $_GET['resident_id'];
 
-                            $myrow = $func->retrieveDiseaseItemData2($resident_id);
+                            $myrow = $func->retrieve_residentData2($resident_id);
 
                             foreach ($myrow as $row) {
                               //$acquired_id = $row['acquired_id'];
                              $resident_id = $row['resident_id']; 
                              $fname = $row['fname'];
                              $mname = $row['mname'];
-                             $lname = $row['lname'];                             
+                             $lname = $row['lname'];   
+                             $disease_name = $row['disease_name'];                          
                               //$disease_id = $row['disease_id'];
+
+                             ?>
+                                <div class="form-group col-md-9">
+                                      
+                                      <?php echo $disease_name ?>
+                                  </div>
+                             <?php
    
                             }
                           }
                         ?>
-
-                        <form method="post" action="functions/barangayFunctions.php?process=update&brgy_id=<?php echo $brgy_id?>">
                                     <div class="form-group col-md-9">
-                                      <br><h6>Resident's ID Number:</h6> <br>
-                                      <?php echo $resident_id;?></p>
+                                      <h6>Resident's ID Number: <?php echo $resident_id;?></p></h6>
                                       <input type="hidden" name="resident_id" class="form-control" value="<?php echo $resident_id;?>" >
                                   </div>
                                   <div class="form-group col-md-9">
-                                      <h6>Resident's Name:</h6> <br>
-                                      <?php echo $fname." ".$mname." ".$lname;?>
-                                  </div>
-                                  <div class="form-group col-md-9">
-                                      <h6>Disease Aqcuired</h6>
-                                      <input type="text" name="diseaseAcquired" class="form-control" value="<?php echo $disease_name;?>">
-                                  </div>
-                                  <div class="clearfix"></div>
-                                  <div class="form-group col-md-12">
-                                    <button class="btn btn-primary" type="submit" name="updateBarangay">Update</button>
-                                  </div>
-                      </form>
-
-
+                                      <h6>Resident's Name: </h6> <?php echo $fname." ".$mname." ".$lname;?>
+                                  </div><br>
                         </div>
                         </div>
                           <div class="modal" id="viewkey" role="dialog">

@@ -32,85 +32,91 @@ include 'functions/residentDiseaseFunctions.php';
 
             <div class="col-md-9"><!-- START of RIGHT COLUMN-->
               <div class="card" style="margin-top: 25px;" ><!--START OF RIGHTCARD-->
-                <div class="container" style="margin-top: 25px;">
-                    <?php
-                       if (isset($_GET['resident_id'])) {
-                          $resident_id = $_GET['resident_id'];
-                        }
-                      ?>
-                        <h2>Update Resident Record &nbsp;<a href="viewResidentDisease.php?resident_id=<?php echo $resident_id;?>" class="btn btn-warning">Cancel</a></h2>
-                      </button>
-
-                      <?php
-                        if (isset($_GET['resident_id'])) {
+              <div class="container" style="margin-top: 25px;">
+                        <div class="col-md-12">
+                          <div class="container">
+                          <h2>Resident Disease</h2>
+                        <div class="col-md-3 col-lg-3">
+                        <div class="col-md-12 col-lg-12"></div>
+                        <?php
+                         if (isset($_GET['resident_id'])) {
                             $resident_id = $_GET['resident_id'];
-                            $process = $_GET['process'];
-
-                            if($process == 'update'){
-
-                          $myrow = $func->retrieveDiseaseItemData2($resident_id);
-
-                          foreach ($myrow as $row) {
-                              //$acquired_id = $row['acquired_id'];
-                              //$resident_id = $row['resident_id'];
-                              //$disease_id = $row['disease_id'];
-                              //$disease_name = $row['disease_name'];
                           }
-                        }
-                      }
-                      ?> 
+                        ?>
+                          <a href="viewResidentDisease.php?resident_id=<?php echo $resident_id;?>" class="btn btn-warning btn-block">Back</a>
+                        </div>
+                        <div class="col-md-9 col-lg-9"> 
+                        <?php
+                          if (isset($_GET['resident_id'])) {
+                            $resident_id = $_GET['resident_id'];
 
-                      <form method="post" action="functions/diseaseFunctions.php?process=update&resident_id=<?php echo $resident_id?>">
-                                    
+                            $myrow = $func->retrieve_residentData2($resident_id);
 
-                                  <div class="form-group col-md-3">
-                                      <label>Resident ID</label>
-                                      <input type="text" name="resident_id" class="form-control" value="<?php echo $resident_id;?>">
+                            foreach ($myrow as $row) {
+                              //$acquired_id = $row['acquired_id'];
+                             $resident_id = $row['resident_id']; 
+                             $fname = $row['fname'];
+                             $mname = $row['mname'];
+                             $lname = $row['lname'];   
+                             $disease_name = $row['disease_name'];                          
+                              //$disease_id = $row['disease_id'];
+
+                             ?>
+                                <div class="form-group col-md-9">
+                                      <h6>Disease Acquired:</h6> <br>
+                                      <?php echo $disease_name ?>
                                   </div>
-
-
-
-                                  <div class="form-group col-md-3">
-                                    <?php
-                                        $myrow = $func->retrieve_residentData();
-                                        foreach ($myrow as $row) {
-                                          $resident_id = $row['resident_id'];
-                                        ?>
-
-
-                                      <label>Resident Name</label>
-                                      <input type="text" name="resident_name" class="form-control" value="<?php echo $row['fname']; echo " "; echo $row['mname']; echo " "; echo $row['lname']?>">
-
-                                   <?php }?>
+                             <?php
+   
+                            }
+                          }
+                        ?>
+                                    <div class="form-group col-md-9">
+                                      <br><h6>Resident's ID Number:</h6> <br>
+                                      <?php echo $resident_id;?></p>
+                                      <input type="hidden" name="resident_id" class="form-control" value="<?php echo $resident_id;?>" >
                                   </div>
-
-
-
-                                  <div class="form-group col-md-3">
-
-                                    <?php
-                                        $myrow = $func->retrieveDiseaseData();
-                                        foreach ($myrow as $row) {
-
-                                        ?>
-
-                                      <label>Disease Name</label>
-                                      <input type="text" name="disease_name" class="form-control" value="<?php echo $row['disease_name'];?>">
-
-
-                                  </div>
-
-                                  <?php }?>
-
-                                  <div class="clearfix"></div>
-                                  <div class="form-group col-md-12">
-                                    <button class="btn btn-primary" type="submit" name="updateDisease">Update</button>
-                                  </div>
-                      </form>
-
-                </div>
-            </div><!--END OF RIGHTCARD--> 
-          </div><!-- END of RIGHT COLUMN-->
+                                  <div class="form-group col-md-9">
+                                      <h6>Resident's Name:</h6> <br>
+                                      <?php echo $fname." ".$mname." ".$lname;?>
+                                  </div><br>
+                        </div>
+                        </div>
+                          <div class="modal" id="viewkey" role="dialog">
+                                <div class="modal-dialog modal-md">
+                                    <div class="modal-content">
+                                      <div class='modal-header'>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><h6>Close</h6></button>
+                                          <h5 class="modal-title" id="exampleModalLabel"><strong>Message</strong></h5>
+                                      </div>
+                                      <div class="modal-body">
+                                          <h3>Updated data successfully</h3>
+                                      </div>
+                                      <div class="modal-footer"></div>
+                                    </div>
+                                </div>
+                          </div>
+                          <div class="modal" id="viewConfirm" role="dialog">
+                                <div class="modal-dialog modal-md">
+                                    <div class="modal-content">
+                                      <div class='modal-header'>
+                                          <h5 class="modal-title" id="exampleModalLabel"><strong>Message</strong></h5>
+                                      </div>
+                                      <div class="modal-body">
+                                          <h4>Are you sure you want to delete this record?</h4>
+                                      </div>
+                                      <div class="modal-footer">
+                                          <button id='confirm' class='btn btn-danger btn-md'>Confirm</button>
+                                          <button id='cancel' class='btn btn-warning btn-md'>Cancel</button>
+                                      </div>
+                                    </div>
+                                </div>
+                          </div>
+                                                </div>
+                                              </div>
+                                            </div>
+                                      </div><!--END OF RIGHTCARD--> 
+                                    </div><!-- END of RIGHT COLUMN-->
      
       </div><!--end of row-->
     </div><!--END OF MAIN CONTIANER-->
@@ -134,7 +140,7 @@ include 'functions/residentDiseaseFunctions.php';
         ?>
         $('.close').click(function(){
             $('#viewkey').hide();
-            window.location.href="viewResidentDisease.php?resident_id="+<?php echo $brgy_id;?>;
+            window.location.href="viewResidentDisease.php?resident_id="+<?php echo $resident_id;?>;
         });
         $('#delete').click(function(){
             $('#viewConfirm').show();

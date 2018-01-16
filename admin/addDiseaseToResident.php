@@ -1,14 +1,13 @@
 <?php
 
 include 'functions/diseaseFunctions.php';
-include 'functions/retrieveDisease.php'
-
 
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Disease</title>
+  <title>Resident Disease</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="../bootstrap/css/bootstrap.css">
@@ -28,42 +27,29 @@ include 'functions/retrieveDisease.php'
 
     <div class="container-fluid"><!--START OF MAIN CONTAINER-->
       <div class="row"><!--start of row-->
-          
+        
           <?php include '../adminNavbar.php'; ?>
             
 
             <div class="col-md-9"><!-- START of RIGHT COLUMN-->
               <div class="card" style="margin-top: 25px;" ><!--START OF RIGHTCARD-->
               <div class="container" style="margin-top: 25px;">
-                      <center><h6>List of Diseases</h6></center>
-                      <div class="container" style="margin-top: 5%">
+                      <center><h6>Add Disease Acquired</h6></center>
+                      <div class="container" style="margin-top: 5%;">
                         <div class="col-md-12">
-                          <h4><center>ADD DISEASE &nbsp;<a href="addDisease.php" class="btn btn-success"><i class="material-icons">add</i></a></center></h4>
-                          <table class="table table-hovered" id="regStudent">
-                              <thead>
-                                <tr>
-                                  <th>Disease ID</th>
-                                  <th>Disease Name</th>
-                                  <th>Action</th>
-                                  <th>&nbsp;</th>
-                                </tr>
-                              </thead>
-                             <?php
-                              $myrow = $obj->retrieveDisease();
-                              foreach ($myrow as $row) {
-                                $disease_id = $row['disease_id'];
-
-                                ?>
-                                   <tr>
-                                     <td><?php echo $row['disease_id']?></td>
-                                     <td><?php echo $row['disease_name'];?></td>
-                                     <td><a href="viewDiseaseDetails.php?disease_id=<?php echo $row['disease_id'];?>" class="btn btn-info">View Disease</td>
-                                     <td>&nbsp;</td>
-                                  </tr>
-                                <?php
-                              }
-                            ?>                             
-                          </table>
+                            <form method="post" action="functions/diseaseAcquiredFunctions.php">
+                                <center>   
+                                <table>
+                                    <tr>
+                                      <td>Disease Name</td>
+                                      <td><input type="text" name="disease_name"></td>
+                                    </tr>
+                                    
+                                    
+                                </table><br>
+                                <button class="btn btn-primary" name="submitdisease">Add Barangay</button>
+                                </center>
+                             </form>
                         </div>
                       </div>
                     </div>

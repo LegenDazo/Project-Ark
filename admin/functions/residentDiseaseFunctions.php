@@ -22,7 +22,7 @@ class NewFunctions
 
 		public function retrieveDiseaseData()
 		{
-			$sql = "SELECT * FROM disease ";
+			$sql = "SELECT * FROM disease";
 			$itemArray = array();
 			$query = mysqli_query($this->con, $sql);
 			while ($row = mysqli_fetch_assoc($query)) {
@@ -67,6 +67,19 @@ class NewFunctions
 		public function retrieve_residentData()
 		{
 			$sql = "SELECT * FROM resident";
+			$itemArray = array();
+			$query = mysqli_query($this->con, $sql);
+			while ($row = mysqli_fetch_assoc($query)) {
+				$itemArray[] = $row;
+			}
+			return $itemArray;
+		}
+
+		public function retrieve_residentData2()
+		{   
+			$sql = "SELECT * FROM diseaseacquired as a JOIN disease as b on a. acquired_id = b.disease_id JOIN resident as c on a.acquired_id = c.resident_id WHERE c.resident_id = '".$resident_id."'";
+
+			//$sql = "SELECT * FROM resident";
 			$itemArray = array();
 			$query = mysqli_query($this->con, $sql);
 			while ($row = mysqli_fetch_assoc($query)) {

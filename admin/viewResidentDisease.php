@@ -1,12 +1,12 @@
 <?php
 
-include 'functions/diseaseFunctions.php';
+include 'functions/residentDiseaseFunctions.php';
 
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Disease</title>
+  <title>Resident Disease</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="../bootstrap/css/bootstrap.css">
@@ -32,48 +32,73 @@ include 'functions/diseaseFunctions.php';
 
             <div class="col-md-9"><!-- START of RIGHT COLUMN-->
               <div class="card" style="margin-top: 25px;" ><!--START OF RIGHTCARD-->
-              
               <div class="container" style="margin-top: 25px;">
                         <div class="col-md-12">
                           <div class="container">
-                          <h2>Disease Details</h2>
+                          <h2>Resident Disease</h2>
                         </button>
                         <div class="col-md-3 col-lg-3">
                         <div class="col-md-12 col-lg-12"></div>
                         <?php
-                         if (isset($_GET['disease_id'])) {
-                            $disease_id = $_GET['disease_id'];
+                         if (isset($_GET['resident_id'])) {
+                            $resident_id = $_GET['resident_id'];
                           }
                         ?>
-                          <a href="updateDisease.php?process=update&disease_id=<?php echo $disease_id?>" class="btn btn-success btn-block">Update Record</a>
+                          <a href="updateResidentDisease.php?process=update&resident_id=<?php echo $resident_id?>" class="btn btn-success btn-block">Update Record</a>
                           <button id='delete' class='btn btn-danger btn-block'>Delete Record</button>
-                          <a href="disease.php" class="btn btn-warning btn-block">Back</a>
+                          <a href="diseaseAcquired.php" class="btn btn-warning btn-block">Back</a>
                         </div>
                         <div class="col-md-9 col-lg-9"> 
                         <?php
-                          if (isset($_GET['disease_id'])) {
-                            $disease_id = $_GET['disease_id'];
+                          if (isset($_GET['resident_id'])) {
+                            $resident_id = $_GET['resident_id'];
 
-                            $myrow = $Functions->retrieveDiseaseItemData2($disease_id);
+                            $myrow = $func->retrieveDiseaseItemData2($resident_id);
 
                             foreach ($myrow as $row) {
-                              $disease_id = $row['disease_id'];
-                              $disease_name = $row['disease_name'];
+                              //$acquired_id = $row['acquired_id'];
+                             // $resident_id = $row['resident_id'];                              
+                              //$disease_id = $row['disease_id'];
+   
                             }
                           }
                         ?>
-                                          <table class="table table-user-information">
-                                            <tbody>
-                                              <tr>
-                                                <td>Disease ID</td>
-                                                <td><?php echo $disease_id;?></td>
-                                              </tr>
-                                              <tr>
-                                                <td>Disease Name</td>
-                                                <td><?php echo $disease_name;?></td>
-                                              </tr>
-                                            </tbody>
-                                          </table>
+                                <table class="table table-user-information">
+                                  <tbody>
+                                    <tr>
+                                      <td>Resident ID</td>
+                                      <td><?php echo $resident_id;?></td>
+                                    </tr>                                    
+
+                                    <tr>                                      
+                                      <?php
+                                        $myrow = $func->retrieve_residentData();
+                                        foreach ($myrow as $row) {
+                                          //$resident_id = $row['resident_id'];
+                                        ?>
+                                      <td>Resident Name</td>
+                                      <td><?php echo $row['fname']; echo " "; echo $row['mname']; echo " "; echo $row['lname']?></td>
+                                    </tr>
+
+                                    <tr>
+                                      <?php
+                                        $myrow = $func->retrieveDiseaseData();
+                                        foreach ($myrow as $row) {
+
+                                        ?>
+                                      <td>Disease</td>
+                                      <td><?php echo $row['disease_name'];?></td>
+                                      <?php }?>
+
+                                    </tr>
+
+
+                                    <?php
+                                    }
+                                  ?>                           
+                            
+                                  </tbody>
+                                </table>
 
                         </div>
                         </div>
@@ -85,7 +110,7 @@ include 'functions/diseaseFunctions.php';
                                           <h5 class="modal-title" id="exampleModalLabel"><strong>Message</strong></h5>
                                       </div>
                                       <div class="modal-body">
-                                          <h3>Updated Disease data successfully</h3>
+                                          <h3>Updated data successfully</h3>
                                       </div>
                                       <div class="modal-footer"></div>
                                     </div>
@@ -135,12 +160,12 @@ include 'functions/diseaseFunctions.php';
         ?>
         $('.close').click(function(){
             $('#viewkey').hide();
-            window.location.href="viewDiseaseDetails.php?disease_id="+<?php echo $disease_id;?>;
+            window.location.href="viewResidentDisease.php?resident_id="+<?php echo $resident_id;?>;
         });
         $('#delete').click(function(){
             $('#viewConfirm').show();
             $('#confirm').click(function(){
-                window.location.href="functions/diseaseFunctions.php?process=delete&disease_id=<?php echo $disease_id;?>";
+                window.location.href="functions/diseaseFunctions.php?process=delete&resident_id=<?php echo $resident_id;?>";
             });
             $('#cancel').click(function(){
                 $('#viewConfirm').hide();

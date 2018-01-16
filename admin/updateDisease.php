@@ -59,19 +59,22 @@ include 'functions/diseaseFunctions.php';
                       ?> 
 
                       <form method="post" action="functions/diseaseFunctions.php?process=update&disease_id=<?php echo $disease_id?>">
-                                    <div class="form-group col-md-3">
-                                      <label>Disease ID</label>
-                                      <p class='form-control'><?php echo $disease_id;?></p>
-                                      <input type="hidden" name="disease_id" class="form-control" value="<?php echo $disease_id;?>" disabled>
-                                  </div>
-                                  <div class="form-group col-md-3">
-                                      <label>Disease Name</label>
-                                      <input type="text" name="disease_name" class="form-control" value="<?php echo $disease_name;?>">
-                                  </div>
-                                  <div class="clearfix"></div>
-                                  <div class="form-group col-md-12">
-                                    <button class="btn btn-primary" type="submit" name="updateDisease">Update</button>
-                                  </div>
+                        
+                              <div class="form-group col-md-3">
+                                  <label>Disease ID</label>
+                                  <p class='form-control'><?php echo $disease_id;?></p>
+                                  <input type="hidden" name="disease_id" class="form-control" value="<?php echo $disease_id;?>" disabled>
+                              </div>
+
+                              <div class="form-group col-md-3">
+                                  <label>Disease Name</label>
+                                  <input type="text" name="disease_name" class="form-control" value="<?php echo $disease_name;?>">
+                              </div>
+                              <div class="clearfix"></div>
+                              <div class="form-group col-md-12">
+                                <button class="btn btn-primary" type="submit" name="updateDisease">Update</button>
+                              </div>
+
                       </form>
 
                 </div>

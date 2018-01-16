@@ -11,5 +11,8 @@ class ChangeNumber
 	}
 }
 
-$obj = new ChangeNumber;
+$cont = new ChangeNumber;
+if (isset($_POST['changepassword'])) {
+	# code...
+}
 ?>

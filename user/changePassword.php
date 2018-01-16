@@ -26,24 +26,31 @@
               <div class="card" style="margin-top: 25px;" ><!--START OF RIGHTCARD-->    
               <div class="container" style="margin-top: 25px;">
               <center><h5>Change Password</h5></center>
+              <label><?php
+                if(isset($_SESSION['Notice'])){
+                  echo $_SESSION['Notice'];
+                  unset($_SESSION['Notice']);
+                }
+              ?>
+              </label>
               <form method="post" action="functions/changePasswordFunction.php">
                 <input type="hidden" name="username" value="<?php echo $_SESSION['username'];?>">
                 <div class="col-md-5">
                   <div class="form-group">
                     <label>Current Password</label>
-                    <input type="text" name="curPassword" class="form-control">
+                    <input type="text" name="curPassword" class="form-control" required>
                   </div>
                 </div> 
                 <div class="col-md-5">
                   <div class="form-group">
                     <label>New Password</label>
-                    <input type="text" name="newPassword" class="form-control">
+                    <input type="text" name="newPassword" class="form-control" required>
                   </div>
                 </div> 
                 <div class="col-md-5">
                   <div class="form-group">
                     <label>Confirm New Password</label>
-                    <input type="text" name="conPassword" class="form-control">
+                    <input type="text" name="conPassword" class="form-control" required>
                   </div>
                 </div> 
                 

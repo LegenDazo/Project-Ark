@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
   <title>ARK</title>
@@ -26,38 +27,56 @@
               <div class="card" style="margin-top: 25px;" ><!--START OF RIGHTCARD-->    
               <div class="container" style="margin-top: 25px;">
               <center><h5>Profile</h5></center>
+              <label><?php
+                if(isset($_SESSION['Notice'])){
+                  echo $_SESSION['Notice'];
+                  unset($_SESSION['Notice']);
+                }
+              ?>
+              </label>
+              <?php
+                $myrow = $obj->retrieveUserInfo($_SESSION['username']);
+                foreach ($myrow as $row) {
+                  $fname = $row['fname'];
+                  $lname = $row['lname'];
+                  $mname = $row['mname'];
+                  $bdate = $row['bdate'];
+                  $contact_no = $row['contact_no'];
+                }
+              ?>
               <form method="post" action="functions/updateProfile.php">
+                <input type="hidden" name="username" value="<?php echo $_SESSION['username'];?>">
                 <div class="col-md-5">
                   <div class="form-group">
                     <label>First Name</label>
-                    <input type="type" name="fname" class="form-control">
+                    <input type="type" name="fname" class="form-control" value="<?php echo $fname;?>">
                   </div>
                 </div> 
                 <div class="col-md-5">
                   <div class="form-group">
                     <label>Middle Name</label>
-                    <input type="type" name="mname" class="form-control">
+                    <input type="type" name="mname" class="form-control" value="<?php echo $mname;?>">
                   </div>
                 </div> 
                 <div class="col-md-5">
                   <div class="form-group">
                     <label>Last Name</label>
-                    <input type="type" name="lname" class="form-control">
+                    <input type="type" name="lname" class="form-control" value="<?php echo $lname;?>">
                   </div>
                 </div> 
                 <div class="col-md-5">
                   <div class="form-group">
                     <label>Birthdate</label>
-                    <input type="date" name="lname" class="form-control">
+                    <input type="date" name="bdate" class="form-control" value="<?php echo $bdate;?>">
                   </div>
                 </div>  
                 <div class="col-md-5">
                     <div class="form-group">
                         <label for="newNumber">Contact Number</label>
-                        <input type="text" class="form-control" id="newNumber" name="newNumber">
+                        <input type="number" class="form-control" id="newNumber" name="contact_no" value="<?php echo $contact_no;?>">
                     </div>
                   </div>
-                       <button class="btn btn-primary" name="changeNumber">Change</button>  
+                       <button class="btn btn-primary" name="updateuser">Change</button>  
                 </form>
 
               </div>

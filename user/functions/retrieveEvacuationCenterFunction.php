@@ -21,7 +21,7 @@
 		}
 	}
 
-	$obj = new DataOperations();
+	$evac = new DataOperations();
 
 	
 

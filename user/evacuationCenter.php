@@ -1,7 +1,9 @@
 
 <!DOCTYPE html>
 <?php
+  
   include 'functions/retrieveEvacuationCenterFunction.php';
+
 ?>
 <html lang="en">
 <head>
@@ -66,7 +68,7 @@
 
 
     <?php
-        $myrow = $obj->retrieveEvacuationCenter();
+        $myrow = $evac->retrieveEvacuationCenter();
         foreach ($myrow as $row) {
           $location = $row['location_name'];
           $population = $row['population'];

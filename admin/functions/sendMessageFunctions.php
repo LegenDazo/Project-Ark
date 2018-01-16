@@ -58,7 +58,7 @@ class DataOperation
 		$myrow = $obj->retrieveRecipient();
 		foreach ($myrow as $row) {
 			// Step 1: Declare new NexmoMessage.
-			$nexmo_sms = new NexmoMessage('f2031dc7', '74bf29378762ccce');
+			$nexmo_sms = new NexmoMessage('4a7a93c6', '1c1a15b3c985c57c');
 
 			// Step 2: Use sendText( $to, $from, $message ) method to send a message. 
 			$info = $nexmo_sms->sendText( $row['contact_no'], $from, $message );

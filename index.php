@@ -1,5 +1,5 @@
 <?php
-  $error = "";
+  session_start();
 ?>
 <html>
 <head>
@@ -36,8 +36,7 @@
     <div class="col-md-8" style="background: #ffffff;">
       <center><img src="logo.png" height="400" width="550" class="img-responsive"></center>
       <div class="container">
-        <div class="col-md-12">
-          
+        <div class="col-md-12">       
           <br>
           <h5>Get updated with the latest announcements.</h5>
           <br>
@@ -51,8 +50,13 @@
     </div>
     <div class="col-md-4 bg-info text-white">
       <form method="post" action="./functions/signup.php" style="margin-top: 20px;">
+        <?php if(isset($_SESSION['error'])){
+                echo "<label style='color:red;'>".$_SESSION['error']."</label>";
+                unset($_SESSION['error']);
+              }
+                ?>
               <h4 style="font-weight: bold;">Join Our Community</h4>
-            
+
               <div class="form-group">
                   <label for="First Name">First Name</label>
                       <input  type="text" class="form-control" name="firstname" required>         

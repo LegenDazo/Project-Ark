@@ -32,7 +32,7 @@
                             <div class="card">
                               <div class="card-block">
                                 <h6 class="card3-text" style="text-align: center;">Total Number of Residents</h6>
-                                <h1 class="card-text" style="text-align: center;"><?php echo $total = $obj->retrieveNumberOfResidents();?></h1>
+                                <h1 class="card-text" style="text-align: center;"><?php echo $total = $demog->retrieveNumberOfResidents();?></h1>
                               </div>
                             </div>
                           </div>
@@ -40,7 +40,7 @@
                               <div class="card">
                                 <div class="card-block">
                                   <h6 class="card-text" style="text-align: center">Total Number of Evacuees</h6>
-                                  <h1 class="card-text" style="text-align: center"><?php echo $total = $obj->retrieveNumberOfEvacuees();?></h1>
+                                  <h1 class="card-text" style="text-align: center"><?php echo $total = $demog->retrieveNumberOfEvacuees();?></h1>
                                 </div>
                               </div>
                           </div>
@@ -49,7 +49,7 @@
                             <div class="card">
                               <div class="card-block">
                                 <h6 class="card-text" style="text-align: center">Total Female Evacuees</h6>
-                                <h1 class="card-text" style="text-align: center"><?php echo $total = $obj->retrieveNumberOfFemaleEvacuees();?></h1>
+                                <h1 class="card-text" style="text-align: center"><?php echo $total = $demog->retrieveNumberOfFemaleEvacuees();?></h1>
                               </div>
                             </div>
                           </div>
@@ -57,7 +57,7 @@
                               <div class="card">
                                 <div class="card-block">
                                   <h6 class="card-text" style="text-align: center">Total Male Evacuees</h6>
-                                  <h1 class="card-text" style="text-align: center"><?php echo $total = $obj->retrieveNumberOfMaleEvacuees();?></h1>
+                                  <h1 class="card-text" style="text-align: center"><?php echo $total = $demog->retrieveNumberOfMaleEvacuees();?></h1>
                                 </div>
                               </div>
                           </div>
@@ -97,10 +97,10 @@ window.onload = function () {
       // Change type to "doughnut", "line", "splineArea", etc.
       type: "column",
       dataPoints: [
-        { label: "Total Residents",  y: <?php echo $total = $obj->retrieveNumberOfResidents();?>  },
-        { label: "Total Evacuees",  y: <?php echo $total = $obj->retrieveNumberOfEvacuees();?>  },
-        { label: "Female Evacuees", y: <?php echo $total = $obj->retrieveNumberOfFemaleEvacuees();?>  },
-        { label: "Male Evacuees", y: <?php echo $total = $obj->retrieveNumberOfMaleEvacuees();?>  }
+        { label: "Total Residents",  y: <?php echo $total = $demog->retrieveNumberOfResidents();?>  },
+        { label: "Total Evacuees",  y: <?php echo $total = $demog->retrieveNumberOfEvacuees();?>  },
+        { label: "Female Evacuees", y: <?php echo $total = $demog->retrieveNumberOfFemaleEvacuees();?>  },
+        { label: "Male Evacuees", y: <?php echo $total = $demog->retrieveNumberOfMaleEvacuees();?>  }
         
         
       ]

@@ -44,6 +44,6 @@ class DataOperation
 
 }
 
-$obj = new DataOperation;
+$demog = new DataOperation;
 
 ?>

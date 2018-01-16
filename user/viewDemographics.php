@@ -14,7 +14,7 @@
 
     <nav class="navbar navbar-light bg-faded">
     <img src="../images/ARK1.png">
-    <a href="functions/logout.php" style="color: white">Log Out</a>
+    <a href="../logout.php" style="color: white">Log Out</a>
     </nav>
 
       <div class="container-fluid"><!--START OF CONTAINER FLUID-->

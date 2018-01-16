@@ -34,22 +34,54 @@ include 'functions/diseaseFunctions.php';
             <div class="col-md-9"><!-- START of RIGHT COLUMN-->
               <div class="card" style="margin-top: 25px;" ><!--START OF RIGHTCARD-->
               <div class="container" style="margin-top: 25px;">
-                      <center><h6>Add Disease Acquired</h6></center>
+                      <center><h6>Add Disease to Resident</h6></center>
                       <div class="container" style="margin-top: 5%;">
                         <div class="col-md-12">
-                            <form method="post" action="functions/diseaseAcquiredFunctions.php">
-                                <center>   
-                                <table>
-                                    <tr>
-                                      <td>Disease Name</td>
-                                      <td><input type="text" name="disease_name"></td>
+                          <?php
+                          if (isset($_GET['resident_id'])) {
+                            $resident_id = $_GET['resident_id'];
+
+                            $myrow = $func->retrieveDiseaseItemData2($resident_id);
+
+                            foreach ($myrow as $row) {
+                              //$acquired_id = $row['acquired_id'];
+                             $resident_id = $row['resident_id']; 
+                             $fname = $row['fname'];
+                             $mname = $row['mname'];
+                             $lname = $row['lname'];                             
+                              //$disease_id = $row['disease_id'];
+   
+                            }
+                          }
+                        ?>  <center>
+                            <form method="POST" action="functions/diseaseAcquiredFunctions.php">
+                                  
+                                  <h6>Resident's ID Number:  <?php echo $resident_id;?></p>
+                                      <input type="hidden" name="resident_id" class="form-control" value="<?php echo $resident_id;?>" >
+                                  
+                                  <div class="form-group col-md-9">
+                                      <h6>Resident's Name:
+                                      <?php echo $fname." ".$mname." ".$lname;?>
+                                  </div>
+                                  <h6>Add Disease: </h6>  
+                                  <div class="form-group col-md-3">
+                                    <select class="form-control" id="sel1" name="disease_id">
+                                  <option></option>
+                                    <?php
+                                        $myrow = $func->retrieveDiseaseData();
+                                        foreach ($myrow as $row) {
+                                    ?>
+                                    <option value="<?php echo $row['disease_id'];?>"><?php echo $row['disease_name'];?></option>
+                                    <?php }?>
+                                  </select></td>
                                     </tr>
-                                    
-                                    
-                                </table><br>
-                                <button class="btn btn-primary" name="submitdisease">Add Barangay</button>
-                                </center>
+                                    </div>
+                                <br>
+                                <button class="btn btn-primary" name="submitdisease">Add Disease</button>
+
                              </form>
+
+                             </center>
                         </div>
                       </div>
                     </div>

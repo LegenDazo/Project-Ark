@@ -3,7 +3,6 @@
 //include 'functions/attendanceFunctions.php';
 include 'functions/residentDiseaseFunctions.php';
 //include 'functions/diseaseAcquiredFunctions.php';
-include 'functions/retrieveEvacuationCenterFunction.php';
 
 
 ?>
@@ -37,10 +36,9 @@ include 'functions/retrieveEvacuationCenterFunction.php';
             <div class="col-md-9"><!-- START of RIGHT COLUMN-->
               <div class="card" style="margin-top: 25px;" ><!--START OF RIGHTCARD-->
               <div class="container" style="margin-top: 25px;">
-                      <center><h6>List of Disease Acquired</h6></center>
+                      <center><h5>Resident's List of Disease Acquired</h5></center>
                       <div class="container" style="margin-top: 5%">
                         <div class="col-md-12">
-                          <h4>Add Disease To Resident &nbsp;<a href="addDiseaseToResident.php" class="btn btn-success"><i class="material-icons">add</i></a></h4>
                           <table class="table table-hovered" id="insertDisease">
                               <thead>
                                 <tr>
@@ -48,23 +46,16 @@ include 'functions/retrieveEvacuationCenterFunction.php';
                                   <th>Resident</th>
                                   <th>Disease</th>
                                   <th>&nbsp;</th>
+                                  <th>&nbsp;</th>
                                 </tr>
                               </thead>
-
-
-                           
-
-
 
                              <?php
                               $myrow = $func->retrieve_residentData();
                               foreach ($myrow as $row) {
-                                $resident_id = $row['resident_id'];
-                                //$status = $func->retrieve_resident($resident_id);                                
+                                $resident_id = $row['resident_id'];                              
                                 ?>
-
-
-                                   <tr>
+                                  <tr>
                                     <td><?php echo $row['resident_id'];?></td>
                                     <td><?php echo $row['fname']; echo " "; echo $row['mname']; echo " "; echo $row['lname']?></td>
                                      
@@ -78,6 +69,7 @@ include 'functions/retrieveEvacuationCenterFunction.php';
                                         <?php }?>
 
                                      
+                                     <td><a href="addDiseaseToResident.php?resident_id=<?php echo $resident_id;?>" class="btn btn-success">Add Disease</a></td>
                                      <td><a href="viewResidentDisease.php?resident_id=<?php echo $resident_id;?>" class="btn btn-info">View Details</a></td>
 
                                   </tr>

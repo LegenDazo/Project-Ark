@@ -36,7 +36,6 @@ include 'functions/residentDiseaseFunctions.php';
                         <div class="col-md-12">
                           <div class="container">
                           <h2>Resident Disease</h2>
-                        </button>
                         <div class="col-md-3 col-lg-3">
                         <div class="col-md-12 col-lg-12"></div>
                         <?php
@@ -57,48 +56,36 @@ include 'functions/residentDiseaseFunctions.php';
 
                             foreach ($myrow as $row) {
                               //$acquired_id = $row['acquired_id'];
-                             // $resident_id = $row['resident_id'];                              
+                             $resident_id = $row['resident_id']; 
+                             $fname = $row['fname'];
+                             $mname = $row['mname'];
+                             $lname = $row['lname'];                             
                               //$disease_id = $row['disease_id'];
    
                             }
                           }
                         ?>
-                                <table class="table table-user-information">
-                                  <tbody>
-                                    <tr>
-                                      <td>Resident ID</td>
-                                      <td><?php echo $resident_id;?></td>
-                                    </tr>                                    
 
-                                    <tr>                                      
-                                      <?php
-                                        $myrow = $func->retrieve_residentData();
-                                        foreach ($myrow as $row) {
-                                          //$resident_id = $row['resident_id'];
-                                        ?>
-                                      <td>Resident Name</td>
-                                      <td><?php echo $row['fname']; echo " "; echo $row['mname']; echo " "; echo $row['lname']?></td>
-                                    </tr>
+                        <form method="post" action="functions/barangayFunctions.php?process=update&brgy_id=<?php echo $brgy_id?>">
+                                    <div class="form-group col-md-9">
+                                      <br><h6>Resident's ID Number:</h6> <br>
+                                      <?php echo $resident_id;?></p>
+                                      <input type="hidden" name="resident_id" class="form-control" value="<?php echo $resident_id;?>" >
+                                  </div>
+                                  <div class="form-group col-md-9">
+                                      <h6>Resident's Name:</h6> <br>
+                                      <?php echo $fname." ".$mname." ".$lname;?>
+                                  </div>
+                                  <div class="form-group col-md-9">
+                                      <h6>Disease Aqcuired</h6>
+                                      <input type="text" name="diseaseAcquired" class="form-control" value="<?php echo $disease_name;?>">
+                                  </div>
+                                  <div class="clearfix"></div>
+                                  <div class="form-group col-md-12">
+                                    <button class="btn btn-primary" type="submit" name="updateBarangay">Update</button>
+                                  </div>
+                      </form>
 
-                                    <tr>
-                                      <?php
-                                        $myrow = $func->retrieveDiseaseData();
-                                        foreach ($myrow as $row) {
-
-                                        ?>
-                                      <td>Disease</td>
-                                      <td><?php echo $row['disease_name'];?></td>
-                                      <?php }?>
-
-                                    </tr>
-
-
-                                    <?php
-                                    }
-                                  ?>                           
-                            
-                                  </tbody>
-                                </table>
 
                         </div>
                         </div>

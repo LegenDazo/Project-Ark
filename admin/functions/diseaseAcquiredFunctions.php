@@ -10,8 +10,7 @@ class Functions
 
 	public function insertDisease($resident_id, $disease_id)
 	{
-
-		$sql = "INSERT INTO diseaseacquired () VALUES ('".$resident_id."','".$disease_id."')";
+		$sql = "INSERT INTO diseaseacquired (resident_id, disease_id) VALUES ('".$resident_id."','".$disease_id."')";
 		$query = mysqli_query($this->con, $sql);
 			if ($query) {
 				return true;
@@ -108,5 +107,19 @@ if(isset($_GET['process'])){
 			}
 		}
 	}
+
+
+if(isset($_POST['submitdisease'])){
+
+	$resident_id = $_POST['resident_id'];
+	$disease_id = $_POST['disease_id'];
+
+
+		$Functions->insertDisease($resident_id, $disease_id);
+				header("location:../diseaseacquired.php?added=1");
+}else{
+
+	//echo "No data received.";
+}
 
 ?>

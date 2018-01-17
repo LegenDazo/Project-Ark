@@ -22,7 +22,18 @@ class NewFunctions
 
 		public function retrieveDiseaseData()
 		{
-			$sql = "SELECT * FROM disease";
+			$sql = "SELECT * FROM disease ";
+			$itemArray = array();
+			$query = mysqli_query($this->con, $sql);
+			while ($row = mysqli_fetch_assoc($query)) {
+				$itemArray[] = $row;
+			}
+			return $itemArray;
+		}
+
+		public function retrieveDiseaseItemData($disease_id, $disease_name)
+		{
+			$sql = "SELECT * FROM disease WHERE disease_id ='".$disease_id."', disease_name ='".$disease_name."'";
 			$itemArray = array();
 			$query = mysqli_query($this->con, $sql);
 			while ($row = mysqli_fetch_assoc($query)) {

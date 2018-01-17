@@ -27,7 +27,7 @@
 
 
             <div class="col-md-9"><!-- START of RIGHT COLUMN-->
-              <div class="card" style="margin-top: 25px;"><!--START OF RIGHTCARD-->    
+              <div class="card" style="margin-top: 25px;"z><!--START OF RIGHTCARD-->    
 
               <div class="container" style="margin-top: 25px;">
                 <center><h4>List of Sponsors</h4></center>

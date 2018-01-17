@@ -66,25 +66,43 @@ include 'functions/residentDiseaseFunctions.php';
                           }
                         ?>
 
-                        <form method="post" action="functions/barangayFunctions.php?process=update&brgy_id=<?php echo $brgy_id?>">
-                                    <div class="form-group col-md-9">
+                        <form method="post" action="functions/residentDiseaseFunctions.php?process=update&resident_id=<?php echo $resident_id?>">
+                                  <div class="form-group col-md-9">
                                       <br><h6>Resident's ID Number:</h6> <br>
                                       <?php echo $resident_id;?></p>
                                       <input type="hidden" name="resident_id" class="form-control" value="<?php echo $resident_id;?>" >
                                   </div>
+
                                   <div class="form-group col-md-9">
                                       <h6>Resident's Name:</h6> <br>
                                       <?php echo $fname." ".$mname." ".$lname;?>
                                   </div>
-                                  <div class="form-group col-md-9">
+
+                                  <div class="form-group col-md-9">                                                                   
+                                      <?php
+
+                                         
+                        
+                                      $myrow = $func->retrieveDiseaseItemData($disease_id, $disease_name);
+                                      foreach ($myrow as $row) {
+                                        $disease_id = $row['disease_id'];
+                                        $disease_name = $row['disease_name'];
+                                      ?> 
+
                                       <h6>Disease Aqcuired</h6>
-                                      <input type="text" name="diseaseAcquired" class="form-control" value="<?php echo $disease_name;?>">
+                                      <?php echo $row['disease_name'];?>
+
+
+                                      <?php }?>
+
                                   </div>
+
+
                                   <div class="clearfix"></div>
                                   <div class="form-group col-md-12">
                                     <button class="btn btn-primary" type="submit" name="updateBarangay">Update</button>
                                   </div>
-                      </form>
+                        </form>
 
 
                         </div>

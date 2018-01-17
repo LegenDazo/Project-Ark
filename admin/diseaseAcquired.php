@@ -43,8 +43,7 @@ include 'functions/residentDiseaseFunctions.php';
                               <thead>
                                 <tr>
                                   <th>Resident ID</th>
-                                  <th>Resident</th>
-                                  <th>Disease</th>
+                                  <th>Resident</th>                                  
                                   <th>&nbsp;</th>
                                   <th>&nbsp;</th>
                                 </tr>
@@ -57,21 +56,9 @@ include 'functions/residentDiseaseFunctions.php';
                                 ?>
                                   <tr>
                                     <td><?php echo $row['resident_id'];?></td>
-                                    <td><?php echo $row['fname']; echo " "; echo $row['mname']; echo " "; echo $row['lname']?></td>
-                                     
-                                     
-                                        <?php
-                                        $myrow = $func->retrieveDiseaseData();
-                                        foreach ($myrow as $row) {
-
-                                        ?>
-                                        <td><?php echo $row['disease_name'];?></td>
-                                        <?php }?>
-
-                                     
-                                     <td><a href="addDiseaseToResident.php?resident_id=<?php echo $resident_id;?>" class="btn btn-success">Add Disease</a></td>
-                                     <td><a href="viewResidentDisease.php?resident_id=<?php echo $resident_id;?>" class="btn btn-info">View Details</a></td>
-
+                                    <td><?php echo $row['fname']; echo " "; echo $row['mname']; echo " "; echo $row['lname']?></td>                                   
+                                    <td><a href="addDiseaseToResident.php?resident_id=<?php echo $resident_id;?>" class="btn btn-success">Add Disease</a></td>
+                                    <td><a href="viewResidentDisease.php?resident_id=<?php echo $resident_id;?>" class="btn btn-info">View Details</a></td>
                                   </tr>
 
 

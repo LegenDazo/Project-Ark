@@ -32,88 +32,65 @@ include 'functions/residentDiseaseFunctions.php';
 
             <div class="col-md-9"><!-- START of RIGHT COLUMN-->
               <div class="card" style="margin-top: 25px;" ><!--START OF RIGHTCARD-->
-              <div class="container" style="margin-top: 25px;">
-                        <div class="col-md-12">
-                          <div class="container">
-                          <h2>Resident Disease</h2>
-                        <div class="col-md-3 col-lg-3">
-                        <div class="col-md-12 col-lg-12"></div>
+                <div class="container" style="margin-top: 25px;"><!--new container-->
+                    <center><h2>Resident Disease</h2></center>
                         <?php
                          if (isset($_GET['resident_id'])) {
                             $resident_id = $_GET['resident_id'];
                           }
                         ?>
-                          <a href="diseaseAcquired.php" class="btn btn-warning btn-block">Back</a>
-                        </div><br>
-                        <div class="col-md-9 col-lg-9"> 
-                          <h6>Disease Acquired:</h6>
-                        <?php
-                          if (isset($_GET['resident_id'])) {
-                            $resident_id = $_GET['resident_id'];
+                        <a href="diseaseAcquired.php" class="btn btn-warning btn-block col-md-2">Back</a>
 
-                            $myrow = $func->retrieve_residentData2($resident_id);
+                        
 
-                            foreach ($myrow as $row) {
-                              //$acquired_id = $row['acquired_id'];
-                             $resident_id = $row['resident_id']; 
-                             $fname = $row['fname'];
-                             $mname = $row['mname'];
-                             $lname = $row['lname'];   
-                             $disease_name = $row['disease_name'];                          
-                              //$disease_id = $row['disease_id'];
+                          <table class="table table-hovered" id="regStudent">
+                              <thead>
+                                <tr>
+                                  <th>Diseases</th>
+                                  <th>Date Acquired</th>
+                                  <th>Date Cured</th>
+                                </tr>
+                              </thead>                           
+                              <?php
+                                if (isset($_GET['resident_id'])) {
+                                  $resident_id = $_GET['resident_id'];
 
-                             ?>
-                                <div class="form-group col-md-9">
-                                      
-                                      <?php echo $disease_name ?>
-                                  </div>
-                             <?php
-   
+                                  $myrow = $func->retrieve_residentData2($resident_id);
+
+                                  foreach ($myrow as $row) {
+                                    //$acquired_id = $row['acquired_id'];
+                                   $resident_id = $row['resident_id']; 
+                                   $fname = $row['fname'];
+                                   $mname = $row['mname'];
+                                   $lname = $row['lname'];   
+                                   $disease_name = $row['disease_name'];
+                                   $date = $row["date_acquired"];                       
+                                    //$disease_id = $row['disease_id'];
+
+                                   ?>
+                                   <tr>
+                                     <td><?php echo $disease_name ?></td>
+                                     <td><?php echo $date; if(!$date) { echo "NULL"; } ?></td>
+                                     <td><button class="btn btn-primary">CURE NOW!</button></td>
+                                  </tr>
+                                <?php
+                              }
+                            ?>       
+                          </table>
+                        <?php   
                             }
-                          }
                         ?>
-                                    <div class="form-group col-md-9">
+
+
+                                  <div class="form-group col-md-9">
                                       <h6>Resident's ID Number: <?php echo $resident_id;?></p></h6>
                                       <input type="hidden" name="resident_id" class="form-control" value="<?php echo $resident_id;?>" >
                                   </div>
                                   <div class="form-group col-md-9">
-                                      <h6>Resident's Name: </h6> <?php echo $fname." ".$mname." ".$lname;?>
-                                  </div><br>
-                        </div>
-                        </div>
-                          <div class="modal" id="viewkey" role="dialog">
-                                <div class="modal-dialog modal-md">
-                                    <div class="modal-content">
-                                      <div class='modal-header'>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><h6>Close</h6></button>
-                                          <h5 class="modal-title" id="exampleModalLabel"><strong>Message</strong></h5>
-                                      </div>
-                                      <div class="modal-body">
-                                          <h3>Updated data successfully</h3>
-                                      </div>
-                                      <div class="modal-footer"></div>
-                                    </div>
-                                </div>
-                          </div>
-                          <div class="modal" id="viewConfirm" role="dialog">
-                                <div class="modal-dialog modal-md">
-                                    <div class="modal-content">
-                                      <div class='modal-header'>
-                                          <h5 class="modal-title" id="exampleModalLabel"><strong>Message</strong></h5>
-                                      </div>
-                                      <div class="modal-body">
-                                          <h4>Are you sure you want to delete this record?</h4>
-                                      </div>
-                                      <div class="modal-footer">
-                                          <button id='confirm' class='btn btn-danger btn-md'>Confirm</button>
-                                          <button id='cancel' class='btn btn-warning btn-md'>Cancel</button>
-                                      </div>
-                                    </div>
-                                </div>
-                          </div>
-                                                </div>
-                                              </div>
-                                            </div>
+                                      <h6>Resident's Name: <?php echo $fname." ".$mname." ".$lname;?></h6>
+                                  </div>
+
+                                            </div><!--new container-->
                                       </div><!--END OF RIGHTCARD--> 
                                     </div><!-- END of RIGHT COLUMN-->
      

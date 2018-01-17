@@ -22,18 +22,7 @@ class NewFunctions
 
 		public function retrieveDiseaseData()
 		{
-			$sql = "SELECT * FROM disease ";
-			$itemArray = array();
-			$query = mysqli_query($this->con, $sql);
-			while ($row = mysqli_fetch_assoc($query)) {
-				$itemArray[] = $row;
-			}
-			return $itemArray;
-		}
-
-		public function retrieveDiseaseItemData($disease_id, $disease_name)
-		{
-			$sql = "SELECT * FROM disease WHERE disease_id ='".$disease_id."', disease_name ='".$disease_name."'";
+			$sql = "SELECT * FROM disease";
 			$itemArray = array();
 			$query = mysqli_query($this->con, $sql);
 			while ($row = mysqli_fetch_assoc($query)) {
@@ -86,11 +75,9 @@ class NewFunctions
 			return $itemArray;
 		}
 
-		public function retrieve_residentData2()
+		public function retrieve_residentData2($resident_id)
 		{   
-			$sql = "SELECT * FROM diseaseacquired as a JOIN disease as b on a. acquired_id = b.disease_id JOIN resident as c on a.acquired_id = c.resident_id WHERE c.resident_id = '".$resident_id."'";
-
-			//$sql = "SELECT * FROM resident";
+			$sql = "SELECT * FROM diseaseacquired as a JOIN resident as b ON a.resident_id = b.resident_id JOIN disease as c ON a.disease_id = c.disease_id WHERE a.resident_id = '".$resident_id."'";
 			$itemArray = array();
 			$query = mysqli_query($this->con, $sql);
 			while ($row = mysqli_fetch_assoc($query)) {

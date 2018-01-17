@@ -91,17 +91,7 @@ include 'functions/barangayFunctions.php';
     }
   ?>
 
-    $('.close').click(function(){
-        $('#viewkey').hide();
-        window.location.href='registerStudent.php';
-    });
-
-    $('.close').click(function(){
-        $('#viewkeydel').hide();
-        window.location.href='registerStudent.php';
-    });
-
-    $('#regStudent').DataTable();
+    $('#registerBarangay').DataTable();
 } );
 </script>
 

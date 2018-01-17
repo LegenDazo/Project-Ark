@@ -89,7 +89,7 @@ include 'functions/reliefpackageFunctions.php';
                                                
                               </div><br>
 
-                                <center><a class="btn btn-primary" href="reliefItems.php">Cancel</a>&nbsp;&nbsp;&nbsp;
+                                <center><a href="reliefItems.php" class="btn btn-warning">Cancel</a>&nbsp;
                                         <button class="btn btn-primary" name="insertItem">Add Item</button></center>
                             </form>
                       </div>

@@ -36,7 +36,7 @@ include 'functions/barangayFunctions.php';
             <div class="col-md-9"><!-- START of RIGHT COLUMN-->
               <div class="card" style="margin-top: 25px;"><!--START OF RIGHTCARD--> 
 
-                  <div class="container" style="margin-top: 15px; padding-bottom: 20px;">
+                  <div class="container" style="margin-top: 25px; margin-bottom: 25px;">
                       <center><h3>Evacuation Center</h3></center>
                       
                       <div id="map"></div>
@@ -108,11 +108,11 @@ include 'functions/barangayFunctions.php';
                        
                         
                         
-                          <div class="row">
+                          <center>
                             <div class="col-md-3">
                             <button type="submit" class="btn btn-primary btn-block" name="submitevac">Set as Evacuation Center</button>
                           </div>
-                          </div>
+                          </center>
                       
                         
                       </form>

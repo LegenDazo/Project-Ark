@@ -38,8 +38,8 @@
 
             <div class="col-md-9"><!-- START of RIGHT COLUMN-->
               <div class="card" style="margin-top: 25px;"><!--START OF RIGHTCARD-->             
-                  <div class="container" style="margin-top: 5%;">
-                      <center><h6>Announcement Details</h6></center>
+                  <div class="container" style="margin-top: 25px; margin-bottom: 25px;">
+                      <center><h5>Announcement Details</h5></center>
                         <div class="container" style="margin-top: 5%">
                           <div class="col-md-12">
                                 <table class="table table-hovered" id="">
@@ -90,11 +90,11 @@
                                               </tr>
                                               
                                               <tr>
-                                                <td><a href="updateAnnounce.php?process=update&announcement_id=<?php echo $announcement_id?>" class="btn btn-success btn-block">UPDATE</a></td>
+                                                <th><a href="updateAnnounce.php?process=update&announcement_id=<?php echo $announcement_id?>" class="btn btn-success btn-block">UPDATE</a></th>
 
-                                                <td><a href="announcement.php?deleteannounce=1&announcement_id=<?php echo $announcement_id;?>" class="btn btn-danger btn-block">DELETE</a></td>
+                                                <th><a href="announcement.php?deleteannounce=1&announcement_id=<?php echo $announcement_id;?>" class="btn btn-danger btn-block">DELETE</a></th>
 
-                                                <td><a href="announcement.php" class="btn btn-warning btn-block">BACK</a></td>
+                                                <th><a href="announcement.php" class="btn btn-warning btn-block">BACK</a></th>
                                               </tr>  
 
 

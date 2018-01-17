@@ -57,9 +57,10 @@ include 'functions/retrieveEvacuationCenterFunction.php';
                                             </select>
                                           </div>       
                                            
-
+                                           <div style="margin-top: 5%;">
                                            <a href="reliefOperation.php" class="btn btn-warning">Cancel</a>&nbsp;
-                                           <button type="submit" class="btn btn-primary" name="submitoperation">Submit</button>                
+                                           <button type="submit" class="btn btn-primary" name="submitoperation">Add Operation</button>
+                                           </div>                
                                       </form>
 
                                         

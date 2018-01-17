@@ -53,17 +53,6 @@ class NewFunctions
 			}
 		}
 
-		public function updateDisease($disease_id, $disease_name)
-		{
-			$sql = "UPDATE disease SET disease_id='".$disease_id."', disease_name='".$disease_name."' WHERE disease_id='".$disease_id."'";
-			$query = mysqli_query($this->con, $sql);
-			if ($query) {
-				return true;
-			} else {
-				echo mysqli_error($this->con);
-			}
-		}
-
 		public function retrieve_residentData()
 		{
 			$sql = "SELECT * FROM resident";
@@ -104,46 +93,15 @@ if(isset($_POST['submitdisease'])){
 	}
 }
 
+if (isset($_GET['deleteDisease'])) {
+		$disease_id = mysqli_real_escape_string($func->con, $_GET['disease_id']);
 
-if (isset($_POST['updateDisease'])) {
-
-		$disease_id = mysqli_real_escape_string($func->conn, $_GET['disease_id']);
-		$disease_name = mysqli_real_escape_string($func->conn, $_POST['disease_name']);
-				
-		if ($func->updateDisease($disease_id, $disease_name)) {
-			header("location:viewDiseaseDetails.php?updated=1&disease_id=$disease_id");
+		
+			if($func->deleteDisease($disease_id)){
+			header("location:disease.php?deleted=1");
 		}
-	}
-
-if(isset($_GET['process'])){
-		$process = $_GET['process'];
-		$resident_id = $_GET['resident_id'];
-
-		if($process == 'delete'){
-			if($func->deleteDisease($resident_id)){
-				header("location:../disease.php?deleted=1");
-			}
-		} 
-	}
-
-if(isset($_GET['process'])){
-		$process = $_GET['process'];
-		$resident_id = $_GET['resident_id'];
-		//$resident_name = $_GET['resident_name'];
-		//$disease_name = $_GET['disease_name'];
-
-		if($process == 'update'){
-			if(isset($_POST['updateDisease'])){
-				$disease_id = mysqli_real_escape_string($func->con, $_POST['disease_id']);
-				$disease_name = mysqli_real_escape_string($func->con, $_POST['disease_name']);
-				$resident_id = mysqli_real_escape_string($func->con, $_POST['resident_id']);
-				$resident_name = mysqli_real_escape_string($func->con, $_POST['resident_name']);
 				
-				if($func->updateDisease($disease_id, $resident_id)){
-					header("location:../diseaseAcquired.php?disease_id=$disease_id&disease=updated");
-				}
-			}
-		}
 	}
+
 
 ?>

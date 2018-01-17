@@ -62,7 +62,9 @@ include 'functions/operationFunctions.php';
                                 </div>
                               </div><br><br>
 
-                                <center><button class="btn btn-primary" name="addRelief">Add Relief</button></center>
+                                <center>
+                                  <a href="reliefpackage.php" class="btn btn-warning">Cancel</a>&nbsp;
+                                  <button class="btn btn-primary" name="addRelief">Add Relief</button></center>
                             </form>
                       </div>
               </div>

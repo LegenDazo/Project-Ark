@@ -37,9 +37,9 @@ include 'functions/barangayFunctions.php';
           <!-- START of RIGHT COLUMN-->
           <div class="card" style="margin-top: 25px;">
             <!--START OF RIGHTCARD-->
-            <div class="container" style="margin-top: 25px;">
+            <div class="container" style="margin-top: 25px; margin-bottom: 25px;">
               <center>
-                <h6>Household Details</h6>
+                <h4>Household Details</h4>
               </center>
               <div class="container" style="margin-top: 5%">
                 <div class="col-md-12">

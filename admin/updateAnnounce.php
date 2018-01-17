@@ -50,8 +50,8 @@
 
             <div class="col-md-9"><!-- START of RIGHT COLUMN-->
               <div class="card" style="margin-top: 25px;"><!--START OF RIGHTCARD-->              
-                  <div class="container" style="margin-top: 5%;">
-                      <center><h6>Update Announcement Details</h6></center>
+                  <div class="container" style="margin-top: 25px; margin-bottom: 25px;">
+                      <center><h5>Update Announcement Details</h5></center>
                       <div class="container" style="margin-top: 5%">
                         <div class="col-md-12">
                               <form method="post" action="functions/announceFunctions.php?announcement_id=<?php echo $announcement_id;?>">

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<?php include 'functions/householdFunctions.php'; 
+<?php include 'functions/householdFunctions.php';
+include 'functions/itemResidentsFunctions.php'; 
 ?>
 <html lang="en">
 <head>
@@ -27,7 +28,7 @@
 
             <div class="col-md-9"><!-- START of RIGHT COLUMN-->
               <div class="card" style="margin-top: 25px;"><!--START OF RIGHTCARD-->
-                <div class="container" style="margin-top: 25px;">
+                <div class="container" style="margin-top: 25px; margin-bottom: 25px;">
                       <center><h4>Relief/Household Distribution</h4></center>
                       <div class="container" style="margin-top: 5%">
                         <div class="col-md-12">
@@ -38,6 +39,7 @@
                                       <th>Household ID</th>
                                       <th>Household Head</th>
                                       <th>Head Spouse</th>
+                                      <th>Relief Package Name</th>
                                       <th>Action</th>
                                     </tr>
                                   </thead>
@@ -73,9 +75,22 @@
                               }
                                ?>
                              </td>
-                               <td>&nbsp;</td>
-                               <td><a href="updateHousehold.php?resident_id=<?php echo $row['resident_id'];?>" class="btn btn-info">View Details</a>&nbsp;&nbsp;&nbsp;</td>&nbsp;                                    
-                                      </tr>
+                               <td> 
+                                <div class="form-group col-md-11">
+                                  <select class="form-control" id="sel1" name="reliefPackage">
+                                  <option></option>
+                                    <?php
+                                        $myrow = $function->retrieveReliefPackage();
+                                        foreach ($myrow as $row) {
+                                    ?>
+                                    <option value="<?php echo $row['package_id'];?>"><?php echo $row['package_name'];?></option>
+                                    <?php }?>
+                                  </select>
+                                </div>
+                                </td>
+                               <td><button class="btn btn-success" type="submit" name="recieved">Received</button>
+                              <button class="btn btn-danger" type="submit" name="cancelAttendance">Cancel</button></td>                                   
+                                </tr>
 
                                   <?php }
                                     ?> 

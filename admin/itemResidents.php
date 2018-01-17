@@ -32,7 +32,7 @@ include 'functions/itemResidentsFunctions.php';
               <div class="card" style="margin-top: 25px;"><!--START OF RIGHTCARD--> 
 
                   <div class="container" style="margin-top: 25px;">
-                      <center><h4>Item/Residents</h4></center>
+                      <center><h4>Item/Residents Distribution</h4></center>
                       <div class="container" style="margin-top: 5%; margin-bottom: 5%;">
                         <div class="col-md-12">
                           <table class="table table-hovered" id="residents">
@@ -60,7 +60,7 @@ include 'functions/itemResidentsFunctions.php';
                                   <select class="form-control" id="sel1" name="reliefPackage">
                                   <option></option>
                                     <?php
-                                        $myrow = $obj->retrieveReliefPackage();
+                                        $myrow = $function->retrieveReliefPackage();
                                         foreach ($myrow as $row) {
                                     ?>
                                     <option value="<?php echo $row['package_id'];?>"><?php echo $row['package_name'];?></option>

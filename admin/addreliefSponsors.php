@@ -60,7 +60,7 @@
                               </div>
                               </div><br>
 
-                                <center><a class="btn btn-primary" href="reliefSponsors.php">Cancel</a>&nbsp;&nbsp;&nbsp;
+                                <center><a href="reliefSponsors.php" class="btn btn-warning">Cancel</a>&nbsp;
                                         <button class="btn btn-primary" name="addSponsor">Add Sponsor</button></center>
                             </form>
                       </div>

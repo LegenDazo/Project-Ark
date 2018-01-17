@@ -34,18 +34,17 @@ include 'functions/retrieveDisease.php'
 
             <div class="col-md-9"><!-- START of RIGHT COLUMN-->
               <div class="card" style="margin-top: 25px;" ><!--START OF RIGHTCARD-->
-              <div class="container" style="margin-top: 25px;">
-                      <center><h6>List of Diseases</h6></center>
+              <div class="container" style="margin-top: 25px; margin-bottom: 25px;">
+                      <center><h4>List of Diseases</h4></center>
                       <div class="container" style="margin-top: 5%">
                         <div class="col-md-12">
-                          <h4><center>ADD DISEASE &nbsp;<a href="addDisease.php" class="btn btn-success"><i class="material-icons">add</i></a></center></h4>
+                          <h5><center>ADD DISEASE &nbsp;<a href="addDisease.php" class="btn btn-success"><i class="material-icons">add</i></a></center></h5>
                           <table class="table table-hovered" id="regStudent">
                               <thead>
                                 <tr>
                                   <th>Disease ID</th>
                                   <th>Disease Name</th>
                                   <th>Action</th>
-                                  <th>&nbsp;</th>
                                 </tr>
                               </thead>
                              <?php
@@ -57,8 +56,7 @@ include 'functions/retrieveDisease.php'
                                    <tr>
                                      <td><?php echo $row['disease_id']?></td>
                                      <td><?php echo $row['disease_name'];?></td>
-                                     <td><a href="viewDiseaseDetails.php?disease_id=<?php echo $row['disease_id'];?>" class="btn btn-info">View Disease</td>
-                                     <td>&nbsp;</td>
+                                     <td><a href="disease.php?deleteDisease=1&disease_id=<?php echo $row['disease_id'];?>" class="btn btn-danger">DELETE</a></td>
                                   </tr>
                                 <?php
                               }

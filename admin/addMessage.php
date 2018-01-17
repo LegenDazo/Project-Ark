@@ -28,8 +28,8 @@
 
             <div class="col-md-9"><!-- START of RIGHT COLUMN-->
               <div class="card" style="margin-top: 25px;" ><!--START OF RIGHTCARD-->            
-                  <div class="container" style="margin-top: 25px;">
-                      <center><h6>Message Details</h6></center>
+                  <div class="container" style="margin-top: 25px; margin-bottom: 25px;">
+                      <center><h5>Create Message</h5></center>
                       <div class="container" style="margin-top: 5%">
                           <div class="col-md-12">
                               <div class="container" align="center">

@@ -29,12 +29,12 @@
             <div class="col-md-9"><!-- START of RIGHT COLUMN-->
               <div class="card" style="margin-top: 25px;"><!--START OF RIGHTCARD-->    
 
-              <div class="container" style="margin-top: 25px;">
+              <div class="container" style="margin-top: 25px; margin-bottom: 25px;">
                 <center><h4>List of Items</h4></center>
                       <div class="container" style="margin-top: 5%">
                         <div class="col-md-12">
                           <div class="container" align="center">
-                          <h6>Add Relief Item &nbsp;<a href="addreliefItems.php" class="btn btn-success"><i class="material-icons">add</i></a></h6>
+                          <h5>Add Relief Item &nbsp;<a href="addreliefItems.php" class="btn btn-success"><i class="material-icons">add</i></a></h5>
                           <table class="table table-hovered" id="regStudent">
                               <thead>
                                 <tr>

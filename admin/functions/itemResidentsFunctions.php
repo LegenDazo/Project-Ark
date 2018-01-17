@@ -2,7 +2,7 @@
 	/**
 	* 
 	*/
-	class DataOperations
+	class DataOperation
 	{
 		public $conn;
 		function __construct()
@@ -21,7 +21,7 @@
 		}
 	}
 
-	$obj = new DataOperations();
+	$function = new DataOperation();
 
 	
 

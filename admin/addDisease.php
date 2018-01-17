@@ -35,19 +35,19 @@
             <div class="col-md-9"><!-- START of RIGHT COLUMN-->
               <div class="card" style="margin-top: 25px;" ><!--START OF RIGHTCARD-->
               <div class="container" style="margin-top: 25px;">
-                      <center><h6>Add Disease</h6></center>
-                      <div class="container" style="margin-top: 5%;">
+                      <center><h4>Add Disease</h4></center>
+                      <div class="container" style="margin-top: 5%; margin-bottom: 5%; ">
                         <div class="col-md-12">
                             <form method="post" action="functions/diseaseFunctions.php">
-                                <center>                                   
-                                    <table>
-                                    <tr>
-                                      <td>Disease Name</td>
-                                      <td><input type="text" name="disease_name"></td>
-                                    </tr>
-                                    </table>
-                                <br>
-                                <button class="btn btn-primary" name="submitdisease">Add Disease</button>
+                                <center>
+                                  <div class="form-group col-md-4">
+                                    <label for="disease_name">Disease Name</label>
+                                    <input data-target="disease_name" type="text" class="form-control" id="disease_name" name="disease_name"> 
+                                  </div>
+                                  <div style="margin-top: 7%;">
+                                  <a href="disease.php" class="btn btn-warning">Cancel</a>&nbsp;
+                                  <button class="btn btn-primary" name="submitdisease">Add Disease</button>
+                                  </div>
                                 </center>
                              </form>
                         </div>

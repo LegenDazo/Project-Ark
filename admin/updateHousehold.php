@@ -60,8 +60,8 @@
 
             <div class="col-md-9"><!-- START of RIGHT COLUMN-->
               <div class="card" style="margin-top: 25px;"><!--START OF RIGHTCARD-->
-                <div class="container" style="margin-top: 25px;">
-                      <center><h6>Update Household Details</h6></center>
+                <div class="container" style="margin-top: 25px; margin-bottom: 25px;">
+                      <center><h4>Update Household Details</h4></center>
                       <div class="container" style="margin-top: 5%">
                         <div class="col-md-12">
                         <div class="panel-body"> 
@@ -74,8 +74,7 @@
 
 
 
-                          <h3>Household Members</h3>
-                          <p>Update members info:</p>            
+                          <h5>Household Members:</h5>           
                           <table class="table">
                             <thead>
                               <tr>

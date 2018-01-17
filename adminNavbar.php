@@ -46,6 +46,7 @@
                         <div class="collapse" id="submenu3" aria-expanded="false">
                               <ul class="flex-column pl-2 nav">
                                   <li class="nav-item"><a class="nav-link pt-1" href="barangay.php">Barangay</a></li>
+                                  <li class="nav-item"><a class="nav-link pt-1" href="disease.php">Diseases</a></li>
                                   <li class="nav-item"><a class="nav-link pt-1" href="reliefItems.php">Relief Items</a></li>
                                   <li class="nav-item"><a class="nav-link pt-1" href="reliefOperation.php">Relief Operation</a></li>
                                   <li class="nav-item"><a class="nav-link pt-1" href="reliefpackage.php">Relief Packages</a></li>

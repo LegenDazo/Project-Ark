@@ -23,54 +23,7 @@
 
     <div class="container-fluid"><!--START OF MAIN CONTAINER-->
       <div class="row"><!--start of row-->
-        <div class="col-md-3"><!--START of LEFT COLUMN-->
-                <div class="card" id="profile" style="margin-top: 25px;">
-                  <img src="../images/user.png">
-                  <center><label  class="name" >John Kent I. Virtudazo</label><br>
-                  <label >Admin</label></center>
-                    <ul class="navbar-nav flex-column">
-                      <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="material-icons">edit</i>  Manage Profile</a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="material-icons">settings</i>  Change Password</a>
-                      </li>
-                    </ul>
-                </div>
-              
-            <div class="card" style="margin-top: 10px;">
-            <ul class="navbar-nav flex-column" id="sidenav">
-              <li class="nav-item">
-                <a class="nav-link active" href="home.php"><i class="material-icons">home</i>  Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="residents.php"><i class="material-icons">people</i>  Residents</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="evacuationCenter.php"><i class="material-icons">place</i>  Evacuation Centers</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link collapsed" href="#submenu1" data-toggle="collapse" data-target="#submenu1"><i class="material-icons">healing</i>  Announcements & Messages</a>
-                <div class="collapse" id="submenu1" aria-expanded="false">
-                          <ul class="flex-column pl-2 nav">
-                              <li class="nav-item"><a class="nav-link py-0" href="announcement.php">Announcement</a></li>
-                              <li class="nav-item"><a class="nav-link py-0" href="#">Messages</a></li>
-                          </ul>
-                </div>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link collapsed" href="#submenu2" data-toggle="collapse" data-target="#submenu2"><i class="material-icons">email</i>  Relief Operation</a>
-                <div class="collapse" id="submenu2" aria-expanded="false">
-                          <ul class="flex-column pl-2 nav">
-                              <li class="nav-item"><a class="nav-link py-0" href="reliefOperation.php">Operation</a></li>
-                              <li class="nav-item"><a class="nav-link py-0" href="reliefHousehold.php">Relief/Household</a></li>
-                              <li class="nav-item"><a class="nav-link py-0" href="itemResidents.php">Item/Residents</a></li>
-                          </ul>
-                </div>
-              </li>                
-            </ul>
-            </div>
-          </div> <!--end of left column-->
+         <?php include '../adminNavbar.php'; ?>
 
           <?php
             if(isset($_GET['message_id'])) {
@@ -82,36 +35,27 @@
             <div class="col-md-9"><!-- START of RIGHT COLUMN-->
               <div class="card" style="margin-top: 25px;"><!--START OF RIGHTCARD-->             
                   <div class="container" style="margin-top: 5%;">
-                      <center><h6>Message Details</h6></center>
+                      <center><h5>Message Details</h5></center>
                       <div class="container" style="margin-top: 5%">
                         <div class="col-md-12">
                           
                           <table class="table table-hovered" id="">
-                          <?php                   
-                                      
-                                      $myrow = $obj->retrieveMessageItems($message_id);
-                                      foreach ($myrow as $row) {
-                                          ?>
+
                                                 
                                                 <tr>
                                                   <td>Message</td>
-                                                  <td><b><?php echo $row['message_name']?></b></td>
+                                                  <td><b></b></td>
                                                 </tr>
                                                 <tr>
                                                   <td>Date</td>
-                                                  <td><b><?php echo $row['message_date'];?></b></td>
+                                                  <td><b></b></td>
                                                 </tr>
                                                 <tr>
-                                                  <td><a href="adminMessagePosted.php?message_id=<?php echo $row['message_id'];?>" class="btn btn-info btn-block">POST</a></td>
-                                                  <td><a href="updateMessage.php?message_id=<?php echo $row['message_id'];?>" class="btn btn-success btn-block">UPDATE</a></td>
-                                                  <td><a href="adminMessageFunctions.php?deletemessage=1&message_id=<?php echo $message_id;?>" class="btn btn-danger btn-block">DELETE</a></td>
-                                                  <td><a href="message.php" class="btn btn-warning btn-block">BACK</a></td>
+                                                  <th><a class="btn btn-info btn-block">POST</a></th>
+                                                  <th><a href="updateMessage.php" class="btn btn-success btn-block">UPDATE</a></th>
+                                                  <th><a href="adminMessageFunctions.php" class="btn btn-danger btn-block">DELETE</a></th>
+                                                  <th><a href="message.php" class="btn btn-warning btn-block">BACK</a></th>
                                                 </tr>  
-
-                                          <?php
-                                      }                   
-                              ?>  
-
 
                           </table>
                         </div>

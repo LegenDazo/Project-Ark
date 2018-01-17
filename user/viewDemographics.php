@@ -1,3 +1,8 @@
+<?php session_start();
+  if ($_SESSION['username'] == "" && $_SESSION['type'] == "" || $_SESSION['type'] == "admin") {
+      header("location:../logout.php");
+  }
+?>
 <!DOCTYPE html>
 <?php include '../admin/functions/demographicsFunction.php';?>
 <html lang="en">

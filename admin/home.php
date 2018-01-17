@@ -29,7 +29,11 @@
         <?php include '../adminNavbar.php'; ?>
 
             <div class="col-md-9"><!-- START of RIGHT COLUMN-->
+<<<<<<< HEAD
+              <div class="card" style="margin-top: 25px;"><!--START OF RIGHTCARD-->
+=======
               <div class="card" style="margin-top: 25px;" ><!--START OF RIGHTCARD-->
+>>>>>>> de5c1ec457ddf9ae3b99a08e542a4ff8d4dbc37e
               <div class="container" style="margin-top: 25px;">
                 <div class="row">
                         

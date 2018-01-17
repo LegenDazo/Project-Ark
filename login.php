@@ -17,6 +17,18 @@ class Login
 		$query = mysqli_query($this->conn, $sql);
 		if (mysqli_num_rows($query) > 0) {
 			return true;
+		} else {
+			return false;
+		}
+	}
+	public function loginAdmin($username, $password)
+	{
+		$sql = "SELECT * FROM admin WHERE username='".$username."' AND password='".$password."'";
+		$query = mysqli_query($this->conn, $sql);
+		if (mysqli_num_rows($query) > 0) {
+			return true;
+		} else {
+			return false;
 		}
 	}
 	public function retrieveUserInfo($username)
@@ -29,6 +41,7 @@ class Login
 		}
 		return $itemArray;
 	}
+
 }
 
 
@@ -41,7 +54,13 @@ if (isset($_POST['login'])) {
 	if ($obj->loginUser($username, $password)) {
 		session_start();
 		$_SESSION['username'] = $username;
+		$_SESSION['type'] = 'normal';
 		header("location:user/home.php");
+	} else if($obj->loginAdmin($username, $password)){
+		session_start();
+		$_SESSION['username'] = $username;
+		$_SESSION['type'] = 'admin';
+		header("location:admin/home.php");
 	} else {
 		session_start();
 		$_SESSION['error'] = "Invalid username or password.";

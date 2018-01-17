@@ -1,15 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.0
--- https://www.phpmyadmin.net/
+-- version 4.5.1
+-- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 16, 2018 at 11:04 AM
--- Server version: 10.1.26-MariaDB
--- PHP Version: 7.1.8
+-- Generation Time: Jan 17, 2018 at 11:21 AM
+-- Server version: 10.1.13-MariaDB
+-- PHP Version: 5.6.21
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -29,22 +27,23 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `admin` (
-  `admin_id` varchar(25) NOT NULL,
+  `username` varchar(25) NOT NULL,
+  `password` varchar(25) NOT NULL,
   `fname` varchar(255) NOT NULL,
   `mname` varchar(255) NOT NULL,
   `lname` varchar(255) NOT NULL,
   `gender` varchar(6) NOT NULL,
   `age` int(11) NOT NULL,
-  `bday` date NOT NULL,
-  `user_id` int(11) NOT NULL
+  `bday` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `admin`
 --
 
-INSERT INTO `admin` (`admin_id`, `fname`, `mname`, `lname`, `gender`, `age`, `bday`, `user_id`) VALUES
-('1', 'Jorge', 'Philip', 'Codilla', 'Male', 20, '1997-10-04', 1);
+INSERT INTO `admin` (`username`, `password`, `fname`, `mname`, `lname`, `gender`, `age`, `bday`) VALUES
+('1', '', 'Jorge', 'Philip', 'Codilla', 'Male', 20, '1997-10-04'),
+('admin', 'admin', 'John Kent', 'Cabanez', 'Virtudazo', 'Male', 20, '2018-01-07');
 
 -- --------------------------------------------------------
 
@@ -306,9 +305,9 @@ INSERT INTO `resident` (`resident_id`, `fname`, `mname`, `lname`, `gender`, `bda
 (4, 'Abigail', 'Inoc', 'Velasquez', 'Female', '2018-01-10', 0, '', 789, 'Paknaan', '', 1),
 (5, '12', '12', '12', '12', '2018-12-31', 7, '', 12, '12', 'head', 1),
 (6, 'Max', 'Delante', 'Zuorba', 'Male', '2000-05-06', 7, '', 120, 'Nasipit, Talamban, Cebu', 'head', 5),
-(7, 'Monina', 'Garcia', 'So', 'Female', '1998-12-20', 7, '', 120, 'Nasipit, Talamban, Cebu', 'head\'s spouse', 5),
+(7, 'Monina', 'Garcia', 'So', 'Female', '1998-12-20', 7, '', 120, 'Nasipit, Talamban, Cebu', 'head''s spouse', 5),
 (8, 'jon', 'snow', 'kent', 'male', '2018-01-10', 7, '', 2342354, 'dfgdrgd', 'head', 6),
-(9, 'emilia', 'clarke', 'sdfse', 'female', '2018-01-01', 7, '', 2342354, 'dfgdrgd', 'head\'s spouse', 6);
+(9, 'emilia', 'clarke', 'sdfse', 'female', '2018-01-01', 7, '', 2342354, 'dfgdrgd', 'head''s spouse', 6);
 
 -- --------------------------------------------------------
 
@@ -332,10 +331,10 @@ CREATE TABLE `sms` (
 INSERT INTO `sms` (`sms_id`, `content`, `datesent`, `admin_id`, `status`, `username`) VALUES
 (3, 'PROJECTARK ADVISORY! Habang ang bagyo ay papalapit sa Pilipinas! Ang pilipinas naman ay papalayo ng papalayo sa bagyo!!', '2018-01-10 15:55:39', '', 1, 'LegenDazo'),
 (4, 'PROJECTARK ADVISORY! Habang ang bagyo ay papalapit sa Pilipinas! Ang pilipinas naman ay papalayo ng papalayo sa bagyo!!', '2018-01-10 15:55:43', '', 1, 'bacolod'),
-(7, 'PROJECTARK ADVISORY! ayaw nya ko biraha, basin ma hulog ta sa usa\'g usa - dazo', '2018-01-10 16:17:44', '', 1, 'bacolod'),
-(8, 'PROJECTARK ADVISORY! ayaw nya ko biraha, basin ma hulog ta sa usa\'g usa - dazo', '2018-01-10 16:17:46', '', 1, 'LegenDazo'),
-(9, 'PROJECTARK ADVISORY! \"wa ka nalipong? ganina rman gud ka si\'g tuyok sa ako ulo\"', '2018-01-10 16:29:48', '', 1, 'bacolod'),
-(10, 'PROJECTARK ADVISORY! \"wa ka nalipong? ganina rman gud ka si\'g tuyok sa ako ulo\"', '2018-01-10 16:29:49', '', 1, 'LegenDazo');
+(7, 'PROJECTARK ADVISORY! ayaw nya ko biraha, basin ma hulog ta sa usa''g usa - dazo', '2018-01-10 16:17:44', '', 1, 'bacolod'),
+(8, 'PROJECTARK ADVISORY! ayaw nya ko biraha, basin ma hulog ta sa usa''g usa - dazo', '2018-01-10 16:17:46', '', 1, 'LegenDazo'),
+(9, 'PROJECTARK ADVISORY! "wa ka nalipong? ganina rman gud ka si''g tuyok sa ako ulo"', '2018-01-10 16:29:48', '', 1, 'bacolod'),
+(10, 'PROJECTARK ADVISORY! "wa ka nalipong? ganina rman gud ka si''g tuyok sa ako ulo"', '2018-01-10 16:29:49', '', 1, 'LegenDazo');
 
 -- --------------------------------------------------------
 
@@ -373,7 +372,6 @@ CREATE TABLE `sponsor` (
 CREATE TABLE `user` (
   `username` varchar(25) NOT NULL,
   `password` varchar(80) NOT NULL,
-  `user_type` varchar(25) NOT NULL,
   `fname` varchar(50) DEFAULT NULL,
   `mname` varchar(50) DEFAULT NULL,
   `lname` varchar(50) DEFAULT NULL,
@@ -385,10 +383,10 @@ CREATE TABLE `user` (
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`username`, `password`, `user_type`, `fname`, `mname`, `lname`, `bdate`, `contact_no`) VALUES
-('admin', 'admin', 'admin', 'Jorge', 'Philip', 'Codilla', '1997-10-04', '09451455958'),
-('bacolod', 'bacolod', 'resident', 'Mylene', 'Delima', 'Pepito', '2018-01-16', '639254853869'),
-('LegenDazo', 'legend', 'user', 'John Kent', 'Cabanez', 'Virtudazo', '2015-08-13', '639994738632');
+INSERT INTO `user` (`username`, `password`, `fname`, `mname`, `lname`, `bdate`, `contact_no`) VALUES
+('bacolod', 'bacolod', 'Mylene', 'Delima', 'Pepito', '2018-01-16', '639254853869'),
+('LegenDazo', 'legend', 'John Kent', 'Cabanez', 'Virtudazo', '2015-08-13', '639994738632'),
+('yeloverkill', 'yel', 'Ariel', 'Sarcon', 'Grayda', '1997-09-09', '0910291536');
 
 --
 -- Indexes for dumped tables
@@ -398,7 +396,7 @@ INSERT INTO `user` (`username`, `password`, `user_type`, `fname`, `mname`, `lnam
 -- Indexes for table `admin`
 --
 ALTER TABLE `admin`
-  ADD PRIMARY KEY (`admin_id`);
+  ADD PRIMARY KEY (`username`);
 
 --
 -- Indexes for table `announcement`
@@ -591,7 +589,7 @@ ALTER TABLE `sponsor`
 -- Constraints for table `announcement`
 --
 ALTER TABLE `announcement`
-  ADD CONSTRAINT `announcement_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`admin_id`);
+  ADD CONSTRAINT `announcement_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`username`);
 
 --
 -- Constraints for table `attendance`
@@ -643,7 +641,6 @@ ALTER TABLE `resident`
 --
 ALTER TABLE `sms`
   ADD CONSTRAINT `sms_ibfk_1` FOREIGN KEY (`username`) REFERENCES `user` (`username`);
-COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

@@ -1,3 +1,8 @@
+<?php session_start();
+  if ($_SESSION['username'] == "" && $_SESSION['type'] == "" || $_SESSION['type'] == "admin") {
+      header("location:../logout.php");
+  }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -38,19 +43,19 @@
                 <div class="col-md-5">
                   <div class="form-group">
                     <label>Current Password</label>
-                    <input type="text" name="curPassword" class="form-control" required>
+                    <input type="password" name="curPassword" class="form-control" required>
                   </div>
                 </div> 
                 <div class="col-md-5">
                   <div class="form-group">
                     <label>New Password</label>
-                    <input type="text" name="newPassword" class="form-control" required>
+                    <input type="password" name="newPassword" class="form-control" required>
                   </div>
                 </div> 
                 <div class="col-md-5">
                   <div class="form-group">
                     <label>Confirm New Password</label>
-                    <input type="text" name="conPassword" class="form-control" required>
+                    <input type="password" name="conPassword" class="form-control" required>
                   </div>
                 </div> 
                 

@@ -49,9 +49,9 @@
       </div>
     </div>
     <div class="col-md-4 bg-info text-white">
-      <form method="post" action="./functions/signup.php" style="margin-top: 20px;">
+      <form method="post" action="signup.php" style="margin-top: 20px;">
         <?php if(isset($_SESSION['error'])){
-                echo "<label style='color:red;'>".$_SESSION['error']."</label>";
+                echo "<span style='color:red;'>".$_SESSION['error']."</span>";
                 unset($_SESSION['error']);
               }
                 ?>
@@ -59,27 +59,31 @@
 
               <div class="form-group">
                   <label for="First Name">First Name</label>
-                      <input  type="text" class="form-control" name="firstname" required>         
+                      <input  type="text" class="form-control" name="fname">         
                   </div>
                   <div class="form-group">
                   <label for="Middle Name">Middle Name</label>
-                      <input  type="text" class="form-control" name="middlename" required>         
+                      <input  type="text" class="form-control" name="mname">         
                   </div>
                   <div class="form-group">
                   <label for="Last Name">Last Name</label>
-                      <input  type="text" class="form-control" name="lastname" required>         
+                      <input  type="text" class="form-control" name="lname">         
                   </div>
                   <div class="form-group">
                   <label for="Birthdate">Birthdate</label>
-                      <input  type="date" class="form-control" name="birthdate" required>         
+                      <input  type="date" class="form-control" name="bdate">         
+                  </div>
+                  <div class="form-group">
+                  <label for="contact_no">Contact Number</label>
+                      <input  type="text" class="form-control" name="contact_no">         
                   </div>
               <div class="form-group">
                 <label for="username">Username</label>
-                <input type="text" class="form-control" name="username" required>
+                <input type="text" class="form-control" name="username">
               </div>
               <div class="form-group">
                 <label for="password">Password</label>
-                <input type="password" class="form-control" name="password" required>
+                <input type="password" class="form-control" name="password" >
               </div>      
                   <div class="form-group">
                   <label for="password">Confirm Password</label>

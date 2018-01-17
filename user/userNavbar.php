@@ -1,7 +1,7 @@
-<?php
-  session_start();
-?>
-<?php include '../login.php';?>
+
+<?php 
+
+include '../login.php';?>
 <div class="col-md-3">
     <!--START of LEFT COLUMN-->
     <div class="card" id="profile" style="margin-top: 25px;">

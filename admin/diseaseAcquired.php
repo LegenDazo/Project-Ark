@@ -44,7 +44,6 @@ include 'functions/residentDiseaseFunctions.php';
                                 <tr>
                                   <th>Resident ID</th>
                                   <th>Resident</th>
-                                  <th>Disease</th>
                                   <th>&nbsp;</th>
                                   <th>&nbsp;</th>
                                 </tr>
@@ -61,11 +60,11 @@ include 'functions/residentDiseaseFunctions.php';
                                      
                                      
                                         <?php
-                                        $myrow = $func->retrieveDiseaseData();
+                                        $myrow = $func->retrieve_residentData2($resident_id);
                                         foreach ($myrow as $row) {
 
                                         ?>
-                                        <td><?php echo $row['disease_name'];?></td>
+                                      
                                         <?php }?>
 
                                      

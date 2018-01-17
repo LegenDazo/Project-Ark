@@ -23,7 +23,7 @@ class Functions
 
 		public function retrieve_residentData()
 		{
-			$sql = "SELECT * FROM resident";
+			$sql = "SELECT TIMESTAMPDIFF (year, bday, NOW()) as age, fname,lname, gender, mname FROM resident";
 			$itemArray = array();
 			$query = mysqli_query($this->con, $sql);
 			while ($row = mysqli_fetch_assoc($query)) {

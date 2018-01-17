@@ -27,7 +27,6 @@
                               <ul class="flex-column pl-2 nav">
                                   <li class="nav-item"><a class="nav-link pt-1" href="attendance.php">Attendance</a></li>
                                   <li class="nav-item"><a class="nav-link pt-1" href="reliefHousehold.php">Relief/Household</a></li>
-                                  <li class="nav-item"><a class="nav-link pt-1" href="itemResidents.php">Relief/Residents</a></li>
                               </ul>
                         </div>
                     </li>

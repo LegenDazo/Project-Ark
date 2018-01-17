@@ -113,7 +113,8 @@ $Functions = new Functions;
 			$Functions->updatePopulation($evac_id, $population);
 			$status++;
 			$Functions->insertAttendance($resident_id, $evac_id, $status);
-				header("location:../attendance.php?checkedin=1");
+			header("location:../attendance.php?checkedin=1");
+			
 	}
 
 	if(isset($_GET['cancelAttendance'])){
@@ -130,7 +131,7 @@ $Functions = new Functions;
 				header("location:../attendance.php?checkedin=1");
 	}
 
-	if(isset($_POST['resident_id'])&&isset($_POST['evac_id'])){
+	if(isset($_POST['resident_id']) && isset($_POST['evac_id'])){
 		$resident_id = $_GET['resident_id'];
 		$evac_id = $_GET['evac_id'];
 		$Functions->insertAttendance($resident_id, $evac_id, 1);

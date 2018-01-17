@@ -137,9 +137,10 @@ include 'functions/retrieveEvacuationCenterFunction.php';
 
         if(value != "") {
 
-          $.post('functions/attendanceFunctions.php',"resident_id="+resident_id+"&evac_id="+value,function(response){
+          $.post('functions/attendanceFunctions.php',"resident_id="+resident_id+"&evac_id="+value, function(response){
             $(select_id).attr("disabled",true);
           });
+          
         }
     });
 

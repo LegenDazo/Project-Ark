@@ -11,7 +11,12 @@ include 'functions/itemResidentsFunctions.php';
   <link rel="stylesheet" href="../style.css">
   <link rel="stylesheet" href="../materialize/icons.css">
   <link rel="stylesheet" type="text/css" href="../datatables/datatables.css">
-  <link rel="stylesheet" type="text/css" href="../datatables/datatables-bootstrap.css">   
+  <link rel="stylesheet" type="text/css" href="../datatables/datatables-bootstrap.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="./jquery.js"></script>
+  <script src="bootstrap/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.15/css/jquery.dataTables.css">
+  <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.15/js/jquery.dataTables.js"></script>
 </head>
 
 <body>
@@ -33,30 +38,56 @@ include 'functions/itemResidentsFunctions.php';
                       <div class="container" style="margin-top: 5%">
                         <div class="col-md-12">
                           <div class="container" align="center">
-                              <table class="table table-hovered" id="regStudent">
+
+
+                            <th>Relief Package Name</th>
+                             <div class="form-group col-md-5">
+                                <form id="packageForm" method="POST" action="reliefHousehold.php">
+                                  <select class="form-control" id="package" name="package_id">
+                                    <option value="">Please select a package...</option>
+                                      <?php
+                                          $myrow = $function->retrieveReliefPackage();
+                                          foreach ($myrow as $row) {
+                                      ?>
+                                      <option value="<?php echo $row['package_id'];?>" 
+                                          <?php 
+                                            if(isset($_POST["package_id"]) && $_POST["package_id"] == $row["package_id"]) { 
+                                              echo "selected"; 
+                                            } ?>><?php echo $row['package_name'];?></option>
+                                      <?php }?>
+                                    </select>
+                                </form>
+                              </div>
+
+
+                              <table class="table table-hovered" id="household">
                                   <thead>
                                     <tr>
-                                      <th>Household ID</th>
+                                      <th>HH ID</th>
                                       <th>Household Head</th>
                                       <th>Head Spouse</th>
-                                      <th>Relief Package Name</th>
+                                      
                                       <th>Action</th>
                                     </tr>
                                   </thead>
 
                                   <?php
+                                    $package_id = isset($_POST["package_id"]) ? $_POST["package_id"] : -1;
                                     $myrow  = $obj->retrieveHouseholdData();
-                                    foreach($myrow as $row ){ ?>
-                                      <tr id="<?php echo $row['household_id']; ?>">        
+                                    foreach($myrow as $row ) { ?>
+
+                                      <tr id="<?php echo $row['household_id']; ?>"> 
+                                      <form method="POST" action="functions/distributionFunction.php">
+                                      <input type="hidden" name="package_id" value="<?php echo $package_id; ?>">       
 
                                <td data-target="household_id"><?php echo $row['household_id']; ?></td>         
                                <td><?php 
                                 $result = mysqli_query($obj->conn, "SELECT * FROM resident WHERE household_id = ".$row['household_id']." AND house_memship = 'head'");
                                 $rowH = mysqli_fetch_assoc($result);
                                 if($rowH['house_memship'] == 'head'){
-                                echo $rowH['fname']; 
+                                echo $rowH['fname'];
                                 echo " "; 
-                                echo $rowH['mname']; 
+                                echo $rowH['mname'];
                                 echo " "; 
                                 echo $rowH['lname'];
                                 }?>
@@ -65,6 +96,7 @@ include 'functions/itemResidentsFunctions.php';
                                <?php 
                                 $result = mysqli_query($obj->conn, "SELECT * FROM resident WHERE household_id = ".$row['household_id']." AND house_memship = 'head\'s spouse'");
                                 $rowH = mysqli_fetch_assoc($result);
+                                $household_id = $row["household_id"];
 
                                if($rowH['house_memship'] == "head's spouse"){
                                 echo $rowH['fname']; 
@@ -75,23 +107,30 @@ include 'functions/itemResidentsFunctions.php';
                               }
                                ?>
                              </td>
-                               <td> 
-                                <div class="form-group col-md-11">
-                                  <select class="form-control" id="sel1" name="reliefPackage">
-                                  <option></option>
-                                    <?php
-                                        $myrow = $function->retrieveReliefPackage();
-                                        foreach ($myrow as $row) {
-                                    ?>
-                                    <option value="<?php echo $row['package_id'];?>"><?php echo $row['package_name'];?></option>
-                                    <?php }?>
-                                  </select>
-                                </div>
-                                </td>
-                               <td><button class="btn btn-success" type="submit" name="recieved">Received</button>
-                              <button class="btn btn-danger" type="submit" name="cancelAttendance">Cancel</button></td>                                   
-                                </tr>
 
+
+                               <td>
+                                <?php
+
+                                  if(!isset($_POST["package_id"]) || $_POST["package_id"] == "") {
+                                    //echo "No Package Selected";
+                                  } else {
+                                    $package_id = $_POST["package_id"];
+                                    $result = mysqli_query($obj->conn, "SELECT * FROM packagedistribution WHERE household_id = ".$row['household_id']." AND package_id = ".$package_id."");
+
+                                  if(mysqli_num_rows($result) == 0) {
+                                    echo '<input type="hidden" name="household_id" value="'.$household_id.'">';
+                                    echo '<button class="btn btn-success received" type="submit" name="received" value="'.$household_id.'">Nadawat</button>';
+                                  } else {
+                                    $rowNew = mysqli_fetch_assoc($result);
+                                    echo $rowNew["date_dist"];
+                                  }
+                                }
+                                
+                                ?>
+                              <button class="btn btn-primary" type="submit" name="viewAttendance">View Details</button></td>   </form>                       
+                                </tr>
+                              
                                   <?php }
                                     ?> 
 
@@ -109,12 +148,12 @@ include 'functions/itemResidentsFunctions.php';
 
 
 <script type="text/javascript">
-  $(document).ready(function(){
+  /*$(document).ready(function(){
     $.ajax({
       type: "GET",
       data: 
     })
-  })
+  }) */
 </script>
 
 <script src="../js/jquery.min.js"></script>
@@ -134,18 +173,32 @@ include 'functions/itemResidentsFunctions.php';
     }
   ?>
 
-    $('.close').click(function(){
-        $('#viewkey').hide();
-        window.location.href='registerStudent.php';
-    });
+  $("#package").change(function() {
 
-    $('.close').click(function(){
-        $('#viewkeydel').hide();
-        window.location.href='registerStudent.php';
-    });
+    $("#packageForm").submit();
+    
 
-    $('#regStudent').DataTable();
-} );
+//    $.post("reliefHousehold.php", {package_id: package_id }, function(response, status) {
+//      console.log(status);
+//    });
+
+  //  console.log(package_id);
+  });
+
+ // $('.received').click(function() {
+  //    var package_id = $("#package").val();
+  //    var household_id = $(this).attr("value");
+      //  var select_id = '#pack'+household_id;
+      //  var value = $(select_id).val();
+
+//      $.post('functions/distributionFunction.php',"household_id="+household_id+"&package_id="+package_id+"&received='received'",function(response) {
+ //       console.log(response);
+//      });
+
+//    });
+
+    $('#household').DataTable();
+});
 </script>
 </body>
 </html>

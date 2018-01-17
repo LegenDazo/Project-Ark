@@ -28,11 +28,10 @@
             <div class="col-md-9"><!-- START of RIGHT COLUMN-->
               <div class="card" style="margin-top: 25px;"><!--START OF RIGHTCARD-->
                 <div class="container" style="margin-top: 25px;">
-                      <center><h6>Relief/Household Operations</h6></center>
+                      <center><h4>Relief/Household Distribution</h4></center>
                       <div class="container" style="margin-top: 5%">
                         <div class="col-md-12">
                           <div class="container" align="center">
-                              <h4>ADD HOUSEHOLD &nbsp;<a href="addHousehold.php" class="btn btn-success"><i class="material-icons">add</i></a></h4>
                               <table class="table table-hovered" id="regStudent">
                                   <thead>
                                     <tr>

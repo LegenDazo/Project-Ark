@@ -52,13 +52,13 @@
 
 		} else {
 			session_start();
-			$_SESSION['Notice'] = "New Password and Confirm Password don't match!";
+			$_SESSION['Notice'] = "The value of 'New Password' and 'Confirm Password' don't match!";
 			header("location:../changePassword.php");
 		}
 
 	} else {
 			session_start();
-			$_SESSION['Notice'] = "Invalid Current Password!";
+			$_SESSION['Notice'] = "The 'Current Password' you typed was invalid!";
 			header("location:../changePassword.php");
 		}
 }

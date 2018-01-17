@@ -1,4 +1,8 @@
-
+<?php session_start();
+  if ($_SESSION['username'] == "" && $_SESSION['type'] == "" || $_SESSION['type'] == "admin") {
+      header("location:../logout.php");
+  }
+?>
 <!DOCTYPE html>
 
 <html lang="en">

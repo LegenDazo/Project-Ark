@@ -51,7 +51,9 @@ include 'functions/itemResidentsFunctions.php';
                         ?>
                            <tr>
                              <td><?php echo $row['fname']; echo " "; echo $row['mname']; echo " "; echo $row['lname']?></td>
-                             <td><?php echo $row['age'];?></td>
+                             
+                              <td><?php echo $row['age'];?></td>
+                          
                              <td><?php echo $row['gender'];?></td>
                              <td> 
                                 <div class="form-group col-md-11">
@@ -66,7 +68,8 @@ include 'functions/itemResidentsFunctions.php';
                                   </select>
                                 </div>
                                 </td>
-                              <td><button class="btn btn-success" type="submit" name="recieved">Received</button></td>
+                              <td><button class="btn btn-success" type="submit" name="recieved">Received</button>
+                              <button class="btn btn-danger" type="submit" name="cancelAttendance">Cancel</button></td>
                           </tr>
                         <?php
                       }

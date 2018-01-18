@@ -45,7 +45,7 @@ include 'functions/retrieveEvacuationCenterFunction.php';
                                 <center>
                                 <div class="form-group col-md-5">
                                   <select class="form-control" id="<?php echo 'res'.$resident_id;?>" name="evac_id" required <?php if($status){echo "disabled=true";}?>>
-                                  <option></option>
+                                  <option>Please select a evacuation center...</option>
                                     <?php
                                         $myrow = $obj->retrieveEvacuationCenter();
                                         foreach ($myrow as $row) {

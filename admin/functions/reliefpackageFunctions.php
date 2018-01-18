@@ -23,7 +23,7 @@
 
 		public function retrieveReliefData()
 		{
-			$sql = "SELECT * FROM reliefpackage";
+			$sql = "SELECT * FROM reliefpackage ORDER BY package_name ASC";
 			$itemArray = array();
 			$query = mysqli_query($this->conn, $sql);
 			while ($row = mysqli_fetch_assoc($query)) {

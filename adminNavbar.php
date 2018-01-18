@@ -26,6 +26,7 @@
                         <div class="collapse" id="submenu1" aria-expanded="false">
                               <ul class="flex-column pl-2 nav">
                                   <li class="nav-item"><a class="nav-link pt-1" href="attendance.php">Attendance</a></li>
+                                  <li class="nav-item"><a class="nav-link pt-1" href="diseaseAcquired.php">Health</a></li>
                                   <li class="nav-item"><a class="nav-link pt-1" href="reliefHousehold.php">Relief/Household</a></li>
                               </ul>
                         </div>

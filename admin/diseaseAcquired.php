@@ -44,8 +44,7 @@ include 'functions/residentDiseaseFunctions.php';
                                 <tr>
                                   <th>Resident ID</th>
                                   <th>Resident</th>
-                                  <th>&nbsp;</th>
-                                  <th>&nbsp;</th>
+                                  <th>Actions</th>
                                 </tr>
                               </thead>
 
@@ -68,8 +67,7 @@ include 'functions/residentDiseaseFunctions.php';
                                         <?php }?>
 
                                      
-                                     <td><a href="addDiseaseToResident.php?resident_id=<?php echo $resident_id;?>" class="btn btn-success">Add Disease</a></td>
-                                     <td><a href="viewResidentDisease.php?resident_id=<?php echo $resident_id;?>" class="btn btn-info">View Details</a></td>
+                                     <td><a href="addDiseaseToResident.php?resident_id=<?php echo $resident_id;?>" class="btn btn-success">Add Disease</a>&nbsp;<a href="viewResidentDisease.php?resident_id=<?php echo $resident_id;?>" class="btn btn-info">View Details</a></td>
 
                                   </tr>
 
@@ -109,17 +107,7 @@ include 'functions/residentDiseaseFunctions.php';
     }
   ?>
 
-    $('.close').click(function(){
-        $('#viewkey').hide();
-        window.location.href='registerStudent.php';
-    });
-
-    $('.close').click(function(){
-        $('#viewkeydel').hide();
-        window.location.href='registerStudent.php';
-    });
-
-    $('#regStudent').DataTable();
+    $('#insertDisease').DataTable();
 } );
 </script>
 

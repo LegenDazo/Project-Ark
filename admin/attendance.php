@@ -41,12 +41,28 @@ include 'functions/retrieveEvacuationCenterFunction.php';
                       <center><h3>Attendance</h3></center>
                       <div class="container" style="margin-top: 5%">
                         <div class="col-md-12">
+                        
+                                <center>
+                                <div class="form-group col-md-5">
+                                  <select class="form-control" id="<?php echo 'res'.$resident_id;?>" name="evac_id" required <?php if($status){echo "disabled=true";}?>>
+                                  <option></option>
+                                    <?php
+                                        $myrow = $obj->retrieveEvacuationCenter();
+                                        foreach ($myrow as $row) {
+                                    ?>
+                                    <option value="<?php echo $row['evac_id'];?>"><?php echo $row['location_name'];?></option>
+                                    <?php }?>
+                                  </select>
+                                </div>
+                              </center>
+
+
+
                           <table class="table" id="residents">
                             <thead>
                               <tr>
                                 <th>Name</th>
                                 <th>Address</th>
-                                <th>Evacuation Center</th>
                                 <th>Check-In</th>
                                 <th>&nbsp;</th>
                               </tr>
@@ -67,19 +83,6 @@ include 'functions/retrieveEvacuationCenterFunction.php';
                             
                             <form method="GET" action="functions/attendanceFunctions.php">
                               <input type="hidden" name="resident_id" value="<?php echo $resident_id;?>">
-                            <td> 
-                                <div class="form-group col-md-12">
-                                  <select class="form-control" id="<?php echo 'res'.$resident_id;?>" name="evac_id" required <?php if($status){echo "disabled=true";}?>>
-                                  <option><?php if($status){echo $location_name;}?></option>
-                                    <?php
-                                        $myrow = $obj->retrieveEvacuationCenter();
-                                        foreach ($myrow as $row) {
-                                    ?>
-                                    <option value="<?php echo $row['evac_id'];?>"><?php echo $row['location_name'];?></option>
-                                    <?php }?>
-                                  </select>
-                                </div>
-                                </td>
                                 <td>
                                   <?php 
                                       if(!$status){ 

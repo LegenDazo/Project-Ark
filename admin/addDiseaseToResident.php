@@ -76,6 +76,12 @@ include 'functions/diseaseFunctions.php';
                                   </select></td>
                                     </tr>
                                     </div>
+                                    <h6>Date Acquired: </h6>  
+                                    <div>
+                                      <input type="date" name="">
+                                    </div>
+
+
                                 <br>
                                 <button class="btn btn-primary" name="submitdisease">Add Disease</button>
 

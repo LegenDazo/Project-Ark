@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 17, 2018 at 11:21 AM
+-- Generation Time: Jan 18, 2018 at 05:14 AM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 5.6.21
 
@@ -145,20 +145,21 @@ INSERT INTO `disease` (`disease_id`, `disease_name`) VALUES
 CREATE TABLE `diseaseacquired` (
   `acquired_id` int(11) NOT NULL,
   `resident_id` int(11) NOT NULL,
-  `disease_id` int(11) NOT NULL
+  `disease_id` int(11) NOT NULL,
+  `date_acquired` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `diseaseacquired`
 --
 
-INSERT INTO `diseaseacquired` (`acquired_id`, `resident_id`, `disease_id`) VALUES
-(10, 0, 0),
-(12, 1, 3),
-(13, 2, 2),
-(14, 3, 3),
-(15, 4, 2),
-(16, 1, 2);
+INSERT INTO `diseaseacquired` (`acquired_id`, `resident_id`, `disease_id`, `date_acquired`) VALUES
+(10, 0, 0, '2018-01-18 04:02:36'),
+(12, 1, 3, '2018-01-18 04:02:36'),
+(13, 2, 2, '2018-01-18 04:02:36'),
+(14, 3, 3, '2018-01-18 04:02:36'),
+(15, 4, 2, '2018-01-18 04:02:36'),
+(16, 1, 2, '2018-01-18 04:02:36');
 
 -- --------------------------------------------------------
 
@@ -223,6 +224,13 @@ CREATE TABLE `item` (
   `package_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `item`
+--
+
+INSERT INTO `item` (`item_no`, `item_name`, `qty`, `item_type`, `sponsor_id`, `package_id`) VALUES
+(2, 'Neozep', 30, 'medicine', 1, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -244,10 +252,17 @@ CREATE TABLE `itemdistribution` (
 
 CREATE TABLE `packagedistribution` (
   `packdist_id` int(11) NOT NULL,
-  `date_dist` date NOT NULL,
+  `date_dist` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `package_id` int(11) NOT NULL,
   `household_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `packagedistribution`
+--
+
+INSERT INTO `packagedistribution` (`packdist_id`, `date_dist`, `package_id`, `household_id`) VALUES
+(0, '2018-01-18 04:13:16', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -261,6 +276,13 @@ CREATE TABLE `reliefoperation` (
   `evac_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `reliefoperation`
+--
+
+INSERT INTO `reliefoperation` (`operation_id`, `operation_name`, `evac_id`) VALUES
+(1, 'sagip capstone', 2);
+
 -- --------------------------------------------------------
 
 --
@@ -272,6 +294,13 @@ CREATE TABLE `reliefpackage` (
   `package_name` varchar(255) NOT NULL,
   `operation_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `reliefpackage`
+--
+
+INSERT INTO `reliefpackage` (`package_id`, `package_name`, `operation_id`) VALUES
+(1, 'Medicine', 1);
 
 -- --------------------------------------------------------
 
@@ -362,6 +391,13 @@ CREATE TABLE `sponsor` (
   `address` varchar(255) NOT NULL,
   `contact_no` varchar(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `sponsor`
+--
+
+INSERT INTO `sponsor` (`sponsor_id`, `sponsor_name`, `sponsor_type`, `address`, `contact_no`) VALUES
+(1, 'Philippine Government', 'Govenment Organization', 'hhdhsf', '9ye3y3');
 
 -- --------------------------------------------------------
 
@@ -555,12 +591,12 @@ ALTER TABLE `household`
 -- AUTO_INCREMENT for table `item`
 --
 ALTER TABLE `item`
-  MODIFY `item_no` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `item_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `reliefoperation`
 --
 ALTER TABLE `reliefoperation`
-  MODIFY `operation_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `operation_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `resident`
 --
@@ -580,7 +616,7 @@ ALTER TABLE `smschecker`
 -- AUTO_INCREMENT for table `sponsor`
 --
 ALTER TABLE `sponsor`
-  MODIFY `sponsor_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `sponsor_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- Constraints for dumped tables
 --

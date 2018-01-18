@@ -11,7 +11,7 @@
 		}
 
 		public function retrieveEvacuationCenter(){
-			$sql = "SELECT * FROM evacuationcenter";
+			$sql = "SELECT * FROM evacuationcenter ORDER BY location_name ASC";
 			$itemArray = array();
 			$query = mysqli_query($this->conn, $sql);
 			while ($row = mysqli_fetch_assoc($query)) {

@@ -71,7 +71,33 @@ include 'functions/residentDiseaseFunctions.php';
                                    <tr>
                                      <td><?php echo $disease_name ?></td>
                                      <td><?php echo $date; if(!$date) { echo "NULL"; } ?></td>
-                                     <td><button class="btn btn-primary">CURE NOW!</button></td>
+
+
+
+                                     <td><button class="btn btn-primary">CURE NOW!</button>
+
+                                     <?php
+
+                                  if(!isset($_POST["resident_id"]) || $_POST["resident_id"] == "") {
+                                    //echo "No Package Selected";
+                                  } else {
+                                    $resident_id = $_POST["resident_id"];
+                                    $result = mysqli_query($obj->conn, "SELECT * FROM diseaseacquired WHERE resident_id = ".$row['resident_id']." AND disease_id = ".$disease_id."");
+
+                                  if(mysqli_num_rows($result) == 0) {
+                                    echo '<input type="hidden" name="resident_id" value="'.$resident_id.'">';
+                                    echo '<button class="btn btn-success received" type="submit" name="received" value="'.$resident_id.'">Nadawat</button>';
+                                  } else {
+                                    $rowNew = mysqli_fetch_assoc($result);
+                                    echo $rowNew["date_dist"];
+                                  }
+                                }
+                                
+                                ?>   
+
+                                     </td>
+
+
                                   </tr>
                                 <?php
                               }

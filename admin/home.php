@@ -32,9 +32,7 @@
 
               <div class="card" style="margin-top: 25px;"><!--START OF RIGHTCARD-->
 
-              <div class="card" style="margin-top: 25px;" ><!--START OF RIGHTCARD-->
-
-              <div class="card" style="margin-top: 25px;"><!--START OF RIGHTCARD-->
+              
 
 
               <div class="container" style="margin-top: 25px;">

@@ -85,8 +85,8 @@ include 'functions/residentDiseaseFunctions.php';
                                     $result = mysqli_query($obj->conn, "SELECT * FROM diseaseacquired WHERE resident_id = ".$row['resident_id']." AND disease_id = ".$disease_id."");
 
                                   if(mysqli_num_rows($result) == 0) {
-                                    echo '<input type="hidden" name="household_id" value="'.$household_id.'">';
-                                    echo '<button class="btn btn-success received" type="submit" name="received" value="'.$household_id.'">Nadawat</button>';
+                                    echo '<input type="hidden" name="resident_id" value="'.$resident_id.'">';
+                                    echo '<button class="btn btn-success received" type="submit" name="received" value="'.$resident_id.'">Nadawat</button>';
                                   } else {
                                     $rowNew = mysqli_fetch_assoc($result);
                                     echo $rowNew["date_dist"];

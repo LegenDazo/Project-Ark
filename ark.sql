@@ -1,15 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.1
+-- version 4.1.12
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
-
--- Generation Time: Jan 17, 2018 at 11:21 AM
-
--- Generation Time: Jan 18, 2018 at 05:14 AM
-
--- Server version: 10.1.13-MariaDB
--- PHP Version: 5.6.21
+-- Generation Time: Jan 18, 2018 at 11:08 AM
+-- Server version: 5.6.16
+-- PHP Version: 5.5.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -18,7 +14,7 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
 
 --
 -- Database: `ark`
@@ -30,7 +26,7 @@ SET time_zone = "+00:00";
 -- Table structure for table `admin`
 --
 
-CREATE TABLE `admin` (
+CREATE TABLE IF NOT EXISTS `admin` (
   `username` varchar(25) NOT NULL,
   `password` varchar(25) NOT NULL,
   `fname` varchar(255) NOT NULL,
@@ -38,7 +34,8 @@ CREATE TABLE `admin` (
   `lname` varchar(255) NOT NULL,
   `gender` varchar(6) NOT NULL,
   `age` int(11) NOT NULL,
-  `bday` date NOT NULL
+  `bday` date NOT NULL,
+  PRIMARY KEY (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -55,7 +52,7 @@ INSERT INTO `admin` (`username`, `password`, `fname`, `mname`, `lname`, `gender`
 -- Table structure for table `announcement`
 --
 
-CREATE TABLE `announcement` (
+CREATE TABLE IF NOT EXISTS `announcement` (
   `announcement_id` int(11) NOT NULL,
   `datepost` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `admin_id` varchar(25) NOT NULL,
@@ -66,7 +63,9 @@ CREATE TABLE `announcement` (
   `time_start` time NOT NULL,
   `time_end` time NOT NULL,
   `description` varchar(1000) NOT NULL,
-  `location` varchar(1000) NOT NULL
+  `location` varchar(1000) NOT NULL,
+  PRIMARY KEY (`announcement_id`),
+  KEY `admin_id` (`admin_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -83,12 +82,15 @@ INSERT INTO `announcement` (`announcement_id`, `datepost`, `admin_id`, `an_what`
 -- Table structure for table `attendance`
 --
 
-CREATE TABLE `attendance` (
+CREATE TABLE IF NOT EXISTS `attendance` (
   `attendance_id` int(11) NOT NULL,
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `resident_id` int(11) NOT NULL,
   `evac_id` int(11) NOT NULL,
-  `status` int(11) NOT NULL
+  `status` int(11) NOT NULL,
+  PRIMARY KEY (`attendance_id`),
+  UNIQUE KEY `resident_id` (`resident_id`),
+  KEY `evac_id` (`evac_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -106,11 +108,12 @@ INSERT INTO `attendance` (`attendance_id`, `date`, `resident_id`, `evac_id`, `st
 -- Table structure for table `barangay`
 --
 
-CREATE TABLE `barangay` (
+CREATE TABLE IF NOT EXISTS `barangay` (
   `brgy_id` int(11) NOT NULL,
   `brgy_name` varchar(255) NOT NULL,
   `city` varchar(255) NOT NULL,
-  `province` varchar(255) NOT NULL
+  `province` varchar(255) NOT NULL,
+  PRIMARY KEY (`brgy_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -127,9 +130,10 @@ INSERT INTO `barangay` (`brgy_id`, `brgy_name`, `city`, `province`) VALUES
 -- Table structure for table `disease`
 --
 
-CREATE TABLE `disease` (
+CREATE TABLE IF NOT EXISTS `disease` (
   `disease_id` int(11) NOT NULL,
-  `disease_name` varchar(255) NOT NULL
+  `disease_name` varchar(255) NOT NULL,
+  PRIMARY KEY (`disease_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -146,33 +150,31 @@ INSERT INTO `disease` (`disease_id`, `disease_name`) VALUES
 -- Table structure for table `diseaseacquired`
 --
 
-CREATE TABLE `diseaseacquired` (
+CREATE TABLE IF NOT EXISTS `diseaseacquired` (
   `acquired_id` int(11) NOT NULL,
   `resident_id` int(11) NOT NULL,
   `disease_id` int(11) NOT NULL,
-  `date_acquired` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `date_acquired` timestamp NULL DEFAULT NULL,
+  `date_cured` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `diseaseacquired`
 --
 
-INSERT INTO `diseaseacquired` (`acquired_id`, `resident_id`, `disease_id`) VALUES
-(10, 0, 0),
-(12, 1, 3),
-(13, 2, 2),
-(14, 3, 3),
-(15, 4, 2),
-(16, 1, 2);
-
-INSERT INTO `diseaseacquired` (`acquired_id`, `resident_id`, `disease_id`, `date_acquired`) VALUES
-(10, 0, 0, '2018-01-18 04:02:36'),
-(12, 1, 3, '2018-01-18 04:02:36'),
-(13, 2, 2, '2018-01-18 04:02:36'),
-(14, 3, 3, '2018-01-18 04:02:36'),
-(15, 4, 2, '2018-01-184:02:36'),
-(16, 1, 2, '2018-01-18 04:02:36');
-
+INSERT INTO `diseaseacquired` (`acquired_id`, `resident_id`, `disease_id`, `date_acquired`, `date_cured`) VALUES
+(10, 0, 0, '2018-01-18 09:48:39', '2018-01-18 10:00:48'),
+(12, 1, 3, '2018-01-18 09:48:39', '2018-01-18 10:00:48'),
+(13, 2, 2, '2018-01-18 09:48:39', '2018-01-18 10:00:48'),
+(14, 3, 3, '2018-01-18 09:48:39', '2018-01-18 10:00:48'),
+(15, 4, 2, '2018-01-18 09:48:39', '2018-01-18 10:00:48'),
+(16, 1, 2, '2018-01-18 09:48:39', '2018-01-18 10:00:48'),
+(10, 0, 0, '2018-01-18 04:02:36', '2018-01-18 10:00:48'),
+(12, 1, 3, '2018-01-18 04:02:36', '2018-01-18 10:00:48'),
+(13, 2, 2, '2018-01-18 04:02:36', '2018-01-18 10:00:48'),
+(14, 3, 3, '2018-01-18 04:02:36', '2018-01-18 10:00:48'),
+(15, 4, 2, '0000-00-00 00:00:00', '2018-01-18 10:00:48'),
+(16, 1, 2, '2018-01-18 04:02:36', '2018-01-18 10:00:48');
 
 -- --------------------------------------------------------
 
@@ -180,7 +182,7 @@ INSERT INTO `diseaseacquired` (`acquired_id`, `resident_id`, `disease_id`, `date
 -- Table structure for table `evacuationcenter`
 --
 
-CREATE TABLE `evacuationcenter` (
+CREATE TABLE IF NOT EXISTS `evacuationcenter` (
   `evac_id` int(11) NOT NULL,
   `location_name` varchar(255) NOT NULL,
   `population` int(11) NOT NULL,
@@ -209,7 +211,7 @@ INSERT INTO `evacuationcenter` (`evac_id`, `location_name`, `population`, `capac
 -- Table structure for table `household`
 --
 
-CREATE TABLE `household` (
+CREATE TABLE IF NOT EXISTS `household` (
   `household_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -228,7 +230,7 @@ INSERT INTO `household` (`household_id`) VALUES
 -- Table structure for table `item`
 --
 
-CREATE TABLE `item` (
+CREATE TABLE IF NOT EXISTS `item` (
   `item_no` int(11) NOT NULL,
   `item_name` varchar(255) NOT NULL,
   `qty` int(11) NOT NULL,
@@ -237,10 +239,8 @@ CREATE TABLE `item` (
   `package_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- --------------------------------------------------------
-
 --
--- Table structure for table `itemdistribution`
+-- Dumping data for table `item`
 --
 
 INSERT INTO `item` (`item_no`, `item_name`, `qty`, `item_type`, `sponsor_id`, `package_id`) VALUES
@@ -252,8 +252,7 @@ INSERT INTO `item` (`item_no`, `item_name`, `qty`, `item_type`, `sponsor_id`, `p
 -- Table structure for table `itemdistribution`
 --
 
-
-CREATE TABLE `itemdistribution` (
+CREATE TABLE IF NOT EXISTS `itemdistribution` (
   `itemdist_id` int(11) NOT NULL,
   `date_dist` date NOT NULL,
   `item_id` int(11) NOT NULL,
@@ -266,21 +265,21 @@ CREATE TABLE `itemdistribution` (
 -- Table structure for table `packagedistribution`
 --
 
-CREATE TABLE `packagedistribution` (
+CREATE TABLE IF NOT EXISTS `packagedistribution` (
   `packdist_id` int(11) NOT NULL,
-  `date_dist` date NOT NULL,
+  `date_dist` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `package_id` int(11) NOT NULL,
   `household_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
 
 --
 -- Dumping data for table `packagedistribution`
 --
 
 INSERT INTO `packagedistribution` (`packdist_id`, `date_dist`, `package_id`, `household_id`) VALUES
-(0, '2018-01-18 04:13:16', 1, 1);
-
+(0, '2018-01-17 16:00:00', 1, 1),
+(0, '0000-00-00 00:00:00', 1, 5),
+(0, '0000-00-00 00:00:00', 1, 6);
 
 -- --------------------------------------------------------
 
@@ -288,19 +287,18 @@ INSERT INTO `packagedistribution` (`packdist_id`, `date_dist`, `package_id`, `ho
 -- Table structure for table `reliefoperation`
 --
 
-CREATE TABLE `reliefoperation` (
+CREATE TABLE IF NOT EXISTS `reliefoperation` (
   `operation_id` int(11) NOT NULL,
   `operation_name` varchar(255) NOT NULL,
   `evac_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-
+--
 -- Dumping data for table `reliefoperation`
 --
 
 INSERT INTO `reliefoperation` (`operation_id`, `operation_name`, `evac_id`) VALUES
 (1, 'sagip capstone', 2);
-
 
 -- --------------------------------------------------------
 
@@ -308,12 +306,11 @@ INSERT INTO `reliefoperation` (`operation_id`, `operation_name`, `evac_id`) VALU
 -- Table structure for table `reliefpackage`
 --
 
-CREATE TABLE `reliefpackage` (
+CREATE TABLE IF NOT EXISTS `reliefpackage` (
   `package_id` int(11) NOT NULL,
   `package_name` varchar(255) NOT NULL,
   `operation_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
 
 --
 -- Dumping data for table `reliefpackage`
@@ -322,14 +319,13 @@ CREATE TABLE `reliefpackage` (
 INSERT INTO `reliefpackage` (`package_id`, `package_name`, `operation_id`) VALUES
 (1, 'Medicine', 1);
 
-
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `resident`
 --
 
-CREATE TABLE `resident` (
+CREATE TABLE IF NOT EXISTS `resident` (
   `resident_id` int(11) NOT NULL,
   `fname` varchar(255) NOT NULL,
   `mname` varchar(255) NOT NULL,
@@ -365,7 +361,7 @@ INSERT INTO `resident` (`resident_id`, `fname`, `mname`, `lname`, `gender`, `bda
 -- Table structure for table `sms`
 --
 
-CREATE TABLE `sms` (
+CREATE TABLE IF NOT EXISTS `sms` (
   `sms_id` int(11) NOT NULL,
   `content` varchar(255) NOT NULL,
   `datesent` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -392,7 +388,7 @@ INSERT INTO `sms` (`sms_id`, `content`, `datesent`, `admin_id`, `status`, `usern
 -- Table structure for table `smschecker`
 --
 
-CREATE TABLE `smschecker` (
+CREATE TABLE IF NOT EXISTS `smschecker` (
   `checker_id` int(11) NOT NULL,
   `sms_id` int(11) NOT NULL,
   `admin_id` int(11) NOT NULL,
@@ -405,14 +401,13 @@ CREATE TABLE `smschecker` (
 -- Table structure for table `sponsor`
 --
 
-CREATE TABLE `sponsor` (
+CREATE TABLE IF NOT EXISTS `sponsor` (
   `sponsor_id` int(11) NOT NULL,
   `sponsor_name` varchar(255) NOT NULL,
   `sponsor_type` varchar(25) NOT NULL,
   `address` varchar(255) NOT NULL,
   `contact_no` varchar(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
 
 --
 -- Dumping data for table `sponsor`
@@ -421,14 +416,13 @@ CREATE TABLE `sponsor` (
 INSERT INTO `sponsor` (`sponsor_id`, `sponsor_name`, `sponsor_type`, `address`, `contact_no`) VALUES
 (1, 'Philippine Government', 'Govenment Organization', 'hhdhsf', '9ye3y3');
 
-
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `user`
 --
 
-CREATE TABLE `user` (
+CREATE TABLE IF NOT EXISTS `user` (
   `username` varchar(25) NOT NULL,
   `password` varchar(80) NOT NULL,
   `fname` varchar(50) DEFAULT NULL,
@@ -446,272 +440,6 @@ INSERT INTO `user` (`username`, `password`, `fname`, `mname`, `lname`, `bdate`, 
 ('bacolod', 'bacolod', 'Mylene', 'Delima', 'Pepito', '2018-01-16', '639254853869'),
 ('LegenDazo', 'legend', 'John Kent', 'Cabanez', 'Virtudazo', '2015-08-13', '639994738632'),
 ('yeloverkill', 'yel', 'Ariel', 'Sarcon', 'Grayda', '1997-09-09', '0910291536');
-
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `admin`
---
-ALTER TABLE `admin`
-  ADD PRIMARY KEY (`username`);
-
---
--- Indexes for table `announcement`
---
-ALTER TABLE `announcement`
-  ADD PRIMARY KEY (`announcement_id`),
-  ADD KEY `admin_id` (`admin_id`);
-
---
--- Indexes for table `attendance`
---
-ALTER TABLE `attendance`
-  ADD PRIMARY KEY (`attendance_id`),
-  ADD UNIQUE KEY `resident_id` (`resident_id`),
-  ADD KEY `evac_id` (`evac_id`);
-
---
--- Indexes for table `barangay`
---
-ALTER TABLE `barangay`
-  ADD PRIMARY KEY (`brgy_id`);
-
---
--- Indexes for table `disease`
---
-ALTER TABLE `disease`
-  ADD PRIMARY KEY (`disease_id`);
-
---
--- Indexes for table `diseaseacquired`
---
-ALTER TABLE `diseaseacquired`
-  ADD PRIMARY KEY (`acquired_id`);
-
---
--- Indexes for table `evacuationcenter`
---
-ALTER TABLE `evacuationcenter`
-  ADD PRIMARY KEY (`evac_id`),
-  ADD KEY `brgy_id` (`brgy_id`);
-
---
--- Indexes for table `household`
---
-ALTER TABLE `household`
-  ADD PRIMARY KEY (`household_id`),
-  ADD KEY `household_id` (`household_id`);
-
---
--- Indexes for table `item`
---
-ALTER TABLE `item`
-  ADD PRIMARY KEY (`item_no`),
-  ADD KEY `sponsor_id` (`sponsor_id`),
-  ADD KEY `package_id` (`package_id`);
-
---
--- Indexes for table `itemdistribution`
---
-ALTER TABLE `itemdistribution`
-  ADD KEY `resident_id` (`resident_id`);
-
---
--- Indexes for table `packagedistribution`
---
-ALTER TABLE `packagedistribution`
-  ADD KEY `package_id` (`package_id`),
-  ADD KEY `household_id` (`household_id`);
-
---
--- Indexes for table `reliefoperation`
---
-ALTER TABLE `reliefoperation`
-  ADD PRIMARY KEY (`operation_id`),
-  ADD KEY `evac_id` (`evac_id`);
-
---
--- Indexes for table `reliefpackage`
---
-ALTER TABLE `reliefpackage`
-  ADD PRIMARY KEY (`package_id`);
-
---
--- Indexes for table `resident`
---
-ALTER TABLE `resident`
-  ADD PRIMARY KEY (`resident_id`),
-  ADD KEY `household_id` (`household_id`);
-
---
--- Indexes for table `sms`
---
-ALTER TABLE `sms`
-  ADD PRIMARY KEY (`sms_id`),
-  ADD KEY `admin_id` (`admin_id`),
-  ADD KEY `username` (`username`);
-
---
--- Indexes for table `smschecker`
---
-ALTER TABLE `smschecker`
-  ADD PRIMARY KEY (`checker_id`);
-
---
--- Indexes for table `sponsor`
---
-ALTER TABLE `sponsor`
-  ADD PRIMARY KEY (`sponsor_id`);
-
---
--- Indexes for table `user`
---
-ALTER TABLE `user`
-  ADD PRIMARY KEY (`username`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `announcement`
---
-ALTER TABLE `announcement`
-  MODIFY `announcement_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
---
--- AUTO_INCREMENT for table `attendance`
---
-ALTER TABLE `attendance`
-  MODIFY `attendance_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
---
--- AUTO_INCREMENT for table `barangay`
---
-ALTER TABLE `barangay`
-  MODIFY `brgy_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
---
--- AUTO_INCREMENT for table `disease`
---
-ALTER TABLE `disease`
-  MODIFY `disease_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
---
--- AUTO_INCREMENT for table `diseaseacquired`
---
-ALTER TABLE `diseaseacquired`
-  MODIFY `acquired_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
---
--- AUTO_INCREMENT for table `evacuationcenter`
---
-ALTER TABLE `evacuationcenter`
-  MODIFY `evac_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
---
--- AUTO_INCREMENT for table `household`
---
-ALTER TABLE `household`
-  MODIFY `household_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
---
--- AUTO_INCREMENT for table `item`
---
-ALTER TABLE `item`
-
-  MODIFY `item_no` int(11) NOT NULL AUTO_INCREMENT;
-
-  MODIFY `item_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT for table `reliefoperation`
---
-ALTER TABLE `reliefoperation`
-
-  MODIFY `operation_id` int(11) NOT NULL AUTO_INCREMENT;
-
-  MODIFY `operation_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `resident`
---
-ALTER TABLE `resident`
-  MODIFY `resident_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
---
--- AUTO_INCREMENT for table `sms`
---
-ALTER TABLE `sms`
-  MODIFY `sms_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
---
--- AUTO_INCREMENT for table `smschecker`
---
-ALTER TABLE `smschecker`
-  MODIFY `checker_id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `sponsor`
---
-ALTER TABLE `sponsor`
-
-  MODIFY `sponsor_id` int(11) NOT NULL AUTO_INCREMENT;
-
-  MODIFY `sponsor_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `announcement`
---
-ALTER TABLE `announcement`
-  ADD CONSTRAINT `announcement_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`username`);
-
---
--- Constraints for table `attendance`
---
-ALTER TABLE `attendance`
-  ADD CONSTRAINT `attendance_ibfk_1` FOREIGN KEY (`evac_id`) REFERENCES `evacuationcenter` (`evac_id`),
-  ADD CONSTRAINT `attendance_ibfk_2` FOREIGN KEY (`resident_id`) REFERENCES `resident` (`resident_id`);
-
---
--- Constraints for table `evacuationcenter`
---
-ALTER TABLE `evacuationcenter`
-  ADD CONSTRAINT `evacuationcenter_ibfk_2` FOREIGN KEY (`brgy_id`) REFERENCES `barangay` (`brgy_id`);
-
---
--- Constraints for table `item`
---
-ALTER TABLE `item`
-  ADD CONSTRAINT `item_ibfk_1` FOREIGN KEY (`sponsor_id`) REFERENCES `sponsor` (`sponsor_id`),
-  ADD CONSTRAINT `item_ibfk_2` FOREIGN KEY (`package_id`) REFERENCES `reliefpackage` (`package_id`);
-
---
--- Constraints for table `itemdistribution`
---
-ALTER TABLE `itemdistribution`
-  ADD CONSTRAINT `itemdistribution_ibfk_1` FOREIGN KEY (`resident_id`) REFERENCES `resident` (`resident_id`);
-
---
--- Constraints for table `packagedistribution`
---
-ALTER TABLE `packagedistribution`
-  ADD CONSTRAINT `packagedistribution_ibfk_1` FOREIGN KEY (`package_id`) REFERENCES `reliefpackage` (`package_id`),
-  ADD CONSTRAINT `packagedistribution_ibfk_2` FOREIGN KEY (`household_id`) REFERENCES `household` (`household_id`);
-
---
--- Constraints for table `reliefoperation`
---
-ALTER TABLE `reliefoperation`
-  ADD CONSTRAINT `reliefoperation_ibfk_1` FOREIGN KEY (`evac_id`) REFERENCES `evacuationcenter` (`evac_id`);
-
---
--- Constraints for table `resident`
---
-ALTER TABLE `resident`
-  ADD CONSTRAINT `household` FOREIGN KEY (`household_id`) REFERENCES `household` (`household_id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `sms`
---
-ALTER TABLE `sms`
-  ADD CONSTRAINT `sms_ibfk_1` FOREIGN KEY (`username`) REFERENCES `user` (`username`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

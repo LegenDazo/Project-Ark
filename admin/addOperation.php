@@ -81,10 +81,9 @@ include 'functions/retrieveEvacuationCenterFunction.php';
 
 
 
-<script src="js/jquery.min.js"></script>
-<script src="bootstrap/js/bootstrap.js"></script>
-<script src="bootstrap/js/bootstrap_alpha6.min.js"></script>
-
+<script src="../js/jquery.min.js"></script>
+<script src="../bootstrap/js/bootstrap.js"></script>
+<script src="../bootstrap/js/bootstrap_alpha6.min.js"></script>
 
 </body>
 </html>

@@ -47,7 +47,7 @@
                               </thead>
 
                               <?php
-                                  $myrow = $obj->retrieveOperationData();
+                                  $myrow = $Func->retrieveOperationData();
                                   foreach ($myrow as $row) {
                                     ?>
 

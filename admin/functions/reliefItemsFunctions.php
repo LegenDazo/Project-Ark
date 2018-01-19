@@ -10,9 +10,9 @@
 			$this->conn = mysqli_connect("localhost","root","","ark");
 		}
 
-		public function insertItem ($item_name, $qty, $item_type, $sponsor_id, $package_id)
+		public function insertItem ($item_name, $qty, $item_type, $package_id)
 		{
-			$sql = "INSERT INTO item (item_name, qty, item_type, sponsor_id, package_id) VALUES ('".$item_name."','".$qty."','".$item_type."','".$sponsor_id."','".$package_id."')";
+			$sql = "INSERT INTO item (item_name, qty, item_type, package_id) VALUES ('".$item_name."','".$qty."','".$item_type."','".$package_id."')";
 			$query = mysqli_query($this->conn, $sql);
 			if ($query) {
 				return true;
@@ -45,7 +45,7 @@
 
 		public function retrieveItemData3()
 		{
-			$sql = "SELECT * FROM item as a JOIN sponsor as b ON a.sponsor_id = b.sponsor_id JOIN reliefpackage as c ON a.package_id = c.package_id";
+			$sql = "SELECT * FROM item as a JOIN reliefpackage as b ON a.package_id = b.package_id";
 			$itemArray = array();
 			$query = mysqli_query($this->conn, $sql);
 			while ($row = mysqli_fetch_assoc($query)) {
@@ -62,10 +62,9 @@ if (isset($_POST['insertItem'])) {
 	$item_name = mysqli_real_escape_string($Functions->conn, $_POST['item_name']);
 	$qty = mysqli_real_escape_string($Functions->conn, $_POST['qty']);
 	$item_type = mysqli_real_escape_string($Functions->conn, $_POST['item_type']);
-	$sponsor_id = mysqli_real_escape_string($Functions->conn, $_POST['sponsor_id']);
 	$package_id = mysqli_real_escape_string($Functions->conn, $_POST['package_id']);
 
-	$Functions->insertItem($item_name, $qty, $item_type,$sponsor_id, $package_id );
+	$Functions->insertItem($item_name, $qty, $item_type, $package_id );
 			header("location:../reliefItems.php?inserted=1");	
 }	
 //}else{

@@ -39,7 +39,6 @@ include 'functions/barangayFunctions.php';
                         }
                       ?>
                         <h2>Update Resident Record &nbsp;<a href="barangayProfile.php?brgy_id=<?php echo $brgy_id;?>" class="btn btn-warning">Cancel</a></h2>
-                      </button>
 
                       <?php
                         if (isset($_GET['brgy_id'])) {

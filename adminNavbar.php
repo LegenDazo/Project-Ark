@@ -64,10 +64,10 @@
                       <a class="nav-link collapsed" href="#submenu3" data-toggle="collapse" data-target="#submenu5"><i class="material-icons">tune</i>  Set Relief</a>
                         <div class="collapse" id="submenu5" aria-expanded="false">
                               <ul class="flex-column pl-2 nav">
-                                  <li class="nav-item"><a class="nav-link pt-1" href="reliefSponsors.php">1. Sponsors</a></li>
-                                  <li class="nav-item"><a class="nav-link pt-1" href="reliefOperation.php">2. Operations</a></li>
-                                  <li class="nav-item"><a class="nav-link pt-1" href="reliefpackage.php">3. Packages</a></li>
-                                  <li class="nav-item"><a class="nav-link pt-1" href="reliefItems.php">4. Items</a></li>
+                                  <li class="nav-item"><a class="nav-link pt-1" href="reliefSponsors.php">Sponsors</a></li>
+                                  <li class="nav-item"><a class="nav-link pt-1" href="reliefOperation.php">Operations</a></li>
+                                  <li class="nav-item"><a class="nav-link pt-1" href="reliefpackage.php">Packages</a></li>
+                                  <li class="nav-item"><a class="nav-link pt-1" href="reliefItems.php">Items</a></li>
                               </ul>
                         </div>
                     </li>              

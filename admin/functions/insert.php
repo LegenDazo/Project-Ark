@@ -1,6 +1,6 @@
 <?php
 //insert.php
-$connect = mysqli_connect("localhost", "root", "", "ark");
+$connect = mysqli_connect("localhost", "root", "Codeusctc", "ark");
 
 if(isset($_POST["fname"]))
 {

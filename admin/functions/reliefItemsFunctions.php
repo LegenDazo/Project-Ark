@@ -7,7 +7,7 @@
 		public $conn;
 		public function __construct()
 		{
-			$this->conn = mysqli_connect("localhost","root","","ark");
+			$this->conn = mysqli_connect("localhost","root","Codeusctc","ark");
 		}
 
 		public function insertItem ($item_name, $qty, $item_type, $sponsor_id, $package_id)

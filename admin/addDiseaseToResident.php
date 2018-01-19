@@ -33,7 +33,7 @@ include 'functions/diseaseFunctions.php';
 
             <div class="col-md-9"><!-- START of RIGHT COLUMN-->
               <div class="card" style="margin-top: 25px;" ><!--START OF RIGHTCARD-->
-              <div class="container" style="margin-top: 25px;">
+              <div class="container" style="margin-top: 25px; margin-bottom: 25px;">
                       <center><h6>Add Disease to Resident</h6></center>
                       <div class="container" style="margin-top: 5%;">
                         <div class="col-md-12">
@@ -54,8 +54,7 @@ include 'functions/diseaseFunctions.php';
                             }
                           }
                         ?>  <center>
-                            <form method="POST" action="functions/diseaseAcquiredFunctions.php">
-                                  
+                            <form method="POST" action="functions/diseaseAcquiredFunctions.php">                                 
                                   <h6>Resident's ID Number:  <?php echo $resident_id;?></p>
                                       <input type="hidden" name="resident_id" class="form-control" value="<?php echo $resident_id;?>" >
                                   
@@ -81,12 +80,11 @@ include 'functions/diseaseFunctions.php';
                                       <input type="date" name="date_acquired">
                                     </div>
 
-
-                                <br>
-                                <button class="btn btn-primary" name="submitdisease">Add Disease</button>
-
+                                <div style="margin-top: 7%;">
+                                  <a href="diseaseAcquired.php" class="btn btn-warning">Cancel</a>&nbsp;
+                                  <button class="btn btn-primary" name="submitdisease">Add Disease</button>
+                                </div>
                              </form>
-
                              </center>
                         </div>
                       </div>

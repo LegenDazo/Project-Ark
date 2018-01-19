@@ -128,7 +128,7 @@ include 'functions/itemResidentsFunctions.php';
                                 }
                                 
                                 ?>
-                              <button class="btn btn-primary" type="submit" name="viewAttendance">View Details</button></td>   </form>                       
+                              </td>   </form>                       
                                 </tr>
                               
                                   <?php }

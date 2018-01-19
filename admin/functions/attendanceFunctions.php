@@ -6,7 +6,7 @@ class Functions
 
 	public function __construct()
 	{
-		$this->con = mysqli_connect("localhost", "root", "", "ark");
+		$this->con = mysqli_connect("localhost", "root", "Codeusctc", "ark");
 	}
 
 		public function insertAttendance($resident_id, $evac_id, $status){
@@ -39,10 +39,12 @@ class Functions
 		}
 
 		public function retrieve_EvacuationCenterID($resident_id){
-			$sql = "SELECT * FROM attendance WHERE resident_id=".$resident_id;
+			$sql = "SELECT * FROM attendance WHERE resident_id='".$resident_id."'";
 			$query = mysqli_query($this->con,$sql);
-			$row = mysqli_fetch_array($query);
-			return $row['evac_id'];
+			if($query){
+				$row = mysqli_fetch_array($query);
+				return $row['evac_id'];
+			}else echo "EvacuationCenterID: ".mysqli_error($this->con);
 		}
 
 		public function retrieve_CheckinDate($resident_id){
@@ -68,13 +70,15 @@ class Functions
 			}else echo mysqli_error($this->con);
 		}
 
-		public function passEvacResData($evac_id)
+		public function passEvacResData($resident_id)
 		{
-			$sql="SELECT SELECT evac_id FROM `attendance` WHERE resident_id ='".$resident_id."'  ";
+			$sql="SELECT evac_id FROM `attendance` WHERE resident_id ='".$resident_id."'  ";
 			$itemArray=array();
 			$query=mysqli_query($this->con,$sql);
-			$row=mysqli_fetch_array($query);
-			return $row[0];
+			if($query){
+				$row=mysqli_fetch_array($query);
+				return $row[0];
+			}else echo "passEvacResData".mysqli_error($this->con);
 		}
 
 		public function cancelAttendance($resident_id)
@@ -104,40 +108,47 @@ class Functions
 
 $Functions = new Functions;
 
-	if(isset($_GET['checkin'])){
-		$resident_id = $_GET['resident_id'];
-		$evac_id = $_GET['evac_id'];
+	// if(isset($_GET['checkin'])){
+	// 	$resident_id = $_GET['resident_id'];
+	// 	$evac_id = $_GET['evac_id'];
+	// 	$population=$Functions->currentPopulation($evac_id);
+	// 	$population++;
+	// 	$Functions->updatePopulation($evac_id, $population);
+	// 	$status++;
+	// 	$Functions->insertAttendance($resident_id, $evac_id, $status);
+	// 	header("location:../attendance.php?checkedin=1");	
+	// }
 
+	// if(isset($_GET['cancelAttendance'])){
+	// 	$resident_id = $_GET['resident_id'];
+	// 	$evac_id = $Functions->retrieve_EvacuationCenterID($resident_id);
+	// 	$Functions->passEvacResData($evac_id);
+
+			
+	// 		$population=$Functions->currentPopulation($evac_id);
+	// 		$population--;
+	// 		$Functions->updatePopulation($evac_id, $population);
+	// 		$Functions->cancelAttendance($resident_id, $evac_id, $status);
+	// 		header("location:../attendance.php?checkedin=1");
+	// }
+
+	if(isset($_POST['resident_id']) && isset($_POST['evac_id'])){
+		$resident_id = $_POST['resident_id'];
+		$evac_id = $_POST['evac_id'];
+		if($Functions->insertAttendance($resident_id, $evac_id, 1)){
+			echo $Functions->retrieve_CheckinDate($resident_id);
 			$population=$Functions->currentPopulation($evac_id);
 			$population++;
 			$Functions->updatePopulation($evac_id, $population);
-			$status++;
-			$Functions->insertAttendance($resident_id, $evac_id, $status);
-			header("location:../attendance.php?checkedin=1");
-			
-	}
-
-	if(isset($_GET['cancelAttendance'])){
-		$resident_id = $_GET['resident_id'];
+		}else echo "Fail";
+	}else if(isset($_POST['resident_id'])){
+		$resident_id = $_POST['resident_id'];
 		$evac_id = $Functions->retrieve_EvacuationCenterID($resident_id);
 		$Functions->passEvacResData($evac_id);
-
-			
-			$population=$Functions->currentPopulation($evac_id);
-			$population--;
-			$Functions->updatePopulation($evac_id, $population);
-			$Functions->cancelAttendance($resident_id, $evac_id, $status);
-
-				header("location:../attendance.php?checkedin=1");
+		$population=$Functions->currentPopulation($evac_id);
+		$population--;
+		$Functions->updatePopulation($evac_id,$population);
+		$Functions->cancelAttendance($resident_id,$evac_id,0);
+		echo "Success";
 	}
-
-	if(isset($_POST['resident_id']) && isset($_POST['evac_id'])){
-		$resident_id = $_GET['resident_id'];
-		$evac_id = $_GET['evac_id'];
-		$Functions->insertAttendance($resident_id, $evac_id, 1);
-		#$population=$Functions->currentPopulation($evac_id);
-		#$population++;
-		#$Functions->updatePopulation($evac_id, $population);
-	}
-
 ?>

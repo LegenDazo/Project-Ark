@@ -32,7 +32,10 @@
 
               <div class="card" style="margin-top: 25px;"><!--START OF RIGHTCARD-->
 
+<<<<<<< HEAD
+=======
               
+>>>>>>> 830ebec5c2fe40c3893157f4faab139cdffe921c
 
 
               <div class="container" style="margin-top: 25px;">

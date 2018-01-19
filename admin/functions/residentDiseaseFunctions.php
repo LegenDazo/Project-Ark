@@ -5,7 +5,7 @@ class NewFunctions
 
 		public function __construct()
 		{
-			$this->con = mysqli_connect("localhost", "root", "Codeusctc", "ark");
+			$this->con = mysqli_connect("localhost", "root", "", "ark");
 		}
 
 		public function insertDisease($disease_name)

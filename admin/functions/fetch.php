@@ -1,6 +1,6 @@
 <?php
 //fetch.php
-$connect = mysqli_connect("localhost", "root", "Codeusctc", "ark");
+$connect = mysqli_connect("localhost", "root", "", "ark");
 $output = '';
 $query = "SELECT * FROM resident ORDER BY household_id DESC";
 $result = mysqli_query($connect, $query);

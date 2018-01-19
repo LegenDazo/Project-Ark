@@ -11,7 +11,7 @@ class DataOperation
 	public $conn;
 	public function __construct()
 	{
-		$this->conn = mysqli_connect("localhost", "root", "Codeusctc", "ark");
+		$this->conn = mysqli_connect("localhost", "root", "", "ark");
 	}
 
 	public function retrieveRecipient()

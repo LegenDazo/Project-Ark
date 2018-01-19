@@ -4,7 +4,7 @@
 		public $conn;
 		public function __construct()
 		{
-			$this->conn = mysqli_connect("localhost", "root", "Codeusctc", "ark");
+			$this->conn = mysqli_connect("localhost", "root", "", "ark");
 		}
 
 		public function insertHousehold($brgy_id, $admin_id, $household_id, $user_id, $house_no, $street)

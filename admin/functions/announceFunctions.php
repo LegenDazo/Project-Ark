@@ -7,7 +7,7 @@
 		public $conn;
 		public function __construct()
 		{
-			$this->conn = mysqli_connect("localhost", "root", "Codeusctc", "ark");
+			$this->conn = mysqli_connect("localhost", "root", "", "ark");
 		}
 
 		public function insertAnnounce($admin_id, $an_what, $to_whom, $date_start, $date_end, $time_start, $time_end, $description, $location)

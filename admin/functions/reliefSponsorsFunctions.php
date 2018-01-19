@@ -7,7 +7,7 @@
 		public $conn;
 		public function __construct()
 		{
-			$this->conn = mysqli_connect("localhost","root","","ark");
+			$this->conn = mysqli_connect("localhost","root","Codeusctc","ark");
 		}
 
 		public function InsertSponsor ($sponsor_id, $sponsor_name, $sponsor_type, $sponsor_address, $sponsor_contNum)

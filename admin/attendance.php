@@ -44,7 +44,7 @@ include 'functions/retrieveEvacuationCenterFunction.php';
                         
                                 <center>
                                 <div class="form-group col-md-5">
-                                  <select class="form-control" id="<?php echo 'res'.$resident_id;?>" name="evac_id" required <?php if($status){echo "disabled=true";}?>>
+                                  <select class="form-control" id="evac_select" name="evac_id" required <?php if($status){echo "disabled=true";}?>>
                                   <option>Please select a evacuation center...</option>
                                     <?php
                                         $myrow = $obj->retrieveEvacuationCenter();
@@ -81,18 +81,21 @@ include 'functions/retrieveEvacuationCenterFunction.php';
                             <td><?php echo $row['fname']; echo " "; echo $row['mname']; echo " "; echo $row['lname']?></td>
                             <td><?php echo $row['brgy_id']; echo ", "; echo $row['house_no']; echo ", "; echo $row['street']?></td>
                             
-                            <form method="GET" action="functions/attendanceFunctions.php">
+                            <div>
                               <input type="hidden" name="resident_id" value="<?php echo $resident_id;?>">
                                 <td>
+                                  <div id=<?php echo "'check".$resident_id."'";?>>
                                   <?php 
                                       if(!$status){ 
                                   ?>
-                                  <button class="btn btn-success checkin" type="submit" name="checkin" value='<?php echo $resident_id;?>'>Present</button></td>
+                                  <button class="btn btn-success checkin" type="submit" name="checkin" value='<?php echo $resident_id;?>'>Present</button>
                                   <?php
                                     }else echo $checkin;
                                   ?>
-                                <td><button class="btn btn-danger" type="submit" name="cancelAttendance">Cancel</button></td>
-                              </form>
+                                </div>
+                                </td>
+                                <td><button class="btn btn-danger cancel" type="submit" name="cancelAttendance" value='<?php echo $resident_id;?>'>Cancel</button></td>
+                              </div>
                             </tr>
                               <?php
                                 }
@@ -130,17 +133,22 @@ include 'functions/retrieveEvacuationCenterFunction.php';
 
   ?>
 
+    $('.cancel').click(function(){
+        var resident_id = $(this).attr("value");
+        $.post('functions/attendanceFunctions.php',"resident_id="+resident_id,function(response){
+          if(response=="Success"){
+            window.location.reload(true);
+          }
+        });
+    });
+
     $('.checkin').click(function(){
         var resident_id = $(this).attr("value");
-        var select_id = '#res'+resident_id;
-        var value = $(select_id).val();
-
-        if(value != "") {
-
+        var value = $('#evac_select').val();
+        if(value != "Please select a evacuation center...") {
           $.post('functions/attendanceFunctions.php',"resident_id="+resident_id+"&evac_id="+value, function(response){
-            $(select_id).attr("disabled",true);
+            $('#check'+resident_id).html(response);            
           });
-          
         }
     });
 

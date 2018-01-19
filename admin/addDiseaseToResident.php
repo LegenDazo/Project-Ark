@@ -78,7 +78,7 @@ include 'functions/diseaseFunctions.php';
                                     </div>
                                     <h6>Date Acquired: </h6>  
                                     <div>
-                                      <input type="date" name="">
+                                      <input type="date" name="date_acquired">
                                     </div>
 
 

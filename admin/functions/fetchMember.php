@@ -1,5 +1,5 @@
 <?php
-//fetch.php
+//fetchMember.php
 $connect = mysqli_connect("localhost", "root", "", "ark");
 $output = '';
 $query = "SELECT * FROM resident ORDER BY household_id DESC";

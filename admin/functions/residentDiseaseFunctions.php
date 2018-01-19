@@ -74,6 +74,16 @@ class NewFunctions
 			}
 			return $itemArray;
 		}
+		public function retrieve_residentData1($resident_id)
+		{
+			$sql = "SELECT * FROM resident WHERE resident_id ='".$resident_id."'";
+			$itemArray = array();
+			$query = mysqli_query($this->con, $sql);
+			while ($row = mysqli_fetch_assoc($query)) {
+				$itemArray[] = $row;
+			}
+			return $itemArray;
+		}
 
 		public function retrieve_residentData2($resident_id)
 		{   
@@ -96,6 +106,17 @@ class NewFunctions
 			//}
 			$row = mysqli_fetch_array($query);
 			return $row['name'];
+		}
+
+		public function cureResident($acquired_id)
+		{
+			$sql = "UPDATE diseaseacquired SET date_cured=CURRENT_TIMESTAMP() WHERE acquired_id='".$acquired_id."'";
+			$query = mysqli_query($this->con, $sql);
+			if ($query) {
+				return true;
+			} else {
+				return mysqli_error($this->con);
+			}
 		}
 		
 }
@@ -154,6 +175,14 @@ if(isset($_GET['process'])){
 					header("location:../diseaseAcquired.php?disease_id=$disease_id&disease=updated");
 				}
 			}
+		}
+	}
+
+	if (isset($_POST['datecured'])) {
+		$acquired_id = $_POST['acquired_id'];
+		$resident_id = $_POST['resident_id'];
+		if ($func->cureResident($acquired_id)) {
+			header("location:../viewResidentDisease.php?updated=1&resident_id=$resident_id");
 		}
 	}
 

@@ -42,7 +42,7 @@
                                 <center>
                                   <div class="form-group col-md-4">
                                     <label for="disease_name">Disease Name</label>
-                                    <input data-target="disease_name" type="text" class="form-control" id="disease_name" name="disease_name"> 
+                                    <input data-target="disease_name" type="text" class="form-control" id="disease_name" name="disease_name" required> 
                                   </div>
                                   <div style="margin-top: 7%;">
                                   <a href="disease.php" class="btn btn-warning">Cancel</a>&nbsp;

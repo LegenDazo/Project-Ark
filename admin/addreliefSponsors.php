@@ -28,7 +28,7 @@
             <div class="col-md-9"><!-- START of RIGHT COLUMN-->
               <div class="card" style="margin-top: 25px;" ><!--START OF RIGHTCARD-->
               <div class="container" style="margin-top: 25px;">
-                      <center><h4>Inout Sponsor Details</h4></center>
+                      <center><h4>Input Sponsor Details</h4></center>
                       <div class="container" style="margin-top: 5%; margin-bottom: 5%;">
                             <form method="post" action="functions/reliefSponsorsFunctions.php">    
                               <div class="row">                                                      

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <?php
-  include 'functions/demographicsFunction.php';
+
+  include 'functions/retrieveEvacuationCenterFunction.php';
 
 ?>
 <html lang="en">
@@ -31,6 +32,32 @@
             <div class="col-md-9"><!-- START of RIGHT COLUMN-->
               <div class="card" style="margin-top: 25px;"><!--START OF RIGHTCARD-->
                 <div class="container" style="margin-top: 25px; margin-bottom: 25px;">
+                  <table class="table table-hovered" id="evacReport">
+                    <thead>
+                      <tr>
+                        <th>Evacuation Center</th>
+                        <th>Barangay</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <?php
+                      $myrow = $obj->retrieveEvacuationCenter2();
+                        foreach ($myrow as $row) {
+                          ?>
+
+                          <tr>
+                            <td><?php echo $row['location_name'];?></td>
+                            <td><?php echo $row['brgy_name'];?></td>
+                            <td><a href="viewEvacCenterReport.php?evac_id=<?php echo $row['evac_id'];?>" class="btn btn-info">View Report</a></td>
+                          </tr>
+
+                          <?php
+                        }
+                    
+                    ?>
+                      
+                    
+                  </table>
                 </div>
               </div><!--END OF RIGHTCARD--> 
             </div><!-- END of RIGHT COLUMN-->
@@ -45,6 +72,12 @@
 <script src="../bootstrap/js/bootstrap_alpha6.min.js"></script>
 <script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script> 
 <script src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
+
+<script>
+  $(document).ready(function(){
+    $('#evacReport').DataTable();
+  });
+</script>
 
 </body>
 </html>

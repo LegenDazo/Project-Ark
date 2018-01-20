@@ -2,6 +2,7 @@
 <?php
 
   include 'functions/retrieveEvacuationCenterFunction.php';
+  include 'functions/demographicsFunction.php';
 
 ?>
 <html lang="en">
@@ -32,32 +33,33 @@
             <div class="col-md-9"><!-- START of RIGHT COLUMN-->
               <div class="card" style="margin-top: 25px;"><!--START OF RIGHTCARD-->
                 <div class="container" style="margin-top: 25px; margin-bottom: 25px;">
-                  <table class="table table-hovered" id="evacReport">
-                    <thead>
-                      <tr>
-                        <th>Evacuation Center</th>
-                        <th>Barangay</th>
-                        <th>Action</th>
-                      </tr>
-                    </thead>
-                    <?php
-                      $myrow = $obj->retrieveEvacuationCenter2();
-                        foreach ($myrow as $row) {
-                          ?>
+                  <table>                   
+                      <?php
+                    if (isset($_GET['evac_id'])) {
+                      $evac_id = $_GET['evac_id'];
+                      $myrow = $obj->retrieveEvacuationCenter3($evac_id);
 
-                          <tr>
-                            <td><?php echo $row['location_name'];?></td>
-                            <td><?php echo $row['brgy_name'];?></td>
-                            <td><a href="viewHealthStatusReport.php?evac_id=<?php echo $row['evac_id'];?>" class="btn btn-info">View Report</a></td>
-                          </tr>
-
-                          <?php
-                        }
+                      foreach ($myrow as $row) {
+                        ?>
+                        <tr><td>Evacuation Center:</td> <td><b><?php echo $row['location_name'];?></b></td></tr>
+                        <tr><td>Street:</td> <td><b><?php echo $row['street'];?></b></td></tr>
+                        <tr><td>Barangay:</td> <td><b><?php echo $row['brgy_name'];?></b></td></tr>
+                       
+                        <?php
+                      }
+                    }
                     
-                    ?>
-                      
-                    
+                  ?>                   
                   </table>
+                  
+                  <table class="table">
+                    <tr><td>Total No. of Evacuees:</td><td><b><?php $evac_id = $_GET['evac_id']; echo $total = $demog->retrieveNumberOfEvacueesInSpecificEvac($evac_id);?></b></td></tr>
+                    <tr><td>Total No. of Families Evacuated:</td><td><b><?php $evac_id = $_GET['evac_id']; echo $total = $demog->retrieveNumberOfFamiliesEvacuated($evac_id);?></b></td></tr>
+                     <tr><td>Total No. of Female Evacuees:<td><b><?php $evac_id = $_GET['evac_id']; echo $total = $demog->retrieveNumberOfFemaleEvacueesInSpecificEvac($evac_id);?></b></td></tr>
+                     <tr><td>Total No. of Male Evacuees:</td><td><b><?php $evac_id = $_GET['evac_id']; echo $total = $demog->retrieveNumberOfMaleEvacueesInSpecificEvac($evac_id);?></b></td></tr>
+                  </table>
+
+                  
                 </div>
               </div><!--END OF RIGHTCARD--> 
             </div><!-- END of RIGHT COLUMN-->

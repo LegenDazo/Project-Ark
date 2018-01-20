@@ -57,7 +57,7 @@
                                 <option></option>
                               </select></td>
                               <td><a href="#" class="btn btn-success">Submit</td>
-                             <!--<td><a href="residentProfile.php?resident_id=<?php echo $row['resident_id'];?>" class="btn btn-info">View Profile</td>-->
+                             <!--<td><a href="residentProfile.php?resident_id=<?php //echo $row['resident_id'];?>" class="btn btn-info">View Profile</td>-->
                           </tr>
                         <?php
                       }

@@ -33,9 +33,13 @@
               <div class="container" style="margin-top: 25px;">
               <center><h5>Profile</h5></center>
               <label><?php
-                if(isset($_SESSION['Notice'])){
-                  echo $_SESSION['Notice'];
-                  unset($_SESSION['Notice']);
+                if(isset($_SESSION['Error'])){
+                  echo "<div class='alert alert-danger' role='alert'>".$_SESSION['Error']."</div>";
+                  unset($_SESSION['Error']);
+                }
+                else if(isset($_SESSION['Success'])){
+                  echo "<div class='alert alert-success' role='alert'>".$_SESSION['Success']."</div>";
+                  unset($_SESSION['Success']);
                 }
               ?>
               </label>
@@ -78,7 +82,7 @@
                 <div class="col-md-5">
                     <div class="form-group">
                         <label for="newNumber">Contact Number</label>
-                        <input type="number" class="form-control" id="newNumber" name="contact_no" value="<?php echo $contact_no;?>">
+                        <input type="text" class="form-control" id="newNumber" minlength="11" maxlength="11" name="contact_no" value="<?php echo $contact_no;?>">
                     </div>
                   </div>
                        <button class="btn btn-primary" name="updateuser">Change</button>  

@@ -78,6 +78,16 @@ class Demographics
 		}		
 		return $itemArray;
 	}
+	public function retrieveNumberOfInfected2()
+	{
+		$sql = "SELECT COUNT(a.resident_id) as infected, b.disease_name FROM diseaseacquired as a JOIN disease as b ON a.disease_id = b.disease_id JOIN resident as c ON a.resident_id = c.resident_id JOIN attendance as d ON c.resident_id = d.resident_id GROUP BY b.disease_name";
+		$itemArray = array();
+		$query = mysqli_query($this->conn, $sql);
+		while ($row = mysqli_fetch_assoc($query)) {
+			$itemArray[] = $row;
+		}		
+		return $itemArray;
+	}
 
 
 }

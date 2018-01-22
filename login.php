@@ -51,12 +51,12 @@ if (isset($_POST['login'])) {
 	$username = mysqli_real_escape_string($obj->conn, $_POST['username']);
 	$password = mysqli_real_escape_string($obj->conn, $_POST['password']);
 
-	if ($obj->loginUser($username, $password)) {
+	if ($obj->loginUser($username, md5($password))) {
 		session_start();
 		$_SESSION['username'] = $username;
 		$_SESSION['type'] = 'normal';
 		header("location:user/home.php");
-	} else if($obj->loginAdmin($username, $password)){
+	} else if($obj->loginAdmin($username, md5($password))){
 		session_start();
 		$_SESSION['username'] = $username;
 		$_SESSION['type'] = 'admin';

@@ -32,9 +32,13 @@
               <div class="container" style="margin-top: 25px;">
               <center><h5>Change Password</h5></center>
               <label><?php
-                if(isset($_SESSION['Notice'])){
-                  echo $_SESSION['Notice'];
-                  unset($_SESSION['Notice']);
+                if(isset($_SESSION['Error'])){
+                  echo "<div class='alert alert-danger' role='alert'>".$_SESSION['Error']."</div>";
+                  unset($_SESSION['Error']);
+                }
+                else if(isset($_SESSION['Success'])){
+                  echo "<div class='alert alert-success' role='alert'>".$_SESSION['Success']."</div>";
+                  unset($_SESSION['Success']);
                 }
               ?>
               </label>

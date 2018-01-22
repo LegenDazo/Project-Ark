@@ -67,13 +67,45 @@
                               </div>
                           </div>
                           
-                        </div> 
+                        </div>
+
+                        
+                       
               </div>
               <center>
                 <div id="chartContainer" style="height: 350px; width: 78%; margin-top: 20px;">                       
                     <script src="../js/chart.js"></script>
                 </div>
               </center>
+              <br>
+              <div class="container">
+                <center><h3>Diseases</h3></center>
+                <div class="row">
+
+                 <table class="table">
+                    
+                    <tr>
+                      <th>Disease Name</th>
+                      <th>Infected</th>
+                    </tr>
+                    <?php
+                      $myrow = $demog->retrieveNumberOfInfected2();
+                      foreach ($myrow as $row) {
+                        ?>
+                         <tr>
+                          <td><?php echo $row['disease_name'];?></td>
+                          <td><?php echo $row['infected'];?></td>
+                        </tr>
+
+                        <?php
+                      }
+                    ?>
+                   
+                  </table>
+              </div>
+              </div>
+              
+              
 
 
 
@@ -82,6 +114,7 @@
      
       </div><!--END OF ROW-->
       </div><!--END OF CONTAINER FLUID-->
+      <br>
 
 
 

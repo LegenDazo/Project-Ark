@@ -1,3 +1,8 @@
+<?php session_start();
+  if ($_SESSION['username'] == "" && $_SESSION['type'] == "" || $_SESSION['type'] == "normal") {
+      header("location:../logout.php");
+  }
+?>
 <!DOCTYPE html>
 <?php include 'functions/reliefpackageFunctions.php'; 
 ?>
@@ -17,7 +22,7 @@
 
     <nav class="navbar navbar-light bg-faded">
     <img src="../images/ARK1.png">
-    <a href="#" style="color: white">Log Out</a>
+    <a href="../logout.php" style="color: white">Log Out</a>
     </nav>
 
       <div class="container-fluid"><!--START OF CONTAINER FLUID-->
@@ -40,6 +45,7 @@
                                 <tr>
                                   <th>Package ID</th>
                                   <th>Relief Package Name</th>
+                                  <th>Sponsor Name</th>
                                   <th>Operation Name</th>
                                   <th>Actions</th>
                                 </tr>
@@ -51,6 +57,7 @@
                                    <tr>
                                      <td><?php echo $row['package_id']?></td>
                                      <td><?php echo $row['package_name'];?></td>
+                                     <td><?php echo $row['sponsor_name'];?></td>
                                      <td><?php echo $row['operation_name'];?></td>
                                      <td><a href="reliefpackage.php?deletepackage=1&package_id=<?php echo $row['package_id'];?>" class="btn btn-danger">DELETE</a></td>
                                   </tr>

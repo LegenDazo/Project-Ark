@@ -1,3 +1,8 @@
+<?php session_start();
+  if ($_SESSION['username'] == "" && $_SESSION['type'] == "" || $_SESSION['type'] == "normal") {
+      header("location:../logout.php");
+  }
+?>
 <!DOCTYPE html>
 <?php include 'functions/messageFunctions.php'; 
 ?>
@@ -16,7 +21,7 @@
 
     <nav class="navbar navbar-light bg-faded">
     <img src="../images/ARK1.png">
-    <a href="#" style="color: white">Log Out</a>
+    <a href="../logout.php" style="color: white">Log Out</a>
     </nav>
 
     <div class="container-fluid"><!--START OF MAIN CONTAINER-->
@@ -77,10 +82,13 @@
 
 
 
-<script src="jquery.min.js"></script>
-<script src="bootstrap/js/bootstrap.js"></script>
-<script src="bootstrap/js/bootstrap_alpha6.min.js"></script>
-<script src="datatables/datatables-bootstrap.js"></script>
+<script src="../js/jquery.min.js"></script>
+<script src="../bootstrap/js/bootstrap.js"></script>
+<script src="../bootstrap/js/bootstrap_alpha6.min.js"></script>
+<<<<<<< HEAD
+=======
+<script src="../datatables/datatables-bootstrap.js"></script>
+>>>>>>> 994ba580cbbba75b6410fc7650d0a881022b6e64
 
 
 

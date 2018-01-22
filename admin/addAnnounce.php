@@ -1,3 +1,8 @@
+<?php session_start();
+  if ($_SESSION['username'] == "" && $_SESSION['type'] == "" || $_SESSION['type'] == "normal") {
+      header("location:../logout.php");
+  }
+?>
 <!DOCTYPE html>
 <?php include 'functions/announceFunctions.php'; 
       include 'functions/retrieveEvacuationCenterFunction.php';
@@ -19,7 +24,7 @@
 
     <nav class="navbar navbar-light bg-faded">
     <img src="../images/ARK1.png">
-    <a href="#" style="color: white">Log Out</a>
+    <a href="../logout.php" style="color: white">Log Out</a>
     </nav>
 
     <div class="container-fluid"><!--START OF MAIN CONTAINER-->
@@ -141,11 +146,9 @@
 
 
 
-<script src="../jquery.min.js"></script>
+<script src="../js/jquery.min.js"></script>
 <script src="../bootstrap/js/bootstrap.js"></script>
 <script src="../bootstrap/js/bootstrap_alpha6.min.js"></script>
-<script src="../datatables/datatables-bootstrap.js"></script>
-<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.15/js/jquery.dataTables.js"></script>     
 
 
 

@@ -1,3 +1,8 @@
+<?php session_start();
+  if ($_SESSION['username'] == "" && $_SESSION['type'] == "" || $_SESSION['type'] == "normal") {
+      header("location:../logout.php");
+  }
+?>
 <?php
 
 include 'functions/diseaseFunctions.php';
@@ -23,7 +28,7 @@ include 'functions/retrieveDisease.php'
 
     <nav class="navbar navbar-light bg-faded">
     <img src="../images/ARK1.png">
-    <a href="#" style="color: white">Log Out</a>
+    <a href="../logout.php" style="color: white">Log Out</a>
     </nav>
 
     <div class="container-fluid"><!--START OF MAIN CONTAINER-->
@@ -56,9 +61,13 @@ include 'functions/retrieveDisease.php'
                                    <tr>
                                      <td><?php echo $row['disease_id']?></td>
                                      <td><?php echo $row['disease_name'];?></td>
+<<<<<<< HEAD
                                      <td><a href="disease.php?deleteDisease=1&disease_id=<?php echo $row['disease_id'];?>" class="btn btn-danger">DELETE</a>
                                          </td>
                                    </tr>
+=======
+                                     <td><a href="updateDiseases.php?process=update&disease_id=<?php echo $disease_id?>" class="btn btn-success btn-block col-md-5">Update</a>
+>>>>>>> 97055902a4e69d5168942c8c07a4d69ae9ac4eed
                                 <?php
                               }
                             ?>                             
@@ -92,9 +101,6 @@ include 'functions/retrieveDisease.php'
 
 
 
-
-
-
 <script src="../js/jquery.min.js"></script>
 <script src="../bootstrap/js/bootstrap.js"></script>
 <script src="../bootstrap/js/bootstrap_alpha6.min.js"></script>
@@ -112,6 +118,7 @@ include 'functions/retrieveDisease.php'
     }
   ?>
 
+<<<<<<< HEAD
     $('.close').click(function(){
         $('#viewkey').hide();
         window.location.href='registerStudent.php';
@@ -127,6 +134,8 @@ include 'functions/retrieveDisease.php'
         });
     });
 
+=======
+>>>>>>> 97055902a4e69d5168942c8c07a4d69ae9ac4eed
     $('#regStudent').DataTable();
 } );
 </script>

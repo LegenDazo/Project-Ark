@@ -1,7 +1,11 @@
+<?php session_start();
+  if ($_SESSION['username'] == "" && $_SESSION['type'] == "" || $_SESSION['type'] == "normal") {
+      header("location:../logout.php");
+  }
+?>
 <!DOCTYPE html>
 <?php
 
-include 'functions/reliefSponsorsFunctions.php';
 include 'functions/reliefpackageFunctions.php';
 
 ?>
@@ -22,7 +26,7 @@ include 'functions/reliefpackageFunctions.php';
 
     <nav class="navbar navbar-light bg-faded">
     <img src="../images/ARK1.png">
-    <a href="#" style="color: white">Log Out</a>
+    <a href="../logout.php" style="color: white">Log Out</a>
     </nav>
 
     <div class="container-fluid"><!--START OF MAIN CONTAINER-->
@@ -35,7 +39,7 @@ include 'functions/reliefpackageFunctions.php';
               <div class="card" style="margin-top: 25px;" ><!--START OF RIGHTCARD-->
               <div class="container" style="margin-top: 25px;">
                       <center><h4>Inout Item Details</h4></center>
-                      <div class="container" style="margin-top: 5%; margin-bottom: 5%;">
+                      <div class="container" class="center" style="margin-top: 5%; margin-bottom: 5%;">
                             <form method="post" action="functions/reliefItemsFunctions.php">    
                               <div class="row">                                                      
                               <div class="form-group col-md-5">
@@ -57,20 +61,6 @@ include 'functions/reliefpackageFunctions.php';
 
                               <div class="row"> 
 
-                              <div class="form-group col-md-4">
-                                <label for="sponsor_id">Sponsor</label>
-                                <select id="sponsor" name="sponsor_id" class="form-control" required>
-                                  <option value="">Select a Sponsor</option>
-                                  <?php
-                                    $sponsor = $dataOperations->retrieveSponsorData();
-                                    foreach($sponsor as $bar) {
-                                      echo "<option value='".$bar["sponsor_id"]."'>";
-                                      echo $bar["sponsor_name"];
-                                      echo "</option>";
-                                    }
-                                  ?>
-                                </select>
-                              </div>
 
                               <div class="form-group col-md-4">
                                 <label for="package_id">Package</label>

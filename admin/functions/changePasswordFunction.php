@@ -11,7 +11,7 @@
 		}
 		public function confirmCurrentPassword($currentPassword, $username)
 		{
-			$sql = "SELECT * FROM user WHERE username ='".$username."' AND password='".$currentPassword."'";
+			$sql = "SELECT * FROM admin WHERE username ='".$username."' AND password='".$currentPassword."'";
 			$query = mysqli_query($this->conn, $sql);
 			if (mysqli_num_rows($query) > 0) {
 				return true;
@@ -21,7 +21,7 @@
 		}
 		public function updatePassword($username, $newPassword)
 		{
-			$sql = "UPDATE user SET password ='".$newPassword."' WHERE username ='".$username."'";
+			$sql = "UPDATE admin SET password ='".$newPassword."' WHERE username ='".$username."'";
 			$query = mysqli_query($this->conn, $sql);
 			if ($query) {
 				return true;

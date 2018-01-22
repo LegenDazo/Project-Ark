@@ -1,10 +1,9 @@
 <?php session_start();
-  if ($_SESSION['username'] == "" && $_SESSION['type'] == "" || $_SESSION['type'] == "admin") {
+  if ($_SESSION['username'] == "" && $_SESSION['type'] == "" || $_SESSION['type'] == "normal") {
       header("location:../logout.php");
   }
 ?>
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
   <title>ARK</title>
@@ -25,13 +24,13 @@
       <div class="container-fluid"><!--START OF CONTAINER FLUID-->
       <div class="row"><!--start of row-->
 
-         <?php include 'userNavbar.php';?>
+         <?php include '../adminNavbar.php';?>
 
 
             <div class="col-md-9"><!-- START of RIGHT COLUMN-->
               <div class="card" style="margin-top: 25px;" ><!--START OF RIGHTCARD-->    
               <div class="container" style="margin-top: 25px;">
-              <center><h5>Profile</h5></center>
+              <center><h5>Change Password</h5></center>
               <label><?php
                 if(isset($_SESSION['Error'])){
                   echo "<div class='alert alert-danger' role='alert'>".$_SESSION['Error']."</div>";
@@ -43,49 +42,28 @@
                 }
               ?>
               </label>
-              <?php
-                $myrow = $login->retrieveUserInfo($_SESSION['username']);
-                foreach ($myrow as $row) {
-                  $fname = $row['fname'];
-                  $lname = $row['lname'];
-                  $mname = $row['mname'];
-                  $bdate = $row['bdate'];
-                  $contact_no = $row['contact_no'];
-                }
-              ?>
-              <form method="post" action="functions/updateProfile.php">
+              <form method="post" action="functions/changePasswordFunction.php">
                 <input type="hidden" name="username" value="<?php echo $_SESSION['username'];?>">
                 <div class="col-md-5">
                   <div class="form-group">
-                    <label>First Name</label>
-                    <input type="type" name="fname" class="form-control" value="<?php echo $fname;?>">
+                    <label>Current Password</label>
+                    <input type="password" name="curPassword" class="form-control" required>
                   </div>
                 </div> 
                 <div class="col-md-5">
                   <div class="form-group">
-                    <label>Middle Name</label>
-                    <input type="type" name="mname" class="form-control" value="<?php echo $mname;?>">
+                    <label>New Password</label>
+                    <input type="password" name="newPassword" class="form-control" required>
                   </div>
                 </div> 
                 <div class="col-md-5">
                   <div class="form-group">
-                    <label>Last Name</label>
-                    <input type="type" name="lname" class="form-control" value="<?php echo $lname;?>">
+                    <label>Confirm New Password</label>
+                    <input type="password" name="conPassword" class="form-control" required>
                   </div>
                 </div> 
-                <div class="col-md-5">
-                  <div class="form-group">
-                    <label>Birthdate</label>
-                    <input type="date" name="bdate" class="form-control" value="<?php echo $bdate;?>">
-                  </div>
-                </div>  
-                <div class="col-md-5">
-                    <div class="form-group">
-                        <label for="newNumber">Contact Number</label>
-                        <input type="text" class="form-control" id="newNumber" minlength="11" maxlength="11" name="contact_no" value="<?php echo $contact_no;?>">
-                    </div>
-                  </div>
-                       <button class="btn btn-primary" name="updateuser">Change</button>  
+                
+                <button class="btn btn-primary" name="changePassword">Change</button>  
                 </form>
 
               </div>

@@ -1,3 +1,8 @@
+<?php session_start();
+  if ($_SESSION['username'] == "" && $_SESSION['type'] == "" || $_SESSION['type'] == "normal") {
+      header("location:../logout.php");
+  }
+?>
 <?php
 
 include 'functions/barangayFunctions.php';
@@ -21,7 +26,7 @@ include 'functions/barangayFunctions.php';
 
     <nav class="navbar navbar-light bg-faded">
     <img src="../images/ARK1.png">
-    <a href="#" style="color: white">Log Out</a>
+    <a href="../logout.php" style="color: white">Log Out</a>
     </nav>
 
     <div class="container-fluid"><!--START OF MAIN CONTAINER-->
@@ -39,7 +44,6 @@ include 'functions/barangayFunctions.php';
                         }
                       ?>
                         <h2>Update Resident Record &nbsp;<a href="barangayProfile.php?brgy_id=<?php echo $brgy_id;?>" class="btn btn-warning">Cancel</a></h2>
-                      </button>
 
                       <?php
                         if (isset($_GET['brgy_id'])) {

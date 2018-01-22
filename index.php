@@ -42,7 +42,7 @@
           <br>
           <h5>Receive sms notifications from the administrators.</h5>
           <br>
-          <h5>View the evacuation centers that will be opened during disasters.</h5>
+          <h5>View the active evacuation centers.</h5>
           <br>
           <h5>See the demographics of the evacuation centers.</h5>
         </div>
@@ -51,7 +51,7 @@
     <div class="col-md-4 bg-info text-white">
       <form method="post" action="signup.php" style="margin-top: 20px;">
         <?php if(isset($_SESSION['error'])){
-                echo "<span style='color:red;'>".$_SESSION['error']."</span>";
+                echo "<div class='alert alert-danger' role='alert'>".$_SESSION['error']."</div>";
                 unset($_SESSION['error']);
               }
                 ?>
@@ -59,31 +59,55 @@
 
               <div class="form-group">
                   <label for="First Name">First Name</label>
-                      <input  type="text" class="form-control" name="fname">         
+                      <input  type="text" class="form-control" placeholder="ex: Jon" name="fname" value="<?php if (isset($_SESSION['fname'])){
+                        echo $_SESSION['fname']; 
+                        unset($_SESSION['fname']);
+                      }
+                      ?>" maxlength="25" minlength="2">         
                   </div>
                   <div class="form-group">
                   <label for="Middle Name">Middle Name</label>
-                      <input  type="text" class="form-control" name="mname">         
+                      <input  type="text" class="form-control" placeholder="ex: Stark" name="mname" maxlength="25" minlength="2" value="<?php if (isset($_SESSION['mname'])){
+                        echo $_SESSION['mname']; 
+                        unset($_SESSION['mname']);
+                      }
+                      ?>">         
                   </div>
                   <div class="form-group">
                   <label for="Last Name">Last Name</label>
-                      <input  type="text" class="form-control" name="lname">         
+                      <input  type="text" class="form-control" placeholder="ex: Targaryen" name="lname" maxlength="25" minlength="2" value="<?php if (isset($_SESSION['lname'])){
+                        echo $_SESSION['lname']; 
+                        unset($_SESSION['lname']);
+                      }
+                      ?>">         
                   </div>
                   <div class="form-group">
                   <label for="Birthdate">Birthdate</label>
-                      <input  type="date" class="form-control" name="bdate">         
+                      <input  type="date" class="form-control" name="bdate" value="<?php if (isset($_SESSION['bdate'])){
+                        echo $_SESSION['bdate']; 
+                        unset($_SESSION['bdate']);
+                      }
+                      ?>">         
                   </div>
                   <div class="form-group">
                   <label for="contact_no">Contact Number</label>
-                      <input  type="text" class="form-control" name="contact_no">         
+                      <input  type="text" class="form-control" placeholder="ex: 0922xxxxxxx" name="contact_no" maxlength="11" minlength="11" value="<?php if (isset($_SESSION['contact_no'])){
+                        echo $_SESSION['contact_no']; 
+                        unset($_SESSION['contact_no']);
+                      }
+                      ?>">         
                   </div>
               <div class="form-group">
                 <label for="username">Username</label>
-                <input type="text" class="form-control" name="username">
+                <input type="text" class="form-control" placeholder="ex: KingInTheNorth" name="username" maxlength="25" minlength="6" value="<?php if (isset($_SESSION['username'])){
+                        echo $_SESSION['username']; 
+                        unset($_SESSION['username']);
+                      }
+                      ?>">
               </div>
               <div class="form-group">
                 <label for="password">Password</label>
-                <input type="password" class="form-control" name="password" >
+                <input type="password" class="form-control" name="password" maxlength="50" minlength="8">
               </div>      
                   <div class="form-group">
                   <label for="password">Confirm Password</label>

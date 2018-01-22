@@ -1,3 +1,8 @@
+<?php session_start();
+  if ($_SESSION['username'] == "" && $_SESSION['type'] == "" || $_SESSION['type'] == "normal") {
+      header("location:../logout.php");
+  }
+?>
 <?php
 
 include 'functions/diseaseFunctions.php';
@@ -22,7 +27,7 @@ include 'functions/diseaseFunctions.php';
 
     <nav class="navbar navbar-light bg-faded">
     <img src="../images/ARK1.png">
-    <a href="#" style="color: white">Log Out</a>
+    <a href="../logout.php" style="color: white">Log Out</a>
     </nav>
 
     <div class="container-fluid"><!--START OF MAIN CONTAINER-->
@@ -77,7 +82,7 @@ include 'functions/diseaseFunctions.php';
                                     </div>
                                     <h6>Date Acquired: </h6>  
                                     <div>
-                                      <input type="date" name="">
+                                      <input type="date" name="date_acquired">
                                     </div>
 
                                 <div style="margin-top: 7%;">

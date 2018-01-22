@@ -1,5 +1,5 @@
 <?php session_start();
-  if ($_SESSION['username'] == "" && $_SESSION['type'] == "" || $_SESSION['type'] == "admin") {
+  if ($_SESSION['username'] == "" && $_SESSION['type'] == "" || $_SESSION['type'] == "normal") {
       header("location:../logout.php");
   }
 ?>
@@ -24,7 +24,7 @@
       <div class="container-fluid"><!--START OF CONTAINER FLUID-->
       <div class="row"><!--start of row-->
 
-         <?php include 'userNavbar.php';?>
+         <?php include '../adminNavbar.php';?>
 
 
             <div class="col-md-9"><!-- START of RIGHT COLUMN-->

@@ -1,3 +1,8 @@
+<?php session_start();
+  if ($_SESSION['username'] == "" && $_SESSION['type'] == "" || $_SESSION['type'] == "normal") {
+      header("location:../logout.php");
+  }
+?>
 <!DOCTYPE html>
 <?php
   include 'functions/demographicsFunction.php';
@@ -20,7 +25,7 @@
 
     <nav class="navbar navbar-light bg-faded">
     <img src="../images/ARK1.png">
-    <a href="#" style="color: white">Log Out</a>
+    <a href="../logout.php" style="color: white">Log Out</a>
     </nav>
 
       <div class="container-fluid"><!--START OF CONTAINER FLUID-->
@@ -31,6 +36,11 @@
             <div class="col-md-9"><!-- START of RIGHT COLUMN-->
 
               <div class="card" style="margin-top: 25px;"><!--START OF RIGHTCARD-->
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 994ba580cbbba75b6410fc7650d0a881022b6e64
               <div class="container" style="margin-top: 25px;">
                 <div class="row">
                         

@@ -1,3 +1,8 @@
+<?php session_start();
+  if ($_SESSION['username'] == "" && $_SESSION['type'] == "" || $_SESSION['type'] == "normal") {
+      header("location:../logout.php");
+  }
+?>
 <!DOCTYPE html>
 <?php include 'functions/announceFunctions.php'; 
       include 'functions/retrieveEvacuationCenterFunction.php';
@@ -20,7 +25,7 @@
 
     <nav class="navbar navbar-light bg-faded">
     <img src="../images/ARK1.png">
-    <a href="#" style="color: white">Log Out</a>
+    <a href="../logout.php" style="color: white">Log Out</a>
     </nav>
 
     <div class="container-fluid"><!--START OF MAIN CONTAINER-->
@@ -87,7 +92,7 @@
 
                                 <div class="row">
 
-                                    <div class="form-group col-md-2">
+                                    <div class="form-group col-md-3">
                                       <!--<span class="col-md-2">-->
                                       <label for="time_start">Time start</label><br>
                                       <input type="time" class="form-control" value="<?php echo $time_start;?>" id="time_start" name="time_start">
@@ -96,7 +101,7 @@
                                     </div>                                                                     
                                     
 
-                                    <div class="form-group col-md-2">
+                                    <div class="form-group col-md-3">
                                       <label for="time_end">Time end</label><br>
                                       <input type="time" class="form-control" value="<?php echo $time_end;?>" id="time_end" name="time_end">
                                       </div>

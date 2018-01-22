@@ -1,3 +1,8 @@
+<?php session_start();
+  if ($_SESSION['username'] == "" && $_SESSION['type'] == "" || $_SESSION['type'] == "normal") {
+      header("location:../logout.php");
+  }
+?>
 <!DOCTYPE html>
 <?php include 'functions/messageFunctions.php'; 
 ?>
@@ -16,7 +21,7 @@
 
     <nav class="navbar navbar-light bg-faded">
     <img src="../images/ARK1.png">
-    <a href="#" style="color: white">Log Out</a>
+    <a href="../logout.php" style="color: white">Log Out</a>
     </nav>
 
     <div class="container-fluid"><!--START OF MAIN CONTAINER-->
@@ -30,15 +35,26 @@
               <div class="card" style="margin-top: 25px;" ><!--START OF RIGHTCARD-->            
                   <div class="container" style="margin-top: 25px; margin-bottom: 25px;">
                       <center><h5>Create Message</h5></center>
+
                       <div class="container" style="margin-top: 5%">
                           <div class="col-md-12">
                               <div class="container" align="center">
                                   <div class="col-md-8">   
                                     <div class="panel-body"> 
-                                      <form method="post" action="functions/sendMessageFunctions.php">
+                                      <?php
+                        if (isset($_SESSION['success'])) {
+                          echo "SUCCESSFUL: ".$_SESSION['success'];
+                          unset($_SESSION['success']);
+                        }
+                        if (isset($_SESSION['failed'])) {
+                          echo "FAILED: ".$_SESSION['failed'];
+                          unset($_SESSION['failed']);
+                        }
+                      ?>
+                                      <form method="post" action="semaphore.php">
                                           <div class="form-group">
                                           <label for="message">Message</label>
-                                          <textarea class="form-control" rows="5" id="message" name="message"></textarea>                            
+                                          <textarea class="form-control" rows="5" id="message" name="message" maxlength="140"></textarea>                            
                                           </div>
                                          </div>  <!--End of .panel-body-->  
                                          <div class="panel-footer">
@@ -69,6 +85,10 @@
 <script src="../js/jquery.min.js"></script>
 <script src="../bootstrap/js/bootstrap.js"></script>
 <script src="../bootstrap/js/bootstrap_alpha6.min.js"></script>
+<<<<<<< HEAD
+=======
+<script src="../datatables/datatables-bootstrap.js"></script>
+>>>>>>> 994ba580cbbba75b6410fc7650d0a881022b6e64
 
 
 

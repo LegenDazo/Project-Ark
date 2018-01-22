@@ -1,12 +1,12 @@
 <?php session_start();
-  if ($_SESSION['username'] == "" && $_SESSION['type'] == "" || $_SESSION['type'] == "normal") {
+  if ($_SESSION['username'] == "" && $_SESSION['type'] == "" || $_SESSION['type'] == "admin") {
       header("location:../logout.php");
   }
 ?>
 <!DOCTYPE html>
-<?php include 'functions/announceFunctions.php'; 
-      include 'functions/retrieveEvacuationCenterFunction.php';
-      include 'functions/retrieveEvacIdFunction.php';
+<?php include '../admin/functions/announceFunctions.php'; 
+      include '../admin/functions/retrieveEvacuationCenterFunction.php';
+      include '../admin/functions/retrieveEvacIdFunction.php';
 
 
 ?>
@@ -26,13 +26,13 @@
 
     <nav class="navbar navbar-light bg-faded">
     <img src="../images/ARK1.png">
-    <a href="../logout.php" style="color: white">Log Out</a>
+    <a href="#" style="color: white">Log Out</a>
     </nav>
 
     <div class="container-fluid"><!--START OF MAIN CONTAINER-->
       <div class="row"><!--start of row-->
         
-        <?php include '../adminNavbar.php'; ?>
+        <?php include 'userNavbar.php'; ?>
 
           <?php
             if(isset($_GET['announcement_id'])) {
@@ -84,7 +84,7 @@
                                               </tr>
 
                                               <tr>
-                                                <td>Description</td>
+                                                <td>Message</td>
                                                 <td><b><?php echo $row['description'];?></b></td>
                                               </tr>
 
@@ -95,11 +95,9 @@
                                               </tr>
                                               
                                               <tr>
-                                                <th><a href="updateAnnounce.php?process=update&announcement_id=<?php echo $announcement_id?>" class="btn btn-success btn-block">UPDATE</a></th>
+                                                
 
-                                                <th><a href="announcement.php?deleteannounce=1&announcement_id=<?php echo $announcement_id;?>" class="btn btn-danger btn-block">DELETE</a></th>
-
-                                                <th><a href="announcement.php" class="btn btn-warning btn-block">BACK</a></th>
+                                                <th><a href="home.php" class="btn btn-warning btn-block">BACK</a></th>
                                               </tr>  
 
 
@@ -122,7 +120,7 @@
 
 
 
-<script src="../js/jquery.min.js"></script>
+<script src="../jquery.min.js"></script>
 <script src="../bootstrap/js/bootstrap.js"></script>
 <script src="../bootstrap/js/bootstrap_alpha6.min.js"></script>
 

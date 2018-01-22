@@ -8,9 +8,9 @@ class Functions
 		$this->con = mysqli_connect("localhost", "root", "", "ark");
 	}
 
-	public function insertDisease($resident_id, $disease_id)
+	public function insertDisease($date_acquired, $resident_id, $disease_id)
 	{
-		$sql = "INSERT INTO diseaseacquired (resident_id, disease_id) VALUES ('".$resident_id."','".$disease_id."')";
+		$sql = "INSERT INTO diseaseacquired (date_acquired,resident_id, disease_id) VALUES ('".$date_acquired."','".$resident_id."','".$disease_id."')";
 		$query = mysqli_query($this->con, $sql);
 			if ($query) {
 				return true;
@@ -113,9 +113,10 @@ if(isset($_POST['submitdisease'])){
 
 	$resident_id = $_POST['resident_id'];
 	$disease_id = $_POST['disease_id'];
+	$date_acquired = $_POST['date_acquired'];
 
 
-		$Functions->insertDisease($resident_id, $disease_id);
+		$Functions->insertDisease($date_acquired,$resident_id, $disease_id);
 				header("location:../diseaseacquired.php?added=1");
 }else{
 

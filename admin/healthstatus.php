@@ -1,3 +1,8 @@
+<?php session_start();
+  if ($_SESSION['username'] == "" && $_SESSION['type'] == "" || $_SESSION['type'] == "normal") {
+      header("location:../logout.php");
+  }
+?>
 <!DOCTYPE html>
 <?php include 'functions/registrationFunctions.php';?>
 <html lang="en">
@@ -17,7 +22,7 @@
 
     <nav class="navbar navbar-light bg-faded">
     <img src="../images/ARK1.png">
-    <a href="#" style="color: white">Log Out</a>
+    <a href="../logout.php" style="color: white">Log Out</a>
     </nav>
 
     <div class="container-fluid"><!--START OF MAIN CONTAINER-->
@@ -57,7 +62,7 @@
                                 <option></option>
                               </select></td>
                               <td><a href="#" class="btn btn-success">Submit</td>
-                             <!--<td><a href="residentProfile.php?resident_id=<?php echo $row['resident_id'];?>" class="btn btn-info">View Profile</td>-->
+                             <!--<td><a href="residentProfile.php?resident_id=<?php //echo $row['resident_id'];?>" class="btn btn-info">View Profile</td>-->
                           </tr>
                         <?php
                       }

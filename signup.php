@@ -55,26 +55,115 @@
  		$password = mysqli_real_escape_string($signup->conn, $_POST['password']);
  		$confirmpassword = mysqli_real_escape_string($signup->conn, $_POST['confirmpassword']);
 
- 		if ($signup->checkUsernameInAdmin($username)) {
+ 		if (!preg_match("/^[a-zA-Z ]*$/",$fname)) {
  			session_start();
+ 			$_SESSION['fname'] = $fname;
+ 			$_SESSION['mname'] = $mname;
+ 			$_SESSION['lname'] = $lname;
+ 			$_SESSION['bdate'] = $bdate;
+ 			$_SESSION['contact_no'] = $contact_no;
+ 			$_SESSION['username'] = $username;
+ 			$_SESSION['error'] = "Only letters and white space is allowed for First Name!";
+ 			header("location:index.php");
+ 		} 
+ 		else if(!preg_match("/^[a-zA-Z ]*$/",$mname)) {
+ 			session_start();
+ 			$_SESSION['fname'] = $fname;
+ 			$_SESSION['mname'] = $mname;
+ 			$_SESSION['lname'] = $lname;
+ 			$_SESSION['bdate'] = $bdate;
+ 			$_SESSION['contact_no'] = $contact_no;
+ 			$_SESSION['username'] = $username;
+ 			$_SESSION['error'] = "Only letters and white space is allowed for Middle Name!";
+ 			header("location:index.php");
+ 		} 
+ 		else if(!preg_match("/^[a-zA-Z ]*$/",$mname)) {
+ 		 	session_start();
+ 		 	$_SESSION['fname'] = $fname;
+ 			$_SESSION['mname'] = $mname;
+ 			$_SESSION['lname'] = $lname;
+ 			$_SESSION['bdate'] = $bdate;
+ 			$_SESSION['contact_no'] = $contact_no;
+ 			$_SESSION['username'] = $username;
+ 			$_SESSION['error'] = "Only letters and white space is allowed for Last Name!";
+ 			header("location:index.php");
+ 		} 
+ 		else if(!preg_match("/([0]\d{3}\d{3}\d{4})/", $contact_no)){
+ 			session_start();
+ 			$_SESSION['fname'] = $fname;
+ 			$_SESSION['mname'] = $mname;
+ 			$_SESSION['lname'] = $lname;
+ 			$_SESSION['bdate'] = $bdate;
+ 			$_SESSION['contact_no'] = $contact_no;
+ 			$_SESSION['username'] = $username;
+ 			$_SESSION['error'] = "Invalid contact number.Please refer to the example below.";
+ 			header("location:index.php");
+ 		}
+ 		else if ($signup->checkUsernameInAdmin($username)) {
+ 			session_start();
+ 			$_SESSION['fname'] = $fname;
+ 			$_SESSION['mname'] = $mname;
+ 			$_SESSION['lname'] = $lname;
+ 			$_SESSION['bdate'] = $bdate;
+ 			$_SESSION['contact_no'] = $contact_no;
+ 			$_SESSION['username'] = $username;
  			$_SESSION['error'] = "Username already taken!";
  			header("location:index.php");
- 		} else if ($signup->checkUsername($username)) {
+ 		}
+ 		else if ($signup->checkUsername($username)) {
  			session_start();
+ 			$_SESSION['fname'] = $fname;
+ 			$_SESSION['mname'] = $mname;
+ 			$_SESSION['lname'] = $lname;
+ 			$_SESSION['bdate'] = $bdate;
+ 			$_SESSION['contact_no'] = $contact_no;
+ 			$_SESSION['username'] = $username;
  			$_SESSION['error'] = "Username already taken!";
  			header("location:index.php");
- 		} else if ($password == $confirmpassword) {
- 			if ($signup->insertUser($fname,$mname,$lname,$bdate,$contact_no,$username,$password)) {
+ 		} 
+ 		else if(!preg_match('/^(?=.*\d)(?=.*[A-Za-z])[0-9A-Za-z]{8,50}$/', $password)){
+ 			session_start();
+ 			$_SESSION['fname'] = $fname;
+ 			$_SESSION['mname'] = $mname;
+ 			$_SESSION['lname'] = $lname;
+ 			$_SESSION['bdate'] = $bdate;
+ 			$_SESSION['contact_no'] = $contact_no;
+ 			$_SESSION['username'] = $username;
+ 			$_SESSION['error'] = "Password must contain letters and numbers!";
+ 			header("location:index.php");
+ 		}
+ 		else if ($password == $confirmpassword) {
+ 			if ($signup->insertUser($fname,$mname,$lname,$bdate,$contact_no,$username,md5($password))) {
  				session_start();
- 				$_SESSION['username'] = $username;
+ 				$_SESSION['fname'] = $fname;
+	 			$_SESSION['mname'] = $mname;
+	 			$_SESSION['lname'] = $lname;
+	 			$_SESSION['bdate'] = $bdate;
+	 			$_SESSION['contact_no'] = $contact_no;
+	 			$_SESSION['username'] = $username;
+	 				$_SESSION['username'] = $username;
+	 				$_SESSION['type'] = 'normal';
  				header("location:user/home.php");
  			} else {
  				session_start();
+ 				$_SESSION['fname'] = $fname;
+ 			$_SESSION['mname'] = $mname;
+ 			$_SESSION['lname'] = $lname;
+ 			$_SESSION['bdate'] = $bdate;
+ 			$_SESSION['contact_no'] = $contact_no;
+ 			$_SESSION['username'] = $username;
 	 			$_SESSION['error'] = "Something went wrong! Please try again!";
 	 			header("location:index.php");
  			}
- 		} else {
+ 		} 
+ 		else {
  			session_start();
+ 			$_SESSION['fname'] = $fname;
+ 			$_SESSION['mname'] = $mname;
+ 			$_SESSION['lname'] = $lname;
+ 			$_SESSION['bdate'] = $bdate;
+ 			$_SESSION['contact_no'] = $contact_no;
+ 			$_SESSION['username'] = $username;
  			$_SESSION['error'] = "Password and Confirm Password don't match!";
  			header("location:index.php");
  		}

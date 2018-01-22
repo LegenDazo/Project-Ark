@@ -1,3 +1,8 @@
+<?php session_start();
+  if ($_SESSION['username'] == "" && $_SESSION['type'] == "" || $_SESSION['type'] == "normal") {
+      header("location:../logout.php");
+  }
+?>
 <?php
 
 include 'functions/residentDiseaseFunctions.php';
@@ -21,7 +26,7 @@ include 'functions/residentDiseaseFunctions.php';
 
     <nav class="navbar navbar-light bg-faded">
     <img src="../images/ARK1.png">
-    <a href="#" style="color: white">Log Out</a>
+    <a href="../logout.php" style="color: white">Log Out</a>
     </nav>
 
     <div class="container-fluid"><!--START OF MAIN CONTAINER-->
@@ -34,13 +39,37 @@ include 'functions/residentDiseaseFunctions.php';
               <div class="card" style="margin-top: 25px;" ><!--START OF RIGHTCARD-->
                 <div class="container" style="margin-top: 25px;"><!--new container-->
                     <center><h2>Resident Disease</h2></center>
+                        
+                        <a href="diseaseAcquired.php" class="btn btn-warning btn-block col-md-2">Back</a>
                         <?php
                          if (isset($_GET['resident_id'])) {
                             $resident_id = $_GET['resident_id'];
+                            $myrow = $func->retrieve_residentData1($resident_id);
+
+                                  foreach ($myrow as $row) {
+                                    //$acquired_id = $row['acquired_id'];
+
+                                   $resident_id = $row['resident_id']; 
+                                   $fname = $row['fname'];
+                                   $mname = $row['mname'];
+                                   $lname = $row['lname'];   
+                                                                          
+                                 
+                               }
+
                           }
                         ?>
-                        <a href="diseaseAcquired.php" class="btn btn-warning btn-block col-md-2">Back</a>
+                                  <div class="form-group col-md-9">
+                                      <br><h6>Resident's ID Number: <?php echo $resident_id;?></p></h6>
+                                      
+                                  </div>
+                                  <div class="form-group col-md-9">
+                                      <h6>Resident's Name: <?php echo $fname." ".$mname." ".$lname;?></h6>
+                                  </div>
 
+
+
+                                
                         
 
                           <table class="table table-hovered" id="regStudent">
@@ -59,47 +88,34 @@ include 'functions/residentDiseaseFunctions.php';
 
                                   foreach ($myrow as $row) {
                                     //$acquired_id = $row['acquired_id'];
+                                    $acquired_id = $row['acquired_id'];
                                    $resident_id = $row['resident_id']; 
                                    $fname = $row['fname'];
                                    $mname = $row['mname'];
                                    $lname = $row['lname'];   
                                    $disease_name = $row['disease_name'];
-                                   $date = $row["date_acquired"];                       
+                                   $date = $row["date_acquired"];
+                                   $datecured = $row['date_cured'];                       
                                     //$disease_id = $row['disease_id'];
 
                                    ?>
                                    <tr>
                                      <td><?php echo $disease_name ?></td>
-                                     <td><?php echo $date; if(!$date) { echo "NULL"; } ?></td>
+                                     <td><?php echo date_format(new DateTime($date), 'M d Y'); if(!$date) { echo "NULL"; } ?></td>
+                                     
 
-
-
-                                     <td><button class="btn btn-primary">CURE NOW!</button>
-
-                                     <?php
-
-                                  if(!isset($_POST["resident_id"]) || $_POST["resident_id"] == "") {
-                                    //echo "No Package Selected";
-                                  } else {
-                                    $resident_id = $_POST["resident_id"];
-                                    $result = mysqli_query($obj->conn, "SELECT * FROM diseaseacquired WHERE resident_id = ".$row['resident_id']." AND disease_id = ".$disease_id."");
-
-                                  if(mysqli_num_rows($result) == 0) {
-                                    echo '<input type="hidden" name="resident_id" value="'.$resident_id.'">';
-                                    echo '<button class="btn btn-success received" type="submit" name="received" value="'.$resident_id.'">Nadawat</button>';
-                                  } else {
-                                    $rowNew = mysqli_fetch_assoc($result);
-                                    echo $rowNew["date_dist"];
-                                  }
-                                }
-                                
-                                ?>   
-
-                                     </td>
+                                    
+                                     <form action="functions/residentDiseaseFunctions.php" method="post">
+                                        <input type="hidden" name="acquired_id" value="<?php echo $acquired_id;?>">
+                                        <input type="hidden" name="resident_id" value="<?php echo $resident_id;?>">
+                                        <td><?php if(isset($datecured)){ echo date_format(new DateTime($datecured),'M d Y');} if(!$datecured) { echo '<button class="btn btn-primary" name="datecured">CURE NOW!</button>';}?></td>
+                                       
+                                     </form>
+                                    
 
 
                                   </tr>
-                                <?php
+                                <?php 
                               }
                             ?>       
                           </table>
@@ -107,14 +123,7 @@ include 'functions/residentDiseaseFunctions.php';
                             }
                         ?>
 
-
-                                  <div class="form-group col-md-9">
-                                      <h6>Resident's ID Number: <?php echo $resident_id;?></p></h6>
-                                      <input type="hidden" name="resident_id" class="form-control" value="<?php echo $resident_id;?>" >
-                                  </div>
-                                  <div class="form-group col-md-9">
-                                      <h6>Resident's Name: <?php echo $fname." ".$mname." ".$lname;?></h6>
-                                  </div>
+                                  
 
                                             </div><!--new container-->
                                       </div><!--END OF RIGHTCARD--> 

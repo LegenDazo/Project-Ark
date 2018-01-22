@@ -1,7 +1,16 @@
+<?php session_start();
+  if ($_SESSION['username'] == "" && $_SESSION['type'] == "" || $_SESSION['type'] == "normal") {
+      header("location:../logout.php");
+  }
+?>
 <!DOCTYPE html>
 <?php include 'functions/householdFunctions.php'; 
       include 'functions/connection.php';
       include 'functions/barangayFunctions.php';
+
+      //include 'functions/fetch.php';
+      //include 'functions/insert.php';
+
 //      include 'functions/retrieveUserIdFunctions.php';
 
 ?>
@@ -25,7 +34,7 @@
 
     <nav class="navbar navbar-light bg-faded">
     <img src="../images/ARK1.png">
-    <a href="#" style="color: white">Log Out</a>
+    <a href="../logout.php" style="color: white">Log Out</a>
     </nav>
 
     <div class="container-fluid"><!--START OF MAIN CONTAINER-->
@@ -74,8 +83,8 @@
 
 
 
-                          <h5>Household Members:</h5>           
-                          <table class="table">
+                          <h5>Household Members:</h5>  
+                          <table class="table table-bordered" id="table">
                             <thead>
                               <tr>
                                 <th>First Name</th>
@@ -115,15 +124,53 @@
 
                                         <td data-target="house_memship"><?php echo $row['house_memship']; ?></td>
 
-                                        <td><a href="#" data-role="update" data-id="<?php echo $row['resident_id'] ;?>">Update</a></td>
+                                        <td><a href="#" data-role="update" data-id="<?php echo $row['resident_id'] ;?>">Update</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <button type="button" name="remove" id="remove" class="btn btn-danger btn-xs">-</button>
+                                        </td>
                                       </tr>
+                          
                                  <?php } 
                                     } 
-                               ?>
-                               
+                               ?>                               
                             </tbody>
-                          </table>                          
-                        
+                          </table>
+
+                          
+                          <table class="table" id="table" style="display:none;">
+                            <tr>
+                              <th width="20%">&nbsp;</th>
+                              <th width="20%">&nbsp;</th>
+                              <th width="20%">&nbsp;</th>
+                              <th width="15%">&nbsp;</th>
+                              <th width="15%">&nbsp;</th>
+                              <!--       <th width="10">Age</th> -->
+                              <th width="10">&nbsp;</th>
+                            </tr>
+                            <tr>
+                              <td contenteditable="true" class="fname"></td>
+                              <td contenteditable="true" class="mname"></td>
+                              <td contenteditable="true" class="lname"></td>
+                              <td contenteditable="true" class="gender"></td>
+                              <td><input class="bday" type="date"></td>
+                              <td class="house_memship">
+                                <select class="membship">
+                                  <option value="dependent">Dependent</option>
+                                  <option value="head">Head</option>
+                                  <option value="head's spouse">Head's Spouse</option>
+                                </select>
+                              </td>
+                            </tr>
+                          </table>
+                      
+
+                           <div align="right">
+                            <button type="button" name="add" id="add" class="btn btn-success btn-xs">+</button>
+                          </div>    
+                          <div align="center">
+                            <!--<button type="button" name="saveMember" id="saveMember" class="btn btn-info">Save New Member</button>-->
+                          </div>
+                        <br />
+                          <div id="inserted_data"></div>
 
 
       <br>
@@ -210,7 +257,7 @@
                             <div class="text-right">
                             <button type="submit" id="action" class="btn btn-primary" name="updatehousehold">Update</button>
                             <br><br>
-                            </div>
+                            </div>                            
                           </div>
 
                       </form>
@@ -334,6 +381,12 @@
 */
     $('#regStudent').DataTable();
 
+    $('.add-btn').on('click', function(e){
+          e.preventDefault();
+          var x = $('.child-clone').val();
+          
+        })
+
 } );
 </script>
 
@@ -406,6 +459,157 @@
        });
   });
 </script>
+
+<script>
+      $(document).ready(function(){
+
+        $("#brgyForm").submit(function(e) {
+          e.preventDefault(); 
+        });
+
+       var count = 1;
+       $('#add').click(function(){
+        count = count + 1;
+        var html_code = "<tr id='row"+count+"'>";
+         html_code += "<td contenteditable='true' class='fname'></td>";
+         html_code += "<td contenteditable='true' class='mname'></td>";
+         html_code += "<td contenteditable='true' class='lname'></td>";
+         html_code += "<td contenteditable='true' class='gender'></td>";
+       //  html_code += "<td contenteditable='true' class='bday'></td>";
+         html_code += '<td><input class="bday" type="date"></td>';
+         html_code += '<td class="house_memship"><select class="membship"><option value="dependent">Dependent</option><option value="head">Head</option><option value="head\'s spouse">Head\'s Spouse</option></select></td>';
+      //   html_code += "<td contenteditable='true' class='age'></td>";
+      //   html_code += "<td contenteditable='true' class='house_memship'></td>";
+         html_code += "<td><button type='button' id='remove' name='remove' data-row='row"+count+"' class='btn btn-danger btn-xs remove'>-</button></td>";   
+         html_code += "<td><button type='button' name='saveMember' data-row='row"+count+"' class='btn btn-primary btn-xs saveMember'>Save</button></td>";
+         html_code += "</tr>";  
+         $('#table').append(html_code);
+       });
+       
+       $(document).on('click', '.remove', function(){
+        var delete_row = $(this).data("row");
+        $('#' + delete_row).remove();
+       });
+       
+
+
+
+        $('#saveMember').click(function(){
+          var fname = [];
+          var mname = [];
+          var lname = [];
+          var gender = [];
+          var bday = [];
+          var house_memship = [];
+          $('.fname').each(function(){
+           name.push($(this).text());
+          });
+          $('.mname').each(function(){
+           mname.push($(this).text());
+          });
+          $('.lname').each(function(){
+           lname.push($(this).text());
+          });
+          $('.gender').each(function(){
+           gender.push($(this).text());
+          });
+          $('.bday').each(function(){
+          bday.push($(this).val());
+          });
+          $('.membship').each(function(){
+          house_memship.push($(this).val());
+          });
+          $.ajax({
+           url:"functions/insertMember.php",
+           method:"POST",
+           data: 
+           { 
+           fname:fname, mname:mname, lname:lname, gender:gender, bday:bday, /* age:age, */ house_memship:house_memship },
+           success:function(data){
+            alert(data);
+            $("td[contentEditable='true']").text("");
+            for(var i=2; i<= count; i++)
+            {
+             $('tr#'+i+'').remove();
+            }
+            fetch_item_data();
+           }
+          });
+         });
+
+
+
+
+       $('#submithousehold').click(function(){
+        var fname = [];
+        var mname = [];
+        var lname = [];
+        var gender = [];
+        var bday = [];
+      //  var age = [];
+        var house_memship = [];
+        $('.fname').each(function(){
+         fname.push($(this).text());
+        });
+        $('.mname').each(function(){
+         mname.push($(this).text());
+        });
+        $('.lname').each(function(){
+         lname.push($(this).text());
+        });
+        $('.gender').each(function(){
+         gender.push($(this).text());
+        });
+        $('.bday').each(function(){
+         bday.push($(this).val());
+        });
+      /*  $('.age').each(function(){
+         age.push($(this).text());
+        });*/
+        $('.membship').each(function(){
+         house_memship.push($(this).val());
+        });
+
+        house_no = $("#house_no").val();
+        street = $("#street").val();
+        brgy_id = $("#brgy").val();
+
+        $.ajax({
+         url:"functions/insert.php",
+         method:"POST",
+          data: { 
+           fname:fname, mname:mname, lname:lname, gender:gender, bday:bday, /* age:age, */ house_memship:house_memship, house_no: house_no, street: street, brgy_id: brgy_id  },
+         success:function(data){
+          alert(data);
+          $("td[contentEditable='true']").text("");
+          for(var i=2; i<= count; i++)
+          {
+           $('tr#'+i+'').remove();
+          }
+          fetch_item_data();
+         }
+        });
+       });
+
+
+       
+       function fetch_item_data()
+       {
+        $.ajax({
+         url:"functions/fetchMember.php",
+         method:"POST",
+         success:function(data)
+         {
+          $('#inserted_data').html(data);
+         }
+        })
+       }
+       fetch_item_data();
+       
+      }); 
+
+
+    </script>
 
 
 

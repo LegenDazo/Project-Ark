@@ -1,3 +1,8 @@
+<?php session_start();
+  if ($_SESSION['username'] == "" && $_SESSION['type'] == "" || $_SESSION['type'] == "normal") {
+      header("location:../logout.php");
+  }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,7 +21,7 @@
 
     <nav class="navbar navbar-light bg-faded">
     <img src="../images/ARK1.png">
-    <a href="#" style="color: white">Log Out</a>
+    <a href="../logout.php" style="color: white">Log Out</a>
     </nav>
 
     <div class="container-fluid"><!--START OF MAIN CONTAINER-->
@@ -36,15 +41,15 @@
                                 <table>
                                     <tr>
                                       <td>Barangay Name</td>
-                                      <td><input type="text" name="brgy_name"></td>
+                                      <td><input type="text" name="brgy_name" required></td>
                                     </tr>
                                     <tr>
                                       <td>City</td>
-                                      <td><input type="text" name="city"></td>
+                                      <td><input type="text" name="city" required></td>
                                     </tr>
                                     <tr>
                                       <td>Province</td>
-                                      <td><input type="text" name="province"></td>
+                                      <td><input type="text" name="province" required></td>
                                     </tr>
                                 </table><br>
                                 <button class="btn btn-primary" name="RegisterBarangay">Add Barangay</button>

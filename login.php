@@ -41,22 +41,32 @@ class Login
 		}
 		return $itemArray;
 	}
+	public function retrieveAdminInfo($username)
+	{
+		$sql = "SELECT * FROM admin WHERE username ='".$username."'";
+		$itemArray = array();
+		$query = mysqli_query($this->conn, $sql);
+		while ($row = mysqli_fetch_assoc($query)) {
+			$itemArray[] = $row;
+		}
+		return $itemArray;
+	}
 
 }
 
 
-$obj = new Login;
+$login = new Login;
 
 if (isset($_POST['login'])) {
-	$username = mysqli_real_escape_string($obj->conn, $_POST['username']);
-	$password = mysqli_real_escape_string($obj->conn, $_POST['password']);
+	$username = mysqli_real_escape_string($login->conn, $_POST['username']);
+	$password = mysqli_real_escape_string($login->conn, $_POST['password']);
 
-	if ($obj->loginUser($username, md5($password))) {
+	if ($login->loginUser($username, md5($password))) {
 		session_start();
 		$_SESSION['username'] = $username;
 		$_SESSION['type'] = 'normal';
 		header("location:user/home.php");
-	} else if($obj->loginAdmin($username, md5($password))){
+	} else if($login->loginAdmin($username, $password)){
 		session_start();
 		$_SESSION['username'] = $username;
 		$_SESSION['type'] = 'admin';

@@ -1,5 +1,5 @@
 <?php session_start();
-  if ($_SESSION['username'] == "" && $_SESSION['type'] == "" || $_SESSION['type'] == "admin") {
+  if ($_SESSION['username'] == "" && $_SESSION['type'] == "" || $_SESSION['type'] == "normal") {
       header("location:../logout.php");
   }
 ?>
@@ -25,7 +25,7 @@
       <div class="container-fluid"><!--START OF CONTAINER FLUID-->
       <div class="row"><!--start of row-->
 
-         <?php include 'userNavbar.php';?>
+         <?php include '../adminNavbar.php';?>
 
 
             <div class="col-md-9"><!-- START of RIGHT COLUMN-->
@@ -44,16 +44,16 @@
               ?>
               </label>
               <?php
-                $myrow = $login->retrieveUserInfo($_SESSION['username']);
+                $myrow = $login->retrieveAdminInfo($_SESSION['username']);
                 foreach ($myrow as $row) {
                   $fname = $row['fname'];
                   $lname = $row['lname'];
                   $mname = $row['mname'];
-                  $bdate = $row['bdate'];
-                  $contact_no = $row['contact_no'];
+                  $bdate = $row['bday'];
+          
                 }
               ?>
-              <form method="post" action="functions/updateProfile.php">
+              <form method="post" action="functions/updateAdmin.php">
                 <input type="hidden" name="username" value="<?php echo $_SESSION['username'];?>">
                 <div class="col-md-5">
                   <div class="form-group">
@@ -79,13 +79,8 @@
                     <input type="date" name="bdate" class="form-control" value="<?php echo $bdate;?>">
                   </div>
                 </div>  
-                <div class="col-md-5">
-                    <div class="form-group">
-                        <label for="newNumber">Contact Number</label>
-                        <input type="text" class="form-control" id="newNumber" minlength="11" maxlength="11" name="contact_no" value="<?php echo $contact_no;?>">
-                    </div>
-                  </div>
-                       <button class="btn btn-primary" name="updateuser">Change</button>  
+               
+                       <button class="btn btn-primary" name="updateadmin">Change</button>  
                 </form>
 
               </div>

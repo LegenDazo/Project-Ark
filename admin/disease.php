@@ -56,12 +56,31 @@ include 'functions/retrieveDisease.php'
                                    <tr>
                                      <td><?php echo $row['disease_id']?></td>
                                      <td><?php echo $row['disease_name'];?></td>
-                                     <td><a href="disease.php?deleteDisease=1&disease_id=<?php echo $row['disease_id'];?>" class="btn btn-danger">DELETE</a></td>
-                                  </tr>
+                                     <td><a href="disease.php?deleteDisease=1&disease_id=<?php echo $row['disease_id'];?>" class="btn btn-danger">DELETE</a>
+                                         </td>
+                                   </tr>
                                 <?php
                               }
                             ?>                             
                           </table>
+
+                           <div class="modal" id="viewConfirm" role="dialog">
+                                <div class="modal-dialog modal-md">
+                                    <div class="modal-content">
+                                      <div class='modal-header'>
+                                          <h5 class="modal-title" id="exampleModalLabel"><strong>Message</strong></h5>
+                                      </div>
+                                      <div class="modal-body">
+                                          <h4>Are you sure you want to delete this disease?</h4>
+                                      </div>
+                                      <div class="modal-footer">
+                                          <button id='confirm' class='btn btn-danger btn-md'>Confirm</button>
+                                          <button id='cancel' class='btn btn-warning btn-md'>Cancel</button>
+                                      </div>
+                                    </div>
+                                </div>
+                          </div>
+
                         </div>
                       </div>
                     </div>
@@ -96,11 +115,16 @@ include 'functions/retrieveDisease.php'
     $('.close').click(function(){
         $('#viewkey').hide();
         window.location.href='registerStudent.php';
-    });
+    });    
 
-    $('.close').click(function(){
-        $('#viewkeydel').hide();
-        window.location.href='registerStudent.php';
+    $('#delete').click(function(){
+        $('#viewConfirm').show();
+        $('#confirm').click(function(){
+            window.location.href="disease.php?process=delete&disease_id=<?php echo $disease_id;?>";         
+        });
+        $('#cancel').click(function(){
+            $('#viewConfirm').hide();
+        });
     });
 
     $('#regStudent').DataTable();

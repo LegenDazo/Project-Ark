@@ -64,6 +64,18 @@
 				echo mysqli_error($this->conn);
 			}
 		}
+
+		public function deleteMember($resident_id)
+		{
+			$sql = "DELETE FROM resident WHERE resident_id='".$resident_id."'";
+			$query = mysqli_query($this->conn, $sql);
+			if($query){
+				return true;
+			} else {
+				echo mysqli_error($this->conn);
+			}
+		}
+
 	}
 
 	$obj = new DataOperations;
@@ -175,5 +187,15 @@
 			if ($obj->receiveHousehold($id)) {
 			header("location:reliefHousehold.php?received=1");
 		}		
+	}
+
+	if (isset($_GET['deleteMember'])) {
+		$resident_id = mysqli_real_escape_string($obj->conn, $_GET['resident_id']);
+
+		
+			if($obj->deleteMember($resident_id)){
+			header("location:../updateHousehold.php?deleted=1");
+		}
+				
 	}
 ?>

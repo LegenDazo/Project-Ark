@@ -94,12 +94,14 @@ if(isset($_POST['submitdisease'])){
 }
 
 if (isset($_GET['deleteDisease'])) {
+		//$process = mysqli_real_escape_string($func->con, $_GET['process']);
 		$disease_id = mysqli_real_escape_string($func->con, $_GET['disease_id']);
 
-		
+		//if($process == 'delete'){
 			if($func->deleteDisease($disease_id)){
 			header("location:disease.php?deleted=1");
-		}
+			}
+		//}
 				
 	}
 

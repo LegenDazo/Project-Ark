@@ -61,11 +61,39 @@ include 'functions/retrieveDisease.php'
                                    <tr>
                                      <td><?php echo $row['disease_id']?></td>
                                      <td><?php echo $row['disease_name'];?></td>
+<<<<<<< HEAD
                                      <td><a href="updateDiseases.php?process=update&disease_id=<?php echo $disease_id?>" class="btn btn-success btn-block col-md-5">Update</a>
+=======
+<<<<<<< HEAD
+                                     <td><a href="disease.php?deleteDisease=1&disease_id=<?php echo $row['disease_id'];?>" class="btn btn-danger">DELETE</a>
+                                         </td>
+                                   </tr>
+=======
+                                     <td><a href="updateDiseases.php?process=update&disease_id=<?php echo $disease_id?>" class="btn btn-success btn-block col-md-5">Update</a>
+>>>>>>> 97055902a4e69d5168942c8c07a4d69ae9ac4eed
+>>>>>>> e442f124f7ddff615f810de6e4d69e0d40274acd
                                 <?php
                               }
                             ?>                             
                           </table>
+
+                           <div class="modal" id="viewConfirm" role="dialog">
+                                <div class="modal-dialog modal-md">
+                                    <div class="modal-content">
+                                      <div class='modal-header'>
+                                          <h5 class="modal-title" id="exampleModalLabel"><strong>Message</strong></h5>
+                                      </div>
+                                      <div class="modal-body">
+                                          <h4>Are you sure you want to delete this disease?</h4>
+                                      </div>
+                                      <div class="modal-footer">
+                                          <button id='confirm' class='btn btn-danger btn-md'>Confirm</button>
+                                          <button id='cancel' class='btn btn-warning btn-md'>Cancel</button>
+                                      </div>
+                                    </div>
+                                </div>
+                          </div>
+
                         </div>
                       </div>
                     </div>
@@ -94,6 +122,27 @@ include 'functions/retrieveDisease.php'
     }
   ?>
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+    $('.close').click(function(){
+        $('#viewkey').hide();
+        window.location.href='registerStudent.php';
+    });    
+
+    $('#delete').click(function(){
+        $('#viewConfirm').show();
+        $('#confirm').click(function(){
+            window.location.href="disease.php?process=delete&disease_id=<?php echo $disease_id;?>";         
+        });
+        $('#cancel').click(function(){
+            $('#viewConfirm').hide();
+        });
+    });
+
+=======
+>>>>>>> 97055902a4e69d5168942c8c07a4d69ae9ac4eed
+>>>>>>> e442f124f7ddff615f810de6e4d69e0d40274acd
     $('#regStudent').DataTable();
 } );
 </script>

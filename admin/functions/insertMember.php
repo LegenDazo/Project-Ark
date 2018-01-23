@@ -27,7 +27,7 @@ for($count = 0; $count<count($fname); $count++)
   {
    $query .= '
    INSERT INTO resident(fname, mname, lname, gender, bday, house_memship) 
-   VALUES("'.$fname_clean.'", "'.$mname_clean.'", "'.$lname_clean.'", "'.$gender_clean.'", "'.$bday_clean.'", "'.$house_memship_clean.'", "'.$house_no.'", "'.$street.'", "'.$brgy_id.'", "'.$next_increment.'");
+   VALUES("'.$fname_clean.'", "'.$mname_clean.'", "'.$lname_clean.'", "'.$gender_clean.'", "'.$bday_clean.'", "'.$house_memship_clean.'");
    ';
   }
  }

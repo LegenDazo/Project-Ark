@@ -45,6 +45,7 @@
                                 <tr>
                                   <th>Package ID</th>
                                   <th>Relief Package Name</th>
+                                  <th>Sponsor Name</th>
                                   <th>Operation Name</th>
                                   <th>Actions</th>
                                 </tr>
@@ -56,6 +57,7 @@
                                    <tr>
                                      <td><?php echo $row['package_id']?></td>
                                      <td><?php echo $row['package_name'];?></td>
+                                     <td><?php echo $row['sponsor_name'];?></td>
                                      <td><?php echo $row['operation_name'];?></td>
                                      <td><a href="reliefpackage.php?deletepackage=1&package_id=<?php echo $row['package_id'];?>" class="btn btn-danger">DELETE</a></td>
                                   </tr>

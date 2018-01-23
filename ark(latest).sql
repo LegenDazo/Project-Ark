@@ -1,4 +1,13 @@
 -- phpMyAdmin SQL Dump
+<<<<<<< HEAD:ark(latest).sql
+-- version 4.7.0
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: Jan 19, 2018 at 07:30 AM
+-- Server version: 10.1.26-MariaDB
+-- PHP Version: 7.1.8
+=======
 -- version 4.5.1
 -- http://www.phpmyadmin.net
 --
@@ -6,8 +15,11 @@
 -- Generation Time: Jan 22, 2018 at 04:47 PM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 5.6.21
+>>>>>>> 994ba580cbbba75b6410fc7650d0a881022b6e64:ark.sql
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -27,23 +39,37 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `admin` (
+<<<<<<< HEAD:ark(latest).sql
+  `admin_id` varchar(25) NOT NULL,
+=======
   `username` varchar(25) NOT NULL,
   `password` varchar(80) NOT NULL,
+>>>>>>> 994ba580cbbba75b6410fc7650d0a881022b6e64:ark.sql
   `fname` varchar(255) NOT NULL,
   `mname` varchar(255) NOT NULL,
   `lname` varchar(255) NOT NULL,
   `gender` varchar(6) NOT NULL,
   `age` int(11) NOT NULL,
+<<<<<<< HEAD:ark(latest).sql
+  `bday` date NOT NULL,
+  `user_id` int(11) NOT NULL
+=======
   `bday` date NOT NULL
+>>>>>>> 994ba580cbbba75b6410fc7650d0a881022b6e64:ark.sql
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `admin`
 --
 
+<<<<<<< HEAD:ark(latest).sql
+INSERT INTO `admin` (`admin_id`, `fname`, `mname`, `lname`, `gender`, `age`, `bday`, `user_id`) VALUES
+('1', 'Jorge', 'Philip', 'Codilla', 'Male', 20, '1997-10-04', 1);
+=======
 INSERT INTO `admin` (`username`, `password`, `fname`, `mname`, `lname`, `gender`, `age`, `bday`) VALUES
 ('1', '', 'Jorge', 'Philip', 'Codilla', 'Male', 20, '1997-10-04'),
 ('admin', '21232f297a57a5a743894a0e4a801fc3', 'John', 'Cab', 'Dazo', 'Male', 20, '1997-11-13');
+>>>>>>> 994ba580cbbba75b6410fc7650d0a881022b6e64:ark.sql
 
 -- --------------------------------------------------------
 
@@ -87,6 +113,8 @@ CREATE TABLE `attendance` (
   `status` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+<<<<<<< HEAD:ark(latest).sql
+=======
 --
 -- Dumping data for table `attendance`
 --
@@ -101,6 +129,7 @@ INSERT INTO `attendance` (`attendance_id`, `date`, `resident_id`, `evac_id`, `st
 (16, '2018-01-20 10:56:46', 8, 2, 1),
 (17, '2018-01-20 10:56:47', 1, 2, 1);
 
+>>>>>>> 994ba580cbbba75b6410fc7650d0a881022b6e64:ark.sql
 -- --------------------------------------------------------
 
 --
@@ -150,15 +179,22 @@ INSERT INTO `disease` (`disease_id`, `disease_name`) VALUES
 CREATE TABLE `diseaseacquired` (
   `acquired_id` int(11) NOT NULL,
   `resident_id` int(11) NOT NULL,
-  `disease_id` int(11) NOT NULL,
-  `date_acquired` timestamp NULL DEFAULT NULL,
-  `date_cured` timestamp NULL DEFAULT NULL
+  `disease_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `diseaseacquired`
 --
 
+<<<<<<< HEAD:ark(latest).sql
+INSERT INTO `diseaseacquired` (`acquired_id`, `resident_id`, `disease_id`) VALUES
+(10, 0, 0),
+(12, 1, 3),
+(13, 2, 2),
+(14, 3, 3),
+(15, 4, 2),
+(18, 1, 2);
+=======
 INSERT INTO `diseaseacquired` (`acquired_id`, `resident_id`, `disease_id`, `date_acquired`, `date_cured`) VALUES
 (10, 0, 0, '2018-01-18 04:02:36', NULL),
 (12, 1, 3, '2018-01-18 04:02:36', '2018-01-22 15:02:21'),
@@ -166,6 +202,7 @@ INSERT INTO `diseaseacquired` (`acquired_id`, `resident_id`, `disease_id`, `date
 (14, 3, 3, '2018-01-18 04:02:36', '2018-01-22 15:02:34'),
 (15, 4, 2, '2018-01-18 04:02:36', NULL),
 (16, 1, 2, '2018-01-18 04:02:36', '0000-00-00 00:00:00');
+>>>>>>> 994ba580cbbba75b6410fc7650d0a881022b6e64:ark.sql
 
 -- --------------------------------------------------------
 
@@ -190,6 +227,14 @@ CREATE TABLE `evacuationcenter` (
 -- Dumping data for table `evacuationcenter`
 --
 
+<<<<<<< HEAD:ark(latest).sql
+INSERT INTO `evacuationcenter` (`evac_id`, `location_name`, `population`, `capacity`, `latitude`, `longitude`, `brgy_id`, `house_no`, `street`) VALUES
+(2, 'Metrobank', 0, 100, 10.3692, 123.917, 7, 100, 'Gov. M. Cuenco Ave'),
+(3, 'San Isidro Parish School', 0, 200, 10.3691, 123.918, 7, 0, 'Gov. M. Cuenco Ave'),
+(4, 'FOTOJAYA STUDIO', 0, 50, 10.3692, 123.916, 7, 0, 'Gov. M. Cuenco Ave'),
+(5, 'Barangay Talamban Gymnasium', 0, 300, 10.3696, 123.917, 7, 0, 'Gov. M. Cuenco Ave'),
+(6, 'Talamban Christian School', 0, 200, 10.3688, 123.916, 7, 0, 'Gov. M. Cuenco Ave');
+=======
 INSERT INTO `evacuationcenter` (`evac_id`, `location_name`, `population`, `capacity`, `latitude`, `longitude`, `brgy_id`, `house_no`, `street`, `status`) VALUES
 (2, 'Metrobank', 6, 100, 10.3692, 123.917, 7, 100, 'Gov. M. Cuenco Ave', 'active'),
 (3, 'San Isidro Parish School', 0, 200, 10.3691, 123.918, 7, 0, 'Gov. M. Cuenco Ave', 'active'),
@@ -197,6 +242,7 @@ INSERT INTO `evacuationcenter` (`evac_id`, `location_name`, `population`, `capac
 (5, 'Barangay Talamban Gymnasium', 3, 300, 10.3696, 123.917, 7, 0, 'Gov. M. Cuenco Ave', 'active'),
 (6, 'Talamban Christian School', 2, 200, 10.3688, 123.916, 7, 0, 'Gov. M. Cuenco Ave', 'active'),
 (7, 'Evac2', 0, 300, 10.3698, 123.918, 7, 0, 'Talamban', 'active');
+>>>>>>> 994ba580cbbba75b6410fc7650d0a881022b6e64:ark.sql
 
 -- --------------------------------------------------------
 
@@ -232,6 +278,8 @@ CREATE TABLE `item` (
   `package_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+<<<<<<< HEAD:ark(latest).sql
+=======
 --
 -- Dumping data for table `item`
 --
@@ -240,6 +288,7 @@ INSERT INTO `item` (`item_no`, `item_name`, `qty`, `item_type`, `sponsor_id`, `p
 (2, 'Neozep', 30, 'medicine', 1, 1),
 (3, 'Corned Beef', 5, 'canned good', 1, 2);
 
+>>>>>>> 994ba580cbbba75b6410fc7650d0a881022b6e64:ark.sql
 -- --------------------------------------------------------
 
 --
@@ -261,11 +310,13 @@ CREATE TABLE `itemdistribution` (
 
 CREATE TABLE `packagedistribution` (
   `packdist_id` int(11) NOT NULL,
-  `date_dist` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `date_dist` date NOT NULL,
   `package_id` int(11) NOT NULL,
   `household_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+<<<<<<< HEAD:ark(latest).sql
+=======
 --
 -- Dumping data for table `packagedistribution`
 --
@@ -274,6 +325,7 @@ INSERT INTO `packagedistribution` (`packdist_id`, `date_dist`, `package_id`, `ho
 (0, '2018-01-18 04:13:16', 1, 1),
 (0, '2018-01-18 07:59:26', 1, 5);
 
+>>>>>>> 994ba580cbbba75b6410fc7650d0a881022b6e64:ark.sql
 -- --------------------------------------------------------
 
 --
@@ -291,7 +343,7 @@ CREATE TABLE `reliefoperation` (
 --
 
 INSERT INTO `reliefoperation` (`operation_id`, `operation_name`, `evac_id`) VALUES
-(1, 'sagip capstone', 2);
+(1, 'Operation Tuli', 2);
 
 -- --------------------------------------------------------
 
@@ -310,8 +362,12 @@ CREATE TABLE `reliefpackage` (
 --
 
 INSERT INTO `reliefpackage` (`package_id`, `package_name`, `operation_id`) VALUES
+<<<<<<< HEAD:ark(latest).sql
+(1, 'Package A', 1);
+=======
 (1, 'Medicine', 1),
 (2, 'Foodie', 1);
+>>>>>>> 994ba580cbbba75b6410fc7650d0a881022b6e64:ark.sql
 
 -- --------------------------------------------------------
 
@@ -343,10 +399,13 @@ INSERT INTO `resident` (`resident_id`, `fname`, `mname`, `lname`, `gender`, `bda
 (2, 'John Kent', 'CabaÃ±ez', 'Virtudazo', 'Male', '2018-01-02', 0, '', 6969, 'Gov. M. Cuenco Ave', '', 1),
 (3, 'Mylene', 'Delima', 'Pepito', 'Female', '2018-01-04', 0, '', 123, 'Punta', '', 1),
 (4, 'Abigail', 'Inoc', 'Velasquez', 'Female', '2018-01-10', 0, '', 789, 'Paknaan', '', 1),
+<<<<<<< HEAD:ark(latest).sql
+=======
 (6, 'Max', 'Delante', 'Zuorba', 'Male', '2000-05-06', 7, '', 120, 'Nasipit, Talamban, Cebu', 'head', 5),
 (7, 'Monina', 'Garcia', 'So', 'Female', '1998-12-20', 7, '', 120, 'Nasipit, Talamban, Cebu', 'head''s spouse', 5),
+>>>>>>> 994ba580cbbba75b6410fc7650d0a881022b6e64:ark.sql
 (8, 'jon', 'snow', 'kent', 'male', '2018-01-10', 7, '', 2342354, 'dfgdrgd', 'head', 6),
-(9, 'emilia', 'clarke', 'sdfse', 'female', '2018-01-01', 7, '', 2342354, 'dfgdrgd', 'head''s spouse', 6);
+(9, 'emilia', 'clarke', 'sdfse', 'female', '2018-01-01', 7, '', 2342354, 'dfgdrgd', 'head\'s spouse', 6);
 
 -- --------------------------------------------------------
 
@@ -363,6 +422,21 @@ CREATE TABLE `sms` (
   `username` varchar(25) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+<<<<<<< HEAD:ark(latest).sql
+--
+-- Dumping data for table `sms`
+--
+
+INSERT INTO `sms` (`sms_id`, `content`, `datesent`, `admin_id`, `status`, `username`) VALUES
+(3, 'PROJECTARK ADVISORY! Habang ang bagyo ay papalapit sa Pilipinas! Ang pilipinas naman ay papalayo ng papalayo sa bagyo!!', '2018-01-10 15:55:39', '', 1, 'LegenDazo'),
+(4, 'PROJECTARK ADVISORY! Habang ang bagyo ay papalapit sa Pilipinas! Ang pilipinas naman ay papalayo ng papalayo sa bagyo!!', '2018-01-10 15:55:43', '', 1, 'bacolod'),
+(7, 'PROJECTARK ADVISORY! ayaw nya ko biraha, basin ma hulog ta sa usa\'g usa - dazo', '2018-01-10 16:17:44', '', 1, 'bacolod'),
+(8, 'PROJECTARK ADVISORY! ayaw nya ko biraha, basin ma hulog ta sa usa\'g usa - dazo', '2018-01-10 16:17:46', '', 1, 'LegenDazo'),
+(9, 'PROJECTARK ADVISORY! \"wa ka nalipong? ganina rman gud ka si\'g tuyok sa ako ulo\"', '2018-01-10 16:29:48', '', 1, 'bacolod'),
+(10, 'PROJECTARK ADVISORY! \"wa ka nalipong? ganina rman gud ka si\'g tuyok sa ako ulo\"', '2018-01-10 16:29:49', '', 1, 'LegenDazo');
+
+=======
+>>>>>>> 994ba580cbbba75b6410fc7650d0a881022b6e64:ark.sql
 -- --------------------------------------------------------
 
 --
@@ -390,13 +464,6 @@ CREATE TABLE `sponsor` (
   `contact_no` varchar(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `sponsor`
---
-
-INSERT INTO `sponsor` (`sponsor_id`, `sponsor_name`, `sponsor_type`, `address`, `contact_no`) VALUES
-(1, 'Philippine Government', 'Govenment Organization', 'hhdhsf', '9ye3y3');
-
 -- --------------------------------------------------------
 
 --
@@ -406,9 +473,16 @@ INSERT INTO `sponsor` (`sponsor_id`, `sponsor_name`, `sponsor_type`, `address`, 
 CREATE TABLE `user` (
   `username` varchar(25) NOT NULL,
   `password` varchar(80) NOT NULL,
+<<<<<<< HEAD:ark(latest).sql
+  `user_type` varchar(25) NOT NULL,
+  `fname` varchar(50) DEFAULT NULL,
+  `mname` varchar(50) DEFAULT NULL,
+  `lname` varchar(50) DEFAULT NULL,
+=======
   `fname` varchar(25) DEFAULT NULL,
   `mname` varchar(25) DEFAULT NULL,
   `lname` varchar(25) DEFAULT NULL,
+>>>>>>> 994ba580cbbba75b6410fc7650d0a881022b6e64:ark.sql
   `bdate` date DEFAULT NULL,
   `contact_no` varchar(12) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -417,10 +491,17 @@ CREATE TABLE `user` (
 -- Dumping data for table `user`
 --
 
+<<<<<<< HEAD:ark(latest).sql
+INSERT INTO `user` (`username`, `password`, `user_type`, `fname`, `mname`, `lname`, `bdate`, `contact_no`) VALUES
+('admin', 'admin', 'admin', 'Jorge', 'Philip', 'Codilla', '1997-10-04', '09451455958'),
+('bacolod', 'bacolod', 'resident', 'Mylene', 'Delima', 'Pepito', '2018-01-16', '639254853869'),
+('LegenDazo', 'legend', 'user', 'John Kent', 'Cabanez', 'Virtudazo', '2015-08-13', '639994738632');
+=======
 INSERT INTO `user` (`username`, `password`, `fname`, `mname`, `lname`, `bdate`, `contact_no`) VALUES
 ('Dazolater', 'c8dce89a1fd0b76ddc588dc2a4f10feb', 'Kentoy', 'Kentoy', 'Kentoy', '1997-12-12', '09224165592'),
 ('dazolator', 'dazolator21', 'kent', 'cab', 'virtz', '2018-01-01', '09159294204'),
 ('legendazo', 'a21aaacde7e7d39e551dc0dd58ffe950', 'John Kent', 'Cabanez', 'Virtudazo', '1997-11-13', '09994738632');
+>>>>>>> 994ba580cbbba75b6410fc7650d0a881022b6e64:ark.sql
 
 --
 -- Indexes for dumped tables
@@ -430,7 +511,11 @@ INSERT INTO `user` (`username`, `password`, `fname`, `mname`, `lname`, `bdate`, 
 -- Indexes for table `admin`
 --
 ALTER TABLE `admin`
+<<<<<<< HEAD:ark(latest).sql
+  ADD PRIMARY KEY (`admin_id`);
+=======
   ADD PRIMARY KEY (`username`);
+>>>>>>> 994ba580cbbba75b6410fc7650d0a881022b6e64:ark.sql
 
 --
 -- Indexes for table `announcement`
@@ -559,7 +644,11 @@ ALTER TABLE `announcement`
 -- AUTO_INCREMENT for table `attendance`
 --
 ALTER TABLE `attendance`
+<<<<<<< HEAD:ark(latest).sql
+  MODIFY `attendance_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=93;
+=======
   MODIFY `attendance_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+>>>>>>> 994ba580cbbba75b6410fc7650d0a881022b6e64:ark.sql
 --
 -- AUTO_INCREMENT for table `barangay`
 --
@@ -574,12 +663,20 @@ ALTER TABLE `disease`
 -- AUTO_INCREMENT for table `diseaseacquired`
 --
 ALTER TABLE `diseaseacquired`
+<<<<<<< HEAD:ark(latest).sql
+  MODIFY `acquired_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+=======
   MODIFY `acquired_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+>>>>>>> 994ba580cbbba75b6410fc7650d0a881022b6e64:ark.sql
 --
 -- AUTO_INCREMENT for table `evacuationcenter`
 --
 ALTER TABLE `evacuationcenter`
+<<<<<<< HEAD:ark(latest).sql
+  MODIFY `evac_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+=======
   MODIFY `evac_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+>>>>>>> 994ba580cbbba75b6410fc7650d0a881022b6e64:ark.sql
 --
 -- AUTO_INCREMENT for table `household`
 --
@@ -589,7 +686,11 @@ ALTER TABLE `household`
 -- AUTO_INCREMENT for table `item`
 --
 ALTER TABLE `item`
+<<<<<<< HEAD:ark(latest).sql
+  MODIFY `item_no` int(11) NOT NULL AUTO_INCREMENT;
+=======
   MODIFY `item_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+>>>>>>> 994ba580cbbba75b6410fc7650d0a881022b6e64:ark.sql
 --
 -- AUTO_INCREMENT for table `reliefoperation`
 --
@@ -604,7 +705,11 @@ ALTER TABLE `resident`
 -- AUTO_INCREMENT for table `sms`
 --
 ALTER TABLE `sms`
+<<<<<<< HEAD:ark(latest).sql
+  MODIFY `sms_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+=======
   MODIFY `sms_id` int(11) NOT NULL AUTO_INCREMENT;
+>>>>>>> 994ba580cbbba75b6410fc7650d0a881022b6e64:ark.sql
 --
 -- AUTO_INCREMENT for table `smschecker`
 --
@@ -614,7 +719,11 @@ ALTER TABLE `smschecker`
 -- AUTO_INCREMENT for table `sponsor`
 --
 ALTER TABLE `sponsor`
+<<<<<<< HEAD:ark(latest).sql
+  MODIFY `sponsor_id` int(11) NOT NULL AUTO_INCREMENT;
+=======
   MODIFY `sponsor_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+>>>>>>> 994ba580cbbba75b6410fc7650d0a881022b6e64:ark.sql
 --
 -- Constraints for dumped tables
 --
@@ -623,7 +732,11 @@ ALTER TABLE `sponsor`
 -- Constraints for table `announcement`
 --
 ALTER TABLE `announcement`
+<<<<<<< HEAD:ark(latest).sql
+  ADD CONSTRAINT `announcement_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`admin_id`);
+=======
   ADD CONSTRAINT `announcement_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`username`);
+>>>>>>> 994ba580cbbba75b6410fc7650d0a881022b6e64:ark.sql
 
 --
 -- Constraints for table `attendance`
@@ -675,6 +788,10 @@ ALTER TABLE `resident`
 --
 ALTER TABLE `sms`
   ADD CONSTRAINT `sms_ibfk_1` FOREIGN KEY (`username`) REFERENCES `user` (`username`);
+<<<<<<< HEAD:ark(latest).sql
+COMMIT;
+=======
+>>>>>>> 994ba580cbbba75b6410fc7650d0a881022b6e64:ark.sql
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

@@ -124,8 +124,8 @@
 
                                         <td data-target="house_memship"><?php echo $row['house_memship']; ?></td>
 
-                                        <td><a href="#" data-role="update" data-id="<?php echo $row['resident_id'] ;?>">Update</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                            <button type="button" name="remove" id="remove" class="btn btn-danger btn-xs">-</button>
+                                        <td><a href="#" data-role="update" data-id="<?php echo $row['resident_id'] ;?>">update</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <a href="updateHousehold.php?deleteMember=1&resident_id=<?php echo $row['resident_id'];?>" class="btn btn-danger">-</a>
                                         </td>
                                       </tr>
                           
@@ -460,7 +460,7 @@
       //   html_code += "<td contenteditable='true' class='age'></td>";
       //   html_code += "<td contenteditable='true' class='house_memship'></td>";
          html_code += "<td><button type='button' id='remove' name='remove' data-row='row"+count+"' class='btn btn-danger btn-xs remove'>-</button></td>";   
-         html_code += "<td><button type='button' name='saveMember' data-row='row"+count+"' class='btn btn-primary btn-xs saveMember'>Save</button></td>";
+         html_code += "<td><button type='button' id='saveMember' name='saveMember' data-row='row"+count+"' class='btn btn-primary btn-xs saveMember'>Save</button></td>";
          html_code += "</tr>";  
          $('#table').append(html_code);
        });

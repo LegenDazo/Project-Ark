@@ -47,8 +47,7 @@
                                   <th>Item Name</th>
                                   <th>Quantity</th>
                                   <th>Item Type</th>
-                                  <th>Sponsor ID</th>
-                                  <th>Package ID</th>
+                                  <th>Package Name</th>
                                   <th>Status</th>
                                 </tr>
                               </thead>
@@ -61,7 +60,6 @@
                                      <td><?php echo $row['item_name']?></td>
                                      <td><?php echo $row['qty']?></td>
                                      <td><?php echo $row['item_type']?></td>
-                                     <td><?php echo $row['sponsor_name']?></td>
                                      <td><?php echo $row['package_name']?></td>
                                      <td><a href="reliefItems.php?deleteItem=1&item_no=<?php echo $row['item_no'];?>" class="btn btn-danger">DELETE</a></td>
                                   </tr>

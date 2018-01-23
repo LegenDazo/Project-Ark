@@ -85,7 +85,10 @@
 <script src="../js/jquery.min.js"></script>
 <script src="../bootstrap/js/bootstrap.js"></script>
 <script src="../bootstrap/js/bootstrap_alpha6.min.js"></script>
+<<<<<<< HEAD
+=======
 <script src="../datatables/datatables-bootstrap.js"></script>
+>>>>>>> 994ba580cbbba75b6410fc7650d0a881022b6e64
 
 
 

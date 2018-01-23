@@ -155,6 +155,10 @@
 <script src="../js/jquery.min.js"></script>
 <script src="../bootstrap/js/bootstrap.js"></script>
 <script src="../bootstrap/js/bootstrap_alpha6.min.js"></script>
+<<<<<<< HEAD
+=======
+
+>>>>>>> e442f124f7ddff615f810de6e4d69e0d40274acd
 
 
 </body>

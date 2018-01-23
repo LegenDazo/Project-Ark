@@ -1,8 +1,11 @@
+<<<<<<< HEAD
 <?php session_start();
   if ($_SESSION['username'] == "" && $_SESSION['type'] == "" || $_SESSION['type'] == "normal") {
       header("location:../logout.php");
   }
 ?>
+=======
+>>>>>>> e442f124f7ddff615f810de6e4d69e0d40274acd
 <?php
 include 'functions/retrieveDisease.php';
 ?>

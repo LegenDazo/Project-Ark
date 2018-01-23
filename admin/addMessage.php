@@ -8,7 +8,7 @@
 ?>
 <html lang="en">
 <head>
-  <title>Residents</title>
+  <title>Project Ark</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="../bootstrap/css/bootstrap.css">
@@ -85,10 +85,7 @@
 <script src="../js/jquery.min.js"></script>
 <script src="../bootstrap/js/bootstrap.js"></script>
 <script src="../bootstrap/js/bootstrap_alpha6.min.js"></script>
-<<<<<<< HEAD
-=======
 <script src="../datatables/datatables-bootstrap.js"></script>
->>>>>>> 994ba580cbbba75b6410fc7650d0a881022b6e64
 
 
 

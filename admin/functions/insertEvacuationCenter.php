@@ -12,7 +12,7 @@
 
 		public function insertEvacuationCenter($location, $capacity, $latitude, $longitude, $houseno, $street, $barangay)
 		{
-			$sql = "INSERT INTO evacuationcenter (location_name, capacity, latitude, longitude, house_no, street, brgy_id) VALUES ('".$location."','".$capacity."','".$latitude."','".$longitude."','".$houseno."','".$street."','".$barangay."')";
+			$sql = "INSERT INTO evacuationcenter (location_name, capacity, latitude, longitude, house_no, street, brgy_id, status) VALUES ('".$location."','".$capacity."','".$latitude."','".$longitude."','".$houseno."','".$street."','".$barangay."','active')";
 			$query = mysqli_query($this->conn, $sql);
 			if ($query) {
 				return true;

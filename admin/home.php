@@ -36,16 +36,9 @@
             <div class="col-md-9"><!-- START of RIGHT COLUMN-->
 
               <div class="card" style="margin-top: 25px;"><!--START OF RIGHTCARD-->
-<<<<<<< HEAD
-=======
 
-
-<<<<<<< HEAD
               <div class="container" style="margin-top: 25px; margin-bottom: 25px;">
-=======
->>>>>>> 994ba580cbbba75b6410fc7650d0a881022b6e64
               <div class="container" style="margin-top: 25px;">
->>>>>>> e442f124f7ddff615f810de6e4d69e0d40274acd
                 <div class="row">
                         
                           <div class="col-md-3">

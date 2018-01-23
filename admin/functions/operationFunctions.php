@@ -1,5 +1,5 @@
 <?php
-	Class Func
+	Class DataOperations
 	{
 		public $conn;
 		public function __construct()
@@ -52,23 +52,23 @@
 		}
 	}
 
-	$Func = new Func;
+	$obj = new DataOperations;
 
 	if (isset($_POST['submitoperation'])) {
 
-		$operation_name = mysqli_real_escape_string($Func->conn, $_POST['operation_name']);
-		$evac_id = mysqli_real_escape_string($Func->conn, $_POST['evac_id']);
+		$operation_name = mysqli_real_escape_string($obj->conn, $_POST['operation_name']);
+		$evac_id = mysqli_real_escape_string($obj->conn, $_POST['evac_id']);
 		
-		$Func->insertOperation($operation_name, $evac_id);
+		$obj->insertOperation($operation_name, $evac_id);
 			header("location:../reliefOperation.php?inserted=1");
 	}
 
 
 	if (isset($_GET['deleteoperation'])) {
-		$operation_id = mysqli_real_escape_string($Func->conn, $_GET['operation_id']);
+		$operation_id = mysqli_real_escape_string($obj->conn, $_GET['operation_id']);
 
 		
-			$Func->deleteOperation($operation_id);
+			$obj->deleteOperation($operation_id);
 			header("location:reliefOperation.php?deleted=1");
 				
 	}

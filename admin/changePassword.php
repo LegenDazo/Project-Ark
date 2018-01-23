@@ -29,8 +29,8 @@
 
             <div class="col-md-9"><!-- START of RIGHT COLUMN-->
               <div class="card" style="margin-top: 25px;" ><!--START OF RIGHTCARD-->    
-              <div class="container" style="margin-top: 25px;">
-              <center><h5>Change Password</h5></center>
+              <div class="container" style="margin-top: 25px; margin-bottom: 25px;">
+              <center><h4>Change Password</h4></center>
               <label><?php
                 if(isset($_SESSION['Error'])){
                   echo "<div class='alert alert-danger' role='alert'>".$_SESSION['Error']."</div>";
@@ -42,7 +42,7 @@
                 }
               ?>
               </label>
-              <form method="post" action="functions/changePasswordFunction.php">
+              <center><form method="post" action="functions/changePasswordFunction.php">
                 <input type="hidden" name="username" value="<?php echo $_SESSION['username'];?>">
                 <div class="col-md-5">
                   <div class="form-group">
@@ -62,9 +62,9 @@
                     <input type="password" name="conPassword" class="form-control" required>
                   </div>
                 </div> 
-                
+                <a href="home.php" class="btn btn-warning">Cancel</a>&nbsp;
                 <button class="btn btn-primary" name="changePassword">Change</button>  
-                </form>
+                </form></center>
 
               </div>
               </div><!--END OF RIGHTCARD--> 

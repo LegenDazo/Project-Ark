@@ -109,7 +109,7 @@
                    
                   </table>
 
-                  <center><a href="evacCenterReport.php" class="btn btn-warning col-md-3">Cancel</a></center>
+                  <center><a href="evacCenterReport.php" class="btn btn-warning col-md-3">Back</a></center>
                   
                 </div>
               </div><!--END OF RIGHTCARD--> 

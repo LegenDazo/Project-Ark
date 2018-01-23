@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Barangay</title>
+  <title>Project Ark</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="../bootstrap/css/bootstrap.css">
@@ -32,7 +32,7 @@
 
             <div class="col-md-9"><!-- START of RIGHT COLUMN-->
               <div class="card" style="margin-top: 25px;" ><!--START OF RIGHTCARD-->
-              <div class="container" style="margin-top: 25px;">
+              <div class="container" style="margin-top: 25px; margin-bottom: 25px;">
                       <center><h6>Register Barangay</h6></center>
                       <div class="container" style="margin-top: 5%;">
                         <div class="col-md-12">
@@ -52,6 +52,7 @@
                                       <td><input type="text" name="province" required></td>
                                     </tr>
                                 </table><br>
+                                <a href="barangay.php" class="btn btn-warning">Cancel</a>&nbsp;
                                 <button class="btn btn-primary" name="RegisterBarangay">Add Barangay</button>
                                 </center>
                              </form>

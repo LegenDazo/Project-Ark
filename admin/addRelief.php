@@ -6,10 +6,11 @@
 <!DOCTYPE html>
 <?php 
 include 'functions/operationFunctions.php';
+include 'functions/reliefSponsorsFunctions.php';
 ?>
 <html lang="en">
 <head>
-  <title>Barangay</title>
+  <title>Project Ark</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="../bootstrap/css/bootstrap.css">
@@ -50,6 +51,20 @@ include 'functions/operationFunctions.php';
                                     <input data-target="relief_name" type="text" class="form-control" id="relief_name" name="relief_name"> 
                                   </div>
                                 
+                                <div class="form-group col-md-4">
+                                  <label for="sponsor_id">Sponsor Name</label>
+                                  <select id="sponsor_id" name="sponsor_id" class="form-control" required>
+                                    <option value="">Select a Sponsor</option>
+                                    <?php
+                                      $sponsor = $dataOperation->retrieveSponsorData();
+                                      foreach($sponsor as $bar) {
+                                        echo "<option value='".$bar["sponsor_id"]."'>";
+                                        echo $bar["sponsor_name"];
+                                        echo "</option>";
+                                      }
+                                    ?>
+                                  </select>
+                                </div>
 
                                 <div class="form-group col-md-4">
                                 <label for="operation_id">Operation Name</label>
@@ -100,16 +115,6 @@ include 'functions/operationFunctions.php';
       echo "$('#viewkeydel').show();";
     }
   ?>
-
-    $('.close').click(function(){
-        $('#viewkey').hide();
-        window.location.href='registerStudent.php';
-    });
-
-    $('.close').click(function(){
-        $('#viewkeydel').hide();
-        window.location.href='registerStudent.php';
-    });
 
     $('#regStudent').DataTable();
 } );

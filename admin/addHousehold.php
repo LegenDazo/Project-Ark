@@ -10,15 +10,13 @@ include 'functions/barangayFunctions.php';
 ?>
 <html lang="en">
   <head>
-    <title>Household</title>
+    <title>Project Ark</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="../bootstrap/css/bootstrap.css">
     <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" href="../materialize/icons.css">
-    <link rel="stylesheet" type="text/css" href="../datatables/datatables.css">
-    <link rel="stylesheet" type="text/css" href="../datatables/datatables-bootstrap.css">
     <!--Add adult-->
  <!--   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script> -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -150,32 +148,9 @@ include 'functions/barangayFunctions.php';
     </div><!--END OF MAIN CONTIANER-->
     <script src="../js/jquery.min.js"></script>
     <script src="../bootstrap/js/bootstrap.js"></script>
-    <script src="../bootstrap/js/bootstrap_alpha6.min.js"></script>
-    <script src="../datatables/datatables-bootstrap.js"></script>
-    <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.15/js/jquery.dataTables.js"></script>     
+    <script src="../bootstrap/js/bootstrap_alpha6.min.js"></script>  
     <script>
       $(document).ready( function () {
-      <?php 
-        if(isset($_GET['inserted'])){
-          echo "$('#viewkey').show();";
-        }
-        
-        if(isset($_GET['deleted'])){
-          echo "$('#viewkeydel').show();";
-        }
-        ?>
-      
-        $('.close').click(function(){
-            $('#viewkey').hide();
-            window.location.href='registerStudent.php';
-        });
-      
-        $('.close').click(function(){
-            $('#viewkeydel').hide();
-            window.location.href='registerStudent.php';
-        });
-      
-        $('#regStudent').DataTable();
       
         $('.add-btn').on('click', function(e){
           e.preventDefault();

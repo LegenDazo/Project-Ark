@@ -8,7 +8,7 @@
 ?>
 <html lang="en">
 <head>
-  <title>ARK</title>
+  <title>Project Ark</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../bootstrap/css/bootstrap.css">
@@ -38,7 +38,7 @@
                         <div class="col-md-12">
                           <div class="container" align="center">
                               <h5>Add Household &nbsp;<a href="addHousehold.php" class="btn btn-success"><i class="material-icons">add</i></a></h5>
-                              <table class="table table-hovered" id="regStudent">
+                              <table class="table table-hovered" id="resident">
                                   <thead>
                                     <tr>
                                       <th>Household ID</th>
@@ -124,18 +124,7 @@
       echo "$('#viewkeydel').show();";
     }
   ?>
-
-    $('.close').click(function(){
-        $('#viewkey').hide();
-        window.location.href='registerStudent.php';
-    });
-
-    $('.close').click(function(){
-        $('#viewkeydel').hide();
-        window.location.href='registerStudent.php';
-    });
-
-    $('#regStudent').DataTable();
+    $('#resident').DataTable();
 } );
 </script>
 </body>

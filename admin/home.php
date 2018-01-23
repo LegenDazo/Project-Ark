@@ -10,7 +10,7 @@
 ?>
 <html lang="en">
 <head>
-  <title>ARK</title>
+  <title>Project Ark</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../bootstrap/css/bootstrap.css">
@@ -38,7 +38,7 @@
               <div class="card" style="margin-top: 25px;"><!--START OF RIGHTCARD-->
 
 
-              <div class="container" style="margin-top: 25px;">
+              <div class="container" style="margin-top: 25px; margin-bottom: 25px;">
                 <div class="row">
                         
                           <div class="col-md-3">
@@ -76,13 +76,14 @@
                           </div>
                           
                         </div> 
-              </div>
+              
               <center>
                 <div id="chartContainer" style="height: 350px; width: 78%; margin-top: 20px;">                       
                     <script src="../js/chart.js"></script>
                 </div>
               </center>
 
+              </div>
 
 
               </div><!--END OF RIGHTCARD--> 

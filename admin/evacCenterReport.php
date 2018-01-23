@@ -11,7 +11,7 @@
 ?>
 <html lang="en">
 <head>
-  <title>ARK</title>
+  <title>Project Ark</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../bootstrap/css/bootstrap.css">
@@ -79,11 +79,22 @@
 <script src="../bootstrap/js/bootstrap_alpha6.min.js"></script>
 <script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script> 
 <script src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
-
+<script src="../datatables/datatables-bootstrap.js"></script>
+<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.15/js/jquery.dataTables.js"></script>    
 <script>
-  $(document).ready(function(){
+  $(document).ready( function () {
+  <?php 
+    if(isset($_GET['inserted'])){
+      echo "$('#viewkey').show();";
+    }
+
+    if(isset($_GET['deleted'])){
+      echo "$('#viewkeydel').show();";
+    }
+  ?>
     $('#evacReport').DataTable();
-  });
+} );
+
 </script>
 
 </body>

@@ -13,7 +13,7 @@ include 'functions/retrieveDisease.php'
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Disease</title>
+  <title>Project Ark</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="../bootstrap/css/bootstrap.css">
@@ -61,8 +61,7 @@ include 'functions/retrieveDisease.php'
                                    <tr>
                                      <td><?php echo $row['disease_id']?></td>
                                      <td><?php echo $row['disease_name'];?></td>
-                                     <td><a href="disease.php?deleteDisease=1&disease_id=<?php echo $row['disease_id'];?>" class="btn btn-danger">DELETE</a></td>
-                                  </tr>
+                                     <td><a href="updateDiseases.php?process=update&disease_id=<?php echo $disease_id?>" class="btn btn-success btn-block col-md-5">Update</a>
                                 <?php
                               }
                             ?>                             
@@ -75,9 +74,6 @@ include 'functions/retrieveDisease.php'
      
       </div><!--end of row-->
     </div><!--END OF MAIN CONTIANER-->
-
-
-
 
 
 
@@ -97,16 +93,6 @@ include 'functions/retrieveDisease.php'
       echo "$('#viewkeydel').show();";
     }
   ?>
-
-    $('.close').click(function(){
-        $('#viewkey').hide();
-        window.location.href='registerStudent.php';
-    });
-
-    $('.close').click(function(){
-        $('#viewkeydel').hide();
-        window.location.href='registerStudent.php';
-    });
 
     $('#regStudent').DataTable();
 } );

@@ -16,7 +16,7 @@
 ?>
 <html lang="en">
 <head>
-  <title>Household</title>
+  <title>Project Ark</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="../bootstrap/css/bootstrap.css">
@@ -359,27 +359,6 @@
       e.preventDefault(); 
     });
 
-  <?php 
-    if(isset($_GET['inserted'])){
-      echo "$('#viewkey').show();";
-    }
-
-    if(isset($_GET['deleted'])){
-      echo "$('#viewkeydel').show();";
-    }
-  ?>
-
-/*    $('.close').click(function(){
-        $('#viewkey').hide();
-        window.location.href='registerStudent.php';
-    });
-
-    $('.close').click(function(){
-        $('#viewkeydel').hide();
-        window.location.href='registerStudent.php';
-    });
-*/
-    $('#regStudent').DataTable();
 
     $('.add-btn').on('click', function(e){
           e.preventDefault();

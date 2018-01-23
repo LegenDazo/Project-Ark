@@ -37,10 +37,6 @@
 
               <div class="card" style="margin-top: 25px;"><!--START OF RIGHTCARD-->
 
-<<<<<<< HEAD
-=======
-              <div class="container" style="margin-top: 25px; margin-bottom: 25px;">
->>>>>>> 431dd729882146aed674ae8d188cc12e9ad3db35
               <div class="container" style="margin-top: 25px;">
                 <div class="row">
                         

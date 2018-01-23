@@ -136,38 +136,14 @@
                           </table>
 
                           
-                          <table class="table" id="table" style="display:none;">
-                            <tr>
-                              <th width="20%">&nbsp;</th>
-                              <th width="20%">&nbsp;</th>
-                              <th width="20%">&nbsp;</th>
-                              <th width="15%">&nbsp;</th>
-                              <th width="15%">&nbsp;</th>
-                              <!--       <th width="10">Age</th> -->
-                              <th width="10">&nbsp;</th>
-                            </tr>
-                            <tr>
-                              <td contenteditable="true" class="fname"></td>
-                              <td contenteditable="true" class="mname"></td>
-                              <td contenteditable="true" class="lname"></td>
-                              <td contenteditable="true" class="gender"></td>
-                              <td><input class="bday" type="date"></td>
-                              <td class="house_memship">
-                                <select class="membship">
-                                  <option value="dependent">Dependent</option>
-                                  <option value="head">Head</option>
-                                  <option value="head's spouse">Head's Spouse</option>
-                                </select>
-                              </td>
-                            </tr>
-                          </table>
+                          
                       
 
                            <div align="right">
                             <button type="button" name="add" id="add" class="btn btn-success btn-xs">+</button>
                           </div>    
                           <div align="center">
-                            <!--<button type="button" name="saveMember" id="saveMember" class="btn btn-info">Save New Member</button>-->
+                            <button type="button" name="saveMember" id="saveMember" class="btn btn-info">Save</button>
                           </div>
                         <br />
                           <div id="inserted_data"></div>

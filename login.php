@@ -66,7 +66,7 @@ if (isset($_POST['login'])) {
 		$_SESSION['username'] = $username;
 		$_SESSION['type'] = 'normal';
 		header("location:user/home.php");
-	} else if($login->loginAdmin($username, $password)){
+	} else if($login->loginAdmin($username, md5($password))){
 		session_start();
 		$_SESSION['username'] = $username;
 		$_SESSION['type'] = 'admin';

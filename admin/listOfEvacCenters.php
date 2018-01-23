@@ -62,10 +62,10 @@
                             if($status === 'active'){?>
                           <a href='functions/retrieveEvacuationCenterFunction.php?inactive=1&evac_id=<?php echo $row['evac_id'];?>' class='btn btn-danger'>Set to Inactive</a>
                         </td>
-                        ;
+                        
                         <?php
                           } else if ($row['status'] == 'inactive') {?>
-                        <a href='functions/retrieveEvacuationCenterFunction.php?active=1&evac_id=<?php echo $row['evac_id'];?>' class='btn btn-success'>Set to Active</a></td>;
+                        <td><a href='functions/retrieveEvacuationCenterFunction.php?active=1&evac_id=<?php echo $row['evac_id'];?>' class='btn btn-success'>Set to Active</a></td>
                         <?php
                           }
                           ?>

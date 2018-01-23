@@ -502,7 +502,7 @@
           var bday = [];
           var house_memship = [];
           $('.fname').each(function(){
-           name.push($(this).text());
+           fname.push($(this).text());
           });
           $('.mname').each(function(){
            mname.push($(this).text());

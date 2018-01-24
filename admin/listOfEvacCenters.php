@@ -8,7 +8,7 @@
   ?>
 <html lang="en">
   <head>
-    <title>ARK</title>
+    <title>Project Ark</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../bootstrap/css/bootstrap.css">
@@ -65,7 +65,11 @@
                         
                         <?php
                           } else if ($row['status'] == 'inactive') {?>
+<<<<<<< HEAD
                         <a href='functions/retrieveEvacuationCenterFunction.php?active=1&evac_id=<?php echo $row['evac_id'];?>' class='btn btn-success'>Set to Active</a></td>
+=======
+                        <td><a href='functions/retrieveEvacuationCenterFunction.php?active=1&evac_id=<?php echo $row['evac_id'];?>' class='btn btn-success'>Set to Active</a></td>
+>>>>>>> 5cce0c5ab7d39cf21003e1793dbdbd18c7a7b3b1
                         <?php
                           }
                           ?>

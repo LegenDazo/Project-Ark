@@ -64,6 +64,18 @@
 				echo mysqli_error($this->conn);
 			}
 		}
+
+		public function deleteMember($resident_id)
+		{
+			$sql = "UPDATE resident SET household_id = NULL WHERE resident_id='".$resident_id."'";
+			$query = mysqli_query($this->conn, $sql);
+			if($query){
+				return true;
+			} else {
+				echo mysqli_error($this->conn);
+			}
+		}
+
 	}
 
 	$obj = new DataOperations;
@@ -77,23 +89,6 @@
 		$id = mysqli_real_escape_string($obj->conn, $_POST['id']);
 		//$admin_id = mysqli_real_escape_string($obj->conn, $_POST['admin_id']);
 		//$user_id = mysqli_real_escape_string($obj->conn, $_POST['user_id']);
-	
-		//$head_id = mysqli_real_escape_string($obj->conn, $_POST['head_id']);
-		//$head_fname = mysqli_real_escape_string($obj->conn, $_POST['head_fname']);
-		//$head_mname = mysqli_real_escape_string($obj->conn, $_POST['head_mname']);
-		//$head_lname = mysqli_real_escape_string($obj->conn, $_POST['head_lname']);
-		//$head_gender = mysqli_real_escape_string($obj->conn, $_POST['head_gender']);
-		//$head_bday = mysqli_real_escape_string($obj->conn, $_POST['head_bday']);
-		//$head_age = mysqli_real_escape_string($obj->conn, $_POST['head_age']);
-
-
-		//$spouse_id = mysqli_real_escape_string($obj->conn, $_POST['spouse_id']);
-		//$spouse_fname = mysqli_real_escape_string($obj->conn, $_POST['spouse_fname']);
-		//$spouse_mname = mysqli_real_escape_string($obj->conn, $_POST['spouse_mname']);
-		//$spouse_lname = mysqli_real_escape_string($obj->conn, $_POST['spouse_lname']);
-		//$spouse_gender = mysqli_real_escape_string($obj->conn, $_POST['spouse_gender']);
-		//$spouse_bday = mysqli_real_escape_string($obj->conn, $_POST['spouse_bday']);
-		//$spouse_age = mysqli_real_escape_string($obj->conn, $_POST['spouse_age']);
 		
 		//$house_memship = mysqli_real_escape_string($obj->conn, $_POST['house_memship']);
 		$brgy_id = mysqli_real_escape_string($obj->conn, $_POST['brgy_id']);
@@ -117,23 +112,6 @@
 		//$admin_id = mysqli_real_escape_string($obj->conn, $_POST['admin_id']);
 		//$user_id = mysqli_real_escape_string($obj->conn, $_POST['user_id']);
 	
-		//$head_id = mysqli_real_escape_string($obj->conn, $_POST['head_id']);
-		//$head_fname = mysqli_real_escape_string($obj->conn, $_POST['head_fname']);
-		//$head_mname = mysqli_real_escape_string($obj->conn, $_POST['head_mname']);
-		//$head_lname = mysqli_real_escape_string($obj->conn, $_POST['head_lname']);
-		//$head_gender = mysqli_real_escape_string($obj->conn, $_POST['head_gender']);
-		//$head_bday = mysqli_real_escape_string($obj->conn, $_POST['head_bday']);
-		//$head_age = mysqli_real_escape_string($obj->conn, $_POST['head_age']);
-
-
-		//$spouse_id = mysqli_real_escape_string($obj->conn, $_POST['spouse_id']);
-		//$spouse_fname = mysqli_real_escape_string($obj->conn, $_POST['spouse_fname']);
-		//$spouse_mname = mysqli_real_escape_string($obj->conn, $_POST['spouse_mname']);
-		//$spouse_lname = mysqli_real_escape_string($obj->conn, $_POST['spouse_lname']);
-		//$spouse_gender = mysqli_real_escape_string($obj->conn, $_POST['spouse_gender']);
-		//$spouse_bday = mysqli_real_escape_string($obj->conn, $_POST['spouse_bday']);
-		//$spouse_age = mysqli_real_escape_string($obj->conn, $_POST['spouse_age']);
-		
 		//$house_memship = mysqli_real_escape_string($obj->conn, $_POST['house_memship']);
 
 		$brgy_id = mysqli_real_escape_string($obj->conn, $_POST['brgy_id']);
@@ -175,5 +153,14 @@
 			if ($obj->receiveHousehold($id)) {
 			header("location:reliefHousehold.php?received=1");
 		}		
+	}
+
+	if (isset($_GET['deleteMember'])) {
+		$resident_id = mysqli_real_escape_string($obj->conn, $_GET['resident_id']);
+		$household_id = $_GET["household_id"];
+
+		if($obj->deleteMember($resident_id)) {
+			header("location: updateHousehold.php?resident_id=$household_id");
+		}
 	}
 ?>

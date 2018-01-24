@@ -19,8 +19,6 @@
   <link rel="stylesheet" href="../bootstrap/css/bootstrap.css">
   <link rel="stylesheet" href="../style.css">
   <link rel="stylesheet" href="../materialize/icons.css">
-  <link rel="stylesheet" type="text/css" href="../datatables/datatables.css">
-  <link rel="stylesheet" type="text/css" href="../datatables/datatables-bootstrap.css">
 
 </head>
 
@@ -112,7 +110,7 @@
                    
                   </table>
 
-
+                  <center><a href="evacCenterReport.php" class="btn btn-warning col-md-3">Back</a></center>
                   
                 </div>
               </div><!--END OF RIGHTCARD--> 

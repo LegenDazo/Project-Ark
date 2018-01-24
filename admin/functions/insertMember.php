@@ -10,42 +10,35 @@ if(isset($_POST["fname"]))
  $gender = $_POST["gender"];
  $bday = $_POST["bday"];
  $house_memship = $_POST["house_memship"];
-
+ $house_no = $_POST["house_no"];
+ $street = $_POST["street"];
+ $brgy_id = $_POST["brgy_id"];
+ $household_id = $_POST["household_id"];
  
  $query = '';
 
+    $fname_clean = mysqli_real_escape_string($connect, $fname);
+    $mname_clean = mysqli_real_escape_string($connect, $mname);
+    $lname_clean = mysqli_real_escape_string($connect, $lname);
+    $gender_clean = mysqli_real_escape_string($connect, $gender);
+    $bday_clean = $bday; 
+    $house_memship_clean = mysqli_real_escape_string($connect, $house_memship);
     
- 
-for($count = 0; $count<count($fname); $count++)
- {
-  $fname_clean = mysqli_real_escape_string($connect, $fname[$count]);
-  $mname_clean = mysqli_real_escape_string($connect, $mname[$count]);
-  $lname_clean = mysqli_real_escape_string($connect, $lname[$count]);
-  $gender_clean = mysqli_real_escape_string($connect, $gender[$count]);
-  $bday_clean = $bday[$count]; 
-  $house_memship_clean = mysqli_real_escape_string($connect, $house_memship[$count]);  
-  {
-   $query .= '
-   INSERT INTO resident(fname, mname, lname, gender, bday, house_memship) 
-   VALUES("'.$fname_clean.'", "'.$mname_clean.'", "'.$lname_clean.'", "'.$gender_clean.'", "'.$bday_clean.'", "'.$house_memship_clean.'", "'.$house_no.'", "'.$street.'", "'.$brgy_id.'", "'.$next_increment.'");
-   ';
-  }
- }
- if($query != '')
- {
+    $query .= 'INSERT INTO resident(fname, mname, lname, gender, bday, house_memship, brgy_id, house_no, street, household_id) VALUES("'.$fname_clean.'", "'.$mname_clean.'", "'.$lname_clean.'", "'.$gender_clean.'", "'.$bday_clean.'", "'.$house_memship_clean.'", '.$brgy_id.', '.$house_no.', "'.$street.'", '.$household_id.')';
+
+ if($query != '') {
     
-  if(mysqli_multi_query($connect, $query))
-  {
-   echo 'Item Data Inserted';
-  }
-  else
-  {
+  if(mysqli_query($connect, $query)) {
+    $id = $connect->insert_id;
+    $result = mysqli_query($connect, "SELECT * FROM RESIDENT WHERE resident_id = $id");
+    $arr = mysqli_fetch_assoc($result);
+
+    echo json_encode($arr);
+  } else {
    echo 'Error';
   }
- }
- else
- {
+} else {
   echo 'All Fields are Required';
- }
+}
 }
 ?>

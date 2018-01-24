@@ -30,9 +30,9 @@
  			return false;
  		}
  	}
- 	public function insertUser($fname,$mname,$lname,$bdate,$contact_no,$username,$password)
+ 	public function insertUser($gender,$fname,$mname,$lname,$bdate,$contact_no,$username,$password)
  	{
- 		$sql = "INSERT INTO user (username,password,fname,mname,lname,bdate,contact_no) VALUES ('".$username."','".$password."','".$fname."','".$mname."','".$lname."','".$bdate."','".$contact_no."')";
+ 		$sql = "INSERT INTO user (gender,username,password,fname,mname,lname,bdate,contact_no) VALUES ('".$gender."','".$username."','".$password."','".$fname."','".$mname."','".$lname."','".$bdate."','".$contact_no."')";
  		$query = mysqli_query($this->conn, $sql);
  		if ($query) {
  			return true;
@@ -48,7 +48,8 @@
  	if (isset($_POST['signup'])) {
  		$fname = mysqli_real_escape_string($signup->conn, $_POST['fname']);
  		$mname = mysqli_real_escape_string($signup->conn, $_POST['mname']);
- 		$lname = mysqli_real_escape_string($signup->conn, $_POST['lname']);
+		 $lname = mysqli_real_escape_string($signup->conn, $_POST['lname']);
+		 $gender = mysqli_real_escape_string($signup->conn, $_POST['gender']);
  		$bdate = mysqli_real_escape_string($signup->conn, $_POST['bdate']);
  		$contact_no = mysqli_real_escape_string($signup->conn, $_POST['contact_no']);
  		$username = mysqli_real_escape_string($signup->conn, $_POST['username']);
@@ -133,8 +134,9 @@
  			header("location:index.php");
  		}
  		else if ($password == $confirmpassword) {
- 			if ($signup->insertUser($fname,$mname,$lname,$bdate,$contact_no,$username,md5($password))) {
- 				session_start();
+ 			if ($signup->insertUser($gender, $fname,$mname,$lname,$bdate,$contact_no,$username,md5($password))) {
+				 session_start();
+				 $_SESSION['gender'] = $gender;
  				$_SESSION['fname'] = $fname;
 	 			$_SESSION['mname'] = $mname;
 	 			$_SESSION['lname'] = $lname;

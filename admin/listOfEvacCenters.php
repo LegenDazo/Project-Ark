@@ -57,15 +57,15 @@
                         <td><?php echo $row['location_name'];?></td>
                         <td><?php echo $row['brgy_name'];?></td>
                         <td><?php echo $row['status'];?></td>
-                        <td><a href="viewAnnounceDetails.php?announcement_id=<?php echo $row['announcement_id'];?>" class="btn btn-info">View Details</a>&nbsp;&nbsp;&nbsp;
+                        <td>
                           <?php
                             if($status === 'active'){?>
                           <a href='functions/retrieveEvacuationCenterFunction.php?inactive=1&evac_id=<?php echo $row['evac_id'];?>' class='btn btn-danger'>Set to Inactive</a>
                         </td>
-                        ;
+                        
                         <?php
                           } else if ($row['status'] == 'inactive') {?>
-                        <a href='functions/retrieveEvacuationCenterFunction.php?active=1&evac_id=<?php echo $row['evac_id'];?>' class='btn btn-success'>Set to Active</a></td>;
+                        <a href='functions/retrieveEvacuationCenterFunction.php?active=1&evac_id=<?php echo $row['evac_id'];?>' class='btn btn-success'>Set to Active</a></td>
                         <?php
                           }
                           ?>

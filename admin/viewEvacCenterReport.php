@@ -58,8 +58,9 @@
                   ?>
 
                   </table>
+                  
                   <br>
-                  <h3>Demographics</h3>
+                  <h3>Demographics <a href="demographicsReportPdf.php?evac_id=<?php echo $evac_id;?>" target="_blank" class="btn btn-success">Generate PDF</a></h3>
                   <table class="table">
                     <tr><td>Total No. of Evacuees:</td><td><b><?php $evac_id = $_GET['evac_id']; echo $total = $demog->retrieveNumberOfEvacueesInSpecificEvac($evac_id);?></b></td></tr>
                     <tr><td>Total No. of Families Evacuated:</td><td><b><?php $evac_id = $_GET['evac_id']; echo $total = $demog->retrieveNumberOfFamiliesEvacuated($evac_id);?></b></td></tr>
@@ -129,11 +130,7 @@
 <script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script> 
 <script src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
 
-<script>
-  $(document).ready(function(){
-    $('#evacReport').DataTable();
-  });
-</script>
+
 
 </body>
 </html>

@@ -82,6 +82,15 @@
                       ?>">         
                   </div>
                   <div class="form-group">
+                  <label for="gender">Gender</label>
+                   <select class="form-control" name="gender">
+                      <option>Select gender...</option>
+                      <option value="Male">Male</option>
+                      <option value="Female">Female</option>
+                   </select>  
+                            
+                  </div>
+                  <div class="form-group">
                   <label for="Birthdate">Birthdate</label>
                       <input  type="date" class="form-control" name="bdate" value="<?php if (isset($_SESSION['bdate'])){
                         echo $_SESSION['bdate']; 

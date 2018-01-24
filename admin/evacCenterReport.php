@@ -4,20 +4,15 @@
   }
 ?>
 <!DOCTYPE html>
-<<<<<<< HEAD
+
 
 
 <?php
 
   include 'functions/retrieveEvacuationCenterFunction.php';
 ?>
-=======
-<?php
 
-  include 'functions/retrieveEvacuationCenterFunction.php';
->>>>>>> 431dd729882146aed674ae8d188cc12e9ad3db35
 
-?>
 <html lang="en">
 <head>
   <title>Project Ark</title>
@@ -46,14 +41,12 @@
             <div class="col-md-9"><!-- START of RIGHT COLUMN-->
               <div class="card" style="margin-top: 25px;"><!--START OF RIGHTCARD-->
                 <div class="container" style="margin-top: 25px; margin-bottom: 25px;">
-<<<<<<< HEAD
+
 
                   
 
 
 
-=======
->>>>>>> 431dd729882146aed674ae8d188cc12e9ad3db35
                   <center><h3>Reports</h3></center>
                   <table class="table table-hovered" id="evacReport">
 
@@ -82,10 +75,8 @@
                       
                     
                   </table>
-<<<<<<< HEAD
 
-=======
->>>>>>> 431dd729882146aed674ae8d188cc12e9ad3db35
+
                 </div>
               </div><!--END OF RIGHTCARD--> 
             </div><!-- END of RIGHT COLUMN-->

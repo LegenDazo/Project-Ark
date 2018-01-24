@@ -61,18 +61,13 @@ include 'functions/retrieveDisease.php'
                                    <tr>
                                      <td><?php echo $row['disease_id']?></td>
                                      <td><?php echo $row['disease_name'];?></td>
-<<<<<<< HEAD
 
                                      <td><a href="disease.php?deleteDisease=1&disease_id=<?php echo $row['disease_id'];?>" class="btn btn-danger">DELETE</a>
                                          </td>
                                           <td><a href="updateDiseases.php?process=update&disease_id=<?php echo $disease_id?>" class="btn btn-success btn-block col-md-5">Update</a></td>
                                    </tr>
-
                                     
 
-=======
-                                     <td><a href="updateDiseases.php?process=update&disease_id=<?php echo $disease_id?>" class="btn btn-success btn-block col-md-5">Update</a>
->>>>>>> 431dd729882146aed674ae8d188cc12e9ad3db35
                                 <?php
                               }
                             ?>                             

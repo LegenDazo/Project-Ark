@@ -11,7 +11,7 @@ include 'functions/barangayFunctions.php';
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Barangay</title>
+  <title>Project Ark</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="../bootstrap/css/bootstrap.css">
@@ -37,7 +37,7 @@ include 'functions/barangayFunctions.php';
 
             <div class="col-md-9"><!-- START of RIGHT COLUMN-->
               <div class="card" style="margin-top: 25px;" ><!--START OF RIGHTCARD-->
-              <div class="container" style="margin-top: 25px;">
+              <div class="container" style="margin-top: 25px; margin-bottom: 25px;">
                       <center><h6>List of Registered Barangays</h6></center>
                       <div class="container" style="margin-top: 5%">
                         <div class="col-md-12">

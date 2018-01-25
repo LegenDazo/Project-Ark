@@ -30,8 +30,8 @@
 
             <div class="col-md-9"><!-- START of RIGHT COLUMN-->
               <div class="card" style="margin-top: 25px;" ><!--START OF RIGHTCARD-->    
-              <div class="container" style="margin-top: 25px;">
-              <center><h5>Profile</h5></center>
+              <div class="container" style="margin-top: 25px; margin-bottom: 25px;">
+              <center><h4>Profile</h4></center>
               <label><?php
                 if(isset($_SESSION['Error'])){
                   echo "<div class='alert alert-danger' role='alert'>".$_SESSION['Error']."</div>";
@@ -53,7 +53,7 @@
           
                 }
               ?>
-              <form method="post" action="functions/updateAdmin.php">
+              <center><form method="post" action="functions/updateAdmin.php">
                 <input type="hidden" name="username" value="<?php echo $_SESSION['username'];?>">
                 <div class="col-md-5">
                   <div class="form-group">
@@ -79,9 +79,9 @@
                     <input type="date" name="bdate" class="form-control" value="<?php echo $bdate;?>">
                   </div>
                 </div>  
-               
+                        <a href="home.php" class="btn btn-warning">Cancel</a>&nbsp;
                        <button class="btn btn-primary" name="updateadmin">Change</button>  
-                </form>
+                </form></center>
 
               </div>
               </div><!--END OF RIGHTCARD--> 

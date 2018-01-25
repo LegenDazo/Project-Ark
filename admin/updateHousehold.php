@@ -16,7 +16,7 @@
 ?>
 <html lang="en">
 <head>
-  <title>Household</title>
+  <title>Project Ark</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="../bootstrap/css/bootstrap.css">
@@ -43,6 +43,7 @@
 
           <?php
             if (isset($_GET['resident_id'])) {
+              $household_id = $_GET["resident_id"];
               //$resident_id = $_GET['resident_id'];
               $myrow = $obj->retrieveHouseholdData();
 
@@ -56,6 +57,7 @@
                   //$user_id = $row['user_id'];
 
                   $house_no = $row['house_no'];
+                  
                   $street = $row['street'];
                 }
                 
@@ -74,7 +76,6 @@
                       <div class="container" style="margin-top: 5%">
                         <div class="col-md-12">
                         <div class="panel-body"> 
-                          <form method="post" action="functions/householdFunctions.php?resident_id=<?php echo $_GET["resident_id"];?>">
 
                           <div class="text-left">
                             <a href="household.php" class="btn btn-warning">Cancel</a>
@@ -85,6 +86,7 @@
 
                           <h5>Household Members:</h5>  
                           <table class="table table-bordered" id="table">
+                            <input type="hidden" name="household_id" id="household_id" value="<?php echo $household_id; ?>">
                             <thead>
                               <tr>
                                 <th>First Name</th>
@@ -104,11 +106,12 @@
 
 
                               <?php
-
+                                  $spouse = false;
                                   $myrow  = $obj->retrieveHouseholdData();
                                   foreach($myrow as $row ){ 
                                       if($row['household_id'] == $_GET['resident_id']) {?>
                                       <tr id="<?php echo $row['resident_id']; ?>">
+                                      <form method="post" action="functions/householdFunctions.php?resident_id=<?php echo $row['resident_id']; ?>&household_id=<?php echo $row['household_id']; ?>">
 
                                         <td data-target="fname"><?php echo $row['fname']; ?></td>
                                         <td data-target="mname"><?php echo $row['mname']; ?></td>
@@ -123,51 +126,39 @@
                                         <td data-target="age"><?php echo $age; ?></td>
 
                                         <td data-target="house_memship"><?php echo $row['house_memship']; ?></td>
+                                        <?php
+                                          if($row['house_memship'] == "head's spouse") {
+                                            $spouse = true;
+                                          }
+                                        ?>
 
                                         <td><a href="#" data-role="update" data-id="<?php echo $row['resident_id'] ;?>">update</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                            <a href="updateHousehold.php?deleteMember=1&resident_id=<?php echo $row['resident_id'];?>" class="btn btn-danger">-</a>
+                                        <?php
+                                          if($row["house_memship"] != "head") {
+                                            echo '<a href="updateHousehold.php?deleteMember=1&resident_id='.$row['resident_id'].'&household_id='.$row['household_id'].'" class="btn btn-danger">-</a>';
+                                          }
+
+                                          ?>
                                         </td>
+                                        </form>
                                       </tr>
                           
                                  <?php } 
                                     } 
                                ?>                               
                             </tbody>
+                            <input type="hidden" name="spouse" id="spouse" value="<?php echo $spouse; ?>">
                           </table>
 
                           
-                          <table class="table" id="table" style="display:none;">
-                            <tr>
-                              <th width="20%">&nbsp;</th>
-                              <th width="20%">&nbsp;</th>
-                              <th width="20%">&nbsp;</th>
-                              <th width="15%">&nbsp;</th>
-                              <th width="15%">&nbsp;</th>
-                              <!--       <th width="10">Age</th> -->
-                              <th width="10">&nbsp;</th>
-                            </tr>
-                            <tr>
-                              <td contenteditable="true" class="fname"></td>
-                              <td contenteditable="true" class="mname"></td>
-                              <td contenteditable="true" class="lname"></td>
-                              <td contenteditable="true" class="gender"></td>
-                              <td><input class="bday" type="date"></td>
-                              <td class="house_memship">
-                                <select class="membship">
-                                  <option value="dependent">Dependent</option>
-                                  <option value="head">Head</option>
-                                  <option value="head's spouse">Head's Spouse</option>
-                                </select>
-                              </td>
-                            </tr>
-                          </table>
+                          
                       
 
                            <div align="right">
                             <button type="button" name="add" id="add" class="btn btn-success btn-xs">+</button>
                           </div>    
                           <div align="center">
-                            <!--<button type="button" name="saveMember" id="saveMember" class="btn btn-info">Save New Member</button>-->
+                        <!--    <button type="button" name="saveMember" id="saveMember" class="btn btn-info">Save</button> -->
                           </div>
                         <br />
                           <div id="inserted_data"></div>
@@ -179,16 +170,19 @@
       <div class="row">
         <div class="form-group col-md-2">
           <label for="house_no"><b>House No.</b></label>
+          <input type="hidden" class="form-control" value="<?php echo $house_no;?>" id="Ohouse_no" name="house_no">
           <input type="text" class="form-control" value="<?php echo $house_no;?>" id="house_no" name="house_no"> 
         </div>
                                  
         <div class="form-group col-md-5">
           <label for="street"><b>Street</b></label>
+          <input type="hidden" class="form-control" value="<?php echo $street;?>" id="Ostreet" name="street"> 
           <input type="text" class="form-control" value="<?php echo $street;?>" id="street" name="street"> 
         </div>
 
         <div class="form-group col-md-5">
           <label for="brgy_id"><b>Barangay</b></label>
+          <input type="hidden" class="form-control" value="<?php echo $brgy_id;?>" id="Obrgy_id" name="brgy_id">
           <select name="brgy_id" id="brgy_id" class="form-control">
             <?php
                 $barangay = $Functions->retrieve_barangayData();
@@ -196,13 +190,14 @@
                   echo "<option value='".$bar["brgy_id"]."'"; 
                   if($bar["brgy_id"] == $brgy_id) {
                     echo "selected";
+                    $brgy_name = $bar["brgy_name"];
                   }
                   echo ">";
                   echo $bar["brgy_name"];
                   echo "</option>";
                 }
             ?>
-          </select>
+          </select> 
           <!--  <input type="text" class="form-control" value="<?php// echo $brgy_id;?>" id="brgy_id" name="brgy_id"> -->
         </div>
       </div>
@@ -359,27 +354,6 @@
       e.preventDefault(); 
     });
 
-  <?php 
-    if(isset($_GET['inserted'])){
-      echo "$('#viewkey').show();";
-    }
-
-    if(isset($_GET['deleted'])){
-      echo "$('#viewkeydel').show();";
-    }
-  ?>
-
-/*    $('.close').click(function(){
-        $('#viewkey').hide();
-        window.location.href='registerStudent.php';
-    });
-
-    $('.close').click(function(){
-        $('#viewkeydel').hide();
-        window.location.href='registerStudent.php';
-    });
-*/
-    $('#regStudent').DataTable();
 
     $('.add-btn').on('click', function(e){
           e.preventDefault();
@@ -467,74 +441,99 @@
           e.preventDefault(); 
         });
 
-       var count = 1;
+       var count = 0;
        $('#add').click(function(){
         count = count + 1;
+        var spouse = $("#spouse").val();
         var html_code = "<tr id='row"+count+"'>";
-         html_code += "<td contenteditable='true' class='fname'></td>";
-         html_code += "<td contenteditable='true' class='mname'></td>";
-         html_code += "<td contenteditable='true' class='lname'></td>";
-         html_code += "<td contenteditable='true' class='gender'></td>";
+         html_code += "<td contenteditable='true' id='fname"+count+"'></td>";
+         html_code += "<td contenteditable='true' id='mname"+count+"'></td>";
+         html_code += "<td contenteditable='true' id='lname"+count+"'></td>";
+         html_code += "<td contenteditable='true' id='gender"+count+"'></td>";
        //  html_code += "<td contenteditable='true' class='bday'></td>";
-         html_code += '<td><input class="bday" type="date"></td>';
-         html_code += '<td class="house_memship"><select class="membship"><option value="dependent">Dependent</option><option value="head">Head</option><option value="head\'s spouse">Head\'s Spouse</option></select></td>';
+         html_code += '<td><input id="bday'+count+'" type="date"></td>';
+         html_code += "<td></td>";
+         
+         if(spouse == 1) {
+          html_code += '<td class="house_memship"><select id="membship'+count+'"><option value="dependent">Dependent</option></select></td>';
+         } else {
+
+         html_code += '<td class="house_memship"><select id="membship'+count+'"><option value="dependent">Dependent</option><option value="head\'s spouse">Head\'s Spouse</option></select></td>';
+         }
       //   html_code += "<td contenteditable='true' class='age'></td>";
       //   html_code += "<td contenteditable='true' class='house_memship'></td>";
          html_code += "<td><button type='button' id='remove' name='remove' data-row='row"+count+"' class='btn btn-danger btn-xs remove'>-</button></td>";   
-         html_code += "<td><button type='button' id='saveMember' name='saveMember' data-row='row"+count+"' class='btn btn-primary btn-xs saveMember'>Save</button></td>";
+         html_code += '<td><button type="button" name="saveMember" value="'+count+'" id="saveMember" class="btn btn-info">Save</button></td>';
          html_code += "</tr>";  
          $('#table').append(html_code);
+         $(this).attr("disabled", "disabled");
        });
        
        $(document).on('click', '.remove', function(){
         var delete_row = $(this).data("row");
         $('#' + delete_row).remove();
+        $("#add").attr("disabled", false);
        });
-       
 
+       $(document).on('click', "#saveMember", function() {
 
+          var id = $(this).val();
+          var fname = $("#fname" + id).text();
+          var mname = $("#mname" + id).text();
+          var lname = $("#lname" + id).text();
+          var gender = $("#gender" + id).text();
+          var bday = $("#bday" + id).val();
+          var house_memship = $("#membship" + id).val();
+          var house_no = $("#Ohouse_no").val();
+          var street = $("#Ostreet").val();
+          var brgy_id = $("#Obrgy_id").val();
+          var household_id = $("#household_id").val();
 
-        $('#saveMember').click(function(){
-          var fname = [];
-          var mname = [];
-          var lname = [];
-          var gender = [];
-          var bday = [];
-          var house_memship = [];
-          $('.fname').each(function(){
-           name.push($(this).text());
-          });
-          $('.mname').each(function(){
-           mname.push($(this).text());
-          });
-          $('.lname').each(function(){
-           lname.push($(this).text());
-          });
-          $('.gender').each(function(){
-           gender.push($(this).text());
-          });
-          $('.bday').each(function(){
-          bday.push($(this).val());
-          });
-          $('.membship').each(function(){
-          house_memship.push($(this).val());
-          });
+      /*    if(fname.length != 0 && mname.length != 0 && lname != "" && gender != "" && bday != "" && house_memship != "") {
+
+          }
+          
+      */
+      if(bday != "" && fname != "" && mname != "" && lname != "" && gender != "" && house_memship != "") {
           $.ajax({
            url:"functions/insertMember.php",
            method:"POST",
-           data: 
-           { 
-           fname:fname, mname:mname, lname:lname, gender:gender, bday:bday, /* age:age, */ house_memship:house_memship },
-           success:function(data){
-            alert(data);
-            $("td[contentEditable='true']").text("");
-            for(var i=2; i<= count; i++)
-            {
-             $('tr#'+i+'').remove();
-            }
-            fetch_item_data();
+           data: {
+            fname: fname, mname: mname, lname: lname, gender: gender, bday: bday, /* age:age, */ house_memship: house_memship, house_no: house_no, street: street, brgy_id: brgy_id, household_id: household_id },
+           success:function(response) {
+            var array = JSON.parse(response);
+            $("#row1").remove();
+
+            var html;
+            html = "";
+
+            html += "<tr id='"+array['resident_id']+"'>";
+            html += "<form method='post' action='functions/householdFunctions.php?resident_id="+array["resident_id"]+"&household_id="+array["household_id"]+"'>";
+            html += "<td data-target='fname'>"+array['fname']+"</td>";
+            html += "<td data-target='mname'>"+array['mname']+"</td>";
+            html += "<td data-target='lname'>"+array['lname']+"</td>";
+            html += "<td data-target='gender'>"+array['gender']+"</td>";
+            html += "<td data-target='bday'>"+array['bday']+"</td>";
+            birthday = new Date(array["bday"]);
+
+            var ageDifMs = Date.now() - birthday.getTime();
+            var ageDate = new Date(ageDifMs);
+            age = Math.abs(ageDate.getUTCFullYear() - 1970);
+            
+            html += "<td data-target='age'>"+age+"</td>";
+            html += "<td data-target='house_memship'>"+array['house_memship']+"</td>";
+            html += "<td><a href='#' data-role='update' data-id='"+array['resident_id']+"'>update</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+            html += '<a href="updateHousehold.php?deleteMember=1&resident_id='+array['resident_id']+'&household_id='+array['household_id']+'" class="btn btn-danger">-</a>';
+            html += "</td></form></tr>";
+
+            $('#table').append(html);
+    //        fetch_item_data();
            }
           });
+      } else {
+        alert("Please fill up all of the fields!");
+      }
+
          });
 
 
@@ -586,7 +585,7 @@
           {
            $('tr#'+i+'').remove();
           }
-          fetch_item_data();
+      //    fetch_item_data();
          }
         });
        });
@@ -604,7 +603,7 @@
          }
         })
        }
-       fetch_item_data();
+    //   fetch_item_data();
        
       }); 
 

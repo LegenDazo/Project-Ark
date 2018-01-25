@@ -52,7 +52,7 @@
                                 </tr>
                               </thead>
                               <?php
-                              $myrow = $dataOperations->retrieveSponsorData();
+                              $myrow = $dataOperation->retrieveSponsorData();
                               foreach ($myrow as $row) {
                                 ?>
                                    <tr>

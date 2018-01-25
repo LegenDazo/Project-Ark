@@ -21,43 +21,52 @@
     $pdf = new FPDF('P','mm',array(215.9,279.4));
 
     $pdf->AddPage();
-    $pdf->SetFont("Arial","","16");
+    $pdf->SetFont("Arial","B","16");
     $pdf->Cell(0,10,"EVACUATION CENTER REPORT",0,1,"C");
     
-    $pdf->SetFont("Arial","","12");
+    $pdf->SetFont("Arial","B","12");
     $pdf->Cell(40,10,"Evacuation Center:",0,0,"L");
+    $pdf->SetFont("Arial","","12");
     $pdf->Cell(80,10,$location_name,0,0,"L");
 
+    $pdf->SetFont("Arial","B","12");
     $pdf->Cell(40,10,"City/Municipality:",0,0,"L");
+    $pdf->SetFont("Arial","","12");
     $pdf->Cell(0,10,$city,0,1,"L");
     
+    $pdf->SetFont("Arial","B","12");
     $pdf->Cell(40,3,"Street:",0,0,"L");
+    $pdf->SetFont("Arial","","12");
     $pdf->Cell(80,3,$street,0,0,"L");
 
+    $pdf->SetFont("Arial","B","12");
     $pdf->Cell(40,3,"Province:",0,0,"L");
+    $pdf->SetFont("Arial","","12");
     $pdf->Cell(0,3,$province,0,1,"L");
 
+    $pdf->SetFont("Arial","B","12");
     $pdf->Cell(40,10,"Barangay:",0,0,"L");
+    $pdf->SetFont("Arial","","12");
     $pdf->Cell(0,10,$barangay,0,1,"L");
 
-    $pdf->SetFont("Arial","I","12");
-    $pdf->Cell(60,20,"No. of Evacuees:",0,0,"L");
     $pdf->SetFont("Arial","B","12");
+    $pdf->Cell(60,20,"No. of Evacuees:",0,0,"L");
+    $pdf->SetFont("Arial","","12");
     $pdf->Cell(0,20,$total = $demog->retrieveNumberOfEvacueesInSpecificEvac($evac_id),0,1,"L");
 
-    $pdf->SetFont("Arial","I","12");
-    $pdf->Cell(60,0,"No. of Families Evacuated:",0,0,"L");
     $pdf->SetFont("Arial","B","12");
+    $pdf->Cell(60,0,"No. of Families Evacuated:",0,0,"L");
+    $pdf->SetFont("Arial","","12");
     $pdf->Cell(0,0,$total = $demog->retrieveNumberOfFamiliesEvacuated($evac_id),0,1,"L");
 
-    $pdf->SetFont("Arial","I","12");
-    $pdf->Cell(60,20,"No. of Female Evacuees:",0,0,"L");
     $pdf->SetFont("Arial","B","12");
+    $pdf->Cell(60,20,"No. of Female Evacuees:",0,0,"L");
+    $pdf->SetFont("Arial","","12");
     $pdf->Cell(0,20,$total = $demog->retrieveNumberOfFemaleEvacueesInSpecificEvac($evac_id),0,1,"L");
 
-    $pdf->SetFont("Arial","I","12");
-    $pdf->Cell(60,0,"No. of Male Evacuees:",0,0,"L");
     $pdf->SetFont("Arial","B","12");
+    $pdf->Cell(60,0,"No. of Male Evacuees:",0,0,"L");
+    $pdf->SetFont("Arial","","12");
     $pdf->Cell(0,0,$total = $demog->retrieveNumberOfMaleEvacueesInSpecificEvac($evac_id),0,1,"L");
 
 
@@ -66,7 +75,7 @@
     $pdf->SetFont("Arial","B","14");
     $pdf->Cell(47,10,"Package Distribution",0,1,"L");
 
-    $pdf->SetFont("Arial","I","12");
+    $pdf->SetFont("Arial","B","12");
     $w = 195/4;
     $pdf->Cell($w,7,"Package Name",0,0,"L");
     $pdf->Cell($w,7,"Date Received",0,0,"L");
@@ -83,10 +92,11 @@
     }
 
     //Table for Health Status
+    $pdf->SetY(135);
     $pdf->SetFont("Arial","B","14");
     $pdf->Cell(47,10,"Health Status",0,1,"L");
 
-    $pdf->SetFont("Arial","I","12");
+    $pdf->SetFont("Arial","B","12");
     $pdf->Cell($w,7,"Diseases",0,0,"L");
     $pdf->Cell($w,7,"Infected",0,1,"L");
 

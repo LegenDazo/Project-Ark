@@ -32,8 +32,7 @@ if (isset($_POST['sendmessage'])) {
 	$message = "PROJECTARK ADVISORY! ";
 	$message .= $_POST['message'];
 	$contact = "";
-	$successCtr = 0;
-	$failedCtr = 0;
+
 
 	/*$parameters = array(
 	    'apikey' => 'cb679f4c0a2b5854601024571ea54c96', //Your API KEY
@@ -67,22 +66,10 @@ if (isset($_POST['sendmessage'])) {
 		
 				
 		curl_close ($ch);
-		$myoutput = json_decode($output, true);
-		foreach ($myoutput as $row) {
-			if ($row['status'] == 'pending') {
-				$successCtr++;
-			} else if ($row['status'] == 'failed') {
-				$failedCtr++;
-			}
-		}
 
+		header("location:message.php");
 		//Show the server response
-		echo "<pre>";
-		var_dump($myoutput);
-		echo "</pre>";
-		session_start();
-		echo $_SESSION['failed'] = $failedCtr;
-		echo $_SESSION['success'] = $successCtr;
+	
 		
 		
 		

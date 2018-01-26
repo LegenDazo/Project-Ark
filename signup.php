@@ -148,7 +148,7 @@
  				header("location:user/home.php");
  			} else {
  				session_start();
- 				$_SESSION['fname'] = $fname;
+ 			$_SESSION['fname'] = $fname;
  			$_SESSION['mname'] = $mname;
  			$_SESSION['lname'] = $lname;
  			$_SESSION['bdate'] = $bdate;

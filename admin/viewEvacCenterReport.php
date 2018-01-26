@@ -57,6 +57,18 @@
 
                   </table>
                   <br>
+                  <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-4">
+                      <form>
+                        <select class="form-control" name="period">
+                          <option value="">Select a Date...</option>
+                          <option>DATE</option>
+                        </select>
+                      </form>
+                    </div>
+                  </div>
+                  <br>
                   <a href="demographicsReportPdf.php?evac_id=<?php echo $evac_id;?>" target="_blank" class="btn btn-success">Generate PDF</a>
                   <br>
                   <h3>Demographics</h3>

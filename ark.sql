@@ -1,15 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.0
+-- version 4.6.5.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 26, 2018 at 10:05 AM
--- Server version: 10.1.26-MariaDB
--- PHP Version: 7.1.8
+-- Generation Time: Jan 26, 2018 at 11:41 AM
+-- Server version: 10.1.21-MariaDB
+-- PHP Version: 7.1.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -231,9 +229,25 @@ INSERT INTO `evacuationcenter` (`evac_id`, `location_name`, `population`, `capac
 CREATE TABLE `evacuationperiod` (
   `period_id` int(11) NOT NULL,
   `date_start` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `date_end` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `evac_id` int(11) NOT NULL
+  `date_end` timestamp NULL DEFAULT NULL,
+  `evac_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `evacuationperiod`
+--
+
+INSERT INTO `evacuationperiod` (`period_id`, `date_start`, `date_end`, `evac_id`) VALUES
+(1, '2018-01-26 10:16:48', '2018-01-26 10:16:48', 5),
+(2, '2018-01-26 10:18:38', '2018-01-26 10:18:38', 2),
+(3, '2018-01-26 10:18:30', '2018-01-26 10:18:30', 7),
+(4, '2018-01-26 10:19:54', NULL, 5),
+(5, '2018-01-26 10:19:55', NULL, 7),
+(6, '2018-01-26 10:19:56', '2018-01-26 10:19:56', 4),
+(7, '2018-01-26 10:19:57', NULL, 4),
+(8, '2018-01-26 10:19:58', NULL, 2),
+(9, '2018-01-26 10:19:59', NULL, 3),
+(10, '2018-01-26 10:20:00', NULL, 6);
 
 -- --------------------------------------------------------
 
@@ -711,7 +725,7 @@ ALTER TABLE `evacuationcenter`
 -- AUTO_INCREMENT for table `evacuationperiod`
 --
 ALTER TABLE `evacuationperiod`
-  MODIFY `period_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `period_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `household`
 --
@@ -818,7 +832,6 @@ ALTER TABLE `resident`
 --
 ALTER TABLE `sms`
   ADD CONSTRAINT `sms_ibfk_1` FOREIGN KEY (`username`) REFERENCES `user` (`username`);
-COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

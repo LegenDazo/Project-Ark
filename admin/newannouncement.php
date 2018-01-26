@@ -43,14 +43,7 @@
                            
                           <table>
                                                         
-                          <?php
-                                                   
-                              $myrow = $func->retrieveAdminInfo($_SESSION['username']);
-                              foreach ($myrow as $row) {
-
-                                echo $fname." ".$mname." ".$lname;
-                              }
-                              ?>
+                       
 
 
 
@@ -58,10 +51,12 @@
                               
                             $myrow = $func->retrieveAnnounceData();
                             foreach ($myrow as $row) {
-                        ?>
 
-                        <tr><td><?php echo date_format(new DateTime($row['datepost']), 'F d, Y h:i A');?></td></tr>
-                        <tr><td><?php echo $row['an_what']?></td></tr>                   
+                        ?>
+                        <tr><td><b><?php echo $row['fname']." ".$row['mname']." ".$row['lname'];?></b></td></tr>
+                        <tr><td><i><?php echo date_format(new DateTime($row['datepost']), 'F d, Y h:i A');?></i></td></tr>
+                        <tr><td><?php echo $row['an_what']?></td></tr>
+                        <tr><td><br></td></tr>                   
                                       
                         
                               <?php    

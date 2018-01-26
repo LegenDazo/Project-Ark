@@ -34,7 +34,7 @@
 
 		public function retrieveAnnounceData()
 		{
-			$sql = "SELECT * FROM newannouncement";
+			$sql = "SELECT * FROM newannouncement as a JOIN admin as b ON a.admin_id=b.username";
 			$query = mysqli_query($this->conn, $sql);
 			$itemArray = array();
 			while ($row = mysqli_fetch_assoc($query)) {
@@ -65,16 +65,7 @@
 			}
 		}
 
-		public function retrieveAdminInfo($username)
-		{
-			$sql = "SELECT * FROM admin WHERE username ='".$username."'";
-			$itemArray = array();
-			$query = mysqli_query($this->conn, $sql);
-			while ($row = mysqli_fetch_assoc($query)) {
-				$itemArray[] = $row;
-			}
-			return $itemArray;
-		}
+	
 
 	}
 

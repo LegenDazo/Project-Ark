@@ -38,35 +38,34 @@
                 <center><h4>List of Announcements</h4></center>
                       <div class="container" style="margin-top: 5%">
                         <div class="col-md-12">
-                          <div class="container" align="center">
+                          <div class="container-fluid" align="left">
                          
-                          <table class="table table-hovered" id="regStudent">
-                              <thead>
-                                <tr>                                  
-                                  <th>Admin ID</th>
-                                  <th>Date Posted</th>
-                                  <th>What</th>
-                                  <th>Action</th>  
-                                </tr>
-                              </thead>
-
+                          <table>
                               <?php
-                                  $myrow = $func->retrieveAnnounceData();
-                                  foreach ($myrow as $row) {
-                                    ?>
+                              
+                            $myrow = $func->retrieveAnnounceData();
+                            foreach ($myrow as $row) {
 
-                                      <tr>
-                                        <td><?php echo $row['admin_id']?></td>
-                                        <td><?php echo date_format(new DateTime($row['datepost']), 'F d, Y h:i A');?></td>                       
-                                        <td><?php echo $row['an_what']?></td>
-                                        <td><a href="viewAnnouncement.php?announcement_id=<?php echo $row['announcement_id'];?>" class="btn btn-info">View Details</a>&nbsp;&nbsp;&nbsp;
-                                          </td>
-                                          
-                                        
-                                      </tr>
-                                    <?php    
+                        ?>
+                        <tr><td><b><?php echo $row['fname']." ".$row['mname']." ".$row['lname'];?></b></td></tr>
+                        <tr><td>Date Posted:<i><?php echo " ". date_format(new DateTime($row['datepost']), 'F d, Y h:i A');?></i></td></tr>
+                        <tr><td>About:<?php echo " ".$row['an_about'];?></td></tr>
+                        <tr><td>Content:<?php echo " ".$row['an_what'];?></td></tr>
+                        <tr><td><br></td></tr>                   
+                                      
+                        
+                              <?php    
                                   }
+                              
                               ?>
+
+
+
+                              
+                          
+
+                          
+                        
                           </table>
                         </div>
                         </div>

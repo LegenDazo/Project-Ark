@@ -125,6 +125,7 @@
     }
   ?>
     $('#resident').DataTable();
+
 } );
 </script>
 </body>

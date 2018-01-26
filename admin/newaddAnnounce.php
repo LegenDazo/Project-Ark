@@ -47,13 +47,16 @@
                               
                                   <form method="POST" action="functions/newannounceFunctions.php">
                                      <div class="panel-body">  
+
+                                            <div class="form-group col-md-12">
+                                              <label for="an_about"><h6>About:</h6></label>
+                                              <textarea class="form-control" rows="2" id="an_about" name="an_about" required></textarea>                        
+                                            </div>
+
                                             <div class="form-group col-md-12">
                                               <label for="an_what"><h6>Input Announcements Below:</h6></label>
                                               <textarea class="form-control" rows="9" id="an_what" name="an_what" required></textarea>                        
                                             </div>
-                                        
- 
-    
 
                                     </div>  <!--End of .panel-body-->
                                     <br>     

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 26, 2018 at 04:26 AM
+-- Generation Time: Jan 26, 2018 at 09:20 AM
 -- Server version: 5.6.16
 -- PHP Version: 5.5.11
 
@@ -44,7 +44,7 @@ CREATE TABLE IF NOT EXISTS `admin` (
 
 INSERT INTO `admin` (`username`, `password`, `fname`, `mname`, `lname`, `gender`, `age`, `bday`) VALUES
 ('1', '', 'Jorge', 'Philip', 'Codilla', 'Male', 20, '1997-10-04'),
-('admin', '21232f297a57a5a743894a0e4a801fc3', 'John', 'Cab', 'Dazo', 'Male', 20, '1997-11-13'),
+('admin', '21232f297a57a5a743894a0e4a801fc3', 'Mylene', 'Cab', 'Dazo', 'Male', 20, '1997-11-13'),
 ('admin123', '0192023a7bbd73250516f069df18b500', 'Kent', 'Cab', 'Virtudazo', 'male', 20, '2016-02-29');
 
 -- --------------------------------------------------------
@@ -96,7 +96,7 @@ CREATE TABLE IF NOT EXISTS `attendance` (
   PRIMARY KEY (`attendance_id`),
   UNIQUE KEY `resident_id` (`resident_id`),
   KEY `evac_id` (`evac_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=27 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=35 ;
 
 --
 -- Dumping data for table `attendance`
@@ -104,16 +104,22 @@ CREATE TABLE IF NOT EXISTS `attendance` (
 
 INSERT INTO `attendance` (`attendance_id`, `date`, `resident_id`, `evac_id`, `status`) VALUES
 (11, '2018-01-20 10:56:35', 6, 5, 1),
-(12, '2018-01-20 10:56:38', 9, 2, 1),
 (13, '2018-01-20 10:56:39', 2, 2, 1),
 (14, '2018-01-20 10:56:42', 3, 6, 1),
 (15, '2018-01-20 10:56:43', 7, 6, 1),
 (16, '2018-01-20 10:56:46', 8, 2, 1),
-(17, '2018-01-20 10:56:47', 1, 2, 1),
 (23, '2018-01-25 09:16:10', 40, 7, 1),
-(24, '2018-01-25 09:16:31', 33, 7, 1),
-(25, '2018-01-25 09:16:32', 29, 7, 1),
-(26, '2018-01-25 09:21:06', 14, 7, 1);
+(24, '2018-01-26 06:57:24', 4, 5, 1),
+(25, '2018-01-26 06:57:25', 47, 5, 1),
+(26, '2018-01-26 06:57:27', 33, 5, 1),
+(27, '2018-01-26 06:57:28', 29, 5, 1),
+(28, '2018-01-26 07:02:49', 13, 5, 1),
+(29, '2018-01-26 07:02:50', 17, 5, 1),
+(30, '2018-01-26 07:02:51', 10, 5, 1),
+(31, '2018-01-26 07:02:52', 26, 5, 1),
+(32, '2018-01-26 07:09:30', 31, 5, 1),
+(33, '2018-01-26 07:09:31', 41, 5, 1),
+(34, '2018-01-26 07:09:33', 45, 5, 1);
 
 -- --------------------------------------------------------
 
@@ -147,7 +153,7 @@ CREATE TABLE IF NOT EXISTS `disease` (
   `disease_id` int(11) NOT NULL AUTO_INCREMENT,
   `disease_name` varchar(255) NOT NULL,
   PRIMARY KEY (`disease_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `disease`
@@ -157,7 +163,8 @@ INSERT INTO `disease` (`disease_id`, `disease_name`) VALUES
 (2, 'colds'),
 (3, 'fever'),
 (4, 'lbm'),
-(5, 'cough');
+(5, 'cough'),
+(6, 'amaw');
 
 -- --------------------------------------------------------
 
@@ -172,7 +179,7 @@ CREATE TABLE IF NOT EXISTS `diseaseacquired` (
   `date_acquired` timestamp NULL DEFAULT NULL,
   `date_cured` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`acquired_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=18 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=22 ;
 
 --
 -- Dumping data for table `diseaseacquired`
@@ -185,7 +192,11 @@ INSERT INTO `diseaseacquired` (`acquired_id`, `resident_id`, `disease_id`, `date
 (14, 3, 3, '2018-01-18 04:02:36', '2018-01-22 15:02:34'),
 (15, 4, 2, '2018-01-18 04:02:36', NULL),
 (16, 1, 2, '2018-01-18 04:02:36', '0000-00-00 00:00:00'),
-(17, 1, 4, '2018-01-24 16:00:00', NULL);
+(17, 1, 4, '2018-01-24 16:00:00', NULL),
+(18, 3, 3, '2018-01-24 16:00:00', '2018-01-26 04:57:21'),
+(19, 27, 5, '2017-11-10 16:00:00', NULL),
+(20, 31, 3, '2018-01-15 16:00:00', NULL),
+(21, 31, 4, '2018-01-19 16:00:00', NULL);
 
 -- --------------------------------------------------------
 
@@ -213,12 +224,12 @@ CREATE TABLE IF NOT EXISTS `evacuationcenter` (
 --
 
 INSERT INTO `evacuationcenter` (`evac_id`, `location_name`, `population`, `capacity`, `latitude`, `longitude`, `brgy_id`, `house_no`, `street`, `status`) VALUES
-(2, 'Metrobank', 6, 100, 10.3692, 123.917, 7, 100, 'Gov. M. Cuenco Ave', 'active'),
+(2, 'Metrobank', 4, 100, 10.3692, 123.917, 7, 100, 'Gov. M. Cuenco Ave', 'active'),
 (3, 'San Isidro Parish School', 0, 200, 10.3691, 123.918, 7, 0, 'Gov. M. Cuenco Ave', 'active'),
 (4, 'FOTOJAYA STUDIO', 0, 50, 10.3692, 123.916, 7, 0, 'Gov. M. Cuenco Ave', 'active'),
-(5, 'Barangay Talamban Gymnasium', 2, 300, 10.3696, 123.917, 7, 0, 'Gov. M. Cuenco Ave', 'active'),
+(5, 'Barangay Talamban Gymnasium', 13, 300, 10.3696, 123.917, 7, 0, 'Gov. M. Cuenco Ave', 'active'),
 (6, 'Talamban Christian School', 2, 200, 10.3688, 123.916, 7, 0, 'Gov. M. Cuenco Ave', 'active'),
-(7, 'Evac2', 4, 300, 10.3698, 123.918, 7, 0, 'Talamban', 'active');
+(7, 'Evac2', 1, 300, 10.3698, 123.918, 7, 0, 'Talamban', 'active');
 
 -- --------------------------------------------------------
 
@@ -293,16 +304,19 @@ CREATE TABLE IF NOT EXISTS `newannouncement` (
   `announce_id` int(11) NOT NULL AUTO_INCREMENT,
   `datepost` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `admin_id` varchar(25) NOT NULL,
+  `an_about` varchar(2000) NOT NULL,
   `an_what` varchar(1000) NOT NULL,
   PRIMARY KEY (`announce_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `newannouncement`
 --
 
-INSERT INTO `newannouncement` (`announce_id`, `datepost`, `admin_id`, `an_what`) VALUES
-(1, '2018-01-26 03:22:21', '1', 'Mangamatay ra tang tanan');
+INSERT INTO `newannouncement` (`announce_id`, `datepost`, `admin_id`, `an_about`, `an_what`) VALUES
+(1, '2018-01-26 03:22:21', '1', '', 'Mangamatay ra tang tanan'),
+(2, '2018-01-26 07:55:09', '1', 'Forever', 'Way forever'),
+(3, '2018-01-26 08:07:04', 'admin', 'EDI WEH!', 'Lorem ipsum dolor sit amet');
 
 -- --------------------------------------------------------
 
@@ -327,7 +341,14 @@ INSERT INTO `packagedistribution` (`packdist_id`, `date_dist`, `package_id`, `ho
 (0, '2018-01-18 04:13:16', 1, 1),
 (0, '2018-01-18 07:59:26', 1, 5),
 (0, '2018-01-25 09:19:15', 1, 6),
-(0, '2018-01-25 09:20:43', 1, 7);
+(0, '2018-01-25 09:20:43', 1, 7),
+(0, '2018-01-26 06:56:36', 4, 5),
+(0, '2018-01-26 06:58:06', 4, 6),
+(0, '2018-01-26 07:02:07', 4, 1),
+(0, '2018-01-26 07:02:13', 1, 8),
+(0, '2018-01-26 07:08:07', 2, 1),
+(0, '2018-01-26 07:08:12', 2, 5),
+(0, '2018-01-26 07:08:35', 3, 8);
 
 -- --------------------------------------------------------
 
@@ -341,14 +362,16 @@ CREATE TABLE IF NOT EXISTS `reliefoperation` (
   `evac_id` int(11) NOT NULL,
   PRIMARY KEY (`operation_id`),
   KEY `evac_id` (`evac_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `reliefoperation`
 --
 
 INSERT INTO `reliefoperation` (`operation_id`, `operation_name`, `evac_id`) VALUES
-(1, 'sagip capstone', 2);
+(1, 'sagip capstone', 2),
+(2, 'doh', 5),
+(3, 'doh', 5);
 
 -- --------------------------------------------------------
 
@@ -369,7 +392,10 @@ CREATE TABLE IF NOT EXISTS `reliefpackage` (
 
 INSERT INTO `reliefpackage` (`package_id`, `package_name`, `operation_id`) VALUES
 (1, 'Medicine', 1),
-(2, 'Foodie', 1);
+(2, 'Foodie', 1),
+(3, 'Drink', 1),
+(4, 'Clothes', 1),
+(5, 'All in', 2);
 
 -- --------------------------------------------------------
 
@@ -483,14 +509,15 @@ CREATE TABLE IF NOT EXISTS `sponsor` (
   `address` varchar(255) NOT NULL,
   `contact_no` varchar(11) NOT NULL,
   PRIMARY KEY (`sponsor_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
 -- Dumping data for table `sponsor`
 --
 
 INSERT INTO `sponsor` (`sponsor_id`, `sponsor_name`, `sponsor_type`, `address`, `contact_no`) VALUES
-(1, 'Philippine Government', 'Govenment Organization', 'hhdhsf', '9ye3y3');
+(1, 'Philippine Government', 'Govenment Organization', 'hhdhsf', '9ye3y3'),
+(2, 'Mylene ', 'Annonymous', 'Albay Naga', '6854054');
 
 -- --------------------------------------------------------
 
@@ -517,11 +544,9 @@ CREATE TABLE IF NOT EXISTS `user` (
 INSERT INTO `user` (`username`, `password`, `fname`, `mname`, `lname`, `bdate`, `contact_no`, `gender`) VALUES
 ('AlphaDog', 'c0f5a2169ee33f27623573afbe0433bf', 'Kevin ', 'Luardo', 'Cubillo', '1999-09-30', '09257336637', 'Male'),
 ('amrafeeler', '563299f71f47f1230fb7fc85eafca888', 'Amrafel John', 'Guardiana', 'Tulingin', '1999-01-18', '09333392660', 'Male'),
-('Dazolater', 'c8dce89a1fd0b76ddc588dc2a4f10feb', 'Kentoy', 'Kentoy', 'Kentoy', '1997-12-12', '09224165592', ''),
-('dazolator', 'dazolator21', 'kent', 'cab', 'virtz', '2018-01-01', '09159294204', ''),
 ('EevieTachi69', '058049fad40b9368a5bfad678b5db3bf', 'Geneveve', 'Alatraca', 'Bacalso', '1998-07-26', '09154374633', 'Female'),
-('Jon Snow', 'f4b6f3f69b69f820929773d61b4680e1', 'marchell', 'suico', 'martirez', '1997-02-05', '09158408532', 'Select'),
-('legendazo', 'a21aaacde7e7d39e551dc0dd58ffe950', 'John Kent', 'Cabanez', 'Virtudazo', '1997-11-13', '09994738632', ''),
+('Jon Snow', '694a1e7cf5570a6587cda63eb639267a', 'marchell', 'suico', 'martirez', '1997-02-05', '09158408532', 'Male'),
+('kentoy123', '1ca8a4c262a2a3f2856b24775facf0f8', 'Kent', 'Cabanez', 'Virtudazo', '1997-11-13', '09994738632', 'Male'),
 ('norfphine', '198eecd3f0e748d7327fbcd9f09b3b8b', 'Norfphine', 'C', 'Saberon', '1998-01-29', '09420409523', 'Female'),
 ('sheenahespiritu', 'df10ef8509dc176d733d59549e7dbfaf', 'Sheenah Mae', 'Cabico', 'Espiritu', '1997-03-05', '09238416200', 'Female'),
 ('theprincessofthestars', 'df93c9d4a03ca3818ad391e96955ebdc', 'Elizabeth Hope', 'Velasquez', 'Soberano', '1999-01-19', '09055488757', 'Female'),

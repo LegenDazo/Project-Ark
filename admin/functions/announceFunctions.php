@@ -34,7 +34,7 @@
 
 		public function retrieveAnnounceData()
 		{
-			$sql = "SELECT * FROM announcement";
+			$sql = "SELECT * FROM newannouncement as a JOIN admin as b ON a.admin_id=b.username ORDER BY datepost DESC";
 			$query = mysqli_query($this->conn, $sql);
 			$itemArray = array();
 			while ($row = mysqli_fetch_assoc($query)) {

@@ -54,8 +54,9 @@
 
                         ?>
                         <tr><td><b><?php echo $row['fname']." ".$row['mname']." ".$row['lname'];?></b></td></tr>
-                        <tr><td><i><?php echo date_format(new DateTime($row['datepost']), 'F d, Y h:i A');?></i></td></tr>
-                        <tr><td><?php echo $row['an_what']?></td></tr>
+                        <tr><td>Date Posted:<i><?php echo date_format(new DateTime($row['datepost']), 'F d, Y h:i A');?></i></td></tr>
+                        <tr><td>About:<?php echo " ".$row['an_about'];?></td></tr>
+                        <tr><td><?php echo $row['an_what'];?></td></tr>
                         <tr><td><br></td></tr>                   
                                       
                         

@@ -10,9 +10,9 @@
 			$this->conn = mysqli_connect("localhost", "root", "", "ark");
 		}
 
-		public function insertAnnounce($admin_id, $an_what)
+		public function insertAnnounce($admin_id, $an_about, $an_what)
 		{
-			$sql = "INSERT INTO newannouncement (admin_id, an_what) VALUES ('".$admin_id."','".$an_what."')";
+			$sql = "INSERT INTO newannouncement (admin_id, an_about, an_what) VALUES ('".$admin_id."','".$an_about."','".$an_what."')";
 			$query = mysqli_query($this->conn, $sql);
 			if ($query) {
 				return true;
@@ -34,7 +34,7 @@
 
 		public function retrieveAnnounceData()
 		{
-			$sql = "SELECT * FROM newannouncement as a JOIN admin as b ON a.admin_id=b.username";
+			$sql = "SELECT * FROM newannouncement as a JOIN admin as b ON a.admin_id=b.username ORDER BY datepost DESC";
 			$query = mysqli_query($this->conn, $sql);
 			$itemArray = array();
 			while ($row = mysqli_fetch_assoc($query)) {
@@ -72,11 +72,13 @@
 	$func = new Functions;
 
 	if (isset($_POST['submitannounce'])) {
-		$admin_id = 1;
+		session_start();
+		$admin_id = $_SESSION['username'];
+		$an_about = mysqli_real_escape_string($func->conn, $_POST['an_about']);
 		$an_what = mysqli_real_escape_string($func->conn, $_POST['an_what']);
 
 		
-		if ($func->insertAnnounce($admin_id, $an_what)) {
+		if ($func->insertAnnounce($admin_id, $an_about, $an_what)) {
 			header("location:../newannouncement.php?inserted=1");
 		}
 	}
@@ -84,10 +86,11 @@
 	if (isset($_POST['updateannounce'])) {
 
 		$announce_id = mysqli_real_escape_string($func->conn, $_GET['announce_id']);
+		$an_about = mysqli_real_escape_string($func->conn, $_POST['an_about']);
 		$an_what = mysqli_real_escape_string($func->conn, $_POST['an_what']);
 		
 				
-		if ($func->updateAnnounce($announce_id, $an_what)) {
+		if ($func->updateAnnounce($announce_id, $an_about, $an_what)) {
 			header("location:../viewAnnounceDetails.php?updated=1&announce_id=$announce_id");
 		}
 	}

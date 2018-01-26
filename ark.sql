@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 26, 2018 at 12:18 PM
+-- Generation Time: Jan 26, 2018 at 01:51 PM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 7.1.1
 
@@ -349,17 +349,17 @@ CREATE TABLE `packagedistribution` (
 --
 
 INSERT INTO `packagedistribution` (`packdist_id`, `date_dist`, `package_id`, `household_id`) VALUES
-(0, '2018-01-18 04:13:16', 1, 1),
-(0, '2018-01-18 07:59:26', 1, 5),
-(0, '2018-01-25 09:19:15', 1, 6),
-(0, '2018-01-25 09:20:43', 1, 7),
-(0, '2018-01-26 06:56:36', 4, 5),
-(0, '2018-01-26 06:58:06', 4, 6),
-(0, '2018-01-26 07:02:07', 4, 1),
-(0, '2018-01-26 07:02:13', 1, 8),
-(0, '2018-01-26 07:08:07', 2, 1),
-(0, '2018-01-26 07:08:12', 2, 5),
-(0, '2018-01-26 07:08:35', 3, 8);
+(1, '2018-01-18 04:13:16', 1, 1),
+(2, '2018-01-18 07:59:26', 1, 5),
+(3, '2018-01-25 09:19:15', 1, 6),
+(4, '2018-01-25 09:20:43', 1, 7),
+(5, '2018-01-26 06:56:36', 4, 5),
+(6, '2018-01-26 06:58:06', 4, 6),
+(7, '2018-01-26 07:02:07', 4, 1),
+(8, '2018-01-26 07:02:13', 1, 8),
+(9, '2018-01-26 07:08:07', 2, 1),
+(10, '2018-01-26 07:08:12', 2, 5),
+(11, '2018-01-26 07:08:35', 3, 8);
 
 -- --------------------------------------------------------
 
@@ -640,6 +640,7 @@ ALTER TABLE `newannouncement`
 -- Indexes for table `packagedistribution`
 --
 ALTER TABLE `packagedistribution`
+  ADD PRIMARY KEY (`packdist_id`),
   ADD KEY `package_id` (`package_id`),
   ADD KEY `household_id` (`household_id`);
 
@@ -743,6 +744,11 @@ ALTER TABLE `item`
 --
 ALTER TABLE `newannouncement`
   MODIFY `announce_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT for table `packagedistribution`
+--
+ALTER TABLE `packagedistribution`
+  MODIFY `packdist_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `reliefoperation`
 --

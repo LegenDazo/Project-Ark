@@ -73,6 +73,16 @@
 				return false;
 			}
 		}
+
+		public function getEvacDates($evac_id)
+		{
+			$sql = "SELECT * FROM evacuationperiod WHERE evac_id = '".$evac_id."' ORDER BY date_start";
+			$query = mysqli_query($this->conn, $sql);
+			while ($row = mysqli_fetch_assoc($query)) {
+				$evacArray[] = $row;
+			}
+			return $evacArray;
+		}
 		
 	}
 

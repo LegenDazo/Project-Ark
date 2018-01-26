@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 26, 2018 at 11:41 AM
+-- Generation Time: Jan 26, 2018 at 12:18 PM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 7.1.1
 
@@ -228,7 +228,7 @@ INSERT INTO `evacuationcenter` (`evac_id`, `location_name`, `population`, `capac
 
 CREATE TABLE `evacuationperiod` (
   `period_id` int(11) NOT NULL,
-  `date_start` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `date_start` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `date_end` timestamp NULL DEFAULT NULL,
   `evac_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -241,13 +241,15 @@ INSERT INTO `evacuationperiod` (`period_id`, `date_start`, `date_end`, `evac_id`
 (1, '2018-01-26 10:16:48', '2018-01-26 10:16:48', 5),
 (2, '2018-01-26 10:18:38', '2018-01-26 10:18:38', 2),
 (3, '2018-01-26 10:18:30', '2018-01-26 10:18:30', 7),
-(4, '2018-01-26 10:19:54', NULL, 5),
+(4, '2018-01-26 11:02:16', '2018-01-26 11:02:16', 5),
 (5, '2018-01-26 10:19:55', NULL, 7),
 (6, '2018-01-26 10:19:56', '2018-01-26 10:19:56', 4),
 (7, '2018-01-26 10:19:57', NULL, 4),
 (8, '2018-01-26 10:19:58', NULL, 2),
 (9, '2018-01-26 10:19:59', NULL, 3),
-(10, '2018-01-26 10:20:00', NULL, 6);
+(10, '2018-01-26 10:20:00', NULL, 6),
+(11, '2018-01-26 11:02:20', '2018-01-26 11:03:14', 5),
+(12, '2018-01-26 11:03:17', NULL, 5);
 
 -- --------------------------------------------------------
 
@@ -725,7 +727,7 @@ ALTER TABLE `evacuationcenter`
 -- AUTO_INCREMENT for table `evacuationperiod`
 --
 ALTER TABLE `evacuationperiod`
-  MODIFY `period_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `period_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT for table `household`
 --

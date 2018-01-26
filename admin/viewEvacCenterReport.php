@@ -58,12 +58,28 @@
                   </table>
                   <br>
                   <div class="row">
-                    <div class="col-md-2"></div>
-                    <div class="col-md-4">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-5">
                       <form>
                         <select class="form-control" name="period">
                           <option value="">Select a Date...</option>
-                          <option>DATE</option>
+                          <?php
+                            $dates = $obj->getEvacDates($evac_id);
+                            foreach($dates as $date) {
+                              $time = strtotime($date["date_start"]);
+                              $start = date("M d, Y (h:iA)", $time);
+                              echo $date["date_start"];
+                              echo "<option>".$start." to ";
+                              if(isset($date["date_end"])) {
+                                $time = strtotime($date["date_end"]);
+                                $end = date("M d, Y (h:iA)", $time);
+                                echo $end;
+                              } else {
+                                echo "present";
+                              }
+                              echo "</option>";
+                            }
+                          ?>
                         </select>
                       </form>
                     </div>

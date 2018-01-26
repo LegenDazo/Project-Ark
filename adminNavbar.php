@@ -66,7 +66,7 @@ include 'login.php';;
                       <a class="nav-link collapsed" href="#submenu2" data-toggle="collapse" data-target="#submenu2"><i class="material-icons">build</i>  Services</a>
                         <div class="collapse" id="submenu2" aria-expanded="false">
                               <ul class="flex-column pl-2 nav">
-                                  <li class="nav-item"><a class="nav-link pt-1" href="newannouncement.php">Announcements</a></li>
+                                  <li class="nav-item"><a class="nav-link pt-1" href="announcement.php">Announcements</a></li>
                                   <li class="nav-item"><a class="nav-link pt-1" href="listOfEvacCenters.php">Evacuation Centers</a></li>
                                   <li class="nav-item"><a class="nav-link pt-1" href="message.php">Messages</a></li>
                               </ul>

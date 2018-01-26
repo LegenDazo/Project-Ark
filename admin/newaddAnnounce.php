@@ -16,8 +16,10 @@
   <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
   <link rel="stylesheet" href="../style.css">
   <link rel="stylesheet" href="../materialize/icons.css">
-  <link rel="stylesheet" type="text/css" href="../datatables/datatables.css">
-  <link rel="stylesheet" type="text/css" href="../datatables/datatables-bootstrap.css">
+
+  <!-- Include Editor style. -->
+<link href='../froala_editor/css/froala_editor.css' rel='stylesheet' type='text/css' />
+<link href='../froala_editor/css/froala_style.css' rel='stylesheet' type='text/css' />
 </head>
 
 <body>
@@ -50,12 +52,13 @@
 
                                             <div class="form-group col-md-12">
                                               <label for="an_about"><h6>About:</h6></label>
-                                              <textarea class="form-control" rows="2" id="an_about" name="an_about" required></textarea>                        
+                                              <input type="text" class="form-control" id="an_about" name="an_about" required>                      
                                             </div>
 
                                             <div class="form-group col-md-12">
                                               <label for="an_what"><h6>Input Announcements Below:</h6></label>
-                                              <textarea class="form-control" rows="9" id="an_what" name="an_what" required></textarea>                        
+                                              <textarea class="form-control" rows="9" maxlength="1000" value="<?php echo $an_what;?>" id="an_what" name="an_what" required></textarea>  
+                                                                    
                                             </div>
 
                                     </div>  <!--End of .panel-body-->
@@ -63,7 +66,7 @@
                                     
                                         <div class="panel-footer">
                                           <div class="text-right">
-                                          <a href="newannouncement.php" class="btn btn-warning">Cancel</a>  
+                                          <a href="announcement.php" class="btn btn-warning">Cancel</a>  
                                           <button type="submit" class="btn btn-primary" name="submitannounce">Post</button>
                                           </div>
                                         </div>

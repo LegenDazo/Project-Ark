@@ -184,8 +184,10 @@
 <script>
 
 $(document).ready(function(){
-  $("#date").change(function(){
-    $("#period").submit();
+  $("#date").change(function() {
+    if($("#date").val() != "") {
+      $("#period").submit();
+    }
   });
 });
 

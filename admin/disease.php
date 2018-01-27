@@ -73,6 +73,22 @@ include 'functions/retrieveDisease.php'
                             ?>                             
                           </table>
                         </div>
+
+                        <div class="modal" id="viewkey" role="dialog">
+                              <div class="modal-dialog modal-md">
+                                  <div class="modal-content">
+                                    <div class='modal-header'>
+                                      <h5 class="modal-title" id="exampleModalLabel"><strong>Message</strong></h5>
+                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><h6>Close</h6></button>                                          
+                                    </div>
+                                    <div class="modal-body">
+                                        <h3>Disease Added!</h3>
+                                    </div>
+                                    <div class="modal-footer"></div>
+                                  </div>
+                              </div>
+                        </div>
+
                       </div>
                     </div>
               </div><!--END OF RIGHTCARD--> 
@@ -100,8 +116,41 @@ include 'functions/retrieveDisease.php'
     }
   ?>
 
+   $('.close').click(function(){
+        $('#viewkey').hide();
+        window.location.href='disease.php';
+    });
+
+    $('.close').click(function(){
+        $('#viewkeydel').hide();
+        window.location.href='disease.php';
+    });
+
     $('#regStudent').DataTable();
 } );
+</script>
+
+<script>
+   $(document).ready(function(){
+        <?php 
+          if(isset($_GET['msg'])){
+            echo "$('#viewkey').show();";
+          }
+        ?>
+        $('.close').click(function(){
+            $('#viewkey').hide();
+            window.location.href="disease.php?disease_id="+<?php echo $disease_id;?>;
+        });
+        $('#delete').click(function(){
+            $('#viewConfirm').show();
+            $('#confirm').click(function(){
+                window.location.href="functions/diseaseFunctions.php?deleteDisease=1&disease_id=<?php echo $disease_id;?>";
+            });
+            $('#cancel').click(function(){
+                $('#viewConfirm').hide();
+            });
+        });
+    });
 </script>
 
 

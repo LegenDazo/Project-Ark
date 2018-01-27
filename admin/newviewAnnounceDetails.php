@@ -89,7 +89,7 @@
                                           <h5 class="modal-title" id="exampleModalLabel"><strong>Message</strong></h5>
                                       </div>
                                       <div class="modal-body">
-                                          <h3>Updated Barangay data successfully</h3>
+                                          <h3>Announcement Successfully Updated</h3>
                                       </div>
                                       <div class="modal-footer"></div>
                                     </div>
@@ -102,7 +102,7 @@
                                           <h5 class="modal-title" id="exampleModalLabel"><strong>Message</strong></h5>
                                       </div>
                                       <div class="modal-body">
-                                          <h4>Are you sure you want to delete this record?</h4>
+                                          <h4>Are you sure you want to delete this announcement?</h4>
                                       </div>
                                       <div class="modal-footer">
                                           <button id='confirm' class='btn btn-danger btn-md'>Confirm</button>

@@ -95,6 +95,17 @@
 		}
 	}
 
+	if (isset($_GET['delfromhome'])) {
+		$delfromhome = $_GET['delfromhome'];
+		$announce_id = mysqli_real_escape_string($func->conn, $_GET['announce_id']);
+				
+		if($delfromhome == 'delete'){		
+			if ($func->deleteAnnounce($announce_id)) {
+			header("location:announcement.php?deleted=1");
+			}
+		} 
+	}
+
 	if (isset($_GET['deleteannounce'])) {
 		$deleteannounce = $_GET['deleteannounce'];
 		$announce_id = mysqli_real_escape_string($func->conn, $_GET['announce_id']);
@@ -103,6 +114,7 @@
 			if ($func->deleteAnnounce($announce_id)) {
 			header("location:../announcement.php?deleted=1");
 			}
-		}		
+		} 
 	}
+	
 ?>

@@ -56,7 +56,7 @@
 
 		public function retrieveNonZeroItems()
 		{
-			$sql = "SELECT * FROM item WHERE qty > 0";
+			$sql = "SELECT * FROM item WHERE qty > 0 ORDER BY item_name";
 			$itemArray = array();
 			$query = mysqli_query($this->conn, $sql);
 			while ($row = mysqli_fetch_assoc($query)) {
@@ -67,7 +67,7 @@
 
 		public function retriveItemsInPackage($package_id)
 		{
-			$sql = "SELECT * FROM packageditems as a JOIN item as b on a.item_id = b.item_no WHERE a.package_id =".$package_id;
+			$sql = "SELECT * FROM packageditems as a JOIN item as b on a.item_id = b.item_no WHERE a.package_id =".$package_id." ORDER BY b.item_name";
 			$itemArray = array();
 			$query = mysqli_query($this->conn, $sql);
 			while ($row = mysqli_fetch_assoc($query)) {
@@ -78,11 +78,38 @@
 
 		public function addItemToPackage($package_id, $item, $qty)
 		{
-			$sql = "INSERT INTO packageditems (package_id, item_id, qty_item) VALUES (".$package_id.", ".$item.", ".$qty."); UPDATE item SET qty = qty - ".$qty." WHERE item_no = ".$item;
+			$sql = "SELECT * FROM packageditems WHERE package_id = ".$package_id." AND item_id = ".$item;
 
-			echo $sql;
+			$status = false;
+			$query = mysqli_query($this->conn, $sql);
+			if(mysqli_num_rows($query) == 1) {
+				$sql = "UPDATE packageditems SET qty_item = qty_item + ".$qty." WHERE item_id = ".$item." AND package_id = ".$package_id;
+			} else {
+				$sql = "INSERT INTO packageditems (package_id, item_id, qty_item) VALUES (".$package_id.", ".$item.", ".$qty.")";
+			}
 
-			$query = mysqli_multi_query($this->conn, $sql);	
+
+			$sql .= "; UPDATE item SET qty = qty - ".$qty." WHERE item_no = ".$item;
+
+			$query = mysqli_multi_query($this->conn, $sql);
+			if($query) {
+				$status = true;
+			}
+
+			return $status;
+		}
+
+		public function removeItemFromPackage($packagedItems_id, $item_id, $qty_item)
+		{
+			$status = false;
+			$sql = "DELETE FROM packageditems WHERE packagedItems_id = ".$packagedItems_id."; UPDATE item SET qty  = qty + ".$qty_item." WHERE item_no = ".$item_id;
+
+			$query = mysqli_multi_query($this->conn, $sql);
+			if($query) {
+				$status = true;
+			}
+
+			return $status;
 		}
 	}
 
@@ -114,8 +141,25 @@ if(isset($_POST["addItem"])) {
 	$item = mysqli_real_escape_string($Functions->conn, $_POST['item']);
 	$qty = mysqli_real_escape_string($Functions->conn, $_POST['qty']);
 
-	$Functions->addItemToPackage($package_id, $item, $qty);
+	if($Functions->addItemToPackage($package_id, $item, $qty)) {
+		sleep(1);
+		header("location:../viewPackageDetails.php?package_id=".$package_id);	
+	} else {
+		
+	}
+}
 
-	header("location:../viewPackageDetails.php?package_id=".$package_id);
+if(isset($_POST["removeItem"])) {
+	$packagedItems_id = mysqli_real_escape_string($Functions->conn, $_POST["packagedItems_id"]);
+	$item_id = mysqli_real_escape_string($Functions->conn, $_POST["item_id"]);
+	$qty_item = mysqli_real_escape_string($Functions->conn, $_POST["qty_item"]);
+	$package_id = mysqli_real_escape_string($Functions->conn, $_POST["package_id"]);
+
+	if($Functions->removeItemFromPackage($packagedItems_id, $item_id, $qty_item)) {
+		sleep(1);
+		header("location:../viewPackageDetails.php?package_id=".$package_id);
+	} else {
+		echo "Something went wrong, please contact an admin";
+	}
 }
 ?>

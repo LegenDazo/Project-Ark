@@ -1,4 +1,5 @@
 <?php session_start();
+  header("Cache-Control: no-cache, must-revalidate");
   if ($_SESSION['username'] == "" && $_SESSION['type'] == "" || $_SESSION['type'] == "normal") {
       header("location:../logout.php");
   }
@@ -67,7 +68,7 @@ include 'functions/reliefitemsFunctions.php';
                           </table>
                         </div><br>
                         <center><h4>Add Items to Package</h4></center><br>
-                        <form class="row" method="POST" action="functions/reliefItemsFunctions.php">
+                        <form id="itemForm" class="row" method="POST" action="functions/reliefItemsFunctions.php">
                           <input type="hidden" name="package_id" value="<?php echo $package_id; ?>">
                            <div class="form-group col-md-4">
                             <label for="item">Item</label>
@@ -87,7 +88,7 @@ include 'functions/reliefitemsFunctions.php';
                           </div>
 
                           <div class="form-inline col-md-3">
-                            <button type="submit" name="addItem" class="btn btn-primary">Add</button>
+                            <button id="addItem" type="submit" name="addItem" class="btn btn-primary">Add</button>
                           </div>
                         </form>
                           <br>
@@ -104,12 +105,19 @@ include 'functions/reliefitemsFunctions.php';
                                   <?php
                                     $myRow = $Functions->retriveItemsInPackage($package_id);
                                     foreach ($myRow as $row) {
-                                      echo 
-                                        '<tr>
-                                           <td>'.$row["item_name"].'</td>
-                                           <td>'.$row["qty_item"].'</td>
-                                           <td></td>
-                                        </tr>';
+                                      echo ' 
+                                          <tr>
+                                          <form method="POST" action="functions/reliefItemsFunctions.php">
+                                        <input type="hidden" name="packagedItems_id" value="'.$row['packagedItems_id'].'">
+                                        <input type="hidden" name="item_id" value="'.$row['item_id'].'">
+                                        <input type="hidden" name="qty_item" value="'.$row['qty_item'].'">
+                                        <input type="hidden" name="package_id" value="'.$package_id.'">
+                                            <td>'.$row["item_name"].'</td>
+                                            <td>'.$row["qty_item"].'</td>
+                                            <td><button type="submit" class="btn btn-danger" name="removeItem">Remove Item</button></td>
+                                            </form>
+                                          </tr>
+                                        ';
                                     }
 
                                   ?>
@@ -164,8 +172,26 @@ include 'functions/reliefitemsFunctions.php';
         window.location.href='registerStudent.php';
     });
 
+    $("#itemForm").submit(function(e) {
+      var newQty = $("#qty").val();
+      var oQty = $("#item option:selected").text();
+      var status;
+
+      status = false;
+      oQty = oQty.split("(")[1];
+      oQty = oQty.split(")")[0];
+
+      if(Number(oQty) >= newQty && newQty > 0) {
+        status = true;
+      } else {
+        alert("Invalid quantity!");
+      }
+
+      return status;
+    });
+
     $('#regStudent').DataTable();
-} );
+} ); 
 
 </script>
 </body>

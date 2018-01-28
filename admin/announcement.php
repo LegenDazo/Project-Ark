@@ -4,7 +4,7 @@
   }
 ?>
 <!DOCTYPE html>
-<?php include 'functions/announceFunctions.php'; 
+<?php include 'functions/newannounceFunctions.php'; 
 ?>
 <html lang="en">
 <head>
@@ -39,7 +39,7 @@
                       <div class="container" style="margin-top: 5%">
                         <div class="col-md-12">
                           <div class="container" align="center">
-                          <h5>Add Announcement &nbsp;<a href="addAnnounce.php" class="btn btn-success"><i class="material-icons">add</i></a></h5>
+                          <h5>Add Announcement &nbsp;<a href="newaddAnnounce.php" class="btn btn-success"><i class="material-icons">add</i></a></h5>
                           <table class="table table-hovered" id="regStudent">
                               <thead>
                                 <tr>                                  
@@ -59,16 +59,61 @@
                                         <td><?php echo $row['admin_id']?></td>
                                         <td><?php echo date_format(new DateTime($row['datepost']), 'F d, Y h:i A');?></td>                       
                                         <td><?php echo $row['an_what']?></td>
-                                        <td><a href="viewAnnounceDetails.php?announcement_id=<?php echo $row['announcement_id'];?>" class="btn btn-info">View Details</a>&nbsp;&nbsp;&nbsp;
-                                          <a href="announcement.php?deleteannounce=1&announcement_id=<?php echo $row['announcement_id'];?>" class="btn btn-danger">DELETE</a></td>
-                                          
-                                        
+                                        <td><a href="newviewAnnounceDetails.php?announce_id=<?php echo $row['announce_id'];?>" class="btn btn-info">View Details</a>&nbsp;&nbsp;&nbsp;
+                                            <a href="announcement.php?delfromhome=delete&announce_id=<?php echo $row['announce_id'];?>" class="btn btn-danger">DELETE</a>
+                                        </td>
                                       </tr>
                                     <?php    
                                   }
                               ?>
                           </table>
                         </div>
+
+                        <div class="modal" id="viewkey" role="dialog">
+                                <div class="modal-dialog modal-md">
+                                    <div class="modal-content">
+                                      <div class='modal-header'>
+                                        <h5 class="modal-title" id="exampleModalLabel"><strong>Message</strong></h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><h6>Close</h6></button>                                          
+                                      </div>
+                                      <div class="modal-body">
+                                          <h3>Announcement Posted!</h3>
+                                      </div>
+                                      <div class="modal-footer"></div>
+                                    </div>
+                                </div>
+                          </div>
+                          <div class="modal" id="viewConfirm" role="dialog">
+                                <div class="modal-dialog modal-md">
+                                    <div class="modal-content">
+                                      <div class='modal-header'>
+                                          <h5 class="modal-title" id="exampleModalLabel"><strong>Message</strong></h5>
+                                      </div>
+                                      <div class="modal-body">
+                                          <h4>Are you sure you want to delete this announcement?</h4>
+                                      </div>
+                                      <div class="modal-footer">
+                                          <button id='confirm' class='btn btn-danger btn-md'>Confirm</button>
+                                          <button id='cancel' class='btn btn-warning btn-md'>Cancel</button>
+                                      </div>
+                                    </div>
+                                </div>
+                          </div>
+                          <div class="modal" id="viewkey" role="dialog">
+                                <div class="modal-dialog modal-md">
+                                    <div class="modal-content">
+                                      <div class='modal-header'>
+                                        <h5 class="modal-title" id="exampleModalLabel"><strong>Message</strong></h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><h6>Close</h6></button>                                          
+                                      </div>
+                                      <div class="modal-body">
+                                          <h3>Announcement Deleted!</h3>
+                                      </div>
+                                      <div class="modal-footer"></div>
+                                    </div>
+                                </div>
+                          </div>
+
                         </div>
                       </div>
               </div>
@@ -101,16 +146,68 @@
 
     $('.close').click(function(){
         $('#viewkey').hide();
-        window.location.href='registerStudent.php';
+        window.location.href='announcement.php';
     });
 
     $('.close').click(function(){
         $('#viewkeydel').hide();
-        window.location.href='registerStudent.php';
+        window.location.href='announcement.php';
+    });
+
+    $('.close').click(function(){
+        $('#viewkeydel').hide();
+        window.location.href='announcement.php';
     });
 
     $('#regStudent').DataTable();
 } );
 </script>
+
+<script>
+   $(document).ready(function(){
+        <?php 
+          if(isset($_GET['msg'])){
+            echo "$('#viewkey').show();";
+          }
+        ?>
+        $('.close').click(function(){
+            $('#viewkey').hide();
+            window.location.href="announcement.php";
+        });
+        $('#delete').click(function(){
+            $('#viewConfirm').show();
+            $('#confirm').click(function(){
+                window.location.href="functions/newannounceFunctions.php?deleteannounce=delete&announce_id=<?php echo $announce_id;?>";
+            });
+            $('#cancel').click(function(){
+                $('#viewConfirm').hide();
+            });
+        });
+    });
+</script>
+
+<script>
+   $(document).ready(function(){
+        <?php 
+          if(isset($_GET['msg'])){
+            echo "$('#viewkey').show();";
+          }
+        ?>
+        $('.close').click(function(){
+            $('#viewkey').hide();
+            window.location.href="announcement.php";
+        });
+        $('#delete').click(function(){
+            $('#viewConfirm').show();
+            $('#confirm').click(function(){
+                window.location.href="functions/newannounceFunctions.php?deleteannounce=delete&announce_id=<?php echo $announce_id;?>";
+            });
+            $('#cancel').click(function(){
+                $('#viewConfirm').hide();
+            });
+        });
+    });
+</script>
+
 </body>
 </html>

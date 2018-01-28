@@ -41,11 +41,11 @@ include 'functions/reliefSponsorsFunctions.php';
                       <div class="container" style="margin-top: 5%; margin-bottom: 5%;">
                             <form method="post" action="functions/reliefpackageFunctions.php">   
                                 <div class="row">        
-                                  <div class="form-group col-md-2">
+                              <!--    <div class="form-group col-md-2">
                                     <label for="relief_id">Package ID</label>
                                     <input  data-target="relief_id" type="text" class="form-control" id="relief_id" name="relief_id"> 
                                   </div>
-                                                   
+                                  -->                 
                                   <div class="form-group col-md-5">
                                     <label for="relief_name">Relief Name</label>
                                     <input data-target="relief_name" type="text" class="form-control" id="relief_name" name="relief_name"> 

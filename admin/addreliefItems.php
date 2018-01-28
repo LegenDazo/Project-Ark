@@ -38,7 +38,7 @@ include 'functions/reliefpackageFunctions.php';
             <div class="col-md-9"><!-- START of RIGHT COLUMN-->
               <div class="card" style="margin-top: 25px;" ><!--START OF RIGHTCARD-->
               <div class="container" style="margin-top: 25px;">
-                      <center><h4>Inout Item Details</h4></center>
+                      <center><h4>Input Item Details</h4></center>
                       <div class="container" class="center" style="margin-top: 5%; margin-bottom: 5%;">
                             <form method="post" action="functions/reliefItemsFunctions.php">    
                               <div class="row">                                                      

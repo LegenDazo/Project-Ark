@@ -2,6 +2,12 @@
   if ($_SESSION['username'] == "" && $_SESSION['type'] == "" || $_SESSION['type'] == "normal") {
       header("location:../logout.php");
   }
+
+  if(isset($_POST["period"])) {
+    $period = $_POST["period"];
+  } else if(isset($_POST["showAll"])) {
+    $showAll = $_POST["showAll"];
+  }
 ?>
 <!DOCTYPE html>
 <?php
@@ -57,60 +63,102 @@
 
                   </table>
                   <br>
-                  <a href="demographicsReportPdf.php?evac_id=<?php echo $evac_id;?>" target="_blank" class="btn btn-success">Generate PDF</a>
+                  <div class="row">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-5">
+                      <form method="POST" action="viewEvacCenterReport.php?evac_id=<?php echo $evac_id; ?>" id="period">
+                        <select class="form-control" name="period" id="date">
+                          <option value="">Select a Date...</option>
+                          <?php
+                            $dates = $obj->getEvacDates($evac_id);
+                            foreach($dates as $date) {
+                              $time = strtotime($date["date_start"]);
+                              $start = date("M d, Y (h:iA)", $time);
+                              echo "<option value='".$date["date_start"].",".$date["date_end"]."' ";
+                              if(isset($period) && strpos($period, $date["date_start"]) !== false) {
+                                echo "selected";
+                              }
+
+                              echo ">".$start." to ";
+                              if(isset($date["date_end"])) {
+                                $time = strtotime($date["date_end"]);
+                                $end = date("M d, Y (h:iA)", $time);
+                                echo $end;
+                              } else {
+                                echo "present";
+                              }
+                              echo "</option>";
+                            }
+                          ?>
+                        </select>
+                      </form>
+                    </div>
+                    <form method="POST" action= "viewEvacCenterReport.php?evac_id=<?php echo $evac_id; ?>">
+                      <button type="submit" name="showAll" value="showAll" class="btn btn-primary">Show All</button>
+                      &nbsp;
+                      <a href="demographicsReportPdf.php?evac_id=<?php echo $evac_id;?>" target="_blank" class="btn btn-success">Generate PDF</a>
+                    </form>
+                  </div>
                   <br>
-                  <h3>Demographics</h3>
-                  <table class="table">
-                    <tr><td>Total No. of Evacuees:</td><td><b><?php $evac_id = $_GET['evac_id']; echo $total = $demog->retrieveNumberOfEvacueesInSpecificEvac($evac_id);?></b></td></tr>
-                    <tr><td>Total No. of Families Evacuated:</td><td><b><?php $evac_id = $_GET['evac_id']; echo $total = $demog->retrieveNumberOfFamiliesEvacuated($evac_id);?></b></td></tr>
-                     <tr><td>Total No. of Female Evacuees:<td><b><?php $evac_id = $_GET['evac_id']; echo $total = $demog->retrieveNumberOfFemaleEvacueesInSpecificEvac($evac_id);?></b></td></tr>
-                     <tr><td>Total No. of Male Evacuees:</td><td><b><?php $evac_id = $_GET['evac_id']; echo $total = $demog->retrieveNumberOfMaleEvacueesInSpecificEvac($evac_id);?></b></td></tr>
-                  </table>
-                  <h3>Package Distribution</h3>
-                  <table class="table">
-                    <tr>
-                      <th>Package Name</th>
-                      <th>Date Received</th>
-                      <th>Relief Operation</th>
-                      <th>No. of Families</th>
-                    </tr>
-                    <?php 
-                      $myrow = $dist->retrieveDistributionList($evac_id);
+
+                  <?php
+                    if(isset($showAll) || isset($period)) {
+
+                      $time = (isset($showAll)) ? $showAll : $period;
+
+                      $totalEvacs = $demog->retrieveNumberOfEvacueesInSpecificEvac($evac_id, $time);
+                      $totalFam = $demog->retrieveNumberOfFamiliesEvacuated($evac_id, $time);
+                      $totalFem = $demog->retrieveNumberOfFemaleEvacueesInSpecificEvac($evac_id, $time);
+                      $totalMal = $demog->retrieveNumberOfMaleEvacueesInSpecificEvac($evac_id, $time);
+                      $myrow = $dist->retrieveDistributionList($evac_id, $time);
+
+                      echo '<h3>Demographics</h3>
+                        <table class="table">
+                          <tr><td>Total No. of Evacuees:</td><td><b>'.$totalEvacs.'</b></td></tr>
+                          <tr><td>Total No. of Families Evacuated:</td><td><b>'.$totalFam.'</b></td></tr>
+                          <tr><td>Total No. of Female Evacuees:<td><b>'.$totalFem.'</b></td></tr>
+                          <tr><td>Total No. of Male Evacuees:</td><td><b>'.$totalMal.'</b></td></tr>
+                        </table>
+                      <h3>Package Distribution</h3>
+                        <table class="table">
+                          <tr>
+                            <th>Package Name</th>
+                            <th>Date Received</th>
+                            <th>Relief Operation</th>
+                            <th>No. of Families</th>
+                          </tr>';
+          
+                        
                       foreach ($myrow as $row) {
-                        ?>
+                        echo '
                         <tr>
-                          <td><?php echo $row['package_name'];?></td>
-                          <td><?php echo date_format(new DateTime($row['date_dist']), 'M d Y');?></td>
-                          <td><?php echo $row['operation_name'];?></td>
-                          <td><?php echo $row['householdnumber'];?></td>
-                        </tr>
+                          <td>'.$row['package_name'].'</td>
+                          <td>'.date_format(new DateTime($row['date_dist']), 'M d Y').'</td>
+                          <td>'.$row['operation_name'].'</td>
+                          <td>'.$row['householdnumber'].'</td>
+                        </tr>';
+                        }
 
-                        <?php
-                      }
-                    ?>
-                  </table>
-             
-                  <h3>Health Status</h3>
-                  <table class="table">
-                    <tr>
-                      <th>Disease Name</th>
-                      <th>Infected</th>
-                    </tr>
-                    <?php
-                      $myrow = $demog->retrieveNumberOfInfected($evac_id);
-                      foreach ($myrow as $row) {
-                        ?>
-                         <tr>
-                          <td><?php echo $row['disease_name'];?></td>
-                          <td><?php echo $row['infected'];?></td>
-                        </tr>
+                      $myrow = $demog->retrieveNumberOfInfected($evac_id, $time);
+                      
+                      echo '</table>
+                      <h3>Health Status</h3>
+                      <table class="table">
+                        <tr>
+                          <th>Disease Name</th>
+                          <th>Infected</th>
+                        </tr>';
+                          foreach ($myrow as $row) {
+                            echo '
+                            <tr>
+                              <td>'.$row['disease_name'].'</td>
+                              <td>'.$row['infected'].'</td>
+                            </tr>';
+                          }
 
-                        <?php
-                      }
-                    ?>
-                   
-                  </table>
-
+                      echo '</table>';
+                    }
+                  ?>
                   <center><a href="evacCenterReport.php" class="btn btn-warning col-md-3">Back</a></center>
                   
                 </div>
@@ -133,3 +181,14 @@
 
 </body>
 </html>
+<script>
+
+$(document).ready(function(){
+  $("#date").change(function() {
+    if($("#date").val() != "") {
+      $("#period").submit();
+    }
+  });
+});
+
+</script>

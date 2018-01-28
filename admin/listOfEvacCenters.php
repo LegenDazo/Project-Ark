@@ -68,7 +68,7 @@
 
                         <a href='functions/retrieveEvacuationCenterFunction.php?active=1&evac_id=<?php echo $row['evac_id'];?>' class='btn btn-success'>Set to Active</a></td>
 
-                        <td><a href='functions/retrieveEvacuationCenterFunction.php?active=1&evac_id=<?php echo $row['evac_id'];?>' class='btn btn-success'>Set to Active</a></td>
+<!--                        <td><a href='functions/retrieveEvacuationCenterFunction.php?active=1&evac_id=<?php// echo $row['evac_id'];?>' class='btn btn-success'>Set to Active</a></td> -->
 
                         <?php
                           }

@@ -31,7 +31,7 @@
 
 		public function retrieveOperationData()
 		{
-			$sql = "SELECT * FROM reliefoperation";
+			$sql = "SELECT * FROM reliefoperation as a JOIN evacuationcenter as b on a.evac_id = b.evac_id";
 			$query = mysqli_query($this->conn, $sql);
 			$itemArray = array();
 			while ($row = mysqli_fetch_assoc($query)) {
@@ -53,6 +53,7 @@
 	}
 
 	$obj = new DataOperations;
+	$Func = new DataOperations;
 
 	if (isset($_POST['submitoperation'])) {
 

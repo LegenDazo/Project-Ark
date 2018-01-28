@@ -43,9 +43,9 @@
 			return $itemArray;
 		}
 
-		public function updateAnnounce($announce_id, $an_what)
+		public function updateAnnounce($announce_id, $an_about, $an_what)
 		{
-			$sql = "UPDATE newannouncement SET announce_id='".$announce_id."' WHERE announce_id='".$announce_id."'";
+			$sql = "UPDATE newannouncement SET announce_id='".$announce_id."', an_about='".$an_about."', an_what='".$an_what."' WHERE announce_id='".$announce_id."'";
 			$query = mysqli_query($this->conn, $sql);
 			if ($query) {
 				return true;
@@ -79,7 +79,7 @@
 
 		
 		if ($func->insertAnnounce($admin_id, $an_about, $an_what)) {
-			header("location:../newannouncement.php?inserted=1");
+			header("location:../announcement.php?inserted=1");
 		}
 	}
 
@@ -91,16 +91,30 @@
 		
 				
 		if ($func->updateAnnounce($announce_id, $an_about, $an_what)) {
-			header("location:../viewAnnounceDetails.php?updated=1&announce_id=$announce_id");
+			header("location:../newviewAnnounceDetails.php?updated=1&announce_id=$announce_id");
 		}
 	}
 
-	if (isset($_GET['deleteannounce'])) {
+	if (isset($_GET['delfromhome'])) {
+		$delfromhome = $_GET['delfromhome'];
 		$announce_id = mysqli_real_escape_string($func->conn, $_GET['announce_id']);
-
-		
+				
+		if($delfromhome == 'delete'){		
 			if ($func->deleteAnnounce($announce_id)) {
-			header("location:newannouncement.php?deleted=1");
-		}		
+			header("location:announcement.php?deleted=1");
+			}
+		} 
 	}
+
+	if (isset($_GET['deleteannounce'])) {
+		$deleteannounce = $_GET['deleteannounce'];
+		$announce_id = mysqli_real_escape_string($func->conn, $_GET['announce_id']);
+				
+		if($deleteannounce == 'delete'){		
+			if ($func->deleteAnnounce($announce_id)) {
+			header("location:../announcement.php?deleted=1");
+			}
+		} 
+	}
+	
 ?>

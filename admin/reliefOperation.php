@@ -52,7 +52,7 @@
                               </thead>
 
                               <?php
-                                  $myrow = $Func->retrieveOperationData();
+                                  $myrow = $obj->retrieveOperationData();
                                   foreach ($myrow as $row) {
                                     ?>
 

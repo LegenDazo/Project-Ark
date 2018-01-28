@@ -37,7 +37,7 @@
 
               <div class="card" style="margin-top: 25px;"><!--START OF RIGHTCARD-->
 
-              <div class="container" style="margin-top: 25px;">
+              <div class="container" style="margin-top: 25px; margin-bottom: 25px;">
                 <div class="row">
                         
                           <div class="col-md-3">
@@ -91,6 +91,9 @@
       </div><!--END OF ROW-->
       </div><!--END OF CONTAINER FLUID-->
 
+      <footer id="footer" style="background-color: #2C3E50; height: 40px; bottom: 0; position: relative; width: 100%; margin-top: 25px;">
+        <p>All Rights Reserved</p>
+      </footer>
 
 
 <script src="../js/jquery.min.js"></script>

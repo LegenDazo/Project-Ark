@@ -167,7 +167,8 @@
      
       </div><!--END OF ROW-->
       </div><!--END OF CONTAINER FLUID-->
-      <br>
+
+
 
 
 

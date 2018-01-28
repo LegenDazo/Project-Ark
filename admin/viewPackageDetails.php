@@ -41,28 +41,32 @@ include 'functions/reliefitemsFunctions.php';
             
 
             <div class="col-md-9"><!-- START of RIGHT COLUMN-->
-              <div class="card" style="margin-top: 25px;" ><!--START OF RIGHTCARD-->
-              <div class="container" style="margin-top: 25px;">
+              <div class="card" style="margin-top: 25px; margin-bottom: 25px;" ><!--START OF RIGHTCARD-->
+              <div class="container" style="margin-top: 25px; margin-bottom: 25px;">
+                <a href="reliefpackage.php" class="btn btn-warning col-md-1" style="margin-bottom: 10px;">Back</a>
                         <div class="col-md-12">
                           <?php
                             $package = $obj->retrievePackage($package_id);
                           ?>
                           <div class="container">
-                          <h2>Add Items to Package</h2>
-                          <center><h4><?php echo $package["package_name"]; ?></h4></center>
+                          
                           <div class="col-md-6">
                           <table class="table">
                             <tr>
-                              <td><b>Operation Name</b></td>
+                              <td><b>Package Name:</b></td>
+                              <td><?php echo $package["package_name"]; ?></td>
+                            </tr>
+                            <tr>
+                              <td><b>Operation Name:</b></td>
                               <td><?php echo $package["operation_name"]; ?></td>
                             </tr>
                             <tr>
-                              <td><b>Sponsor</b></td>
+                              <td><b>Sponsor:</b></td>
                               <td><?php echo $package["sponsor_name"]; ?></td>
                             </tr>
                           </table>
-                        </div>
-
+                        </div><br>
+                        <center><h4>Add Items to Package</h4></center><br>
                         <form class="row" method="POST" action="functions/reliefItemsFunctions.php">
                           <input type="hidden" name="package_id" value="<?php echo $package_id; ?>">
                            <div class="form-group col-md-4">

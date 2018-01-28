@@ -38,7 +38,7 @@ include 'functions/barangayFunctions.php';
           ?>
         <div class="col-md-9">
           <!-- START of RIGHT COLUMN-->
-          <div class="card" style="margin-top: 25px;">
+          <div class="card" style="margin-top: 25px; margin-bottom: 25px;">
             <!--START OF RIGHTCARD-->
             <div class="container" style="margin-top: 25px; margin-bottom: 25px;">
               <center>
@@ -146,6 +146,11 @@ include 'functions/barangayFunctions.php';
     <!-- END of RIGHT COLUMN-->
     </div><!--end of row-->
     </div><!--END OF MAIN CONTIANER-->
+
+    <footer id="footer" style="background-color: #2C3E50; height: 40px; bottom: 0; position: relative; width: 100%;">
+        <p>All Rights Reserved</p>
+      </footer>
+      
     <script src="../js/jquery.min.js"></script>
     <script src="../bootstrap/js/bootstrap.js"></script>
     <script src="../bootstrap/js/bootstrap_alpha6.min.js"></script>  

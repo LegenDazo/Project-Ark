@@ -34,12 +34,9 @@
         <?php include '../adminNavbar.php'; ?>
 
             <div class="col-md-9"><!-- START of RIGHT COLUMN-->
-
-              <div class="card" style="margin-top: 25px;"><!--START OF RIGHTCARD-->
-
-              <div class="container" style="margin-top: 25px; margin-bottom: 25px;">
-                <div class="row">
-                        
+              <div class="card" style="margin-top: 25px; margin-bottom: 25px;"><!--START OF RIGHTCARD-->
+                <div class="container" style="margin-top: 25px; margin-bottom: 25px;">
+                  <div class="row">      
                           <div class="col-md-3">
                             <div class="card">
                               <div class="card-block">
@@ -73,7 +70,6 @@
                                 </div>
                               </div>
                           </div>
-                          
                         </div> 
               
               <center>
@@ -83,17 +79,12 @@
               </center>
 
               </div>
-
-
-              </div><!--END OF RIGHTCARD--> 
+            </div><!--END OF RIGHTCARD--> 
           </div><!-- END of RIGHT COLUMN-->
      
       </div><!--END OF ROW-->
       </div><!--END OF CONTAINER FLUID-->
 
-      <footer id="footer" style="background-color: #2C3E50; height: 40px; bottom: 0; position: relative; width: 100%; margin-top: 25px;">
-        <p>All Rights Reserved</p>
-      </footer>
 
 
 <script src="../js/jquery.min.js"></script>
@@ -101,7 +92,7 @@
 <script src="../bootstrap/js/bootstrap_alpha6.min.js"></script>
 <script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script> 
 <script src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
-
+.
 <script type="text/javascript">
 
 window.onload = function () {

@@ -32,7 +32,7 @@
 
 
             <div class="col-md-9"><!-- START of RIGHT COLUMN-->
-              <div class="card" style="margin-top: 25px;"><!--START OF RIGHTCARD-->    
+              <div class="card" style="margin-top: 25px; margin-bottom: 25px;"><!--START OF RIGHTCARD-->    
 
               <div class="container" style="margin-top: 25px; margin-bottom: 25px;">
                 <center><h4>List of Relief Packages</h4></center>
@@ -59,8 +59,8 @@
                                      <td><?php echo $row['package_name']; ?></td>
                                      <td><?php echo $row['operation_name']; ?></td>
                                      <td><?php echo $row['sponsor_name']; ?></td>
-                                     <td><a href="reliefpackage.php?deletepackage=1&package_id=<?php echo $row['package_id'];?>" class="btn btn-danger">DELETE</a>
-                                         <a href="viewPackageDetails.php?package_id=<?php echo $row['package_id'];?>" class="btn btn-info">View Package</a> 
+                                     <td><a href="viewPackageDetails.php?package_id=<?php echo $row['package_id'];?>" class="btn btn-info col-md-5">View</a> 
+                                      <a href="reliefpackage.php?deletepackage=1&package_id=<?php echo $row['package_id'];?>" class="btn btn-danger col-md-6">DELETE</a>
                                      </td>
                                   </tr>
                                 <?php
@@ -100,7 +100,14 @@
   ?>
 
 
-    $('#regStudent').DataTable();
+    // $('#regStudent').DataTable();
+
+    $('#regStudent').DataTable({
+      responsive: true
+    });
+
+
+
 } );
 </script>
 </body>

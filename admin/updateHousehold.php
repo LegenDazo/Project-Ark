@@ -70,15 +70,15 @@
 
 
             <div class="col-md-9"><!-- START of RIGHT COLUMN-->
-              <div class="card" style="margin-top: 25px;"><!--START OF RIGHTCARD-->
+              <div class="card" style="margin-top: 25px; margin-bottom: 25px;"><!--START OF RIGHTCARD-->
                 <div class="container" style="margin-top: 25px; margin-bottom: 25px;">
                       <center><h4>Update Household Details</h4></center>
-                      <div class="container" style="margin-top: 5%">
+                      <div class="container" style="margin-top: 3%">
                         <div class="col-md-12">
                         <div class="panel-body"> 
 
                           <div class="text-left">
-                            <a href="household.php" class="btn btn-warning">Cancel</a>
+                            <a href="household.php" class="btn btn-warning col-md-2"><i class="material-icons">arrow_back</i> Back</a>
                           </div><br>
 
 
@@ -339,6 +339,10 @@
     </div>
   </div>
 </div>
+
+<footer id="footer" style="background-color: #2C3E50; height: 40px; bottom: 0; position: relative; width: 100%;">
+        <p>All Rights Reserved</p>
+      </footer>
 
 
 

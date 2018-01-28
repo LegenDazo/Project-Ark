@@ -31,7 +31,7 @@
 		}
 
 		public function retrieveEvacuationCenter2(){
-			$sql = "SELECT * FROM evacuationcenter as a JOIN barangay as b ON a.brgy_id = b.brgy_id WHERE a.status='active' ORDER BY location_name ASC";
+			$sql = "SELECT * FROM evacuationcenter as a JOIN barangay as b ON a.brgy_id = b.brgy_id ORDER BY location_name ASC";
 			$itemArray = array();
 			$query = mysqli_query($this->conn, $sql);
 			while ($row = mysqli_fetch_assoc($query)) {

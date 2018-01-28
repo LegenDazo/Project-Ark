@@ -54,6 +54,7 @@
                       <tr>
                         <th>Evacuation Center</th>
                         <th>Barangay</th>
+                        <th>Status</th>
                         <th>Action</th>
                       </tr>
                     </thead>
@@ -65,6 +66,7 @@
                           <tr>
                             <td><?php echo $row['location_name'];?></td>
                             <td><?php echo $row['brgy_name'];?></td>
+                            <td><?php echo $row['status'];?></td>
                             <td><a href="viewEvacCenterReport.php?evac_id=<?php echo $row['evac_id'];?>" class="btn btn-info">View Report</a></td>
                           </tr>
 

@@ -43,7 +43,7 @@
                           <table class="table table-hovered" id="regStudent">
                               <thead>
                                 <tr>                                  
-                                  <th>Admin ID</th>
+                                  <th>Admin Name</th>
                                   <th>Date Posted</th>
                                   <th>What</th>
                                   <th>Action</th>  
@@ -56,7 +56,7 @@
                                     ?>
 
                                       <tr>
-                                        <td><?php echo $row['admin_id']?></td>
+                                        <td><?php echo $row['fname']." ".$row['mname']." ".$row['lname'];?></td>
                                         <td><?php echo date_format(new DateTime($row['datepost']), 'F d, Y h:i A');?></td>                       
                                         <td><?php echo $row['an_what']?></td>
                                         <td><a href="newviewAnnounceDetails.php?announce_id=<?php echo $row['announce_id'];?>" class="btn btn-info">View Details</a>&nbsp;&nbsp;&nbsp;

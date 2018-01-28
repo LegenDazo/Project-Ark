@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 26, 2018 at 01:51 PM
+-- Generation Time: Jan 28, 2018 at 08:30 PM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 7.1.1
 
@@ -87,6 +87,7 @@ INSERT INTO `announcement` (`announcement_id`, `datepost`, `admin_id`, `an_what`
 CREATE TABLE `attendance` (
   `attendance_id` int(11) NOT NULL,
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `date_out` timestamp NULL DEFAULT NULL,
   `resident_id` int(11) NOT NULL,
   `evac_id` int(11) NOT NULL,
   `status` int(11) NOT NULL
@@ -96,24 +97,48 @@ CREATE TABLE `attendance` (
 -- Dumping data for table `attendance`
 --
 
-INSERT INTO `attendance` (`attendance_id`, `date`, `resident_id`, `evac_id`, `status`) VALUES
-(11, '2018-01-20 10:56:35', 6, 5, 1),
-(13, '2018-01-20 10:56:39', 2, 2, 1),
-(14, '2018-01-20 10:56:42', 3, 6, 1),
-(15, '2018-01-20 10:56:43', 7, 6, 1),
-(16, '2018-01-20 10:56:46', 8, 2, 1),
-(23, '2018-01-25 09:16:10', 40, 7, 1),
-(24, '2018-01-26 06:57:24', 4, 5, 1),
-(25, '2018-01-26 06:57:25', 47, 5, 1),
-(26, '2018-01-26 06:57:27', 33, 5, 1),
-(27, '2018-01-26 06:57:28', 29, 5, 1),
-(28, '2018-01-26 07:02:49', 13, 5, 1),
-(29, '2018-01-26 07:02:50', 17, 5, 1),
-(30, '2018-01-26 07:02:51', 10, 5, 1),
-(31, '2018-01-26 07:02:52', 26, 5, 1),
-(32, '2018-01-26 07:09:30', 31, 5, 1),
-(33, '2018-01-26 07:09:31', 41, 5, 1),
-(34, '2018-01-26 07:09:33', 45, 5, 1);
+INSERT INTO `attendance` (`attendance_id`, `date`, `date_out`, `resident_id`, `evac_id`, `status`) VALUES
+(11, '2018-01-20 10:56:35', '2018-01-28 19:26:01', 6, 5, 1),
+(13, '2018-01-20 10:56:39', NULL, 2, 2, 1),
+(14, '2018-01-20 10:56:42', NULL, 3, 6, 1),
+(15, '2018-01-20 10:56:43', NULL, 7, 6, 1),
+(16, '2018-01-20 10:56:46', NULL, 8, 2, 1),
+(23, '2018-01-25 09:16:10', NULL, 40, 7, 1),
+(24, '2018-01-26 06:57:24', NULL, 4, 5, 1),
+(25, '2018-01-26 06:57:25', NULL, 47, 5, 1),
+(26, '2018-01-26 06:57:27', NULL, 33, 5, 1),
+(27, '2018-01-26 06:57:28', '2018-01-28 19:10:51', 29, 5, 1),
+(28, '2018-01-26 07:02:49', NULL, 13, 5, 1),
+(29, '2018-01-26 07:02:50', NULL, 17, 5, 1),
+(30, '2018-01-26 07:02:51', NULL, 10, 5, 1),
+(31, '2018-01-26 07:02:52', NULL, 26, 5, 1),
+(32, '2018-01-26 07:09:30', NULL, 31, 5, 1),
+(33, '2018-01-26 07:09:31', NULL, 41, 5, 1),
+(34, '2018-01-26 07:09:33', '2018-01-28 19:15:25', 45, 5, 1),
+(35, '2018-01-28 18:06:17', '2018-01-28 19:03:40', 22, 5, 1),
+(36, '2018-01-28 18:16:04', '2018-01-28 19:11:17', 42, 5, 1),
+(37, '2018-01-28 18:20:28', '2018-01-28 19:11:29', 44, 5, 1),
+(39, '2018-01-28 18:22:01', '2018-01-28 19:11:34', 30, 5, 1),
+(41, '2018-01-28 18:22:41', '2018-01-28 19:13:45', 38, 5, 1),
+(43, '2018-01-28 18:31:55', '2018-01-28 19:14:14', 1, 5, 1),
+(53, '2018-01-28 18:32:50', '2018-01-28 19:16:33', 32, 5, 1),
+(55, '2018-01-28 18:33:35', NULL, 46, 5, 1),
+(56, '2018-01-28 18:34:16', NULL, 34, 5, 1),
+(57, '2018-01-28 18:34:46', NULL, 39, 5, 1),
+(58, '2018-01-28 18:35:36', NULL, 43, 5, 1),
+(59, '2018-01-28 18:37:59', NULL, 27, 5, 1),
+(60, '2018-01-28 18:53:56', NULL, 9, 4, 1),
+(61, '2018-01-28 18:54:47', NULL, 28, 4, 1),
+(67, '2018-01-28 19:23:17', '2018-01-28 19:23:24', 22, 5, 1),
+(68, '2018-01-28 19:23:20', '2018-01-28 19:25:33', 29, 5, 1),
+(69, '2018-01-28 19:23:27', '2018-01-28 19:23:28', 42, 5, 1),
+(70, '2018-01-28 19:25:29', '2018-01-28 19:25:31', 22, 5, 1),
+(71, '2018-01-28 19:25:35', '2018-01-28 19:25:37', 42, 5, 1),
+(72, '2018-01-28 19:27:25', '2018-01-28 19:27:26', 22, 5, 1),
+(73, '2018-01-28 19:28:45', '2018-01-28 19:28:47', 22, 5, 1),
+(74, '2018-01-28 19:28:53', '2018-01-28 19:29:06', 22, 5, 1),
+(75, '2018-01-28 19:29:08', '2018-01-28 19:29:11', 22, 5, 1),
+(76, '2018-01-28 19:29:38', '2018-01-28 19:29:47', 22, 5, 1);
 
 -- --------------------------------------------------------
 
@@ -215,8 +240,8 @@ CREATE TABLE `evacuationcenter` (
 INSERT INTO `evacuationcenter` (`evac_id`, `location_name`, `population`, `capacity`, `latitude`, `longitude`, `brgy_id`, `house_no`, `street`, `status`) VALUES
 (2, 'Metrobank', 4, 100, 10.3692, 123.917, 7, 100, 'Gov. M. Cuenco Ave', 'active'),
 (3, 'San Isidro Parish School', 0, 200, 10.3691, 123.918, 7, 0, 'Gov. M. Cuenco Ave', 'active'),
-(4, 'FOTOJAYA STUDIO', 0, 50, 10.3692, 123.916, 7, 0, 'Gov. M. Cuenco Ave', 'active'),
-(5, 'Barangay Talamban Gymnasium', 13, 300, 10.3696, 123.917, 7, 0, 'Gov. M. Cuenco Ave', 'active'),
+(4, 'FOTOJAYA STUDIO', 2, 50, 10.3692, 123.916, 7, 0, 'Gov. M. Cuenco Ave', 'active'),
+(5, 'Barangay Talamban Gymnasium', 15, 300, 10.3696, 123.917, 7, 0, 'Gov. M. Cuenco Ave', 'active'),
 (6, 'Talamban Christian School', 2, 200, 10.3688, 123.916, 7, 0, 'Gov. M. Cuenco Ave', 'active'),
 (7, 'Evac2', 1, 300, 10.3698, 123.918, 7, 0, 'Talamban', 'active');
 
@@ -283,7 +308,6 @@ CREATE TABLE `item` (
   `item_name` varchar(255) NOT NULL,
   `qty` int(11) NOT NULL,
   `item_type` varchar(25) NOT NULL,
-  `sponsor_id` int(11) NOT NULL,
   `package_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -291,9 +315,10 @@ CREATE TABLE `item` (
 -- Dumping data for table `item`
 --
 
-INSERT INTO `item` (`item_no`, `item_name`, `qty`, `item_type`, `sponsor_id`, `package_id`) VALUES
-(2, 'Neozep', 30, 'medicine', 1, 1),
-(3, 'Corned Beef', 5, 'canned good', 1, 2);
+INSERT INTO `item` (`item_no`, `item_name`, `qty`, `item_type`, `package_id`) VALUES
+(2, 'Neozep', 28, 'medicine', 1),
+(3, 'Corned Beef', 24, 'canned good', 2),
+(6, 'lol', 282, '67', 3);
 
 -- --------------------------------------------------------
 
@@ -364,6 +389,28 @@ INSERT INTO `packagedistribution` (`packdist_id`, `date_dist`, `package_id`, `ho
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `packageditems`
+--
+
+CREATE TABLE `packageditems` (
+  `packagedItems_id` int(11) NOT NULL,
+  `package_id` int(11) NOT NULL,
+  `item_id` int(11) NOT NULL,
+  `qty_item` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `packageditems`
+--
+
+INSERT INTO `packageditems` (`packagedItems_id`, `package_id`, `item_id`, `qty_item`) VALUES
+(7, 1, 6, 63),
+(25, 1, 3, 4),
+(26, 1, 2, 2);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `reliefoperation`
 --
 
@@ -380,7 +427,8 @@ CREATE TABLE `reliefoperation` (
 INSERT INTO `reliefoperation` (`operation_id`, `operation_name`, `evac_id`) VALUES
 (1, 'sagip capstone', 2),
 (2, 'doh', 5),
-(3, 'doh', 5);
+(3, 'doh', 5),
+(4, 'hey', 4);
 
 -- --------------------------------------------------------
 
@@ -391,19 +439,22 @@ INSERT INTO `reliefoperation` (`operation_id`, `operation_name`, `evac_id`) VALU
 CREATE TABLE `reliefpackage` (
   `package_id` int(11) NOT NULL,
   `package_name` varchar(255) NOT NULL,
-  `operation_id` int(11) NOT NULL
+  `operation_id` int(11) NOT NULL,
+  `sponsor_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `reliefpackage`
 --
 
-INSERT INTO `reliefpackage` (`package_id`, `package_name`, `operation_id`) VALUES
-(1, 'Medicine', 1),
-(2, 'Foodie', 1),
-(3, 'Drink', 1),
-(4, 'Clothes', 1),
-(5, 'All in', 2);
+INSERT INTO `reliefpackage` (`package_id`, `package_name`, `operation_id`, `sponsor_id`) VALUES
+(1, 'Medicine', 1, 1),
+(2, 'Foodie', 1, 1),
+(3, 'Drink', 1, 1),
+(4, 'Clothes', 1, 1),
+(5, 'All in', 2, 1),
+(6, 'From Bacolod with Love', 1, 1),
+(7, 'Reliefe', 1, 2);
 
 -- --------------------------------------------------------
 
@@ -442,19 +493,14 @@ INSERT INTO `resident` (`resident_id`, `fname`, `mname`, `lname`, `gender`, `bda
 (10, 'resident', 'zxvzx', 'tasdfasd', 'female', '2018-01-01', 7, '', 654, 'Nasipit', 'head', 7),
 (12, 'spouse', 'test', 'testing', 'female', '2018-01-01', 7, '', 654, 'Nasipit', 'head\'s spouse', 7),
 (13, 'person', 'person', 'kjlkj', 'male', '2018-01-03', 0, '', 0, '', 'dependent', NULL),
-(14, '', '', '', '', '0000-00-00', 0, '', 0, '', 'dependent', NULL),
-(15, 'null', 'null', 'null', 'female', '2018-01-03', 0, '', 0, '', 'dependent', NULL),
-(16, '', '', '', '', '0000-00-00', 0, '', 0, '', 'dependent', NULL),
 (17, 'qwer', 'qwe', 'werw', '', '2018-01-03', 0, '', 0, '', 'dependent', NULL),
 (22, 'sdfasdf', 'adfgad', 'adfgaer', 'adfa', '2018-01-11', 0, '', 0, '', 'dependent', NULL),
-(23, '', '', '', '', '0000-00-00', 0, '', 0, '', 'dependent', NULL),
 (24, 'tao', 'sdgs', 'ZDXCS', 'female', '2018-01-10', 0, '', 0, '', 'head\'s spouse', NULL),
-(25, '', '', '', '', '0000-00-00', 0, '', 0, '', 'dependent', NULL),
 (26, 'sakura', 'sdfs', 'sdss', 'female', '2016-10-05', 0, '', 0, '', 'dependent', NULL),
 (27, 'norf', 'phine', 'sa', '', '2018-01-03', 0, '', 0, '', 'dependent', NULL),
 (28, 'may', 'may', 'sett', 'female', '2018-01-09', 0, '', 0, '', 'dependent', NULL),
-(29, 'bacolod', '', '', '', '0000-00-00', 0, '', 0, '', 'dependent', NULL),
-(30, 'mylene', 'd', '', '', '0000-00-00', 0, '', 0, '', 'dependent', NULL),
+(29, 'bacolod', '', 'bacolod', '', '0000-00-00', 0, '', 0, '', 'dependent', NULL),
+(30, 'mylene', 'd', 'bocolod', '', '0000-00-00', 0, '', 0, '', 'dependent', NULL),
 (31, 'horhe', 'dfgsd', 'sdfgsdg', 'male', '2018-01-01', 0, '', 0, '', 'dependent', NULL),
 (32, 'Maymay', 'Mylene', 'Delima', 'Female', '2018-01-01', 8, '', 126, 'Talisay', 'head\'s spouse', 8),
 (33, 'Bacolod', 'B', 'Reyes', 'Male', '2018-01-01', 8, '', 126, 'Talisay', 'head', 8),
@@ -518,7 +564,8 @@ CREATE TABLE `sponsor` (
 
 INSERT INTO `sponsor` (`sponsor_id`, `sponsor_name`, `sponsor_type`, `address`, `contact_no`) VALUES
 (1, 'Philippine Government', 'Govenment Organization', 'hhdhsf', '9ye3y3'),
-(2, 'Mylene ', 'Annonymous', 'Albay Naga', '6854054');
+(2, 'Mylene ', 'Annonymous', 'Albay Naga', '6854054'),
+(3, 'Bacolod', 'Annonymous', 'Heart ni Mylene', '091345');
 
 -- --------------------------------------------------------
 
@@ -574,8 +621,8 @@ ALTER TABLE `announcement`
 --
 ALTER TABLE `attendance`
   ADD PRIMARY KEY (`attendance_id`),
-  ADD UNIQUE KEY `resident_id` (`resident_id`),
-  ADD KEY `evac_id` (`evac_id`);
+  ADD KEY `evac_id` (`evac_id`),
+  ADD KEY `resident_id` (`resident_id`);
 
 --
 -- Indexes for table `barangay`
@@ -621,7 +668,6 @@ ALTER TABLE `household`
 --
 ALTER TABLE `item`
   ADD PRIMARY KEY (`item_no`),
-  ADD KEY `sponsor_id` (`sponsor_id`),
   ADD KEY `package_id` (`package_id`);
 
 --
@@ -645,6 +691,14 @@ ALTER TABLE `packagedistribution`
   ADD KEY `household_id` (`household_id`);
 
 --
+-- Indexes for table `packageditems`
+--
+ALTER TABLE `packageditems`
+  ADD PRIMARY KEY (`packagedItems_id`),
+  ADD KEY `package_id` (`package_id`),
+  ADD KEY `item_id` (`item_id`);
+
+--
 -- Indexes for table `reliefoperation`
 --
 ALTER TABLE `reliefoperation`
@@ -655,7 +709,8 @@ ALTER TABLE `reliefoperation`
 -- Indexes for table `reliefpackage`
 --
 ALTER TABLE `reliefpackage`
-  ADD PRIMARY KEY (`package_id`);
+  ADD PRIMARY KEY (`package_id`),
+  ADD KEY `sponsor_id` (`sponsor_id`);
 
 --
 -- Indexes for table `resident`
@@ -703,7 +758,7 @@ ALTER TABLE `announcement`
 -- AUTO_INCREMENT for table `attendance`
 --
 ALTER TABLE `attendance`
-  MODIFY `attendance_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `attendance_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=77;
 --
 -- AUTO_INCREMENT for table `barangay`
 --
@@ -738,7 +793,7 @@ ALTER TABLE `household`
 -- AUTO_INCREMENT for table `item`
 --
 ALTER TABLE `item`
-  MODIFY `item_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `item_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `newannouncement`
 --
@@ -750,10 +805,20 @@ ALTER TABLE `newannouncement`
 ALTER TABLE `packagedistribution`
   MODIFY `packdist_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
+-- AUTO_INCREMENT for table `packageditems`
+--
+ALTER TABLE `packageditems`
+  MODIFY `packagedItems_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+--
 -- AUTO_INCREMENT for table `reliefoperation`
 --
 ALTER TABLE `reliefoperation`
-  MODIFY `operation_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `operation_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT for table `reliefpackage`
+--
+ALTER TABLE `reliefpackage`
+  MODIFY `package_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `resident`
 --
@@ -773,7 +838,7 @@ ALTER TABLE `smschecker`
 -- AUTO_INCREMENT for table `sponsor`
 --
 ALTER TABLE `sponsor`
-  MODIFY `sponsor_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `sponsor_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- Constraints for dumped tables
 --
@@ -807,7 +872,6 @@ ALTER TABLE `evacuationperiod`
 -- Constraints for table `item`
 --
 ALTER TABLE `item`
-  ADD CONSTRAINT `item_ibfk_1` FOREIGN KEY (`sponsor_id`) REFERENCES `sponsor` (`sponsor_id`),
   ADD CONSTRAINT `item_ibfk_2` FOREIGN KEY (`package_id`) REFERENCES `reliefpackage` (`package_id`);
 
 --
@@ -820,14 +884,27 @@ ALTER TABLE `itemdistribution`
 -- Constraints for table `packagedistribution`
 --
 ALTER TABLE `packagedistribution`
-  ADD CONSTRAINT `packagedistribution_ibfk_1` FOREIGN KEY (`package_id`) REFERENCES `reliefpackage` (`package_id`),
-  ADD CONSTRAINT `packagedistribution_ibfk_2` FOREIGN KEY (`household_id`) REFERENCES `household` (`household_id`);
+  ADD CONSTRAINT `packagedistribution_ibfk_2` FOREIGN KEY (`household_id`) REFERENCES `household` (`household_id`),
+  ADD CONSTRAINT `packagedistribution_ibfk_3` FOREIGN KEY (`package_id`) REFERENCES `reliefpackage` (`package_id`);
+
+--
+-- Constraints for table `packageditems`
+--
+ALTER TABLE `packageditems`
+  ADD CONSTRAINT `packageditems_ibfk_1` FOREIGN KEY (`package_id`) REFERENCES `reliefpackage` (`package_id`),
+  ADD CONSTRAINT `packageditems_ibfk_2` FOREIGN KEY (`item_id`) REFERENCES `item` (`item_no`);
 
 --
 -- Constraints for table `reliefoperation`
 --
 ALTER TABLE `reliefoperation`
   ADD CONSTRAINT `reliefoperation_ibfk_1` FOREIGN KEY (`evac_id`) REFERENCES `evacuationcenter` (`evac_id`);
+
+--
+-- Constraints for table `reliefpackage`
+--
+ALTER TABLE `reliefpackage`
+  ADD CONSTRAINT `reliefpackage_ibfk_1` FOREIGN KEY (`sponsor_id`) REFERENCES `sponsor` (`sponsor_id`);
 
 --
 -- Constraints for table `resident`

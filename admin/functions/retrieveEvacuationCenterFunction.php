@@ -83,7 +83,14 @@
 			}
 			return $evacArray;
 		}
-		
+	
+		public function getEvacCenter($evac_id)
+		{
+			$sql = "SELECT * FROM evacuationcenter WHERE evac_id = ".$evac_id;
+			$query = mysqli_query($this->conn, $sql);
+			$row = mysqli_fetch_assoc($query);
+			return $row;
+		}
 	}
 
 	$obj = new DataOperation();

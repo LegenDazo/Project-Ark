@@ -183,7 +183,6 @@
 </body>
 </html>
 <script>
-
 $(document).ready(function(){
   $("#date").change(function() {
     if($("#date").val() != "") {

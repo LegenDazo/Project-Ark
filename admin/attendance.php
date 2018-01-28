@@ -2,8 +2,10 @@
   if ($_SESSION['username'] == "" && $_SESSION['type'] == "" || $_SESSION['type'] == "normal") {
       header("location:../logout.php");
   }
-?>
-<?php
+
+  if(isset($_POST["evac_id"]) && $_POST["evac_id"] != "") {
+    $evac_id = $_POST["evac_id"];
+  }
 
 include 'functions/attendanceFunctions.php';
 include 'functions/retrieveEvacuationCenterFunction.php';
@@ -29,7 +31,6 @@ include 'functions/retrieveEvacuationCenterFunction.php';
 </head>
 
 <body>
-
     <nav class="navbar navbar-light bg-faded">
     <img src="../images/ARK1.png">
     <a href="../logout.php" style="color: white">Log Out</a>
@@ -49,61 +50,115 @@ include 'functions/retrieveEvacuationCenterFunction.php';
                         
                                 <center>
                                 <div class="form-group col-md-5">
+                                  <form id="evacForm" method="POST" action="attendance.php">
                                   <select class="form-control" id="evac_select" name="evac_id" required <?php if($status){echo "disabled=true";}?>>
-                                  <option>Please select a evacuation center...</option>
+                                  <option value="">Please select a evacuation center...</option>
                                     <?php
                                         $myrow = $obj->retrieveEvacuationCenter();
                                         foreach ($myrow as $row) {
                                     ?>
-                                    <option value="<?php echo $row['evac_id'];?>"><?php echo $row['location_name'];?></option>
+                                    <option value="<?php echo $row['evac_id'];?>"
+                                    <?php
+                                      if(isset($evac_id) && $evac_id == $row['evac_id']) {
+                                        echo ' selected';
+                                      }
+                                    ?>
+                                    ><?php echo $row['location_name'];?></option>
                                     <?php }?>
                                   </select>
+                                  </form>
                                 </div>
                               </center>
 
+                          <?php
+                            if(isset($evac_id)) {
+                              $center = $obj->getEvacCenter($evac_id);
+                              $hasSpace = ($center["population"] == $center["capacity"]) ? false : true;
 
+                              echo 
+                              "<h4>Population: <span id='pop'>".$center["population"]."</span></h4>
+                              <h4>Capacity: <span id='cap'>".$center["capacity"]."</span></h4>
+                              <br>";
+                            }
+                          ?>
 
+                      
                           <table class="table" id="residents">
                             <thead>
                               <tr>
                                 <th>Name</th>
                                 <th>Address</th>
-                                <th>Check-In</th>
-                                <th>&nbsp;</th>
+                              <?php
+
+                                if(isset($evac_id)) {
+                                  echo '
+                                    <th>Check-In</th>
+                                    <th>Check-Out</th>';
+                                } else {
+                                  echo '<th>Evacuation Center</th>';
+                                }
+                              ?>
                               </tr>
                             </thead>
                             
                             <?php
                               $myrow = $Functions->retrieve_residentData();
                               foreach ($myrow as $row) {
-                                $resident_id = $row['resident_id'];
-                                $status = $Functions->retrieve_AttendanceData($resident_id);
-                                $location_name = $Functions->retrieve_EvacuationCenter($resident_id);
-                                $checkin = $Functions->retrieve_CheckinDate($resident_id);
-                                //$evac_id = $row['evac_id'];
                             ?>
                             <tr>
-                            <td><?php echo $row['fname']; echo " "; echo $row['mname']; echo " "; echo $row['lname']?></td>
+                            <td><?php echo $row['lname']; echo ", "; echo $row['fname']; echo " "; echo $row['mname']?></td>
                             <td><?php echo $row['brgy_id']; echo ", "; echo $row['house_no']; echo ", "; echo $row['street']?></td>
-                            
-                            <div>
-                              <input type="hidden" name="resident_id" value="<?php echo $resident_id;?>">
+
+                            <?php
+                              $resident_id = $row['resident_id'];
+                              $val = $Functions->retrieve_EvacuationCenter($resident_id);
+                              if(isset($evac_id)) {                              
+                                $status = $Functions->retrieve_AttendanceData($resident_id, $evac_id);
+                                $checkin = $Functions->retrieve_CheckinDate($resident_id);
+                              echo '<div>
+                                <input type="hidden" name="resident_id" value="'.$resident_id.'">
                                 <td>
-                                  <div id=<?php echo "'check".$resident_id."'";?>>
-                                  <?php 
-                                      if(!$status){ 
-                                  ?>
-                                  <button class="btn btn-success checkin" type="submit" name="checkin" value='<?php echo $resident_id;?>'>Present</button>
-                                  <?php
-                                    }else echo $checkin;
-                                  ?>
+                                  <div id="check'.$resident_id.'">';
+                                      
+                                  if(!$status) {
+                                    if(!$val) {
+                                      if($hasSpace) {
+                                        echo '<button class="btn btn-success checkin" type="submit" name="checkin" value="'.$resident_id.'">Present</button>';
+                                      } else {
+                                        echo "This center is full.";
+                                      }
+                                    } else {
+                                      echo 'Resident is at '.$val["location_name"];
+                                    }
+                                  } else { 
+                                    echo $checkin;
+                                  }
+                                  echo '
+                                  </div>
+                                </td>
+                                <td>
+                                <div id="checkoutDiv'.$resident_id.'">
+                                <button class="btn btn-danger checkout" name="checkout" id="checkout'.$resident_id.'" value="'.$resident_id.'" ';
+                                
+                                if(!$val || !$status) {
+                                  echo ' disabled';
+                                }
+
+                                echo '>Check-Out</button>
                                 </div>
                                 </td>
-                                <td><button class="btn btn-danger cancel" type="submit" name="cancelAttendance" value='<?php echo $resident_id;?>'>Cancel</button></td>
-                              </div>
-                            </tr>
-                              <?php
+                              </div>';
+                                } else {
+                                  echo "<td>";
+                                  if($val) {
+                                    echo $val["location_name"];
+                                  } else {
+                                    echo "None";
+                                  }
+                                  echo "</td>";
                                 }
+                                echo '</tr>';
+                              }
                               ?>
                           </table>
                         </div>
@@ -113,13 +168,7 @@ include 'functions/retrieveEvacuationCenterFunction.php';
             </div><!-- END of RIGHT COLUMN-->
      
       </div><!--end of row-->
-    </div><!--END OF MAIN CONTIANER-->
-
-
-
-
-
-
+    </div><!--END OF MAIN CONTAINER-->
 <script src="../js/jquery.min.js"></script>
 <script src="../bootstrap/js/bootstrap.js"></script>
 <script src="../bootstrap/js/bootstrap_alpha6.min.js"></script>
@@ -147,20 +196,42 @@ include 'functions/retrieveEvacuationCenterFunction.php';
         });
     });
 
-    $('.checkin').click(function(){
+    $(document).on('click', '.checkin', function() {
         var resident_id = $(this).attr("value");
         var value = $('#evac_select').val();
-        if(value != "Please select a evacuation center...") {
-          $.post('functions/attendanceFunctions.php',"resident_id="+resident_id+"&evac_id="+value, function(response){
-            $('#check'+resident_id).html(response);            
-          });
+        if(value != "Please select an evacuation center...") {
+          $.post('functions/attendanceFunctions.php',"resident_id="+resident_id+"&evac_id="+value, function(response) {
+            $('#check'+resident_id).html(response); 
+            $("#checkout"+resident_id).attr("disabled", false);
+            $("#pop").html(Number($("#pop").text()) + 1);
+            if($("#pop").text() == $("#cap").text()) {
+              $(".checkin").attr("disabled", true);
+            }
+          }); 
         }
+    });
+
+    $('.checkout').click(function(){
+        var resident_id = $(this).attr("value");
+        var value = $('#evac_select').val();
+        if(value != "Please select an evacuation center...") {
+          $.post('functions/attendanceFunctions.php',"resident_id="+resident_id+"&evac_id="+value+"&deleted=1", function(response) {
+            $('#checkoutDiv'+resident_id).html(response);
+            $("#pop").html(Number($("#pop").text()) - 1);
+            if($("#pop").text() == $("#cap").text() - 1) {
+              
+              location.reload();
+            }
+          }); 
+        }
+    });
+
+    $("#evac_select").change(function() {
+      $("#evacForm").submit();
     });
 
     $('#residents').DataTable();
 } );
 </script>
-
-
 </body>
 </html>

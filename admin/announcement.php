@@ -40,7 +40,7 @@
                         <div class="col-md-12">
                           <div class="container" align="center">
                           <h5>Add Announcement &nbsp;<a href="newaddAnnounce.php" class="btn btn-success"><i class="material-icons">add</i></a></h5>
-                          <table class="table table-hovered" id="regStudent">
+                          <table class="table table-hovered" id="annTable">
                               <thead>
                                 <tr>                                  
                                   <th>Admin Name</th>
@@ -60,8 +60,10 @@
                                         <td><?php echo date_format(new DateTime($row['datepost']), 'F d, Y h:i A');?></td>                       
                                         <td><?php echo $row['an_what']?></td>
                                         <td><a href="newviewAnnounceDetails.php?announce_id=<?php echo $row['announce_id'];?>" class="btn btn-info">View Details</a>&nbsp;&nbsp;&nbsp;
-                                            <a href="announcement.php?delfromhome=delete&announce_id=<?php echo $row['announce_id'];?>" class="btn btn-danger">DELETE</a>
-                                        </td>
+
+                                  <!--      <button id='delete<?php // echo $row["announcement_id"]; ?>' class='btn btn-danger'>DELETE</button>
+                                    -->  <!--      <a href="announcement.php?delfromhome=delete&announce_id=<?php // echo $row['announce_id'];?>" class="btn btn-danger">DELETE</a>
+                                     -->   </td>
                                       </tr>
                                     <?php    
                                   }
@@ -77,7 +79,7 @@
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><h6>Close</h6></button>                                          
                                       </div>
                                       <div class="modal-body">
-                                          <h3>Announcement Posted!</h3>
+                                          <h3 style="font-size: 100%">Announcement Posted!</h3>
                                       </div>
                                       <div class="modal-footer"></div>
                                     </div>
@@ -90,7 +92,7 @@
                                           <h5 class="modal-title" id="exampleModalLabel"><strong>Message</strong></h5>
                                       </div>
                                       <div class="modal-body">
-                                          <h4>Are you sure you want to delete this announcement?</h4>
+                                          <h4 style="font-size: 100%">Are you sure you want to delete this announcement?</h4>
                                       </div>
                                       <div class="modal-footer">
                                           <button id='confirm' class='btn btn-danger btn-md'>Confirm</button>
@@ -107,7 +109,7 @@
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><h6>Close</h6></button>                                          
                                       </div>
                                       <div class="modal-body">
-                                          <h3>Announcement Deleted!</h3>
+                                          <h3 style="font-size: 100%">Announcement Deleted!</h3>
                                       </div>
                                       <div class="modal-footer"></div>
                                     </div>
@@ -159,7 +161,7 @@
         window.location.href='announcement.php';
     });
 
-    $('#regStudent').DataTable();
+    $('#annTable').DataTable();
 } );
 </script>
 

@@ -56,7 +56,7 @@
                         ?>  
 
                         <a href="newupdateAnnounce.php?announce_id=<?php echo $announce_id?>" class="btn btn-success btn-block">UPDATE</a>
-                        <button id='delete' class='btn btn-danger btn-block'>DELETE</button>
+                        <button style="cursor: pointer" id='delete' class='btn btn-danger btn-block'>DELETE</button>
                         <a href="announcement.php" class="btn btn-warning btn-block">BACK</a>
                       </div>
                       <div class="col-md-9 col-lg-9">
@@ -89,7 +89,7 @@
                                           <h5 class="modal-title" id="exampleModalLabel"><strong>Message</strong></h5>
                                       </div>
                                       <div class="modal-body">
-                                          <h3>Announcement Successfully Updated</h3>
+                                          <h3 style="font-size: 100%">Announcement Successfully Updated</h3>
                                       </div>
                                       <div class="modal-footer"></div>
                                     </div>
@@ -102,7 +102,7 @@
                                           <h5 class="modal-title" id="exampleModalLabel"><strong>Message</strong></h5>
                                       </div>
                                       <div class="modal-body">
-                                          <h4>Are you sure you want to delete this announcement?</h4>
+                                          <h4 style="font-size: 100%">Are you sure you want to delete this announcement?</h4>
                                       </div>
                                       <div class="modal-footer">
                                           <button id='confirm' class='btn btn-danger btn-md'>Confirm</button>

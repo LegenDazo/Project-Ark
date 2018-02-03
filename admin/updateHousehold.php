@@ -28,15 +28,6 @@
   <!--Update ajax-->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-  <script type="text/javascript">
-    
-    function validate() {
-
-      return confirm("Are you sure you want to delete this person?");
-
-    }
-  </script>
 </head>
 
 <body>
@@ -279,7 +270,22 @@
       </div><!--end of row-->
     </div><!--END OF MAIN CONTIANER-->
 
-
+<div class="modal" id="viewConfirm" role="dialog">
+      <div class="modal-dialog modal-md">
+          <div class="modal-content">
+            <div class='modal-header'>
+                <h5 class="modal-title" id="exampleModalLabel"><strong>Message</strong></h5>
+            </div>
+            <div class="modal-body">
+                <h4 style="font-size: 100%">Are you sure you want to delete this resident?</h4>
+            </div>
+            <div class="modal-footer">
+                <button id='confirm' class='btn btn-danger btn-md'>Confirm</button>
+                <button id='cancel' class='btn btn-warning btn-md'>Cancel</button>
+            </div>
+          </div>
+      </div>
+</div>
 
 <!-- Modal -->
 <div id="myModal" class="modal fade" role="dialog">
@@ -385,34 +391,41 @@
 
 
 <script>
-  $(document).ready(function(){
+  $(document).ready(function() {
+
+      var household_id = "";
+      var resident_id = "";
 
       $(document).on('click', '.delete', function(e) {
         e.preventDefault();
-        var state = confirm("Do you want to delete this item?");
-        var household_id = $("#household_id").val();
-        var resident_id = $(this).val();
 
-        $.ajax({
-              url      : 'functions/householdFunctions.php',
-              method   : 'post', 
-              data     : {household_id: household_id, resident_id: resident_id, deleteMember: 1 },
-              success  : function(response){
-                console.log(response);
-
-                $("#"+response).remove();
-             }
-        });
-
-
-
-        if(!state) {
-      
-        } else {
-          console.log(e);
-        }
+        $('#viewConfirm').show();
+        household_id = $("#household_id").val();
+        resident_id = $(this).val();
 
       });
+
+      $("#confirm").click(function() {
+        if(household_id != "") {
+          $.ajax({
+                url      : 'functions/householdFunctions.php',
+                method   : 'post', 
+                data     : {household_id: household_id, resident_id: resident_id, deleteMember: 1 },
+                success  : function(response){
+                  console.log(response);
+
+                  $("#"+response).remove();
+                  $('#viewConfirm').hide();
+               }
+          });
+        }
+      });
+
+        $('#cancel').click(function() {
+          $('#viewConfirm').hide();
+          household_id = "";
+          resident_id = "";
+        });
 
     //  append values in input fields
       $(document).on('click','a[data-role=update]',function() {
@@ -554,7 +567,7 @@
             fname: fname, mname: mname, lname: lname, gender: gender, bday: bday, /* age:age, */ house_memship: house_memship, house_no: house_no, street: street, brgy_id: brgy_id, household_id: household_id },
            success:function(response) {
             var array = JSON.parse(response);
-            $("#row1").remove();
+            $("#row"+count).remove();
 
             var html;
             html = "";
@@ -585,6 +598,7 @@
             html += "</td></form></tr>";
 
             $('#table').append(html);
+            $("#add").attr("disabled", false);
     //        fetch_item_data();
            }
           });

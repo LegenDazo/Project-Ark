@@ -36,14 +36,14 @@
 	
 	if(isset($_POST['house_memship'])){
 
-		$fname = $_POST['fname'];
-		$mname = $_POST['mname'];
-		$lname = $_POST['lname'];
-		$gender = $_POST['gender'];
-		$bday = $_POST['bday'];
+		$fname = mysqli_real_escape_string($obj->conn, $_POST['fname']);
+		$mname = mysqli_real_escape_string($obj->conn, $_POST['mname']);
+		$lname = mysqli_real_escape_string($obj->conn, $_POST['lname']);
+		$gender = mysqli_real_escape_string($obj->conn, $_POST['gender']);
+		$bday = mysqli_real_escape_string($obj->conn, $_POST['bday']);
 	//	$adult_age = $_POST['adult_age'];
 
-		$house_memship = $_POST['house_memship'];
+		$house_memship = mysqli_real_escape_string($obj->conn, $_POST['house_memship']);
 
 		//$brgy_id = $_POST['brgy_id'];
 		//$admin_id = $_POST['admin_id'];
@@ -53,7 +53,7 @@
 		//$house_no = $_POST['house_no'];
 		//$street = $_POST['street'];
 		
-		$id = $_POST['id'];
+		$id = mysqli_real_escape_string($obj->conn, $_POST['id']);
 		//$id = $_POST['id'];
 
 	//  query to update data 
@@ -64,7 +64,11 @@
 		echo 'data updated';
 	}*/
 
+	echo "UPDATE resident SET fname='$fname' , mname='$mname' , lname = '$lname' , gender = '$gender' , bday = '$bday', house_memship = '$house_memship' WHERE resident_id= '$id'";
+
 	$result  = mysqli_query($obj->conn, "UPDATE resident SET fname='$fname' , mname='$mname' , lname = '$lname' , gender = '$gender' , bday = '$bday', house_memship = '$house_memship' WHERE resident_id= '$id'");
+
+
 	if($result) {
 		echo 'data updated';
 	}

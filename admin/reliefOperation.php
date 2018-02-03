@@ -35,7 +35,7 @@
               <div class="card" style="margin-top: 25px;"><!--START OF RIGHTCARD-->    
 
               <div class="container" style="margin-top: 25px; margin-bottom: 25px;">
-                <center><h4>List of Announcements</h4></center>
+                <center><h4>List of Operations</h4></center>
                       <div class="container" style="margin-top: 5%">
                         <div class="col-md-12">
                           <div class="container" align="center">

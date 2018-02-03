@@ -153,6 +153,17 @@ include 'functions/retrieveDisease.php'
     });
 </script>
 
+<script>
+$(document).ready(function(){
+
+$('.submit').click(function(){
+    validateForm();   
+});
+
+function validateForm(){
+  
+</script>
+
 
 </body>
 </html>

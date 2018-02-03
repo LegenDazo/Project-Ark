@@ -28,6 +28,15 @@
   <!--Update ajax-->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+  <script type="text/javascript">
+    
+    function validate() {
+
+      return confirm("Are you sure you want to delete this person?");
+
+    }
+  </script>
 </head>
 
 <body>
@@ -107,6 +116,7 @@
 
                               <?php
                                   $spouse = false;
+                                  $gender = false;
                                   $myrow  = $obj->retrieveHouseholdData();
                                   foreach($myrow as $row ){ 
                                       if($row['household_id'] == $_GET['resident_id']) {?>
@@ -135,7 +145,8 @@
                                         <td><a href="#" data-role="update" data-id="<?php echo $row['resident_id'] ;?>">update</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                         <?php
                                           if($row["house_memship"] != "head") {
-                                            echo '<a href="updateHousehold.php?deleteMember=1&resident_id='.$row['resident_id'].'&household_id='.$row['household_id'].'" class="btn btn-danger">-</a>';
+                                         //   echo '<a href="updateHousehold.php?deleteMember=1&resident_id='.$row['resident_id'].'&household_id='.$row['household_id'].'" class="btn btn-danger">-</a>';
+                                            echo '<button type="submit" name="deleteMember" value="'.$row['resident_id'].'" class="btn btn-danger delete">-</button>';
                                           }
 
                                           ?>
@@ -300,7 +311,10 @@
           
           <div class="form-group">
             <label>Gender</label>
-            <input type="text" id="gender" class="form-control" required>
+            <select id="gender" class="form-control" required>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>  
+            </select>
           </div>
 
           <div class="form-group">
@@ -372,6 +386,33 @@
 
 <script>
   $(document).ready(function(){
+
+      $(document).on('click', '.delete', function(e) {
+        e.preventDefault();
+        var state = confirm("Do you want to delete this item?");
+        var household_id = $("#household_id").val();
+        var resident_id = $(this).val();
+
+        $.ajax({
+              url      : 'functions/householdFunctions.php',
+              method   : 'post', 
+              data     : {household_id: household_id, resident_id: resident_id, deleteMember: 1 },
+              success  : function(response){
+                console.log(response);
+
+                $("#"+response).remove();
+             }
+        });
+
+
+
+        if(!state) {
+      
+        } else {
+          console.log(e);
+        }
+
+      });
 
     //  append values in input fields
       $(document).on('click','a[data-role=update]',function() {
@@ -453,7 +494,13 @@
          html_code += "<td contenteditable='true' id='fname"+count+"'></td>";
          html_code += "<td contenteditable='true' id='mname"+count+"'></td>";
          html_code += "<td contenteditable='true' id='lname"+count+"'></td>";
-         html_code += "<td contenteditable='true' id='gender"+count+"'></td>";
+
+         html_code += '<td class="gender"><select id="gender'+count+'"><option value="Male">Male</option><option value="Female">Female</option></select></td>';
+       
+       //  html_code += '<td class="gender"><select id="gender'+count+'"><option value="female">Female</option></select></td>';
+         
+         
+       //  html_code += "<td contenteditable='true' id='gender"+count+"'></td>";
        //  html_code += "<td contenteditable='true' class='bday'></td>";
          html_code += '<td><input id="bday'+count+'" type="date"></td>';
          html_code += "<td></td>";
@@ -466,7 +513,8 @@
          }
       //   html_code += "<td contenteditable='true' class='age'></td>";
       //   html_code += "<td contenteditable='true' class='house_memship'></td>";
-         html_code += "<td><button type='button' id='remove' name='remove' data-row='row"+count+"' class='btn btn-danger btn-xs remove'>-</button></td>";   
+      //   html_code += "<td><button type='button' id='remove' name='remove' data-row='row"+count+"' class='btn btn-danger btn-xs remove'>-</button></td>";   
+        // html_code += '<button type="submit" name="deleteMember" value="1" class="btn btn-danger">-</button>';
          html_code += '<td><button type="button" name="saveMember" value="'+count+'" id="saveMember" class="btn btn-info">Save</button></td>';
          html_code += "</tr>";  
          $('#table').append(html_code);
@@ -485,7 +533,7 @@
           var fname = $("#fname" + id).text();
           var mname = $("#mname" + id).text();
           var lname = $("#lname" + id).text();
-          var gender = $("#gender" + id).text();
+          var gender = $("#gender" + id).val();
           var bday = $("#bday" + id).val();
           var house_memship = $("#membship" + id).val();
           var house_no = $("#Ohouse_no").val();
@@ -512,7 +560,10 @@
             html = "";
 
             html += "<tr id='"+array['resident_id']+"'>";
-            html += "<form method='post' action='functions/householdFunctions.php?resident_id="+array["resident_id"]+"&household_id="+array["household_id"]+"'>";
+
+            html +=  '<form method="post" action="functions/householdFunctions.php?resident_id='+array['resident_id']+'&household_id='+array['household_id']+'">';
+
+          //  html += "<form method='post' action='functions/householdFunctions.php?resident_id="+array["resident_id"]+"&household_id="+array["household_id"]+"'>";
             html += "<td data-target='fname'>"+array['fname']+"</td>";
             html += "<td data-target='mname'>"+array['mname']+"</td>";
             html += "<td data-target='lname'>"+array['lname']+"</td>";
@@ -527,7 +578,10 @@
             html += "<td data-target='age'>"+age+"</td>";
             html += "<td data-target='house_memship'>"+array['house_memship']+"</td>";
             html += "<td><a href='#' data-role='update' data-id='"+array['resident_id']+"'>update</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
-            html += '<a href="updateHousehold.php?deleteMember=1&resident_id='+array['resident_id']+'&household_id='+array['household_id']+'" class="btn btn-danger">-</a>';
+
+            html += '<button type="submit" name="deleteMember" value="'+array['resident_id']+'" class="btn btn-danger delete">-</button>';
+
+           // html += '<a href="updateHousehold.php?deleteMember=1&resident_id='+array['resident_id']+'&household_id='+array['household_id']+'" class="btn btn-danger">-</a>';
             html += "</td></form></tr>";
 
             $('#table').append(html);

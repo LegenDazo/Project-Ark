@@ -70,8 +70,16 @@ include 'functions/barangayFunctions.php';
                               <td contenteditable="true" class="fname"></td>
                               <td contenteditable="true" class="mname"></td>
                               <td contenteditable="true" class="lname"></td>
-                              <td contenteditable="true" class="gender"></td>
+
+                              <td class="gender">
+                                <select class="gender">
+                                  <option value="male">Male</option>
+                                  <option value="female">Female</option>  
+                                </select>
+                              </td>
+
                               <td><input class="bday" type="date"></td>
+
                               <td class="house_memship">
                                 <select class="membship">
                                   <option value="dependent">Dependent</option>
@@ -178,9 +186,12 @@ include 'functions/barangayFunctions.php';
          html_code += "<td contenteditable='true' class='fname'></td>";
          html_code += "<td contenteditable='true' class='mname'></td>";
          html_code += "<td contenteditable='true' class='lname'></td>";
-         html_code += "<td contenteditable='true' class='gender'></td>";
+       //  html_code += "<td contenteditable='true' class='gender'></td>";
+         html_code += '<td class="gender"><select class="gender"></option value="male">Male</option><option value="Female">Female</option></td>';
+
        //  html_code += "<td contenteditable='true' class='bday'></td>";
          html_code += '<td><input class="bday" type="date"></td>';
+
          html_code += '<td class="house_memship"><select class="membship"><option value="dependent">Dependent</option><option value="head">Head</option><option value="head\'s spouse">Head\'s Spouse</option></select></td>';
       //   html_code += "<td contenteditable='true' class='age'></td>";
       //   html_code += "<td contenteditable='true' class='house_memship'></td>";

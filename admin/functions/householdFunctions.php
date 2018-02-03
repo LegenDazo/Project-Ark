@@ -155,12 +155,18 @@
 		}		
 	}
 
-	if (isset($_GET['deleteMember'])) {
-		$resident_id = mysqli_real_escape_string($obj->conn, $_GET['resident_id']);
-		$household_id = $_GET["household_id"];
+	if (isset($_POST['deleteMember'])) {
+		$resident_id = mysqli_real_escape_string($obj->conn, $_POST['resident_id']);
+		$household_id = $_POST["household_id"];
 
 		if($obj->deleteMember($resident_id)) {
-			header("location: updateHousehold.php?resident_id=$household_id");
+			echo $resident_id;
 		}
-	}
+
+
+
+	/*	if($obj->deleteMember($resident_id)) {
+			header("location: ../updateHousehold.php?resident_id=$household_id");
+		}
+	*/}
 ?>

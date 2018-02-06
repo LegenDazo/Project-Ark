@@ -93,7 +93,7 @@ include 'functions/barangayFunctions.php';
                             <button type="button" name="add" id="add" class="btn btn-success btn-xs">+</button>
                           </div>
                           <div align="center">
-                            <!--<button type="button" name="save" id="save" class="btn btn-info">Save</button>-->
+                            
                           </div>
                           <br />
                           <div id="inserted_data"></div>
@@ -112,7 +112,7 @@ include 'functions/barangayFunctions.php';
                       <div class="form-group col-md-4">
                         <label for="brgy_name">Barangay</label>
                         <select id="brgy" name="barangay" class="form-control" required>
-                          <option value="">Select a Barangay</option>
+                          <option value="">Select a Barangay</option> 
                           <?php
                             $barangay = $Functions->retrieve_barangayData();
                             foreach($barangay as $bar) {
@@ -122,19 +122,10 @@ include 'functions/barangayFunctions.php';
                             }
                           ?>
                         </select>
-                        <!--  <input data-target="brgy_name" type="text" class="form-control" id="brgy_name" name="brgy_name">  -->
+                      
                       </div>
                     </div>
-                <!--    <div class="row">
-                      <div class="form-group col-md-4">
-                        <label for="city">City</label>
-                        <input data-target="city" type="text" class="form-control" id="city" name="city"> 
-                      </div>
-                      <div class="form-group col-md-4">
-                        <label for="province">Province</label>
-                        <input data-target="province" type="text" class="form-control" id="province" name="province"> 
-                      </div>
-                    </div> -->
+               
                     <div class="clearfix"></div>
                     <div class="text-center">
                       <button type="submit" class="btn btn-primary" id="submithousehold" name="submithousehold">Submit</button> 
@@ -162,7 +153,7 @@ include 'functions/barangayFunctions.php';
     <script src="../js/jquery.min.js"></script>
     <script src="../bootstrap/js/bootstrap.js"></script>
     <script src="../bootstrap/js/bootstrap_alpha6.min.js"></script>  
-    <script>
+    <script> 
       $(document).ready( function () {
       
         $('.add-btn').on('click', function(e){
@@ -180,7 +171,7 @@ include 'functions/barangayFunctions.php';
         });
 
        var count = 1;
-       $('#add').click(function(){
+       $('#add').click(function(){ 
         count = count + 1;
         var html_code = "<tr id='row"+count+"'>";
          html_code += "<td contenteditable='true' class='fname'></td>";
@@ -205,8 +196,8 @@ include 'functions/barangayFunctions.php';
         $('#' + delete_row).remove();
        });
        
-       $('#submithousehold').click(function(){
-        var fname = [];
+       $('#submithousehold').click(function(){ 
+        var fname = []; 
         var mname = [];
         var lname = [];
         var gender = [];
@@ -246,7 +237,7 @@ include 'functions/barangayFunctions.php';
            fname:fname, mname:mname, lname:lname, gender:gender, bday:bday, /* age:age, */ house_memship:house_memship, house_no: house_no, street: street, brgy_id: brgy_id  },
          success:function(data){
           alert(data);
-          $("td[contentEditable='true']").text("");
+          $("td[contentEditable='true']").text(""); 
           for(var i=2; i<= count; i++)
           {
            $('tr#'+i+'').remove();
@@ -263,7 +254,7 @@ include 'functions/barangayFunctions.php';
          method:"POST",
          success:function(data)
          {
-          $('#inserted_data').html(data);
+          $('#inserted_data').html(data); 
          }
         })
        }

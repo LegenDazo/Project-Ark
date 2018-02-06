@@ -93,10 +93,15 @@
                         </select>
                       </form>
                     </div>
+                    <?php
+                      if(isset($showAll) || isset($period)) {
+                        $time = (isset($showAll)) ? $showAll : $period;
+                      }
+                    ?>
                     <form method="POST" action= "viewEvacCenterReport.php?evac_id=<?php echo $evac_id; ?>">
                       <button type="submit" name="showAll" value="showAll" class="btn btn-primary">Show All</button>
                       &nbsp;
-                      <a href="demographicsReportPdf.php?evac_id=<?php echo $evac_id;?>" target="_blank" class="btn btn-success">Generate PDF</a>
+                      <a href="demographicsReportPdf.php?evac_id=<?php echo $evac_id;?>&time=<?php echo $time; ?>" target="_blank" class="btn btn-success">Generate PDF</a>
                     </form>
                   </div>
                   <br>

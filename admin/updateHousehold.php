@@ -107,7 +107,7 @@
 
                               <?php
                                   $spouse = false;
-                                  $gender = false;
+                                  //$gender = false;
                                   $myrow  = $obj->retrieveHouseholdData();
                                   foreach($myrow as $row ){ 
                                       if($row['household_id'] == $_GET['resident_id']) {?>

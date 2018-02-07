@@ -116,29 +116,6 @@ class Functions
 
 $Functions = new Functions;
 
-	// if(isset($_GET['checkin'])){
-	// 	$resident_id = $_GET['resident_id'];
-	// 	$evac_id = $_GET['evac_id'];
-	// 	$population=$Functions->currentPopulation($evac_id);
-	// 	$population++;
-	// 	$Functions->updatePopulation($evac_id, $population);
-	// 	$status++;
-	// 	$Functions->insertAttendance($resident_id, $evac_id, $status);
-	// 	header("location:../attendance.php?checkedin=1");	
-	// }
-
-	// if(isset($_GET['cancelAttendance'])){
-	// 	$resident_id = $_GET['resident_id'];
-	// 	$evac_id = $Functions->retrieve_EvacuationCenterID($resident_id);
-	// 	$Functions->passEvacResData($evac_id);
-
-			
-	// 		$population=$Functions->currentPopulation($evac_id);
-	// 		$population--;
-	// 		$Functions->updatePopulation($evac_id, $population);
-	// 		$Functions->cancelAttendance($resident_id, $evac_id, $status);
-	// 		header("location:../attendance.php?checkedin=1");
-	// }
 	if(isset($_POST['resident_id']) && isset($_POST["deleted"])) {
 		
 		$resident_id = $_POST['resident_id'];

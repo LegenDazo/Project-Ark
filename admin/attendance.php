@@ -3,8 +3,8 @@
       header("location:../logout.php");
   }
 
-  if(isset($_POST["evac_id"]) && $_POST["evac_id"] != "") {
-    $evac_id = $_POST["evac_id"];
+  if(isset($_POST["evac_id"]) && $_POST["evac_id"] != "") { // mo check siya if naay evac_id nga na set, at default kay wala
+    $evac_id = $_POST["evac_id"]; //everytime mo select or change ka ug evac_id kay kwaon niya ang value ni evac_id nga na select sa dropdown
   }
 
 include 'functions/attendanceFunctions.php';
@@ -50,8 +50,8 @@ include 'functions/retrieveEvacuationCenterFunction.php';
                         
                                 <center>
                                 <div class="form-group col-md-5">
-                                  <form id="evacForm" method="POST" action="attendance.php">
-                                  <select class="form-control" id="evac_select" name="evac_id" required <?php if($status){echo "disabled=true";}?>>
+                                  <form id="evacForm" method="POST" action="attendance.php"> <!-- kani nga form ang ma submit inig change sa select nga item -->
+                                  <select class="form-control" id="evac_select" name="evac_id" required>
                                   <option value="">Please select a evacuation center...</option>
                                     <?php
                                         $myrow = $obj->retrieveEvacuationCenter();
@@ -60,7 +60,7 @@ include 'functions/retrieveEvacuationCenterFunction.php';
                                     <option value="<?php echo $row['evac_id'];?>"
                                     <?php
                                       if(isset($evac_id) && $evac_id == $row['evac_id']) {
-                                        echo ' selected';
+                                        echo ' selected'; // mo display ang selected nga evac center
                                       }
                                     ?>
                                     ><?php echo $row['location_name'];?></option>
@@ -72,14 +72,14 @@ include 'functions/retrieveEvacuationCenterFunction.php';
 
                           <?php
                             if(isset($evac_id)) {
-                              $center = $obj->getEvacCenter($evac_id);
-                              $hasSpace = ($center["population"] == $center["capacity"]) ? false : true;
+                              $center = $obj->getEvacCenter($evac_id); //gikuha ang tanan data sa evac center
+                              $hasSpace = ($center["population"] == $center["capacity"]) ? false : true; //if true siya mo adto siya sa first
 
                               echo 
-                              "<h4>Population: <span id='pop'>".$center["population"]."</span></h4>
+                              "<h4>Population: <span id='pop'>".$center["population"]."</span></h4> 
                               <h4>Capacity: <span id='cap'>".$center["capacity"]."</span></h4>
-                              <br>";
-                            }
+                              <br>"; 
+                            } //ang pop kay mo update siya everytime mo click ug present or mag add ug tao sa evac center same sa cap
                           ?>
 
                       
@@ -90,19 +90,19 @@ include 'functions/retrieveEvacuationCenterFunction.php';
                                 <th>Address</th>
                               <?php
 
-                                if(isset($evac_id)) {
+                                if(isset($evac_id)) { //if nag select na ug evac id mogawas na ang check in ug checkout nga table
                                   echo '
                                     <th>Check-In</th>
                                     <th>Check-Out</th>';
                                 } else {
-                                  echo '<th>Evacuation Center</th>';
+                                  echo '<th>Evacuation Center</th>'; //if wala nag select ug evac id mogawas lng ang evacuation center nga table
                                 }
                               ?>
                               </tr>
                             </thead>
                             
                             <?php
-                              $myrow = $Functions->retrieve_residentData();
+                              $myrow = $Functions->retrieve_residentData(); //gikuha ang resident data
                               foreach ($myrow as $row) {
                             ?>
                             <tr>
@@ -110,28 +110,28 @@ include 'functions/retrieveEvacuationCenterFunction.php';
                             <td><?php echo $row['brgy_id']; echo ", "; echo $row['house_no']; echo ", "; echo $row['street']?></td>
 
                             <?php
-                              $resident_id = $row['resident_id'];
-                              $val = $Functions->retrieve_EvacuationCenter($resident_id);
+                              $resident_id = $row['resident_id']; //gikuha ang value ni resident data
+                              $val = $Functions->retrieve_EvacuationCenter($resident_id); //check if nasud ba siya sa evac center or wala
                               if(isset($evac_id)) {                              
-                                $status = $Functions->retrieve_AttendanceData($resident_id, $evac_id);
-                                $checkin = $Functions->retrieve_CheckinDate($resident_id);
+                                $status = $Functions->retrieve_AttendanceData($resident_id, $evac_id); // check ang status sa attendance table if nasud ba siya or wala
+                                $checkin = $Functions->retrieve_CheckinDate($resident_id); //gikuha ang value sa checkin date, if wala siyay checkin date wala siyay evac center
                               echo '<div>
                                 <input type="hidden" name="resident_id" value="'.$resident_id.'">
                                 <td>
                                   <div id="check'.$resident_id.'">';
                                       
-                                  if(!$status) {
-                                    if(!$val) {
-                                      if($hasSpace) {
+                                  if($status) { //if naa siya sa evac center mo display ang checkin if wala this happenss... (naas ubos nga code)
+                                    echo $checkin;
+                                  } else {
+                                    if($val) { // e check if naa siya sa lain nga evac center if naa e display ang evac center kung asa siya na belong if wala mao ni mahitabo... (code naa sa ubos)
+                                      echo 'Resident is at '.$val["location_name"];
+                                    } else {
+                                      if($hasSpace) { // e check if naa pabay space ang evac center if wala na mogawas
                                         echo '<button class="btn btn-success checkin" type="submit" name="checkin" value="'.$resident_id.'">Present</button>';
                                       } else {
-                                        echo "This center is full.";
+                                        echo "This evacuation center is full.";
                                       }
-                                    } else {
-                                      echo 'Resident is at '.$val["location_name"];
                                     }
-                                  } else { 
-                                    echo $checkin;
                                   }
                                   echo '
                                   </div>
@@ -140,15 +140,14 @@ include 'functions/retrieveEvacuationCenterFunction.php';
                                 <div id="checkoutDiv'.$resident_id.'">
                                 <button class="btn btn-danger checkout" name="checkout" id="checkout'.$resident_id.'" value="'.$resident_id.'" ';
                                 
-                                if(!$val || !$status) {
+                                if(!$val || !$status) { //if naa siya sa other evac center or if wala pa siya na checkin
                                   echo ' disabled';
                                 }
-
-                                echo '>Check-Out</button>
+                                echo '>Check-Out</button> 
                                 </div>
                                 </td>
                               </div>';
-                                } else {
+                                } else { // if wala pa nmo na set ang evac center mo display ang current value sa evac center sa resident or mka display kay none if wala pa
                                   echo "<td>";
                                   if($val) {
                                     echo $val["location_name"];
@@ -187,50 +186,39 @@ include 'functions/retrieveEvacuationCenterFunction.php';
 
   ?>
 
-    $('.cancel').click(function(){
-        var resident_id = $(this).attr("value");
-        $.post('functions/attendanceFunctions.php',"resident_id="+resident_id,function(response){
-          if(response=="Success"){
-            window.location.reload(true);
-          }
-        });
-    });
-
     $(document).on('click', '.checkin', function() {
-        var resident_id = $(this).attr("value");
-        var value = $('#evac_select').val();
-        if(value != "Please select an evacuation center...") {
-          $.post('functions/attendanceFunctions.php',"resident_id="+resident_id+"&evac_id="+value, function(response) {
-            $('#check'+resident_id).html(response); 
-            $("#checkout"+resident_id).attr("disabled", false);
-            $("#pop").html(Number($("#pop").text()) + 1);
-            if($("#pop").text() == $("#cap").text()) {
-              $(".checkin").attr("disabled", true);
-            }
+        var resident_id = $(this).attr("value"); //gikuha ang value sa resident_id sa taas
+        var value = $('#evac_select').val(); // gikuha ang value sa evac center sa taas kadtong sa dropdown
+          $.post('functions/attendanceFunctions.php',"resident_id="+resident_id+"&evac_id="+value, 
+            function(response) { //Ajax, response kay mo return ug unsay naa sa attendance function
+              $('#check'+resident_id).html(response); // change the present button or the div containing the present button to the response received (or time)
+              $("#checkout"+resident_id).attr("disabled", false); // after nag click sa present ma disable na ang attribite ni checkout nga disable attribute so pwde na siya ma click ang checkout nga button
+              $("#pop").html(Number($("#pop").text()) + 1); //convert first the span element into number then ma add na dayon ang population sa taas , +1 siya
+              if($("#pop").text() == $("#cap").text()) { // if ma equal na ang population or ang pop sa cap or capacity ma disable na ang checkin button or present button
+                $(".checkin").attr("disabled", true); //* note sa front end rani siya kay na add naman daan sa backend pag call sa function ni attendance function 
+              }
           }); 
-        }
+       
     });
 
-    $('.checkout').click(function(){
-        var resident_id = $(this).attr("value");
-        var value = $('#evac_select').val();
-        if(value != "Please select an evacuation center...") {
-          $.post('functions/attendanceFunctions.php',"resident_id="+resident_id+"&evac_id="+value+"&deleted=1", function(response) {
-            $('#checkoutDiv'+resident_id).html(response);
-            $("#pop").html(Number($("#pop").text()) - 1);
-            if($("#pop").text() == $("#cap").text() - 1) {
-              
+    $('.checkout').click(function(){ // inig click nko sa checkout mo call siya ani nga function sa ubos...
+        var resident_id = $(this).attr("value"); // gikuha nko ang value sa resident id nga gi click
+        var value = $('#evac_select').val(); //gikuha ang value sa evac center kadtong naa sa dropdown * dili siya ka checkout sa lain evac center dapat e select jd nmo ang evac center nga asa na assign si resident (mo display ra if asa siya currently na assign)
+          $.post('functions/attendanceFunctions.php',"resident_id="+resident_id+"&evac_id="+value+"&deleted=1", function(response) { //sends data to backend attendanceFunction, gisend ang resident data ug evac_id and deleted nga flag
+            $('#checkoutDiv'+resident_id).html(response); // e return ang data nga nakuha sa attendance function which is ang date nga na checkout
+            if($("#pop").text() == $("#cap").text()) { // e compare ang current population sa capacity if equal sila, if equal sila e refresh ang page 
               location.reload();
             }
+            $("#pop").html(Number($("#pop").text()) - 1); //if wala ra napuno or dili equal si population ni capacity derecho na siya minus * note sa front end rani siya kay na minus naman daan sa backend pag call sa function ni attendance function
           }); 
-        }
+        
     });
 
-    $("#evac_select").change(function() {
-      $("#evacForm").submit();
+    $("#evac_select").change(function() { //if ma change ang giselect nga evac center sa dropdown
+      $("#evacForm").submit(); //submits the form para ma change ang evac_id nga na set
     });
 
-    $('#residents').DataTable();
+    $('#residents').DataTable(); //data table nga function
 } );
 </script>
 </body>

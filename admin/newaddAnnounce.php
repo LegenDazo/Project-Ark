@@ -36,8 +36,8 @@
         
           <?php
             if(isset($_GET['announce_id'])) {
-               $announce_id = $_GET['announce_id']; 
-          } 
+              $announce_id = $_GET['announce_id']; 
+            } 
           ?>
 
 
@@ -81,17 +81,8 @@
      
       </div><!--end of row-->
     </div><!--END OF MAIN CONTIANER-->
-
-
-
-
-
-
 <script src="../js/jquery.min.js"></script>
 <script src="../bootstrap/js/bootstrap.js"></script>
 <script src="../bootstrap/js/bootstrap_alpha6.min.js"></script>
-
-
-
 </body>
 </html>

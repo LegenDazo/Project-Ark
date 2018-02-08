@@ -22,7 +22,6 @@
 </head>
 
 <body>
-
     <nav class="navbar navbar-light bg-faded">
     <img src="../images/ARK1.png">
     <a href="../logout.php" style="color: white">Log Out</a>

@@ -15,8 +15,10 @@ class Login
 	{
 		$sql = "SELECT * FROM user WHERE username='".$username."' AND password ='".$password."'";
 		$query = mysqli_query($this->conn, $sql);
+
 		if (mysqli_num_rows($query) > 0) {
-			return true;
+			$row = mysqli_fetch_assoc($query);
+			return $row["user_id"];
 		} else {
 			return false;
 		}
@@ -25,8 +27,10 @@ class Login
 	{
 		$sql = "SELECT * FROM admin WHERE username='".$username."' AND password='".$password."'";
 		$query = mysqli_query($this->conn, $sql);
+
 		if (mysqli_num_rows($query) > 0) {
-			return true;
+			$row = mysqli_fetch_assoc($query);
+			return $row["id"];
 		} else {
 			return false;
 		}
@@ -61,13 +65,15 @@ if (isset($_POST['login'])) {
 	$username = mysqli_real_escape_string($login->conn, $_POST['username']);
 	$password = mysqli_real_escape_string($login->conn, $_POST['password']);
 
-	if ($login->loginUser($username, md5($password))) {
+	if (($id = $login->loginUser($username, md5($password))) != false) {
 		session_start();
+		$_SESSION['id'] = $id;
 		$_SESSION['username'] = $username;
 		$_SESSION['type'] = 'normal';
 		header("location:user/home.php");
-	} else if($login->loginAdmin($username, md5($password))){
+	} else if(($id = $login->loginAdmin($username, md5($password))) != false){
 		session_start();
+		$_SESSION['id'] = $id;
 		$_SESSION['username'] = $username;
 		$_SESSION['type'] = 'admin';
 		header("location:admin/home.php");

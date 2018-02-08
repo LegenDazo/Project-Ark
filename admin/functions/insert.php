@@ -9,9 +9,9 @@ if(isset($_POST["fname"]))
  $lname = $_POST["lname"];
  $gender = $_POST["gender"];
  $bday = $_POST["bday"];
-// $age = $_POST["age"];
  $house_memship = $_POST["house_memship"];
 
+ $admin_id = mysqli_real_escape_string($connect, $_POST["admin_id"]);
  $house_no = mysqli_real_escape_string($connect, $_POST["house_no"]);
  $street = mysqli_real_escape_string($connect,$_POST["street"]);
  $brgy_id = mysqli_real_escape_string($connect,$_POST["brgy_id"]);
@@ -28,21 +28,25 @@ for($count = 0; $count<count($fname); $count++)
   $mname_clean = mysqli_real_escape_string($connect, $mname[$count]);
   $lname_clean = mysqli_real_escape_string($connect, $lname[$count]);
   $gender_clean = mysqli_real_escape_string($connect, $gender[$count]);
-  $bday_clean = $bday[$count];
- // $age_clean = mysqli_real_escape_string($connect, $age[$count]);
+  $bday_clean = $bday[$count]; 
   $house_memship_clean = mysqli_real_escape_string($connect, $house_memship[$count]);
-  echo $fname_clean." ".$mname_clean." ".$lname_clean." ".$gender_clean." ".$bday_clean." ".$house_memship_clean;
-  if($fname_clean != '' && $mname_clean != '' && $lname_clean != '' && $gender_clean != '' && $bday_clean != '' /* && $age_clean != '' */ && $house_memship_clean != '')
+
+  if($mname_clean == "") {
+    $mname_clean = NULL;
+  }
+
+  if($fname_clean != '' && $lname_clean != '' && $gender_clean != '' && $bday_clean != '' && $house_memship_clean != '')
   {
    $query .= '
-   INSERT INTO resident(fname, mname, lname, gender, bday, house_memship, house_no, street, brgy_id, household_id) 
-   VALUES("'.$fname_clean.'", "'.$mname_clean.'", "'.$lname_clean.'", "'.$gender_clean.'", "'.$bday_clean.'", "'.$house_memship_clean.'", "'.$house_no.'", "'.$street.'", "'.$brgy_id.'", "'.$next_increment.'");
+   INSERT INTO resident(fname, mname, lname, gender, bday, admin_id, house_memship, household_id) 
+   VALUES("'.$fname_clean.'", "'.$mname_clean.'", "'.$lname_clean.'", "'.$gender_clean.'", "'.$bday_clean.'", '.$admin_id.',"'.$house_memship_clean.'", "'.$next_increment.'");
    ';
   }
  }
  if($query != '')
  {
-    mysqli_query($connect, "INSERT INTO household (household_id) VALUES (null)");
+ // echo $query;
+  mysqli_query($connect, "INSERT INTO household (brgy_id, house_no, street) VALUES (".$brgy_id.", ".$house_no.", '".$street."')");
   if(mysqli_multi_query($connect, $query))
   {
    echo 'Item Data Inserted';

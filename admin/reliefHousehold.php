@@ -125,7 +125,7 @@ include 'functions/itemResidentsFunctions.php';
 
                                   if(mysqli_num_rows($result) == 0) {
                                     echo '<input type="hidden" name="household_id" value="'.$household_id.'">';
-                                    echo '<button class="btn btn-success received" type="submit" name="received" value="'.$household_id.'">Nadawat</button>';
+                                    echo '<button class="btn btn-success received" type="submit" name="received" value="'.$household_id.'">Received</button>';
                                   } else {
                                     $rowNew = mysqli_fetch_assoc($result);
                                     echo $rowNew["date_dist"];

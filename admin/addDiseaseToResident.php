@@ -69,7 +69,7 @@ include 'functions/diseaseFunctions.php';
                                   </div>
                                   <h6>Add Disease: </h6>  
                                   <div class="form-group col-md-3">
-                                    <select class="form-control" id="sel1" name="disease_id">
+                                    <select class="form-control" id="sel1" name="disease_id" required>
                                   <option></option>
                                     <?php
                                         $myrow = $func->retrieveDiseaseData();
@@ -82,7 +82,7 @@ include 'functions/diseaseFunctions.php';
                                     </div>
                                     <h6>Date Acquired: </h6>  
                                     <div>
-                                      <input type="date" name="date_acquired">
+                                      <input type="date" name="date_acquired" required>
                                     </div>
 
                                 <div style="margin-top: 7%;">

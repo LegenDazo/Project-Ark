@@ -55,6 +55,7 @@ include 'functions/reliefSponsorsFunctions.php';
                                   <label for="sponsor_id">Sponsor Name</label>
                                   <select id="sponsor_id" name="sponsor_id" class="form-control" required>
                                     <option value="">Select a Sponsor</option>
+                                    <option value="annonymous">Annonymous</option>
                                     <?php
                                       $sponsor = $dataOperation->retrieveSponsorData();
                                       foreach($sponsor as $bar) {

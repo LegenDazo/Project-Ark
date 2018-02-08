@@ -50,6 +50,7 @@ include 'functions/retrieveDisease.php'
                                   <th>Disease ID</th>
                                   <th>Disease Name</th>
                                   <th>Action</th>
+                                  <th>&nbsp;</th>
                                 </tr>
                               </thead>
                              <?php

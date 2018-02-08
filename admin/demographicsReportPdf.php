@@ -4,6 +4,12 @@
     include 'functions/retrieveEvacuationCenterFunction.php';
     include 'functions/reliefDistributionFunction.php';
 
+    if(isset($_GET["time"])) {
+        $time = $_GET["time"];
+    } else {
+        $time = "showAll";
+    }
+
 
     if (isset($_GET['evac_id'])) {
         $evac_id = $_GET['evac_id'];
@@ -52,22 +58,22 @@
     $pdf->SetFont("Arial","B","12");
     $pdf->Cell(60,20,"No. of Evacuees:",0,0,"L");
     $pdf->SetFont("Arial","","12");
-    $pdf->Cell(0,20,$total = $demog->retrieveNumberOfEvacueesInSpecificEvac($evac_id),0,1,"L");
+    $pdf->Cell(0,20,$total = $demog->retrieveNumberOfEvacueesInSpecificEvac($evac_id, $time),0,1,"L");
 
     $pdf->SetFont("Arial","B","12");
     $pdf->Cell(60,0,"No. of Families Evacuated:",0,0,"L");
     $pdf->SetFont("Arial","","12");
-    $pdf->Cell(0,0,$total = $demog->retrieveNumberOfFamiliesEvacuated($evac_id),0,1,"L");
+    $pdf->Cell(0,0,$total = $demog->retrieveNumberOfFamiliesEvacuated($evac_id, $time),0,1,"L");
 
     $pdf->SetFont("Arial","B","12");
     $pdf->Cell(60,20,"No. of Female Evacuees:",0,0,"L");
     $pdf->SetFont("Arial","","12");
-    $pdf->Cell(0,20,$total = $demog->retrieveNumberOfFemaleEvacueesInSpecificEvac($evac_id),0,1,"L");
+    $pdf->Cell(0,20,$total = $demog->retrieveNumberOfFemaleEvacueesInSpecificEvac($evac_id, $time),0,1,"L");
 
     $pdf->SetFont("Arial","B","12");
     $pdf->Cell(60,0,"No. of Male Evacuees:",0,0,"L");
     $pdf->SetFont("Arial","","12");
-    $pdf->Cell(0,0,$total = $demog->retrieveNumberOfMaleEvacueesInSpecificEvac($evac_id),0,1,"L");
+    $pdf->Cell(0,0,$total = $demog->retrieveNumberOfMaleEvacueesInSpecificEvac($evac_id, $time),0,1,"L");
 
 
     //Table for Package Distribution
@@ -82,7 +88,7 @@
     $pdf->Cell($w,7,"Relief Operation",0,0,"L");
     $pdf->Cell($w,7,"No. of Families",0,1,"L");
 
-    $myrow = $dist->retrieveDistributionList($evac_id);
+    $myrow = $dist->retrieveDistributionList($evac_id, $time);
     foreach ($myrow as $row) {
         $pdf->SetFont("Arial","","12");
         $pdf->Cell($w,7,$row['package_name'],0,0,"L");
@@ -100,7 +106,7 @@
     $pdf->Cell($w,7,"Diseases",0,0,"L");
     $pdf->Cell($w,7,"Infected",0,1,"L");
 
-    $myrow = $demog->retrieveNumberOfInfected($evac_id);
+    $myrow = $demog->retrieveNumberOfInfected($evac_id, $time);
     foreach ($myrow as $row) {
         $pdf->SetFont("Arial","","12");
         $pdf->Cell($w,7,$row['disease_name'],0,0,"L");

@@ -50,6 +50,7 @@ include 'functions/residentDiseaseFunctions.php';
                                   <th>Resident ID</th>
                                   <th>Resident</th>
                                   <th>Actions</th>
+                                  <th>&nbsp;</th>
                                 </tr>
                               </thead>
 
@@ -72,7 +73,8 @@ include 'functions/residentDiseaseFunctions.php';
                                         <?php }?>
 
                                      
-                                     <td><a href="addDiseaseToResident.php?resident_id=<?php echo $resident_id;?>" class="btn btn-success">Add Disease</a>&nbsp;<a href="viewResidentDisease.php?resident_id=<?php echo $resident_id;?>" class="btn btn-info">View Details</a></td>
+                                     <td><a href="addDiseaseToResident.php?resident_id=<?php echo $resident_id;?>" class="btn btn-success">Add Disease</a></td>
+                                     <td><a href="viewResidentDisease.php?resident_id=<?php echo $resident_id;?>" class="btn btn-info">View Details</a></td>
 
                                   </tr>
 

@@ -38,7 +38,7 @@ include 'functions/barangayFunctions.php';
             <div class="col-md-9"><!-- START of RIGHT COLUMN-->
               <div class="card" style="margin-top: 25px;" ><!--START OF RIGHTCARD-->
               <div class="container" style="margin-top: 25px; margin-bottom: 25px;">
-                      <center><h6>List of Registered Barangays</h6></center>
+                      <center><h3>List of Registered Barangays</h3></center>
                       <div class="container" style="margin-top: 5%">
                         <div class="col-md-12">
                           <h4>ADD BARANGAY &nbsp;<a href="barangayRegistration.php" class="btn btn-success"><i class="material-icons">add</i></a></h4>

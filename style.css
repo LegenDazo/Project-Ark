@@ -88,3 +88,13 @@ body{
 .nav-link[data-toggle]:not(.collapsed):after {
     content: "▴";
 }
+
+.footer {
+  background-color: #2C3E50; 
+  height: 40px; 
+  bottom: 0; 
+  position: relative; 
+  width: 100%;
+  text-align: center;
+  color: white;
+}

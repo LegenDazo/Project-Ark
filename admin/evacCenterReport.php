@@ -42,11 +42,6 @@
               <div class="card" style="margin-top: 25px; margin-bottom: 25px;"><!--START OF RIGHTCARD-->
                 <div class="container" style="margin-top: 25px; margin-bottom: 25px;">
 
-
-                  
-
-
-
                   <center><h3>Reports</h3></center>
                   <table class="table table-hovered" id="evacReport">
 
@@ -86,8 +81,8 @@
       </div><!--END OF ROW-->
       </div><!--END OF CONTAINER FLUID-->
 
-      <footer id="footer" style="background-color: #2C3E50; height: 40px; bottom: 0; position: relative; width: 100%;">
-        <p>All Rights Reserved</p>
+      <footer class="footer">
+        <p>Project Ark © 2017 All Rights Reserved</p>
       </footer>
 
 

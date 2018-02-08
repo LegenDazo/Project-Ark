@@ -20,8 +20,7 @@
   <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
   <link rel="stylesheet" href="../style.css">
   <link rel="stylesheet" href="../materialize/icons.css">
-  <link rel="stylesheet" type="text/css" href="../datatables/datatables.css">
-  <link rel="stylesheet" type="text/css" href="../datatables/datatables-bootstrap.css">
+
 </head>
 
 <body>
@@ -72,8 +71,7 @@
 <script src="../js/jquery.min.js"></script>
 <script src="../bootstrap/js/bootstrap.js"></script>
 <script src="../bootstrap/js/bootstrap_alpha6.min.js"></script>
-<script src="../datatables/datatables-bootstrap.js"></script>
-<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.15/js/jquery.dataTables.js"></script>     
+     
 <script>
   $(document).ready( function () {
   <?php 

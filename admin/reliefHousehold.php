@@ -152,15 +152,6 @@ include 'functions/itemResidentsFunctions.php';
 
 
 
-<script type="text/javascript">
-  /*$(document).ready(function(){
-    $.ajax({
-      type: "GET",
-      data: 
-    })
-  }) */
-</script>
-
 <script src="../js/jquery.min.js"></script>
 <script src="../bootstrap/js/bootstrap.js"></script>
 <script src="../bootstrap/js/bootstrap_alpha6.min.js"></script>
@@ -181,26 +172,9 @@ include 'functions/itemResidentsFunctions.php';
   $("#package").change(function() {
 
     $("#packageForm").submit();
-    
 
-//    $.post("reliefHousehold.php", {package_id: package_id }, function(response, status) {
-//      console.log(status);
-//    });
-
-  //  console.log(package_id);
   });
 
- // $('.received').click(function() {
-  //    var package_id = $("#package").val();
-  //    var household_id = $(this).attr("value");
-      //  var select_id = '#pack'+household_id;
-      //  var value = $(select_id).val();
-
-//      $.post('functions/distributionFunction.php',"household_id="+household_id+"&package_id="+package_id+"&received='received'",function(response) {
- //       console.log(response);
-//      });
-
-//    });
 
     $('#household').DataTable();
 });

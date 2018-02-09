@@ -49,13 +49,13 @@
                                   </thead>
 
                                   <?php
-                                    $myrow  = $obj->retrieveHouseholdData();
+                                    $myrow  = $house->retrieveHouseholdData();
                                     foreach($myrow as $row ){ ?>
                                       <tr id="<?php echo $row['household_id']; ?>">        
 
                                <td data-target="household_id"><?php echo $row['household_id']; ?></td>         
                                <td><?php 
-                                $result = mysqli_query($obj->conn, "SELECT * FROM resident WHERE household_id = ".$row['household_id']." AND house_memship = 'head'");
+                                $result = mysqli_query($house->conn, "SELECT * FROM resident WHERE household_id = ".$row['household_id']." AND house_memship = 'head'");
                                 $rowH = mysqli_fetch_assoc($result);
                                 if($rowH['house_memship'] == 'head'){
                                 echo $rowH['fname']; 
@@ -67,7 +67,7 @@
                              </td>
                              <td>
                                <?php 
-                                $result = mysqli_query($obj->conn, "SELECT * FROM resident WHERE household_id = ".$row['household_id']." AND house_memship = 'head\'s spouse'");
+                                $result = mysqli_query($house->conn, "SELECT * FROM resident WHERE household_id = ".$row['household_id']." AND house_memship = 'head\'s spouse'");
                                 $rowH = mysqli_fetch_assoc($result);
 
                                if($rowH['house_memship'] == "head's spouse"){
@@ -79,7 +79,7 @@
                               }
                                ?>
                              </td>
-                               <td><a href="updateHousehold.php?resident_id=<?php echo $row['household_id'];?>" class="btn btn-info">View Details</a>&nbsp;&nbsp;&nbsp;</td>
+                               <td><a href="updateHousehold.php?household_id=<?php echo $row['household_id'];?>" class="btn btn-info">View Details</a>&nbsp;&nbsp;&nbsp;</td>
                                                             
                                       </tr>
 
@@ -100,17 +100,6 @@
       <footer class="footer">
         <p>Project Ark © 2017 All Rights Reserved</p>
       </footer>
-
-
-
-<script type="text/javascript">
-  $(document).ready(function(){
-    $.ajax({
-      type: "GET",
-      data: 
-    })
-  })
-</script>
 
 <script src="../js/jquery.min.js"></script>
 <script src="../bootstrap/js/bootstrap.js"></script>

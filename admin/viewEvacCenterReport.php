@@ -96,6 +96,8 @@
                     <?php
                       if(isset($showAll) || isset($period)) {
                         $time = (isset($showAll)) ? $showAll : $period;
+                      } else {
+                        $time = 'showAll';
                       }
                     ?>
                     <form method="POST" action= "viewEvacCenterReport.php?evac_id=<?php echo $evac_id; ?>">

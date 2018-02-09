@@ -33,20 +33,21 @@ if (isset($_POST['sendmessage'])) {
 	$message .= $_POST['message'];
 	$contact = "";
 
-
-	/*$parameters = array(
-	    'apikey' => 'cb679f4c0a2b5854601024571ea54c96', //Your API KEY
-	    'number' => '09994738632',
-	    'message' => $message,
-	    'sendername' => 'SEMAPHORE'
-	);*/
-
 	$myrow = $msg->retrieveContacts();
 	foreach ($myrow as $row) {
 		$contact .= $row['contact_no'] . ",";
 	}
 
 	$contact = trim($contact, ",");
+
+	$parameters = array(
+	    'apikey' => 'cb679f4c0a2b5854601024571ea54c96', //Your API KEY
+	    'number' => $contact,
+	    'message' => $message,
+	    'sendername' => 'SEMAPHORE'
+	);
+
+
 	
 
 
@@ -56,7 +57,7 @@ if (isset($_POST['sendmessage'])) {
 		curl_setopt( $ch, CURLOPT_POST, 1 );
 	
 		//Send the parameters set above with the request
-		curl_setopt( $ch, CURLOPT_POSTFIELDS, http_build_query( /*$parameters*/ array('apikey' => 'cb679f4c0a2b5854601024571ea54c96', 'number' => $contact, 'message' => $message, 'sendername' => 'SEMAPHORE')) );
+		curl_setopt( $ch, CURLOPT_POSTFIELDS, http_build_query($parameters) );
 		
 
 		// Receive response from server

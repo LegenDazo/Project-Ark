@@ -10,23 +10,23 @@ if(isset($_POST["fname"]))
  $gender = $_POST["gender"];
  $bday = $_POST["bday"];
  $house_memship = $_POST["house_memship"];
- $house_no = $_POST["house_no"];
- $street = $_POST["street"];
- $brgy_id = $_POST["brgy_id"];
  $household_id = $_POST["household_id"];
- 
- $query = '';
+ $admin_id = $_POST["admin_id"];
 
-    $fname_clean = mysqli_real_escape_string($connect, $fname);
-    $mname_clean = mysqli_real_escape_string($connect, $mname);
-    $lname_clean = mysqli_real_escape_string($connect, $lname);
-    $gender_clean = mysqli_real_escape_string($connect, $gender);
-    $bday_clean = $bday; 
-    $house_memship_clean = mysqli_real_escape_string($connect, $house_memship);
+
+$fname_clean = mysqli_real_escape_string($connect, $fname);
+$mname_clean = mysqli_real_escape_string($connect, $mname);
+$lname_clean = mysqli_real_escape_string($connect, $lname);
+$gender_clean = mysqli_real_escape_string($connect, $gender);
+$bday_clean = $bday; 
+$house_memship_clean = mysqli_real_escape_string($connect, $house_memship);
+$admin_id = mysqli_real_escape_string($connect, $admin_id);
+
+    if($mname_clean == "") {
+      $mname_clean = NULL;
+    }
     
-    $query .= 'INSERT INTO resident(fname, mname, lname, gender, bday, house_memship, brgy_id, house_no, street, household_id) VALUES("'.$fname_clean.'", "'.$mname_clean.'", "'.$lname_clean.'", "'.$gender_clean.'", "'.$bday_clean.'", "'.$house_memship_clean.'", '.$brgy_id.', '.$house_no.', "'.$street.'", '.$household_id.')';
-
- if($query != '') {
+    $query = 'INSERT INTO resident(fname, mname, lname, gender, bday, house_memship, household_id, admin_id) VALUES("'.$fname_clean.'", "'.$mname_clean.'", "'.$lname_clean.'", "'.$gender_clean.'", "'.$bday_clean.'", "'.$house_memship_clean.'", '.$household_id.', '.$admin_id.')';
     
   if(mysqli_query($connect, $query)) {
     $id = $connect->insert_id;
@@ -37,8 +37,5 @@ if(isset($_POST["fname"]))
   } else {
    echo 'Error';
   }
-} else {
-  echo 'All Fields are Required';
-}
 }
 ?>

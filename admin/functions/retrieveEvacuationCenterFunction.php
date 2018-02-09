@@ -52,8 +52,9 @@
 
 		public function setInactiveEvac($evac_id)
 		{
-			$sql = "UPDATE evacuationcenter SET status = 'inactive' WHERE evac_id='".$evac_id."';";
-			$sql .= "UPDATE evacuationperiod SET date_end = CURRENT_TIMESTAMP() WHERE evac_id = ".$evac_id." AND date_end IS NULL";
+			$sql = "UPDATE evacuationcenter SET status = 'inactive', population = 0 WHERE evac_id='".$evac_id."';";
+			$sql .= "UPDATE evacuationperiod SET date_end = CURRENT_TIMESTAMP() WHERE evac_id = ".$evac_id." AND date_end IS NULL;";
+			$sql .= "UPDATE attendance SET date_out = CURRENT_TIMESTAMP() WHERE evac_id = ".$evac_id." AND date_out IS NULL";
 			$query = mysqli_multi_query($this->conn, $sql);
 			if ($query) {
 				return true;

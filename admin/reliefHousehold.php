@@ -76,7 +76,7 @@ include 'functions/itemResidentsFunctions.php';
 
                                   <?php
                                     $package_id = isset($_POST["package_id"]) ? $_POST["package_id"] : -1;
-                                    $myrow  = $obj->retrieveHouseholdData();
+                                    $myrow  = $house->retrieveHouseholdData();
                                     foreach($myrow as $row ) { ?>
 
                                       <tr id="<?php echo $row['household_id']; ?>"> 
@@ -85,7 +85,7 @@ include 'functions/itemResidentsFunctions.php';
 
                                <td data-target="household_id"><?php echo $row['household_id']; ?></td>         
                                <td><?php 
-                                $result = mysqli_query($obj->conn, "SELECT * FROM resident WHERE household_id = ".$row['household_id']." AND house_memship = 'head'");
+                                $result = mysqli_query($house->conn, "SELECT * FROM resident WHERE household_id = ".$row['household_id']." AND house_memship = 'head'");
                                 $rowH = mysqli_fetch_assoc($result);
                                 if($rowH['house_memship'] == 'head'){
                                 echo $rowH['fname'];
@@ -97,7 +97,7 @@ include 'functions/itemResidentsFunctions.php';
                              </td>
                              <td>
                                <?php 
-                                $result = mysqli_query($obj->conn, "SELECT * FROM resident WHERE household_id = ".$row['household_id']." AND house_memship = 'head\'s spouse'");
+                                $result = mysqli_query($house->conn, "SELECT * FROM resident WHERE household_id = ".$row['household_id']." AND house_memship = 'head\'s spouse'");
                                 $rowH = mysqli_fetch_assoc($result);
                                 $household_id = $row["household_id"];
 
@@ -119,7 +119,7 @@ include 'functions/itemResidentsFunctions.php';
                                     //echo "No Package Selected";
                                   } else {
                                     $package_id = $_POST["package_id"];
-                                    $result = mysqli_query($obj->conn, "SELECT * FROM packagedistribution WHERE household_id = ".$row['household_id']." AND package_id = ".$package_id."");
+                                    $result = mysqli_query($house->conn, "SELECT * FROM packagedistribution WHERE household_id = ".$row['household_id']." AND package_id = ".$package_id."");
 
                                   if(mysqli_num_rows($result) == 0) {
                                     echo '<input type="hidden" name="household_id" value="'.$household_id.'">';

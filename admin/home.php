@@ -22,8 +22,11 @@
 </head>
 
 <body>
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 4e960aa98c7a246b49019df0e369d2aa6f9b3144
     <nav class="navbar navbar-light bg-faded">
     <img src="../images/ARK1.png">
     <a href="../logout.php" style="color: white">Log Out</a>

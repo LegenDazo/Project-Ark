@@ -34,7 +34,7 @@
 
 		public function retrieveAnnounceData()
 		{
-			$sql = "SELECT * FROM newannouncement as a JOIN admin as b ON a.admin_id=b.username ORDER BY datepost DESC";
+			$sql = "SELECT * FROM newannouncement as a JOIN admin as b ON a.admin_id=b.id ORDER BY datepost DESC";
 			$query = mysqli_query($this->conn, $sql);
 			$itemArray = array();
 			while ($row = mysqli_fetch_assoc($query)) {
@@ -73,7 +73,7 @@
 
 	if (isset($_POST['submitannounce'])) {
 		session_start();
-		$admin_id = $_SESSION['username'];
+		$admin_id = $_SESSION['id'];
 		$an_about = mysqli_real_escape_string($func->conn, $_POST['an_about']);
 		$an_what = mysqli_real_escape_string($func->conn, $_POST['an_what']);
 

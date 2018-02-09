@@ -106,13 +106,7 @@ include 'functions/barangayFunctions.php';
                                   </select>
                                 </div>            
                         </div>
-
-                     
-
                           <br>
-                       
-                        
-                        
                           <center>
                             <div class="col-md-3">
                             <button type="submit" class="btn btn-primary btn-block" name="submitevac">Set as Evacuation Center</button>

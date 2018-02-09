@@ -17,6 +17,19 @@
 </head>
 
 <body>
+  <script type="text/javascript">
+    function validate(){
+      var num = $("#sponsor_contNum").val();
+      var stat = !num.match("[A-Za-z]+");
+
+      if(stat == false) {
+        alert("Contact number must only have numbers");
+      }
+
+
+      return stat;
+    }
+  </script>
 
     <nav class="navbar navbar-light bg-faded">
     <img src="../images/ARK1.png">
@@ -34,17 +47,17 @@
               <div class="container" style="margin-top: 25px;">
                       <center><h4>Input Sponsor Details</h4></center>
                       <div class="container" style="margin-top: 5%; margin-bottom: 5%;">
-                            <form method="post" action="functions/reliefSponsorsFunctions.php">    
+                            <form onsubmit="return validate()" method="post" action="functions/reliefSponsorsFunctions.php">    
                               <div class="row">                                                      
                               <div class="form-group col-md-6">
                                 <label for="sponsor_name">Sponsor Name</label>
-                                <input data-target="sponsor_name" type="text" class="form-control" id="sponsor_name" name="sponsor_name"> 
+                                <input data-target="sponsor_name" type="text" class="form-control" id="sponsor_name" name="sponsor_name" required> 
                               </div>
                               
                               <div class="form-group col-md-4">
                                 <label class="mr-sm-2" for="sponsor_type">Sponsor Type</label>
-                                <select class="custom-select col-md-6" id="sponsor_type" name="sponsor_type">
-                                  <option selected>Choose...</option>
+                                <select class="custom-select col-md-6" id="sponsor_type" name="sponsor_type" required>
+                                  <option selected value="">Choose...</option>
                                   <option  name="sponsor_type" value="Govenment Organization">Govenment Organization</option>
                                   <option  name="sponsor_type" value="Volunteer">Volunteer</option>
                                   <option  name="sponsor_type" value="Annonymous">Annonymous</option>
@@ -55,12 +68,12 @@
                               <div class="row">        
                               <div class="form-group col-md-6">
                                 <label for="sponsor_address">Address</label>
-                                <input  data-target="sponsor_address" type="text" class="form-control" id="sponsor_address" name="sponsor_address"> 
+                                <input  data-target="sponsor_address" type="text" class="form-control" id="sponsor_address" name="sponsor_address" required> 
                               </div>
                                                
                               <div class="form-group col-md-4">
                                 <label for="sponsor_contNum">Contact Number</label>
-                                <input data-target="sponsor_contNum" type="text" class="form-control" id="sponsor_contNum" name="sponsor_contNum"> 
+                                <input data-target="sponsor_contNum" type="text" class="form-control" id="sponsor_contNum" name="sponsor_contNum" required> 
                               </div>
                               </div><br>
 
@@ -74,6 +87,7 @@
      
       </div><!--end of row-->
     </div><!--END OF MAIN CONTIANER-->
+<<<<<<< HEAD
 
 
     <footer class="footer">
@@ -82,12 +96,15 @@
 
 
 
+=======
+>>>>>>> 4e960aa98c7a246b49019df0e369d2aa6f9b3144
 <script src="../js/jquery.min.js"></script>
 <script src="../bootstrap/js/bootstrap.js"></script>
 <script src="../bootstrap/js/bootstrap_alpha6.min.js"></script>
     
 <script>
   $(document).ready( function () {
+
   <?php 
     if(isset($_GET['inserted'])){
       echo "$('#viewkey').show();";

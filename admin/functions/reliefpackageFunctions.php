@@ -10,9 +10,9 @@
 			$this->conn = mysqli_connect("localhost","root","","ark");
 		}
 
-		public function InsertRelief($relief_id, $relief_name, $operation_id, $sponsor_id)
+		public function InsertRelief($relief_name, $operation_id, $sponsor_id)
 		{
-			$sql = "INSERT INTO reliefpackage (package_id, package_name, operation_id, sponsor_id) VALUES ('".$relief_id."','".$relief_name."','".$operation_id."', '".$sponsor_id."')";
+			$sql = "INSERT INTO reliefpackage (package_name, operation_id, sponsor_id) VALUES ('".$relief_name."','".$operation_id."', '".$sponsor_id."')";
 			$query = mysqli_query($this->conn, $sql);
 			if ($query) {
 				return true;
@@ -70,11 +70,11 @@ $obj = new obj;
 if (isset($_POST['addRelief'])) {
 	
 	$relief_name = mysqli_real_escape_string($obj->conn, $_POST['relief_name']);
-	$relief_id = mysqli_real_escape_string($obj->conn, $_POST['relief_id']);
+//	$relief_id = mysqli_real_escape_string($obj->conn, $_POST['relief_id']);
 	$operation_id = mysqli_real_escape_string($obj->conn, $_POST['operation_id']);
 	$sponsor_id = mysqli_real_escape_string($obj->conn, $_POST['sponsor_id']);
 
-	$obj->InsertRelief($relief_id, $relief_name, $operation_id, $sponsor_id);
+	$obj->InsertRelief($relief_name, $operation_id, $sponsor_id);
 			header("location:../reliefpackage.php?inserted=1");	
 }	
 //}else{

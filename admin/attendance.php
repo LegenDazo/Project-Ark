@@ -107,7 +107,7 @@ include 'functions/retrieveEvacuationCenterFunction.php';
                             ?>
                             <tr>
                             <td><?php echo $row['lname']; echo ", "; echo $row['fname']; echo " "; echo $row['mname']?></td>
-                            <td><?php echo $row['brgy_id']; echo ", "; echo $row['house_no']; echo ", "; echo $row['street']?></td>
+                            <td><?php echo $row['brgy_name']; echo ", "; echo $row['house_no']; echo ", "; echo $row['street']?></td>
 
                             <?php
                               $resident_id = $row['resident_id']; //gikuha ang value ni resident data

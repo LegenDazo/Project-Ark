@@ -102,7 +102,7 @@ class Functions
 
 		public function retrieve_residentData()
 		{
-			$sql = "SELECT * FROM resident as r INNER JOIN household as h ON r.household_id = h.household_id ORDER BY lname";
+			$sql = "SELECT * FROM resident as r INNER JOIN household as h INNER JOIN barangay as b ON r.household_id = h.household_id ORDER BY lname";
 			$itemArray = array();
 			$query = mysqli_query($this->con, $sql);
 			while ($row = mysqli_fetch_assoc($query)) {

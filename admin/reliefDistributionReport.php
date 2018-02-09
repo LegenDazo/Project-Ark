@@ -10,6 +10,7 @@
 ?>
 <html lang="en">
 <head>
+  <link rel="icon" type="image/gif/png" href="../logo.png">
   <title>Project Ark</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">

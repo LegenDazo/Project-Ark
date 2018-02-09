@@ -24,7 +24,7 @@ include 'functions/reliefSponsorsFunctions.php';
 
     <nav class="navbar navbar-light bg-faded">
     <img src="../images/ARK1.png">
-    <a href="../logout.php" style="color: white">Log Out</a>
+    <a href="../logout.php" style="color: white">Logout</a>
     </nav>
 
     <div class="container-fluid"><!--START OF MAIN CONTAINER-->
@@ -34,8 +34,8 @@ include 'functions/reliefSponsorsFunctions.php';
             
 
             <div class="col-md-9"><!-- START of RIGHT COLUMN-->
-              <div class="card" style="margin-top: 25px;" ><!--START OF RIGHTCARD-->
-              <div class="container" style="margin-top: 25px;">
+              <div class="card" style="margin-top: 25px; margin-bottom: 25px;" ><!--START OF RIGHTCARD-->
+              <div class="container" style="margin-top: 25px; margin-bottom: 25px;">
                       <center><h6>Add Relief Details</h6></center>
                       <div class="container" style="margin-top: 5%; margin-bottom: 5%;">
                             <form method="post" action="functions/reliefpackageFunctions.php">   

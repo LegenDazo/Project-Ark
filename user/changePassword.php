@@ -18,7 +18,7 @@
 
     <nav class="navbar navbar-light bg-faded">
     <img src="../images/ARK1.png">
-    <a href="../logout.php" style="color: white">Log Out</a>
+    <a href="../logout.php" style="color: white">Logout</a>
     </nav>
 
 
@@ -29,8 +29,8 @@
 
 
             <div class="col-md-9"><!-- START of RIGHT COLUMN-->
-              <div class="card" style="margin-top: 25px;" ><!--START OF RIGHTCARD-->    
-              <div class="container" style="margin-top: 25px;">
+              <div class="card" style="margin-top: 25px; margin-bottom: 25px;" ><!--START OF RIGHTCARD-->    
+              <div class="container" style="margin-top: 25px; margin-bottom: 25px;">
               <center><h5>Change Password</h5></center>
               <label><?php
                 if(isset($_SESSION['Error'])){
@@ -43,7 +43,7 @@
                 }
               ?>
               </label>
-              <form method="post" action="functions/changePasswordFunction.php">
+              <center><form method="post" action="functions/changePasswordFunction.php">
                 <input type="hidden" name="username" value="<?php echo $_SESSION['username'];?>">
                 <div class="col-md-5">
                   <div class="form-group">
@@ -65,7 +65,7 @@
                 </div> 
                 
                 <button class="btn btn-primary" name="changePassword">Change</button>  
-                </form>
+                </form></center>
 
               </div>
               </div><!--END OF RIGHTCARD--> 

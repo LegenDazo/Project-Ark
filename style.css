@@ -89,26 +89,32 @@ body{
     content: "▴";
 }
 
-html {
-  height: 100%;
+
+/*.container-fluid {
+  min-height: calc(100vh - 70px);
 }
-body {
-  min-height: 100%;
-  display: grid;
-  grid-template-rows: 1fr auto;
+.footer {
+    height: 50px;
+    background-color: #2C3E50;  
+    bottom: -0; 
+    width: 100%;
+    text-align: center;
+    color: white;
+}*/
+
+
+html, body {
+  height: 90%;
+  margin: 0;
 }
 .container-fluid {
-  padding: 20px;
-}
-.footer {
-  grid-row-start: 5;
-  grid-row-end: 6;
+  min-height: 100%;
 }
 
-
 .footer {
-    background-color: #2C3E50; 
-    padding-bottom: 8px; 
+    height: 50px;
+    margin-top: auto;
+    background-color: #2C3E50;  
     bottom: -0; 
     width: 100%;
     text-align: center;

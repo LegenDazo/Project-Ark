@@ -22,14 +22,10 @@
 </head>
 
 <body>
-<<<<<<< HEAD
 
-
-=======
->>>>>>> 4e960aa98c7a246b49019df0e369d2aa6f9b3144
     <nav class="navbar navbar-light bg-faded">
     <img src="../images/ARK1.png">
-    <a href="../logout.php" style="color: white">Log Out</a>
+    <a href="../logout.php" style="color: white"> Logout</a>
     </nav>
 
       <div class="container-fluid"><!--START OF CONTAINER FLUID-->
@@ -38,7 +34,7 @@
         <?php include '../adminNavbar.php'; ?>
 
             <div class="col-md-9"><!-- START of RIGHT COLUMN-->
-              <div class="card" style="margin-top: 25px; margin-bottom: 25px; height: 100%;"><!--START OF RIGHTCARD-->
+              <div class="card" style="margin-top: 25px; margin-bottom: 25px; "><!--START OF RIGHTCARD-->
                 <div class="container" style="margin-top: 25px; margin-bottom: 25px;">
                   <div class="row">      
                           <div class="col-md-3">
@@ -88,9 +84,9 @@
 
       </div><!--END OF CONTAINER FLUID-->
 
-      <footer class="footer">
+      <!--<footer class="footer">
         <p>Project Ark © 2017 All Rights Reserved</p>
-      </footer>
+      </footer>-->
       
 
 

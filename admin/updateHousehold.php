@@ -27,7 +27,7 @@
 
     <nav class="navbar navbar-light bg-faded">
     <img src="../images/ARK1.png">
-    <a href="../logout.php" style="color: white">Log Out</a>
+    <a href="../logout.php" style="color: white">Logout</a>
     </nav>
 
     <div class="container-fluid"><!--START OF MAIN CONTAINER-->
@@ -55,7 +55,7 @@
                         <div class="panel-body"> 
 
                           <div class="text-left">
-                            <a href="household.php" class="btn btn-warning col-md-2"><i class="material-icons">arrow_back</i> Back</a>
+                            <a href="household.php" class="btn btn-warning col-md-2"> Back</a>
                           </div><br>
 
 

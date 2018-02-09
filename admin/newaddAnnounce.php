@@ -42,7 +42,7 @@
 
 
             <div class="col-md-9"><!-- START of RIGHT COLUMN-->
-              <div class="card" style="margin-top: 25px;"><!--START OF RIGHTCARD-->                
+              <div class="card" style="margin-top: 25px; margin-bottom: 25px;"><!--START OF RIGHTCARD-->                
                   <div class="container" style="margin-top: 25px; margin-bottom: 25px;">
                           <center><h5>Announcement Details</h5></center>
                           <div class="container" style="margin-top: 5%">
@@ -81,17 +81,11 @@
      
       </div><!--end of row-->
     </div><!--END OF MAIN CONTIANER-->
-<<<<<<< HEAD
-
 
     <footer class="footer">
         <p>Project Ark © 2017 All Rights Reserved</p>
     </footer>
 
-
-
-=======
->>>>>>> 4e960aa98c7a246b49019df0e369d2aa6f9b3144
 <script src="../js/jquery.min.js"></script>
 <script src="../bootstrap/js/bootstrap.js"></script>
 <script src="../bootstrap/js/bootstrap_alpha6.min.js"></script>

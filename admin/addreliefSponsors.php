@@ -33,7 +33,7 @@
 
     <nav class="navbar navbar-light bg-faded">
     <img src="../images/ARK1.png">
-    <a href="../logout.php" style="color: white">Log Out</a>
+    <a href="../logout.php" style="color: white">Logout</a>
     </nav>
 
     <div class="container-fluid"><!--START OF MAIN CONTAINER-->
@@ -43,8 +43,8 @@
             
 
             <div class="col-md-9"><!-- START of RIGHT COLUMN-->
-              <div class="card" style="margin-top: 25px;" ><!--START OF RIGHTCARD-->
-              <div class="container" style="margin-top: 25px;">
+              <div class="card" style="margin-top: 25px; margin-bottom: 25px;" ><!--START OF RIGHTCARD-->
+              <div class="container" style="margin-top: 25px; margin-bottom: 25px;">
                       <center><h4>Input Sponsor Details</h4></center>
                       <div class="container" style="margin-top: 5%; margin-bottom: 5%;">
                             <form onsubmit="return validate()" method="post" action="functions/reliefSponsorsFunctions.php">    
@@ -87,17 +87,12 @@
      
       </div><!--end of row-->
     </div><!--END OF MAIN CONTIANER-->
-<<<<<<< HEAD
-
-
+    
     <footer class="footer">
         <p>Project Ark © 2017 All Rights Reserved</p>
     </footer>
 
 
-
-=======
->>>>>>> 4e960aa98c7a246b49019df0e369d2aa6f9b3144
 <script src="../js/jquery.min.js"></script>
 <script src="../bootstrap/js/bootstrap.js"></script>
 <script src="../bootstrap/js/bootstrap_alpha6.min.js"></script>

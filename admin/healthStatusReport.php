@@ -37,7 +37,6 @@
             <div class="col-md-9"><!-- START of RIGHT COLUMN-->
               <div class="card" style="margin-top: 25px;"><!--START OF RIGHTCARD-->
                 <div class="container" style="margin-top: 25px; margin-bottom: 25px;">
-<<<<<<< HEAD
                      <div class="row">                      
                           <div class="col-md-3">
                             <div class="card">
@@ -73,7 +72,7 @@
                               </div>
                           </div>               
                         </div>
-=======
+
                   <table class="table table-hovered" id="evacReport">
                     <thead>
                       <tr>
@@ -100,13 +99,17 @@
                       
                     
                   </table>
->>>>>>> 994ba580cbbba75b6410fc7650d0a881022b6e64
                 </div>
               </div><!--END OF RIGHTCARD--> 
             </div><!-- END of RIGHT COLUMN-->
      
       </div><!--END OF ROW-->
       </div><!--END OF CONTAINER FLUID-->
+
+
+      <footer class="footer">
+        <p>Project Ark © 2017 All Rights Reserved</p>
+      </footer>
 
 
 

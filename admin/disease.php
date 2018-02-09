@@ -28,7 +28,7 @@ include 'functions/retrieveDisease.php'
 
     <nav class="navbar navbar-light bg-faded">
     <img src="../images/ARK1.png">
-    <a href="../logout.php" style="color: white">Log Out</a>
+    <a href="../logout.php" style="color: white">Logout</a>
     </nav>
 
     <div class="container-fluid"><!--START OF MAIN CONTAINER-->
@@ -38,7 +38,7 @@ include 'functions/retrieveDisease.php'
             
 
             <div class="col-md-9"><!-- START of RIGHT COLUMN-->
-              <div class="card" style="margin-top: 25px;" ><!--START OF RIGHTCARD-->
+              <div class="card" style="margin-top: 25px; margin-bottom: 25px;" ><!--START OF RIGHTCARD-->
               <div class="container" style="margin-top: 25px; margin-bottom: 25px;">
                       <center><h4>List of Diseases</h4></center>
                       <div class="container" style="margin-top: 5%">
@@ -50,7 +50,6 @@ include 'functions/retrieveDisease.php'
                                   <th>Disease ID</th>
                                   <th>Disease Name</th>
                                   <th>Action</th>
-                                  <th>&nbsp;</th>
                                 </tr>
                               </thead>
                              <?php
@@ -63,9 +62,12 @@ include 'functions/retrieveDisease.php'
                                      <td><?php echo $row['disease_id']?></td>
                                      <td><?php echo $row['disease_name'];?></td>
 
-                                     <td><a href="disease.php?deleteDisease=1&disease_id=<?php echo $row['disease_id'];?>" class="btn btn-danger">DELETE</a>
-                                         </td>
-                                          <td><a href="updateDiseases.php?process=update&disease_id=<?php echo $disease_id?>" class="btn btn-success btn-block col-md-5">Update</a></td>
+                                     <td>
+                                      <div class="row">
+                                      <a href="disease.php?deleteDisease=1&disease_id=<?php echo $row['disease_id'];?>" class="btn btn-danger col-md-5">DELETE</a>&nbsp;
+                                      <a href="updateDiseases.php?process=update&disease_id=<?php echo $disease_id?>" class="btn btn-success btn-block col-md-5">Update</a>
+                                      </div>
+                                      </td>
                                    </tr>
                                     
 
@@ -98,6 +100,9 @@ include 'functions/retrieveDisease.php'
       </div><!--end of row-->
     </div><!--END OF MAIN CONTIANER-->
 
+    <footer class="footer">
+        <p>Project Ark © 2017 All Rights Reserved</p>
+    </footer>
 
 
 <script src="../js/jquery.min.js"></script>

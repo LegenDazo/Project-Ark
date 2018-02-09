@@ -129,6 +129,12 @@
 
 
 
+    <footer class="footer">
+        <p>Project Ark © 2017 All Rights Reserved</p>
+      </footer>
+
+
+
 
 
 

@@ -26,7 +26,7 @@
 
     <nav class="navbar navbar-light bg-faded">
     <img src="../images/ARK1.png">
-    <a href="../logout.php" style="color: white">Log Out</a>
+    <a href="../logout.php" style="color: white">Logout</a>
     </nav>
 
     <div class="container-fluid"><!--START OF MAIN CONTAINER-->
@@ -123,7 +123,9 @@
     </div><!--END OF MAIN CONTIANER-->
 
 
-
+    <footer class="footer">
+        <p>Project Ark © 2017 All Rights Reserved</p>
+    </footer>
 
 
 

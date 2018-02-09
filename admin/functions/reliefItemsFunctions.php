@@ -123,9 +123,8 @@ if (isset($_POST['insertItem'])) {
 	$package_id = mysqli_real_escape_string($Functions->conn, $_POST['package_id']);
 
 	$Functions->insertItem($item_name, $qty, $item_type, $package_id );
-	//		header("location:../reliefItems.php?inserted=1");	
+		header("location:../reliefItems.php?inserted=1");	
 }	
-//}else{
 
 if (isset($_GET['deleteItem'])) {
 		$item_no = mysqli_real_escape_string($Functions->conn, $_GET['item_no']);

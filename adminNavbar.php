@@ -3,7 +3,7 @@ include 'login.php';;
 
 ?>
 
-<div class="col-md-3"><!--START of LEFT COLUMN-->
+                <div class="col-md-3"><!--START of LEFT COLUMN-->
                 <div class="card" id="profile" style="margin-top: 25px;">
                 <img src="../images/user.png">
                   <center>
@@ -40,7 +40,7 @@ include 'login.php';;
                     </ul>
                 </div>
 
-                <div class="card" style="margin-top: 10px;">
+                <div class="card" style="margin-top: 10px; margin-bottom: 25px;">
                   <ul class="navbar-nav flex-column" id="sidenav">
                     <li class="nav-item">
                       <a class="nav-link active" href="home.php"><i class="material-icons">home</i>  Home</a>

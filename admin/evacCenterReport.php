@@ -30,7 +30,7 @@
 
     <nav class="navbar navbar-light bg-faded">
     <img src="../images/ARK1.png">
-    <a href="../logout.php" style="color: white">Log Out</a>
+    <a href="../logout.php" style="color: white">Logout</a>
     </nav>
 
       <div class="container-fluid"><!--START OF CONTAINER FLUID-->
@@ -41,11 +41,6 @@
             <div class="col-md-9"><!-- START of RIGHT COLUMN-->
               <div class="card" style="margin-top: 25px; margin-bottom: 25px;"><!--START OF RIGHTCARD-->
                 <div class="container" style="margin-top: 25px; margin-bottom: 25px;">
-
-
-                  
-
-
 
                   <center><h3>Reports</h3></center>
                   <table class="table table-hovered" id="evacReport">
@@ -86,18 +81,16 @@
       </div><!--END OF ROW-->
       </div><!--END OF CONTAINER FLUID-->
 
-      <footer id="footer" style="background-color: #2C3E50; height: 40px; bottom: 0; position: relative; width: 100%;">
-        <p>All Rights Reserved</p>
+      <footer class="footer">
+        <p>Project Ark © 2017 All Rights Reserved</p>
       </footer>
 
 
 <script src="../js/jquery.min.js"></script>
 <script src="../bootstrap/js/bootstrap.js"></script>
 <script src="../bootstrap/js/bootstrap_alpha6.min.js"></script>
-<script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script> 
-<script src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
 <script src="../datatables/datatables-bootstrap.js"></script>
-<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.15/js/jquery.dataTables.js"></script>    
+<script type="text/javascript" charset="utf8" src="../datatables/datatables-jquery.js"></script>    
 <script>
   $(document).ready( function () {
   <?php 

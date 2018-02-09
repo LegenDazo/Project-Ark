@@ -20,15 +20,13 @@ include 'functions/itemResidentsFunctions.php';
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="./jquery.js"></script>
   <script src="bootstrap/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.15/css/jquery.dataTables.css">
-  <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.15/js/jquery.dataTables.js"></script>
 </head>
 
 <body>
 
     <nav class="navbar navbar-light bg-faded">
     <img src="../images/ARK1.png">
-    <a href="../logout.php" style="color: white">Log Out</a>
+    <a href="../logout.php" style="color: white">Logout</a>
     </nav>
 
       <div class="container-fluid"><!--START OF CONTAINER FLUID-->
@@ -151,21 +149,16 @@ include 'functions/itemResidentsFunctions.php';
       </div><!--END OF CONTAINER FLUID-->
 
 
+      <footer class="footer">
+        <p>Project Ark © 2017 All Rights Reserved</p>
+      </footer>
 
-<script type="text/javascript">
-  /*$(document).ready(function(){
-    $.ajax({
-      type: "GET",
-      data: 
-    })
-  }) */
-</script>
 
 <script src="../js/jquery.min.js"></script>
 <script src="../bootstrap/js/bootstrap.js"></script>
 <script src="../bootstrap/js/bootstrap_alpha6.min.js"></script>
 <script src="../datatables/datatables-bootstrap.js"></script>
-<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.15/js/jquery.dataTables.js"></script>    
+<script type="text/javascript" charset="utf8" src="../datatables/datatables-jquery.js"></script>   
 <script>
   $(document).ready( function () {
   <?php 
@@ -181,26 +174,9 @@ include 'functions/itemResidentsFunctions.php';
   $("#package").change(function() {
 
     $("#packageForm").submit();
-    
 
-//    $.post("reliefHousehold.php", {package_id: package_id }, function(response, status) {
-//      console.log(status);
-//    });
-
-  //  console.log(package_id);
   });
 
- // $('.received').click(function() {
-  //    var package_id = $("#package").val();
-  //    var household_id = $(this).attr("value");
-      //  var select_id = '#pack'+household_id;
-      //  var value = $(select_id).val();
-
-//      $.post('functions/distributionFunction.php',"household_id="+household_id+"&package_id="+package_id+"&received='received'",function(response) {
- //       console.log(response);
-//      });
-
-//    });
 
     $('#household').DataTable();
 });

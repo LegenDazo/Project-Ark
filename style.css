@@ -88,3 +88,35 @@ body{
 .nav-link[data-toggle]:not(.collapsed):after {
     content: "▴";
 }
+
+
+/*.container-fluid {
+  min-height: calc(100vh - 70px);
+}
+.footer {
+    height: 50px;
+    background-color: #2C3E50;  
+    bottom: -0; 
+    width: 100%;
+    text-align: center;
+    color: white;
+}*/
+
+
+html, body {
+  height: 90%;
+  margin: 0;
+}
+.container-fluid {
+  min-height: 100%;
+}
+
+.footer {
+    height: 50px;
+    margin-top: auto;
+    background-color: #2C3E50;  
+    bottom: -0; 
+    width: 100%;
+    text-align: center;
+    color: white;
+}

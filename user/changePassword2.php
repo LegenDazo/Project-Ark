@@ -4,6 +4,7 @@
   }
 ?>
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
   <title>ARK</title>
@@ -18,9 +19,8 @@
 
     <nav class="navbar navbar-light bg-faded">
     <img src="../images/ARK1.png">
-    <a href="../logout.php" style="color: white">Logout</a>
+    <a href="../logout.php" style="color: white">Log Out</a>
     </nav>
-
 
       <div class="container-fluid"><!--START OF CONTAINER FLUID-->
       <div class="row"><!--start of row-->
@@ -29,9 +29,9 @@
 
 
             <div class="col-md-9"><!-- START of RIGHT COLUMN-->
-              <div class="card" style="margin-top: 25px; margin-bottom: 25px;" ><!--START OF RIGHTCARD-->    
+              <div class="card" style="margin-top: 25px;" ><!--START OF RIGHTCARD-->    
               <div class="container" style="margin-top: 25px; margin-bottom: 25px;">
-              <center><h5>Change Password</h5></center>
+              <center><h5>Profile</h5></center>
               <label><?php
                 if(isset($_SESSION['Error'])){
                   echo "<div class='alert alert-danger' role='alert'>".$_SESSION['Error']."</div>";
@@ -43,6 +43,16 @@
                 }
               ?>
               </label>
+              <?php
+                $myrow = $login->retrieveUserInfo($_SESSION['username']);
+                foreach ($myrow as $row) {
+                  $fname = $row['fname'];
+                  $lname = $row['lname'];
+                  $mname = $row['mname'];
+                  $bdate = $row['bdate'];
+                  $contact_no = $row['contact_no'];
+                }
+              ?>
               <center><form method="post" action="functions/changePasswordFunction.php">
                 <input type="hidden" name="username" value="<?php echo $_SESSION['username'];?>">
                 <div class="col-md-5">
@@ -74,12 +84,17 @@
       </div><!--END OF ROW-->
       </div><!--END OF CONTAINER FLUID-->
 
+
       <footer class="footer">
         <p>Project Ark © 2017 All Rights Reserved</p>
       </footer>
 
+
+
 <script src="../js/jquery.min.js"></script>
 <script src="../bootstrap/js/bootstrap.js"></script>
 <script src="../bootstrap/js/bootstrap_alpha6.min.js"></script>
+<script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script> 
+<script src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
 </body>
 </html>

@@ -32,7 +32,7 @@ include 'functions/reliefitemsFunctions.php';
 
     <nav class="navbar navbar-light bg-faded">
     <img src="../images/ARK1.png">
-    <a href="../logout.php" style="color: white">Log Out</a>
+    <a href="../logout.php" style="color: white">Logout</a>
     </nav>
 
     <div class="container-fluid"><!--START OF MAIN CONTAINER-->
@@ -139,7 +139,9 @@ include 'functions/reliefitemsFunctions.php';
     </div><!--END OF MAIN CONTIANER-->
 
 
-
+    <footer class="footer">
+        <p>Project Ark © 2017 All Rights Reserved</p>
+      </footer>
 
 
 
@@ -147,7 +149,7 @@ include 'functions/reliefitemsFunctions.php';
 <script src="../bootstrap/js/bootstrap.js"></script>
 <script src="../bootstrap/js/bootstrap_alpha6.min.js"></script>
 <script src="../datatables/datatables-bootstrap.js"></script>
-<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.15/js/jquery.dataTables.js"></script>     
+<script type="text/javascript" charset="utf8" src="../datatables/datatables-jquery.js"></script>    
 
 
 <script>

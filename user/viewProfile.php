@@ -19,7 +19,7 @@
 
     <nav class="navbar navbar-light bg-faded">
     <img src="../images/ARK1.png">
-    <a href="../logout.php" style="color: white">Log Out</a>
+    <a href="../logout.php" style="color: white">Logout</a>
     </nav>
 
       <div class="container-fluid"><!--START OF CONTAINER FLUID-->
@@ -29,8 +29,8 @@
 
 
             <div class="col-md-9"><!-- START of RIGHT COLUMN-->
-              <div class="card" style="margin-top: 25px;" ><!--START OF RIGHTCARD-->    
-              <div class="container" style="margin-top: 25px;">
+              <div class="card" style="margin-top: 25px; margin-bottom: 25px;" ><!--START OF RIGHTCARD-->    
+              <div class="container" style="margin-top: 25px; margin-bottom: 25px;">
               <center><h5>Profile</h5></center>
               <label><?php
                 if(isset($_SESSION['Error'])){
@@ -53,7 +53,7 @@
                   $contact_no = $row['contact_no'];
                 }
               ?>
-              <form method="post" action="functions/updateProfile.php">
+              <center><form method="post" action="functions/updateProfile.php">
                 <input type="hidden" name="username" value="<?php echo $_SESSION['username'];?>">
                 <div class="col-md-5">
                   <div class="form-group">
@@ -86,7 +86,7 @@
                     </div>
                   </div>
                        <button class="btn btn-primary" name="updateuser">Change</button>  
-                </form>
+                </form></center>
 
               </div>
               </div><!--END OF RIGHTCARD--> 
@@ -94,6 +94,11 @@
      
       </div><!--END OF ROW-->
       </div><!--END OF CONTAINER FLUID-->
+
+
+      <footer class="footer">
+        <p>Project Ark © 2017 All Rights Reserved</p>
+      </footer>
 
 
 

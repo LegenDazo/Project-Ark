@@ -32,7 +32,7 @@
 
     <nav class="navbar navbar-light bg-faded">
     <img src="../images/ARK1.png">
-    <a href="../logout.php" style="color: white">Log Out</a>
+    <a href="../logout.php" style="color: white">Logout</a>
     </nav>
 
       <div class="container-fluid"><!--START OF CONTAINER FLUID-->
@@ -67,7 +67,7 @@
                     <div class="col-md-1"></div>
                     <div class="col-md-5">
                       <form method="POST" action="viewEvacCenterReport.php?evac_id=<?php echo $evac_id; ?>" id="period">
-                        <select class="form-control" name="period" id="date">
+                        <select class="form-control" name="period" id="date" required>
                           <option value="">Select a Date...</option>
                           <?php
                             $dates = $obj->getEvacDates($evac_id);
@@ -177,13 +177,14 @@
 
 
 
+      <footer class="footer">
+        <p>Project Ark © 2017 All Rights Reserved</p>
+      </footer>
 
 
 <script src="../js/jquery.min.js"></script>
 <script src="../bootstrap/js/bootstrap.js"></script>
 <script src="../bootstrap/js/bootstrap_alpha6.min.js"></script>
-<script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script> 
-<script src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
 
 
 

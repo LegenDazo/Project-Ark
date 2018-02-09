@@ -40,7 +40,7 @@
                         <div class="col-md-12">
                           <div class="container" align="center">
                           <h5>Add Message &nbsp;<a href="addMessage.php" class="btn btn-success"><i class="material-icons">add</i></a></h5>
-                          <table class="table table-hovered" id="regStudent">
+                          <table class="table table-hovered" id="messageTable">
                               <thead>
                                 <tr>
                                   <th>Message</th>
@@ -58,10 +58,10 @@
                                     ?>
 
                                       <tr>
-                                        <td><?php echo $row['content']?></td>
-                                        <td></td>
+                                        <td><?php echo $row['content'];?></td>
+                                        <td><?php echo $row['user_id'];?></td>
                                         <td><?php echo date_format(new DateTime($row['datesent']), "M d Y")?></td>
-                                        <td><a href="viewMessageDetails.php?message_id=<?php echo $row['message_id'];?>" class="btn btn-info">View Details</a></td><td><a href="adminMessage.php?op_id=<?php echo $row['op_id'];?>" class="btn btn-danger">DELETE</a></td>
+                                        <td><a href="viewMessageDetails.php?sms_id=<?php echo $row['sms_id'];?>" class="btn btn-info">View Details</a></td><td><a href="adminMessage.php?op_id=<?php echo $row['op_id'];?>" class="btn btn-danger">DELETE</a></td>
                                       </tr>
                                     <?php    
                                   }
@@ -88,27 +88,7 @@
 <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.15/js/jquery.dataTables.js"></script>    
 <script>
   $(document).ready( function () {
-  <?php 
-    if(isset($_GET['inserted'])){
-      echo "$('#viewkey').show();";
-    }
-
-    if(isset($_GET['deleted'])){
-      echo "$('#viewkeydel').show();";
-    }
-  ?>
-
-    $('.close').click(function(){
-        $('#viewkey').hide();
-        window.location.href='registerStudent.php';
-    });
-
-    $('.close').click(function(){
-        $('#viewkeydel').hide();
-        window.location.href='registerStudent.php';
-    });
-
-    $('#regStudent').DataTable();
+    $('#messageTable').DataTable();
 } );
 </script>
 </body>

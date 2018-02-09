@@ -41,17 +41,9 @@
                               <div class="container" align="center">
                                   <div class="col-md-8">   
                                     <div class="panel-body"> 
-                                      <?php
-                        if (isset($_SESSION['success'])) {
-                          echo "SUCCESSFUL: ".$_SESSION['success'];
-                          unset($_SESSION['success']);
-                        }
-                        if (isset($_SESSION['failed'])) {
-                          echo "FAILED: ".$_SESSION['failed'];
-                          unset($_SESSION['failed']);
-                        }
-                      ?>
+
                                       <form method="post" action="semaphore.php">
+                                        <input type="hidden" name="id" value="<?php echo $_SESSION['id'];?>">
                                           <div class="form-group">
                                           <label for="message">Message</label>
                                           <textarea class="form-control" rows="5" id="message" name="message" maxlength="140"></textarea>                            

@@ -52,6 +52,7 @@
                         $myrow = $obj->retrieveEvacuationCenterAll();
                         foreach ($myrow as $row) {
                           $status = $row['status'];
+                          $evac_id = $row['evac_id'];
                           ?>
                       <tr>
                         <td><?php echo $row['location_name'];?></td>
@@ -61,18 +62,19 @@
                           <?php
                             if($status === 'active'){?>
                           <a href='functions/retrieveEvacuationCenterFunction.php?inactive=1&evac_id=<?php echo $row['evac_id'];?>' class='btn btn-danger'>Set to Inactive</a>
-                        </td>
+                        
                         
                         <?php
                           } else if ($row['status'] == 'inactive') {?>
 
-                        <a href='functions/retrieveEvacuationCenterFunction.php?active=1&evac_id=<?php echo $row['evac_id'];?>' class='btn btn-success'>Set to Active</a></td>
+                        <a href='functions/retrieveEvacuationCenterFunction.php?active=1&evac_id=<?php echo $row['evac_id'];?>' class='btn btn-success'>Set to Active</a>
 
 <!--                        <td><a href='functions/retrieveEvacuationCenterFunction.php?active=1&evac_id=<?php// echo $row['evac_id'];?>' class='btn btn-success'>Set to Active</a></td> -->
 
                         <?php
                           }
                           ?>
+                          &nbsp;<a href="updateEvacCenter.php?evac_id=<?php echo $evac_id;?>" class="btn btn-info">Update</a></td>
                       </tr>
                       <?php    
                         }

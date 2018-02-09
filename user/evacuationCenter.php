@@ -61,9 +61,6 @@
 <script src="../bootstrap/js/bootstrap.js"></script>
 <script src="../bootstrap/js/bootstrap_alpha6.min.js"></script>
 <script>
-
-$(document).ready(function(){
-
   function initMap(){
     var options = {
       zoom:16,
@@ -137,8 +134,6 @@ $(document).ready(function(){
 
  
   }
-
-  });
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAGBBcJjSDydVZGt54C64CgpXy82xLtpWM&callback=initMap"
     async defer></script>

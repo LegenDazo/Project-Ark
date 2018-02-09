@@ -29,6 +29,17 @@
 				return false;
 			}
 		}
+		
+		public function resetPassword($username, $newpassword)
+		{
+			$sql = "UPDATE user SET password='".$newpassword."' WHERE username='".$username."'";
+			$query = mysqli_query($this->conn, $sql);
+			if ($query) {
+				return true;
+			} else {
+				echo mysqli_error($this->conn);
+			}
+		}
 	}
 
 	$pass = new password;
@@ -74,6 +85,31 @@
 			$_SESSION['Error'] = "The 'Current Password' you typed was invalid!";
 			header("location:../changePassword.php");
 		}
+}
+
+if (isset($_POST['resetPassword'])) {
+	$newpassword = mysqli_real_escape_string($pass->conn, $_POST['newpassword']);
+	$retpassword = mysqli_real_escape_string($pass->conn, $_POST['retpassword']);
+	$username = mysqli_real_escape_string($pass->conn, $_POST['username']);
+
+	 if(!preg_match('/^(?=.*\d)(?=.*[A-Za-z])[0-9A-Za-z]{8,50}$/', $newpassword)){
+		session_start();
+		$_SESSION['Error'] = "Password must contain letters and numbers.";
+		header("location: ../../resetPassword.php?username=$username;");
+	} else if ($newpassword == $retpassword) {
+		if ($pass->resetPassword($username, md5($newpassword))) {
+			header("location: ../../passwordReset.php?reset=1");
+		} else {
+			session_start();
+			$_SESSION['Error'] = "Something went wrong.";
+			header("location: ../../resetPassword.php?username=$username");
+		}
+	}
+	else if($newpassword != $retpassword){
+		session_start();
+		$_SESSION['Error'] = "Passwords don't match!";
+		header("location: ../../resetPassword.php?username=$username");
+	}
 }
 
 ?>

@@ -24,7 +24,7 @@
       <form class="form-inline" method="post" action="login.php">
         <input type="text" class="form-control mr-sm-2" type="text" placeholder="Username" name="username">&nbsp;
         <input type="password" class="form-control mr-sm-2" type="password" placeholder="Password" name="password">&nbsp;<br>
-        <button class="btn btn-outline-warning my-2 my-sm-0" type="submit" name="login">LOGIN</button>
+        <button class="btn btn-outline-warning my-2 my-sm-0" type="submit" name="login">LOGIN</button> &nbsp; <a href="inputUsername.php" class="text-white">Reset</a>
       </form>
     </ul>
    

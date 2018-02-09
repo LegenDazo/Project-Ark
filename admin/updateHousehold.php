@@ -23,8 +23,6 @@
   <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
   <link rel="stylesheet" href="../style.css">
   <link rel="stylesheet" href="../materialize/icons.css">
-  <link rel="stylesheet" type="text/css" href="../datatables/datatables.css">
-  <link rel="stylesheet" type="text/css" href="../datatables/datatables-bootstrap.css">
   <!--Update ajax-->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -270,6 +268,10 @@
       </div><!--end of row-->
     </div><!--END OF MAIN CONTIANER-->
 
+    <footer class="footer">
+        <p>Project Ark © 2017 All Rights Reserved</p>
+      </footer>
+
 <div class="modal" id="viewConfirm" role="dialog">
       <div class="modal-dialog modal-md">
           <div class="modal-content">
@@ -360,17 +362,9 @@
   </div>
 </div>
 
-<footer id="footer" style="background-color: #2C3E50; height: 40px; bottom: 0; position: relative; width: 100%;">
-        <p>All Rights Reserved</p>
-      </footer>
-
-
-
 <script src="../js/jquery.min.js"></script>
 <script src="../bootstrap/js/bootstrap.js"></script>
-<script src="../bootstrap/js/bootstrap_alpha6.min.js"></script>
-<script src="../datatables/datatables-bootstrap.js"></script>
-<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.15/js/jquery.dataTables.js"></script>     
+<script src="../bootstrap/js/bootstrap_alpha6.min.js"></script>     
 <script>
   $(document).ready( function () {
 

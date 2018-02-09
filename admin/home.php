@@ -23,6 +23,7 @@
 
 <body>
 
+
     <nav class="navbar navbar-light bg-faded">
     <img src="../images/ARK1.png">
     <a href="../logout.php" style="color: white">Log Out</a>
@@ -72,23 +73,22 @@
                           </div>
                         </div> 
               
-              <center>
-                <div id="chartContainer" style="height: 350px; width: 78%; margin-top: 20px;">                       
+                <div id="chartContainer" style="height: 350px; width: 78%; margin-top: 20px; margin-left: auto; margin-right: auto;">                       
                     <script src="../js/chart.js"></script>
                 </div>
-              </center>
 
               </div>
             </div><!--END OF RIGHTCARD--> 
           </div><!-- END of RIGHT COLUMN-->
      
       </div><!--END OF ROW-->
+
       </div><!--END OF CONTAINER FLUID-->
 
       <footer class="footer">
         <p>Project Ark © 2017 All Rights Reserved</p>
       </footer>
-
+      
 
 
 <script src="../js/jquery.min.js"></script>

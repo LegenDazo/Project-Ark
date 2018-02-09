@@ -41,7 +41,7 @@ include 'functions/barangayFunctions.php';
                       <center><h3>List of Registered Barangays</h3></center>
                       <div class="container" style="margin-top: 5%">
                         <div class="col-md-12">
-                          <h4>ADD BARANGAY &nbsp;<a href="barangayRegistration.php" class="btn btn-success"><i class="material-icons">add</i></a></h4>
+                          <center><h4>ADD BARANGAY &nbsp;<a href="barangayRegistration.php" class="btn btn-success"><i class="material-icons">add</i></a></h4></center>
                           <table class="table table-hovered" id="registerBarangay">
                               <thead>
                                 <tr>
@@ -75,7 +75,9 @@ include 'functions/barangayFunctions.php';
     </div><!--END OF MAIN CONTIANER-->
 
 
-
+    <footer class="footer">
+        <p>Project Ark © 2017 All Rights Reserved</p>
+    </footer>
 
 
 
@@ -83,7 +85,7 @@ include 'functions/barangayFunctions.php';
 <script src="../bootstrap/js/bootstrap.js"></script>
 <script src="../bootstrap/js/bootstrap_alpha6.min.js"></script>
 <script src="../datatables/datatables-bootstrap.js"></script>
-<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.15/js/jquery.dataTables.js"></script>     
+<script type="text/javascript" charset="utf8" src="../datatables/datatables-jquery.js"></script>    
 <script>
   $(document).ready( function () {
   <?php 

@@ -73,8 +73,8 @@ include 'functions/barangayFunctions.php';
 
                               <td class="gender">
                                 <select class="gender">
-                                  <option value="male">Male</option>
-                                  <option value="female">Female</option>  
+                                  <option value="Male">Male</option>
+                                  <option value="Female">Female</option>  
                                 </select>
                               </td>
 
@@ -146,8 +146,8 @@ include 'functions/barangayFunctions.php';
     </div><!--end of row-->
     </div><!--END OF MAIN CONTIANER-->
 
-    <footer id="footer" style="background-color: #2C3E50; height: 40px; bottom: 0; position: relative; width: 100%;">
-        <p>All Rights Reserved</p>
+    <footer class="footer">
+        <p>Project Ark © 2017 All Rights Reserved</p>
       </footer>
       
     <script src="../js/jquery.min.js"></script>
@@ -178,7 +178,7 @@ include 'functions/barangayFunctions.php';
          html_code += "<td contenteditable='true' class='mname'></td>";
          html_code += "<td contenteditable='true' class='lname'></td>";
        //  html_code += "<td contenteditable='true' class='gender'></td>";
-         html_code += '<td class="gender"><select class="gender"></option value="male">Male</option><option value="Female">Female</option></td>';
+         html_code += '<td class="gender"><select class="gender"><option value="Male">Male</option><option value="Female">Female</option></td>';
 
        //  html_code += "<td contenteditable='true' class='bday'></td>";
          html_code += '<td><input class="bday" type="date"></td>';

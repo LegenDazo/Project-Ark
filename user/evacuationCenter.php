@@ -57,6 +57,11 @@
     </div><!--END OF MAIN CONTIANER-->
 
 
+    <footer class="footer">
+        <p>Project Ark © 2017 All Rights Reserved</p>
+      </footer>
+
+
 <script src="../js/jquery.min.js"></script>
 <script src="../bootstrap/js/bootstrap.js"></script>
 <script src="../bootstrap/js/bootstrap_alpha6.min.js"></script>

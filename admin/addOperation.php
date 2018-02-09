@@ -82,6 +82,9 @@ include 'functions/retrieveEvacuationCenterFunction.php';
     </div><!--END OF MAIN CONTIANER-->
 
 
+    <footer class="footer">
+        <p>Project Ark © 2017 All Rights Reserved</p>
+    </footer>
 
 
 

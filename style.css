@@ -89,12 +89,28 @@ body{
     content: "▴";
 }
 
+html {
+  height: 100%;
+}
+body {
+  min-height: 100%;
+  display: grid;
+  grid-template-rows: 1fr auto;
+}
+.container-fluid {
+  padding: 20px;
+}
 .footer {
-  background-color: #2C3E50; 
-  height: 40px; 
-  bottom: 0; 
-  position: relative; 
-  width: 100%;
-  text-align: center;
-  color: white;
+  grid-row-start: 5;
+  grid-row-end: 6;
+}
+
+
+.footer {
+    background-color: #2C3E50; 
+    padding-bottom: 8px; 
+    bottom: -0; 
+    width: 100%;
+    text-align: center;
+    color: white;
 }

@@ -14,8 +14,6 @@ include 'functions/retrieveDisease.php';
   <link rel="stylesheet" href="../bootstrap/css/bootstrap.css">
   <link rel="stylesheet" href="../style.css">
   <link rel="stylesheet" href="../materialize/icons.css">
-  <link rel="stylesheet" type="text/css" href="../datatables/datatables.css">
-  <link rel="stylesheet" type="text/css" href="../datatables/datatables-bootstrap.css">
 
 </head>
 
@@ -76,12 +74,14 @@ include 'functions/retrieveDisease.php';
       </div><!--END OF ROW-->
       </div><!--END OF CONTAINER FLUID-->
 
+      <footer class="footer">
+        <p>Project Ark © 2017 All Rights Reserved</p>
+      </footer>
 
 
 <script src="../js/jquery.min.js"></script>
 <script src="../bootstrap/js/bootstrap.js"></script>
 <script src="../bootstrap/js/bootstrap_alpha6.min.js"></script>
-<script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script> 
-<script src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
+
 </body>
 </html>

@@ -21,6 +21,7 @@
     <a href="../logout.php" style="color: white">Log Out</a>
     </nav>
 
+
       <div class="container-fluid"><!--START OF CONTAINER FLUID-->
       <div class="row"><!--start of row-->
 
@@ -73,12 +74,12 @@
       </div><!--END OF ROW-->
       </div><!--END OF CONTAINER FLUID-->
 
-
+      <footer class="footer">
+        <p>Project Ark © 2017 All Rights Reserved</p>
+      </footer>
 
 <script src="../js/jquery.min.js"></script>
 <script src="../bootstrap/js/bootstrap.js"></script>
 <script src="../bootstrap/js/bootstrap_alpha6.min.js"></script>
-<script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script> 
-<script src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
 </body>
 </html>

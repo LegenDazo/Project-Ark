@@ -35,7 +35,8 @@
  		$sql = "INSERT INTO user (gender,username,password,fname,mname,lname,bdate,contact_no) VALUES ('".$gender."','".$username."','".$password."','".$fname."','".$mname."','".$lname."','".$bdate."','".$contact_no."')";
  		$query = mysqli_query($this->conn, $sql);
  		if ($query) {
- 			return true;
+ 			$last_id = mysqli_insert_id($this->conn);
+ 			return $last_id;
  		} else {
  			return false;
  		}
@@ -134,8 +135,9 @@
  			header("location:index.php");
  		}
  		else if ($password == $confirmpassword) {
- 			if ($signup->insertUser($gender, $fname,$mname,$lname,$bdate,$contact_no,$username,md5($password))) {
+ 			if (($id = $signup->insertUser($gender, $fname,$mname,$lname,$bdate,$contact_no,$username,md5($password))) != false) {
 				 session_start();
+				 $_SESSION['id'] = $id;
 				 $_SESSION['gender'] = $gender;
  				$_SESSION['fname'] = $fname;
 	 			$_SESSION['mname'] = $mname;
@@ -145,7 +147,7 @@
 	 			$_SESSION['username'] = $username;
 	 				$_SESSION['username'] = $username;
 	 				$_SESSION['type'] = 'normal';
- 				header("location:user/home.php");
+ 			header("location:user/home.php");
  			} else {
  				session_start();
  			$_SESSION['fname'] = $fname;
@@ -154,7 +156,7 @@
  			$_SESSION['bdate'] = $bdate;
  			$_SESSION['contact_no'] = $contact_no;
  			$_SESSION['username'] = $username;
-	 			$_SESSION['error'] = "Something went wrong! Please try again!";
+	 			$_SESSION['error'] = "Something went wrong! Please try again! ".$id;
 	 			header("location:index.php");
  			}
  		} 

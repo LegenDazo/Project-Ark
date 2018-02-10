@@ -8,7 +8,7 @@ include 'login.php';;
                 <img src="../images/user.png">
                   <center>
                       <label class="name"><b><?php 
-                                $myrow = $login->retrieveAdminInfo($_SESSION['username']);
+                                $myrow = $login->retrieveAdminInfo($_SESSION['id']);
                                 foreach ($myrow as $row) {
                                   $fname = $row['fname'];
                                   $lname = $row['lname'];

@@ -9,11 +9,31 @@ class UserInfo
 	{
 		$this->conn = mysqli_connect("localhost","root","","ark");
 	}
-	public function updateUserProfile($username,$fname, $mname, $lname, $bdate, $contact_no)
+	public function updateUserProfile($id,$username,$fname, $mname, $lname, $bdate, $contact_no)
 	{
-		$sql = "UPDATE user SET fname='".$fname."',lname='".$lname."',mname='".$mname."',bdate='".$bdate."',contact_no='".$contact_no."' WHERE username='".$username."'";
+		$sql = "UPDATE user SET username='".$username."',fname='".$fname."',lname='".$lname."',mname='".$mname."',bdate='".$bdate."',contact_no='".$contact_no."' WHERE user_id='".$id."'";
 		$query = mysqli_query($this->conn, $sql);
 		if ($query) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	public function checkIfUsernameExistsInUser($username)
+	{
+		$sql = "SELECT * FROM user WHERE username='".$username."'";
+		$query = mysqli_query($this->conn, $sql);
+		if (mysqli_num_rows($query) > 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	public function checkIfUsernameExistsInAdmin($username)
+	{
+		$sql = "SELECT * FROM admin WHERE username='".$username."'";
+		$query = mysqli_query($this->conn, $sql);
+		if (mysqli_num_rows($query) > 0) {
 			return true;
 		} else {
 			return false;
@@ -24,14 +44,32 @@ class UserInfo
 $user = new UserInfo;
 
 if (isset($_POST['updateuser'])) {
-	$username = $_POST['username'];
+	$id = mysqli_real_escape_string($user->conn, $_POST['user_id']);
+	$username = mysqli_real_escape_string($user->conn, $_POST['username']);
 	$fname = mysqli_real_escape_string($user->conn, $_POST['fname']);
 	$mname = mysqli_real_escape_string($user->conn, $_POST['mname']);
 	$lname = mysqli_real_escape_string($user->conn, $_POST['lname']);
 	$bdate = mysqli_real_escape_string($user->conn, $_POST['bdate']);
 	$contact_no = mysqli_real_escape_string($user->conn, $_POST['contact_no']);
 
-		if (!preg_match("/^[a-zA-Z ]*$/",$fname)) {
+		
+		if (strpos($username, " ") !== false)
+		{
+			session_start();
+ 			$_SESSION['Error'] = "No space allowed.";
+ 			header("location:../viewProfile.php");
+		}
+		else if($user->checkIfUsernameExistsInUser($username)){
+			session_start();
+ 			$_SESSION['Error'] = "Username already exists.";
+ 			header("location:../viewProfile.php");
+		} 
+		else if($user->checkIfUsernameExistsInAdmin($username)){
+			session_start();
+ 			$_SESSION['Error'] = "Username already exists.";
+ 			header("location:../viewProfile.php");
+		}
+		else if (!preg_match("/^[a-zA-Z ]*$/",$fname)) {
  			session_start();
  			$_SESSION['Error'] = "Only letters and white space is allowed for First Name!";
  			header("location:../viewProfile.php");
@@ -52,7 +90,7 @@ if (isset($_POST['updateuser'])) {
  			header("location:../viewProfile.php");
  		}
  		
-		else if ($user->updateUserProfile($username,$fname, $mname, $lname, $bdate, $contact_no)) {
+		else if ($user->updateUserProfile($id,$username,$fname, $mname, $lname, $bdate, $contact_no)) {
 			session_start();
 			$_SESSION['Success'] = "User profile has been updated!";
 			header("location:../viewProfile.php");

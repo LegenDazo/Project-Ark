@@ -1,5 +1,5 @@
 <?php session_start();
-  if ($_SESSION['username'] == "" && $_SESSION['type'] == "" || $_SESSION['type'] == "admin") {
+  if ($_SESSION['id'] == "" && $_SESSION['type'] == "" || $_SESSION['type'] == "admin") {
       header("location:../logout.php");
   }
 ?>
@@ -45,7 +45,7 @@
               ?>
               </label>
               <center><form method="post" action="functions/changePasswordFunction.php">
-                <input type="hidden" name="username" value="<?php echo $_SESSION['username'];?>">
+                <input type="hidden" name="id" value="<?php echo $_SESSION['id'];?>">
                 <div class="col-md-5">
                   <div class="form-group">
                     <label>Current Password</label>

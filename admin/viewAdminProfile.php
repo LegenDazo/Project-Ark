@@ -1,5 +1,5 @@
 <?php session_start();
-  if ($_SESSION['username'] == "" && $_SESSION['type'] == "" || $_SESSION['type'] == "normal") {
+  if ($_SESSION['id'] == "" && $_SESSION['type'] == "" || $_SESSION['type'] == "normal") {
       header("location:../logout.php");
   }
 ?>
@@ -45,8 +45,9 @@
               ?>
               </label>
               <?php
-                $myrow = $login->retrieveAdminInfo($_SESSION['username']);
+                $myrow = $login->retrieveAdminInfo($_SESSION['id']);
                 foreach ($myrow as $row) {
+                  $username = $row['username'];
                   $fname = $row['fname'];
                   $lname = $row['lname'];
                   $mname = $row['mname'];
@@ -54,8 +55,15 @@
           
                 }
               ?>
+              <?php echo $_SESSION['id'];?>
               <center><form method="post" action="functions/updateAdmin.php">
-                <input type="hidden" name="username" value="<?php echo $_SESSION['username'];?>">
+                <input type="hidden" name="id" value="<?php echo $_SESSION['id'];?>">
+                <div class="col-md-5">
+                  <div class="form-group">
+                    <label>Username</label>
+                    <input type="type" name="username" class="form-control" value="<?php echo $username;?>">
+                  </div>
+                </div> 
                 <div class="col-md-5">
                   <div class="form-group">
                     <label>First Name</label>

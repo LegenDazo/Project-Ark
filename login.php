@@ -35,9 +35,9 @@ class Login
 			return false;
 		}
 	}
-	public function retrieveUserInfo($username)
+	public function retrieveUserInfo($id)
 	{
-		$sql = "SELECT * FROM user WHERE username ='".$username."'";
+		$sql = "SELECT * FROM user WHERE user_id ='".$id."'";
 		$itemArray = array();
 		$query = mysqli_query($this->conn, $sql);
 		while ($row = mysqli_fetch_assoc($query)) {
@@ -45,9 +45,9 @@ class Login
 		}
 		return $itemArray;
 	}
-	public function retrieveAdminInfo($username)
+	public function retrieveAdminInfo($id)
 	{
-		$sql = "SELECT * FROM admin WHERE username ='".$username."'";
+		$sql = "SELECT * FROM admin WHERE id ='".$id."'";
 		$itemArray = array();
 		$query = mysqli_query($this->conn, $sql);
 		while ($row = mysqli_fetch_assoc($query)) {

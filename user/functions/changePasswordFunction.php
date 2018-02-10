@@ -9,9 +9,9 @@
 		{
 			$this->conn = mysqli_connect("localhost", "root","", "ark");
 		}
-		public function confirmCurrentPassword($currentPassword, $username)
+		public function confirmCurrentPassword($currentPassword, $id)
 		{
-			$sql = "SELECT * FROM user WHERE username ='".$username."' AND password='".$currentPassword."'";
+			$sql = "SELECT * FROM user WHERE user_id ='".$id."' AND password='".$currentPassword."'";
 			$query = mysqli_query($this->conn, $sql);
 			if (mysqli_num_rows($query) > 0) {
 				return true;
@@ -19,9 +19,9 @@
 				return false;
 			}
 		}
-		public function updatePassword($username, $newPassword)
+		public function updatePassword($id, $newPassword)
 		{
-			$sql = "UPDATE user SET password ='".$newPassword."' WHERE username ='".$username."'";
+			$sql = "UPDATE user SET password ='".$newPassword."' WHERE user_id ='".$id."'";
 			$query = mysqli_query($this->conn, $sql);
 			if ($query) {
 				return true;
@@ -45,13 +45,13 @@
 	$pass = new password;
 
 	if (isset($_POST['changePassword'])) {
-		$username = mysqli_real_escape_string($pass->conn, $_POST['username']);
+		$id = mysqli_real_escape_string($pass->conn, $_POST['id']);
 		$currentPassword = mysqli_real_escape_string($pass->conn, $_POST['curPassword']);
 		$newPassword = mysqli_real_escape_string($pass->conn, $_POST['newPassword']);
 		$confirmPassword = mysqli_real_escape_string($pass->conn, $_POST['conPassword']);
 
 
-		if ($pass->confirmCurrentPassword(md5($currentPassword), $username)) {
+		if ($pass->confirmCurrentPassword(md5($currentPassword), $id)) {
 			if ($currentPassword == $newPassword) {
 					session_start();
 					$_SESSION['Error'] = "Please create another password!";
@@ -64,7 +64,7 @@
 		 	}
 			else if ($newPassword == $confirmPassword) {
 				
-				if($pass->updatePassword($username, md5($newPassword))){
+				if($pass->updatePassword($id, md5($newPassword))){
 					session_start();
 					$_SESSION['Success'] = "Password updated successfully!";
 					header("location: ../changePassword.php");

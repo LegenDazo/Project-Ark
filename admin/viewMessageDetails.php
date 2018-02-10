@@ -30,8 +30,8 @@
          <?php include '../adminNavbar.php'; ?>
 
           <?php
-            if(isset($_GET['message_id'])) {
-               $message_id = $_GET['message_id']; 
+            if(isset($_GET['sms_id'])) {
+               $sms_id = $_GET['sms_id']; 
           } 
           ?>
 
@@ -44,18 +44,29 @@
                         <div class="col-md-12">
                           
                           <table class="table table-hovered" id="">
-
+                              <?php
+                                $myrow = $obj->retrieveMessageItems($sms_id);
+                                foreach ($myrow as $row) {
+                                  $message = $row['content'];
+                                  $date = $row['datesent'];
+                                  $recipient = $row['username'];
+                                }
+                              ?>
                                                 
                                                 <tr>
                                                   <td>Message</td>
-                                                  <td><b></b></td>
+                                                  <td><?php echo $message;?></td>
                                                 </tr>
                                                 <tr>
                                                   <td>Date</td>
-                                                  <td><b></b></td>
+                                                  <td><?php echo $date;?></td>
+                                                </tr>
+                                                <tr>
+                                                  <td>Recipient</td>
+                                                  <td><?php echo $recipient;?></td>
                                                 </tr>
                                                 <tr>                                                  
-                                                  <th><a href="adminMessageFunctions.php" class="btn btn-danger">DELETE</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="message.php" class="btn btn-warning">BACK</a></th>
+                                                  <th><a href="functions/messageFunctions.php?deletemessage=1&sms_id=<?php echo $sms_id;?>" class="btn btn-danger">DELETE</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="message.php" class="btn btn-warning">BACK</a></th>
                                                 </tr>  
 
                           </table>

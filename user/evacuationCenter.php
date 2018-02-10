@@ -68,37 +68,75 @@
 <script src="../bootstrap/js/bootstrap_alpha6.min.js"></script>
 <script>
   function initMap(){
-    var options = {
-      zoom:16,
-      center: {lat:10.3693,lng:123.9168},
-      mapTypeId: google.maps.MapTypeId.HYBRID
-    }
 
-    var map = new google.maps.Map(document.getElementById('map'),options);
-
-
-    <?php
-        $myrow = $evac->retrieveEvacuationCenter();
-        foreach ($myrow as $row) {
-          $location = $row['location_name'];
-          $population = $row['population'];
-          $capacity = $row['capacity'];
-          $house_no = $row['house_no'];
-          $street = $row['street'];
-          $brgy_name = $row['brgy_name'];
-          $city = $row['city'];
-          $province = $row['province'];
-          
-    
-          $address = $house_no.", ".$street.", ".$brgy_name.", ".$city.", ".$province;
+      var lat;
+      var lng;
+      var options;
+      var map;
+      var pos;
 
 
-          echo "addMarker(new google.maps.LatLng(".$row['latitude'].",".$row['longitude']."),map,'$location','$population','$capacity','$address');";
-        }
+          if (navigator.geolocation) {
+              navigator.geolocation.getCurrentPosition(showPosition);
+          } else {
+              alert("Geolocation is not supported by this browser.");
+          }
 
-    ?>
+
+      function showPosition(position) {
+          lat = position.coords.latitude; 
+          lng = position.coords.longitude;
+
+          pos = new google.maps.LatLng(lat,lng);
+
+          options = {
+            zoom:14,
+            center: pos,
+            mapTypeId: google.maps.MapTypeId.HYBRID,
+          }
+
+          map = new google.maps.Map(document.getElementById('map'),options);
+
+          var mark = new google.maps.Marker({
+            position:pos,
+            map:map,
+            animation:google.maps.Animation.BOUNCE
+          });
+
+          google.maps.event.addListener(map, 'bounds_changed', function(event) {
+              if(map.getBounds().contains(mark.position)){
+                  mark.setAnimation(google.maps.Animation.BOUNCE);
+              };
+          });
+
+          google.maps.event.addListener(map, 'dblclick', function(){ 
+            map.setZoom(14); 
+            map.panTo(pos);
+            google.maps.event.removeListener(map, 'dblclick');
+            google.maps.event.removeListener(map, 'click');
+        }); 
+
+          <?php
+            $myrow = $evac->retrieveEvacuationCenter();
+            foreach ($myrow as $row) {
+              $location = $row['location_name'];
+              $population = $row['population'];
+              $capacity = $row['capacity'];
+              $house_no = $row['house_no'];
+              $street = $row['street'];
+              $brgy_name = $row['brgy_name'];
+              $city = $row['city'];
+              $province = $row['province'];
+              
+        
+              $address = $house_no.", ".$street.", ".$brgy_name.", ".$city.", ".$province;
 
 
+              echo "addMarker(new google.maps.LatLng(".$row['latitude'].",".$row['longitude']."),map,'$location','$population','$capacity','$address');";
+              }
+
+            ?>
+      }
 
 
   //latitude, longitude, population, capacity, location_name, house_no, street, barangay, city, province
@@ -125,15 +163,19 @@
         
         google.maps.event.addListener(map, 'click', function(){ //addListener on click on map
           infoWindow.close(); //close infoWindow
+          google.maps.event.removeListener(map, 'dblclick');
+          google.maps.event.removeListener(map, 'click');
         });
         //addListener on double click on map// google.maps.event.addListener(targetmap,'event', function(){
         //zoom out
         //pan to center of barangay
         //})
         google.maps.event.addListener(map, 'dblclick', function(){ 
-         map.setZoom(15); 
-         map.panTo(map.position); 
-
+         map.setZoom(14); 
+         pos = new google.maps.LatLng(lat,lng);
+          map.panTo(pos);
+          google.maps.event.removeListener(map, 'dblclick');
+          google.maps.event.removeListener(map, 'click');
         });
 
       });

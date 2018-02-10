@@ -18,6 +18,11 @@ include 'functions/itemResidentsFunctions.php';
   <link rel="stylesheet" href="../materialize/icons.css">
   <link rel="stylesheet" type="text/css" href="../datatables/datatables.css">
   <link rel="stylesheet" type="text/css" href="../datatables/datatables-bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.1/css/responsive.dataTables.min.css">
+
+
+
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="./jquery.js"></script>
   <script src="bootstrap/js/bootstrap.min.js"></script>
@@ -64,7 +69,7 @@ include 'functions/itemResidentsFunctions.php';
                               </div>
 
 
-                              <table class="table table-hovered" id="household">
+                              <table class="display responsive nowrap" id="household">
                                   <thead>
                                     <tr>
                                       <th>HH ID</th>
@@ -159,7 +164,14 @@ include 'functions/itemResidentsFunctions.php';
 <script src="../bootstrap/js/bootstrap.js"></script>
 <script src="../bootstrap/js/bootstrap_alpha6.min.js"></script>
 <script src="../datatables/datatables-bootstrap.js"></script>
-<script type="text/javascript" charset="utf8" src="../datatables/datatables-jquery.js"></script>   
+<script type="text/javascript" charset="utf8" src="../datatables/datatables-jquery.js"></script>
+<script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/responsive/2.2.1/js/dataTables.responsive.min.js"></script>
+
+
+
+
 <script>
   $(document).ready( function () {
   <?php 

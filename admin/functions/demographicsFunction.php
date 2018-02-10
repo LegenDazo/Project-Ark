@@ -60,10 +60,13 @@ class Demographics
 	{
 		$sql = "SELECT COUNT(*) as totalEvacuees FROM attendance WHERE evac_id='".$evac_id."'";
 		
+		// "SELECT COUNT(*) AS totalEvacuees FROM attendance WHERE evac_id = $evac_id"
 		if($time != "showAll") {
 			$period = explode(",", $time);
 			$sql .= " AND date >= '".$period[0]."'";
+			// "SELECT COUNT(*) AS totalEvacuees FROM attendance WHERE evac_id = $evac_id AND DATE >= $start_date"
 			if($period[1] != "") {
+				// "SELECT COUNT(*) AS totalEvacuees FROM attendance WHERE evac_id = $evac_id AND date >= $start_date AND date <= $end_date"
 				$sql .= " AND date <= '".$period[1]."'";
 			}
 		}

@@ -76,15 +76,20 @@
                               $time = strtotime($date["date_start"]);
                               $start = date("M d, Y (h:iA)", $time);
                               echo "<option value='".$date["date_start"].",".$date["date_end"]."' ";
+                              
                               if(isset($period) && strpos($period, $date["date_start"]) !== false) {
                                 echo "selected";
                               }
 
-                              echo ">".$start." to ";
+                              echo ">";
+
+                              echo $start." to ";
                               if(isset($date["date_end"])) {
+                                
                                 $time = strtotime($date["date_end"]);
                                 $end = date("M d, Y (h:iA)", $time);
                                 echo $end;
+
                               } else {
                                 echo "present";
                               }

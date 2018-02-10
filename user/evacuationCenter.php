@@ -100,7 +100,9 @@
           var mark = new google.maps.Marker({
             position:pos,
             map:map,
-            animation:google.maps.Animation.BOUNCE
+            animation:google.maps.Animation.BOUNCE,
+            icon: '../images/blue-pushpin.png',
+            //icon: 'http://maps.gstatic.com/mapfiles/ms2/micons/blue-pushpin.png',
           });
 
           google.maps.event.addListener(map, 'bounds_changed', function(event) {

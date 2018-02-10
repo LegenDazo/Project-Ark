@@ -175,23 +175,10 @@ include 'functions/barangayFunctions.php';
         var html_code = "<tr id='row"+count+"'>";  //count row as 1
          html_code += "<td contenteditable='true' class='fname'></td>"; //+= compile 1 html
          html_code += "<td contenteditable='true' class='mname'></td>";
-<<<<<<< HEAD
-         html_code += "<td contenteditable='true' class='lname'></td>";
-       //  html_code += "<td contenteditable='true' class='gender'></td>";
-         html_code += '<td class="gender"><select class="gender"><option value="Male">Male</option><option value="Female">Female</option></td>';
-
-       //  html_code += "<td contenteditable='true' class='bday'></td>";
-         html_code += '<td><input class="bday" type="date"></td>';
-
-         html_code += '<td class="house_memship"><select class="membship"><option value="dependent">Dependent</option><option value="head">Head</option><option value="head\'s spouse">Head\'s Spouse</option></select></td>';
-      //   html_code += "<td contenteditable='true' class='age'></td>";
-      //   html_code += "<td contenteditable='true' class='house_memship'></td>";
-=======
          html_code += "<td contenteditable='true' class='lname'></td>";       
          html_code += '<td><select class="gender"><option value="Male">Male</option><option value="Female">Female</option></td>';
          html_code += '<td><input class="bday" type="date" required></td>';
          html_code += '<td class="house_memship"><select class="membship"><option value="head">Head</option><option value="head\'s spouse">Head\'s Spouse</option><option value="dependent">Dependent</option></select></td>';     
->>>>>>> 4e960aa98c7a246b49019df0e369d2aa6f9b3144
          html_code += "<td><button type='button' name='remove' data-row='row"+count+"' class='btn btn-danger btn-xs remove'>-</button></td>";   
          html_code += "</tr>";  
          $('#table').append(html_code); 

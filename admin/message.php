@@ -62,7 +62,7 @@
                                         <td><?php echo $row['content'];?></td>
                                         <td><?php echo $row['user_id'];?></td>
                                         <td><?php echo date_format(new DateTime($row['datesent']), "M d Y")?></td>
-                                        <td><a href="viewMessageDetails.php?sms_id=<?php echo $row['sms_id'];?>" class="btn btn-info">View Details</a></td><td><a href="adminMessage.php?op_id=<?php echo $row['op_id'];?>" class="btn btn-danger">DELETE</a></td>
+                                        <td><a href="viewMessageDetails.php?sms_id=<?php echo $row['sms_id'];?>" class="btn btn-info">View Details</a></td>
                                       </tr>
                                     <?php    
                                   }

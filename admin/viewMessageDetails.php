@@ -54,11 +54,8 @@
                                                   <td>Date</td>
                                                   <td><b></b></td>
                                                 </tr>
-                                                <tr>
-                                                  <th><a class="btn btn-info btn-block">POST</a></th>
-                                                  <th><a href="updateMessage.php" class="btn btn-success btn-block">UPDATE</a></th>
-                                                  <th><a href="adminMessageFunctions.php" class="btn btn-danger btn-block">DELETE</a></th>
-                                                  <th><a href="message.php" class="btn btn-warning btn-block">BACK</a></th>
+                                                <tr>                                                  
+                                                  <th><a href="adminMessageFunctions.php" class="btn btn-danger">DELETE</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="message.php" class="btn btn-warning">BACK</a></th>
                                                 </tr>  
 
                           </table>

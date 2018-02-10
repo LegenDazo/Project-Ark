@@ -1,5 +1,5 @@
 <?php session_start();
-  if ($_SESSION['username'] == "" && $_SESSION['type'] == "" || $_SESSION['type'] == "admin") {
+  if ($_SESSION['id'] == "" && $_SESSION['type'] == "" || $_SESSION['type'] == "admin") {
       header("location:../logout.php");
   }
 ?>
@@ -126,10 +126,13 @@
         google.maps.event.addListener(map, 'click', function(){ //addListener on click on map
           infoWindow.close(); //close infoWindow
         });
-
-        google.maps.event.addListener(map, 'dblclick', function(){ //addListener on double click on map
-         map.setZoom(15); //zoom out
-         map.panTo(map.position); //pan to center of barangay
+        //addListener on double click on map// google.maps.event.addListener(targetmap,'event', function(){
+        //zoom out
+        //pan to center of barangay
+        //})
+        google.maps.event.addListener(map, 'dblclick', function(){ 
+         map.setZoom(15); 
+         map.panTo(map.position); 
 
         });
 

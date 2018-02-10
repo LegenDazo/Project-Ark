@@ -1,5 +1,5 @@
 <?php session_start();
-  if ($_SESSION['username'] == "" && $_SESSION['type'] == "" || $_SESSION['type'] == "admin") {
+  if ($_SESSION['id'] == "" && $_SESSION['type'] == "" || $_SESSION['type'] == "admin") {
       header("location:../logout.php");
   }
 ?>
@@ -45,8 +45,9 @@
               ?>
               </label>
               <?php
-                $myrow = $login->retrieveUserInfo($_SESSION['username']);
+                $myrow = $login->retrieveUserInfo($_SESSION['id']);
                 foreach ($myrow as $row) {
+                  $username = $row['username'];
                   $fname = $row['fname'];
                   $lname = $row['lname'];
                   $mname = $row['mname'];
@@ -55,23 +56,29 @@
                 }
               ?>
               <center><form method="post" action="functions/updateProfile.php">
-                <input type="hidden" name="username" value="<?php echo $_SESSION['username'];?>">
+                <input type="hidden" name="user_id" value="<?php echo $_SESSION['id'];?>">
+                <div class="col-md-5">
+                  <div class="form-group">
+                    <label>Username</label>
+                    <input type="text" name="username" class="form-control" value="<?php echo $username;?>">
+                  </div>
+                </div> 
                 <div class="col-md-5">
                   <div class="form-group">
                     <label>First Name</label>
-                    <input type="type" name="fname" class="form-control" value="<?php echo $fname;?>">
+                    <input type="text" name="fname" class="form-control" value="<?php echo $fname;?>">
                   </div>
                 </div> 
                 <div class="col-md-5">
                   <div class="form-group">
                     <label>Middle Name</label>
-                    <input type="type" name="mname" class="form-control" value="<?php echo $mname;?>">
+                    <input type="text" name="mname" class="form-control" value="<?php echo $mname;?>">
                   </div>
                 </div> 
                 <div class="col-md-5">
                   <div class="form-group">
                     <label>Last Name</label>
-                    <input type="type" name="lname" class="form-control" value="<?php echo $lname;?>">
+                    <input type="text" name="lname" class="form-control" value="<?php echo $lname;?>">
                   </div>
                 </div> 
                 <div class="col-md-5">

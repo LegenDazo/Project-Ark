@@ -8,7 +8,7 @@ include '../login.php';?>
         <img src="../images/user.png">
         <center>
             <label class="name"><b><?php 
-                      $myrow = $login->retrieveUserInfo($_SESSION['username']);
+                      $myrow = $login->retrieveUserInfo($_SESSION['id']);
                       foreach ($myrow as $row) {
                         $fname = $row['fname'];
                         $lname = $row['lname'];
@@ -46,7 +46,7 @@ include '../login.php';?>
                 <a class="nav-link" href="evacuationCenter.php"><i class="material-icons">place</i>  Evacuation Centers</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="viewDemographics.php"><i class="material-icons">person</i>  View Demographics</a>
+                <a class="nav-link" href="evacCenterReport.php"><i class="material-icons">person</i>  View Demographics</a>
             </li>
 
         </ul>

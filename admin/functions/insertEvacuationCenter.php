@@ -10,12 +10,22 @@
 			$this->conn = mysqli_connect("localhost","root","", "ark");
 		}
 
-		public function insertEvacuationCenter($location, $capacity, $latitude, $longitude, $houseno, $street, $barangay)
+		public function insertEvacuationCenter($location, $capacity,/* $latitude, $longitude,*/ $houseno, $street, $barangay, $shape)
 		{
-			$sql = "INSERT INTO evacuationcenter (location_name, capacity, latitude, longitude, house_no, street, brgy_id, status) VALUES ('".$location."','".$capacity."','".$latitude."','".$longitude."','".$houseno."','".$street."','".$barangay."','active')";
+			$sql = "INSERT INTO evacuationcenter (location_name, capacity, house_no, street, brgy_id, status) VALUES ('".$location."','".$capacity."','".$houseno."','".$street."','".$barangay."','active')";
 			$query = mysqli_query($this->conn, $sql);
 			if ($query) {
-				return true;
+				$evac_id  = mysqli_insert_id($this->conn);
+				$insert = "";
+				for ($i=0; $i < sizeof($shape); $i++) { 
+					$insert .= "INSERT INTO evacuationshape (evac_id, ord, latitude, longitude) VALUES('".$evac_id."','".$i."','".$shape[$i]['lat']."','".$shape[$i]['lng']."');";
+				}
+
+				if(mysqli_multi_query($this->conn, $insert)){
+					return true;
+				}
+				
+				
 			} else {
 				echo mysqli_error($this->conn);
 			}
@@ -37,14 +47,14 @@
 	if (isset($_POST['submitevac'])) {
 		$location = mysqli_real_escape_string($obj->conn, $_POST['location']);
 		$capacity = mysqli_real_escape_string($obj->conn, $_POST['capacity']);
-		$latitude = mysqli_real_escape_string($obj->conn, $_POST['lat']);
-		$longitude = mysqli_real_escape_string($obj->conn, $_POST['lng']);
+		///$latitude = mysqli_real_escape_string($obj->conn, $_POST['lat']);
+		//$longitude = mysqli_real_escape_string($obj->conn, $_POST['lng']);
 		$houseno = mysqli_real_escape_string($obj->conn, $_POST['houseno']);
 		$street = mysqli_real_escape_string($obj->conn, $_POST['street']);
 		$barangay = mysqli_real_escape_string($obj->conn, $_POST['brgy']);
+		$shape = json_decode($_POST["arr"], true);
 
-
-		if ($obj->insertEvacuationCenter($location, $capacity, $latitude, $longitude, $houseno, $street, $barangay)) {
+		if ($obj->insertEvacuationCenter($location, $capacity, /*$latitude, $longitude, */$houseno, $street, $barangay, $shape)) {
 			header("location:../evacuationCenter.php?inserted");
 		}
 

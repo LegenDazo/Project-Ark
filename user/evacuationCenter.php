@@ -44,6 +44,8 @@
                   <div class="container" style="margin-top: 15px; padding-bottom: 20px;">
                       <center><h3>Evacuation Center</h3></center>
                       
+                      <button type="button" class="btn btn-primary" id="showNearby">Show Nearby</button>
+                      <br><br>
                       <div id="map"></div>
                       
                       
@@ -67,13 +69,14 @@
 <script src="../bootstrap/js/bootstrap.js"></script>
 <script src="../bootstrap/js/bootstrap_alpha6.min.js"></script>
 <script>
-  function initMap(){
-
+  function initMap() {
+    var nearby = "None";
       var lat;
       var lng;
       var options;
       var map;
       var pos;
+      var radius = 2500;
 
 
           if (navigator.geolocation) {
@@ -116,11 +119,27 @@
             map.panTo(pos);
             google.maps.event.removeListener(map, 'dblclick');
             google.maps.event.removeListener(map, 'click');
-        }); 
+          });
+
+          var geofence = new google.maps.Circle({
+              strokeColor: '#FF0000',
+              strokeOpacity: 0.3,
+              strokeWeight: 2,
+              fillColor: '#0000FF',
+              fillOpacity: 0.1,
+              map: map,
+              center: pos,
+              radius: radius //meters
+          }); 
+
+        var j = 0;
+        var evaccenter = [];
+        var minDist = -1;
 
           <?php
             $myrow = $evac->retrieveEvacuationCenter();
             foreach ($myrow as $row) {
+              $evac_id = $row['evac_id'];
               $location = $row['location_name'];
               $population = $row['population'];
               $capacity = $row['capacity'];
@@ -134,21 +153,96 @@
               $address = $house_no.", ".$street.", ".$brgy_name.", ".$city.", ".$province;
 
 
-              echo "addMarker(new google.maps.LatLng(".$row['latitude'].",".$row['longitude']."),map,'$location','$population','$capacity','$address');";
+              $shape = $evac->retrieveEvacuationShape($evac_id);
+              $lat = 0;
+              $lng = 0;
+              echo "var coords = [];";
+
+              for($i = 0; $i < sizeof($shape); $i++) {
+                $lat += $shape[$i]["latitude"];
+                $lng += $shape[$i]["longitude"];
+                echo "
+                  latLng = { lat: ".$shape[$i]['latitude'].", lng: ".$shape[$i]['longitude']." };
+                  coords.push(latLng);
+                ";
               }
+
+              if(sizeof($shape) != 0) {
+                $lat /= sizeof($shape);
+                $lng /= sizeof($shape);
+                // Construct the polygon.
+
+                echo "
+                dist = Math.sqrt(Math.pow(lat - $lat, 2) + Math.pow(lng - $lng, 2));
+
+                console.log('location: ".$location." has a distance of ' + dist);
+
+                if((minDist == -1 || minDist > dist) && $population != $capacity )  {
+                  minDist = dist;
+                  nearby = '".$location."';
+                }
+
+                
+                  var distance = calculateDistance(
+                    ".$lat.",
+                    ".$lng.",
+                    lat,
+                    lng
+                  );
+                  if (distance * 1000 < radius) {  // radius is in meter; distance in km
+                    //markers[i].setIcon('http://maps.gstatic.com/mapfiles/icon_green.png');      // make or find a better icon
+                    addMarker(new google.maps.LatLng(".$lat.",".$lng."),map,'$location','$population','$capacity','$address');;
+                                    evaccenter[j] = new google.maps.Polygon({
+                  paths: coords,
+                  strokeColor: '#FF0000',
+                  strokeOpacity: 0.8,
+                  strokeWeight: 2,
+                  fillColor: '#FF0000',
+                  fillOpacity: 0.35
+                });
+
+
+                evaccenter[j].setMap(map);
+                j++;
+                  }
+        
+
+                ";
+                
+              }
+              
+            }
+
+            echo "console.log('Closest: ' + nearby);";
 
             ?>
       }
 
+       function calculateDistance(lat1, lon1, lat2, lon2) {
+      var radlat1 = Math.PI * lat1/180;
+      var radlat2 = Math.PI * lat2/180;
+      var radlon1 = Math.PI * lon1/180;
+      var radlon2 = Math.PI * lon2/180;
+      var theta = lon1-lon2;
+      var radtheta = Math.PI * theta/180;
+      var dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
+      dist = Math.acos(dist);
+      dist = dist * 180/Math.PI;
+      dist = dist * 60 * 1.1515;
+      dist = dist * 1.609344;
+      return dist;
+    }
+
 
   //latitude, longitude, population, capacity, location_name, house_no, street, barangay, city, province
-
+    var allMarkers = [];
    function addMarker(latLng, map,location, population, capacity, address){
     
       var marker = new google.maps.Marker({
         position: latLng,
         map:map,
-        animation: google.maps.Animation.DROP
+        animation: google.maps.Animation.DROP,
+        location: location
       });
 
       var contentString = "<label><b>"+location+"</b></label>"+"<br>"+"<label>Address: "+address+"</label>"+"<br>"+"<label>Current Population: "+population+" / "+capacity+"</label>";
@@ -156,6 +250,8 @@
       var infoWindow = new google.maps.InfoWindow({
         content: contentString
       });
+
+      marker.infoWindow = infoWindow;
 
       google.maps.event.addListener(marker, 'click', function(){
         map.panTo(marker.position); //pan to marker position
@@ -182,8 +278,18 @@
 
       });
       
-      return marker;
+      allMarkers.push(marker);
    }
+
+   $('#showNearby').click(function(){
+    for(ndx = 0; ndx < allMarkers.length; ndx++) {
+      if(allMarkers[ndx].location == nearby) {
+        map.panTo(allMarkers[ndx].position);
+        map.setZoom(20);
+        allMarkers[ndx].infoWindow.open(map, allMarkers[ndx]);
+      }
+    }
+   });
 
  
   }

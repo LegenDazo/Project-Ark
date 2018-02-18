@@ -19,6 +19,17 @@
 			}
 			return $itemArray;
 		}
+
+		public function retrieveEvacuationShape($evac_id)
+		{
+			$sql = "SELECT * FROM evacuationshape WHERE evac_id ='".$evac_id."'";
+			$itemArray = array();
+			$query = mysqli_query($this->conn, $sql);
+			while ($row = mysqli_fetch_assoc($query)) {
+				$itemArray[] = $row;
+			}
+			return $itemArray;
+		}
 	}
 
 	$evac = new DataOperations();

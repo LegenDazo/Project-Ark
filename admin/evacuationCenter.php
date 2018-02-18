@@ -50,6 +50,7 @@ include 'functions/barangayFunctions.php';
 
 
                       <form method="post" action="functions/insertEvacuationCenter.php">
+                        <input type="hidden" name="arr" id="arr">
                         <div class="form-group">
                           <label for="location">Location Name:</label>
                           <input type="text" class="form-control" id="location" name="location">
@@ -64,7 +65,7 @@ include 'functions/barangayFunctions.php';
                           </div>
                         </div>
 
-                        <div class="col-md-5">
+                      <!--  <div class="col-md-5">
                           <div class="form-group">
                             <label for="lat">Latitude</label>
                             <input type="lat" class="form-control" id="lat" name="lat">
@@ -77,7 +78,7 @@ include 'functions/barangayFunctions.php';
                             <input type="lng" class="form-control" id="lng" name="lng">
                           </div>
                         </div>
-                                 
+                       -->          
                         </div>
 
 
@@ -142,7 +143,7 @@ include 'functions/barangayFunctions.php';
 
     var map = new google.maps.Map(document.getElementById('map'),options);
 
-    var marker = new google.maps.Marker({
+    /*var marker = new google.maps.Marker({
       position:{
         lat: 10.3693,
         lng: 123.9168
@@ -158,9 +159,37 @@ include 'functions/barangayFunctions.php';
 
       $('#lat').val(lat);
       $('#lng').val(lng);
-    });
+    });*/
+    var arr = [];   
+    var evaccenter;
+   google.maps.event.addListener(map, 'click', function(e){
+      
+      var mylat = e.latLng.lat();
+      var mylng = e.latLng.lng();
 
+      latLng = {lat: mylat, lng: mylng};
+      console.log(latLng);
+      arr.push(latLng);
+      if(evaccenter != null) {
+        evaccenter.setMap(null);
+      }
+      evaccenter = new google.maps.Polygon({
+          paths: arr,
+          strokeColor: '#FF0000',
+          strokeOpacity: 0.8,
+          strokeWeight: 3,
+          fillColor: '#FF0000',
+          fillOpacity: 0.35
+        });
 
+      evaccenter.setMap(map);
+
+      document.getElementById("arr").value = JSON.stringify(arr);
+
+      
+   });
+
+   
  
   }
 </script>

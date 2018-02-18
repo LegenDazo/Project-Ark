@@ -77,11 +77,25 @@
 		$an_about = mysqli_real_escape_string($func->conn, $_POST['an_about']);
 		$an_what = mysqli_real_escape_string($func->conn, $_POST['an_what']);
 
-		
-		if ($func->insertAnnounce($admin_id, $an_about, $an_what)) {
-			header("location:../announcement.php?inserted=1");
+		if(empty($_POST['an_about'])){		
+			session_start();
+			$_SESSION['error'] = "Please fill out all of the fields!";
+			header("location:../newAddAnnounce.php");
+		} 
+
+		else if(empty($_POST['an_what'])){		
+			session_start();
+			$_SESSION['error'] = "Please fill out all of the fields!";
+			header("location:../newAddAnnounce.php");
+		} 
+
+		else {
+			$func->insertAnnounce($admin_id, $an_about, $an_what);
+				header("location:../announcement.php?inserted=1");
+			}
 		}
-	}
+
+
 
 	if (isset($_POST['updateannounce'])) {
 
@@ -89,10 +103,24 @@
 		$an_about = mysqli_real_escape_string($func->conn, $_POST['an_about']);
 		$an_what = mysqli_real_escape_string($func->conn, $_POST['an_what']);
 		
-				
-		if ($func->updateAnnounce($announce_id, $an_about, $an_what)) {
-			header("location:../newviewAnnounceDetails.php?updated=1&announce_id=$announce_id");
+		if(empty($_POST['an_about'])){		
+			session_start();
+			$_SESSION['error'] = "Please fill out all of the fields!";
+			header("location:../newUpdateAnnounce.php");
+		} 
+
+		else if(empty($_POST['an_what'])){		
+			session_start();
+			$_SESSION['error'] = "Please fill out all of the fields!";
+			header("location:../newUpdateAnnounce.php");
 		}
+
+		else {
+			$func->updateAnnounce($announce_id, $an_about, $an_what);
+			header("location:../newviewAnnounceDetails.php?updated=1&announce_id=$announce_id");
+		}			
+		
+		
 	}
 
 	if (isset($_GET['delfromhome'])) {

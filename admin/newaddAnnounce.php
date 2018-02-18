@@ -49,16 +49,32 @@
                           <div class="container" style="margin-top: 5%">
                               
                                   <form method="POST" action="functions/newannounceFunctions.php">
-                                     <div class="panel-body">  
-
+                                     <div class="panel-body"> 
+                                        <center>
+                                        <div class="form-group col-md-6"> 
+                                          <?php if(isset($_SESSION['error'])){
+                                            echo "<div class='alert alert-danger' role='alert'>".$_SESSION['error']."</div>";
+                                            unset($_SESSION['error']);
+                                          }
+                                            ?>
+                                          </div> 
+                                          </center>  
                                             <div class="form-group col-md-12">
                                               <label for="an_about"><h6>About:</h6></label>
-                                              <input type="text" class="form-control" id="an_about" name="an_about" required>                      
+                                              <input type="text" class="form-control" id="an_about" name="an_about" value="<?php if (isset($_SESSION['an_about'])){
+                                                  echo $_SESSION['an_about']; 
+                                                  unset($_SESSION['an_about']);
+                                                }
+                                                ?>" maxlength="500">                      
                                             </div>
 
                                             <div class="form-group col-md-12">
                                               <label for="an_what"><h6>Input Announcements Below:</h6></label>
-                                              <textarea class="form-control" rows="9" maxlength="1000" value="<?php echo $an_what;?>" id="an_what" name="an_what" required></textarea>  
+                                              <textarea class="form-control" rows="9" maxlength="1000" name="an_what" value="<?php if (isset($_SESSION['an_what'])){
+                                                  echo $_SESSION['an_what']; 
+                                                  unset($_SESSION['an_what']);
+                                                }
+                                                ?>"></textarea>  
                                                                     
                                             </div>
 

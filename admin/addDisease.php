@@ -45,9 +45,20 @@
                         <div class="col-md-12">
                             <form method="post" action="functions/diseaseFunctions.php">
                                 <center>
-                                  <div class="form-group col-md-4">
+                                 <div class="form-group col-md-6"> 
+                                <?php if(isset($_SESSION['error'])){
+                                  echo "<div class='alert alert-danger' role='alert'>".$_SESSION['error']."</div>";
+                                  unset($_SESSION['error']);
+                                }
+                                  ?>
+                                </div>
+                                  <div class="form-group col-md-6">
                                     <label for="disease_name">Disease Name</label>
-                                    <input data-target="disease_name" type="text" class="form-control" id="disease_name" name="disease_name" required> 
+                                    <input data-target="disease_name" type="text" class="form-control" id="disease_name" name="disease_name" value="<?php if (isset($_SESSION['disease_name'])){
+                                      echo $_SESSION['disease_name']; 
+                                      unset($_SESSION['disease_name']);
+                                    }
+                                    ?>" maxlength="50" minlength="2"> 
                                   </div>
                                   <div style="margin-top: 7%;">
                                   <a href="disease.php" class="btn btn-warning">Cancel</a>&nbsp;
@@ -106,3 +117,4 @@
 
 </body>
 </html>
+

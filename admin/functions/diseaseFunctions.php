@@ -82,27 +82,37 @@ $func = new NewFunctions;
 
 if(isset($_POST['submitdisease'])){
 
-	//$disease_name = $_POST['disease_name'];
-	//$disease_id = mysqli_real_escape_string($obj->conn, $_POST['disease_id']);
-	//$resident_id = 1;
 	$disease_name = mysqli_real_escape_string($func->con, $_POST['disease_name']);
 
+	if(empty($_POST['disease_name'])){		
+		session_start();
+		$_SESSION['error'] = "Please fill out this field!";
+		header("location:../addDisease.php");
+	} 
 
-	if($func->insertDisease($disease_name)) {
+	else if(!preg_match("/^[a-zA-Z]*$/", $disease_name)){
+		session_start();
+		$_SESSION['disease_name'] = $disease_name;
+		$_SESSION['error'] = "Only letters and white space is allowed!";
+		header("location:../addDisease.php");
+	}
+
+	else {
+		$func->insertDisease($disease_name); 
 		header("location:../disease.php?inserted=1");
 	}
+	
+} else {
+	//
 }
 
 if (isset($_GET['deleteDisease'])) {
-		//$process = mysqli_real_escape_string($func->con, $_GET['process']);
-		$disease_id = mysqli_real_escape_string($func->con, $_GET['disease_id']);
+		
+	$disease_id = mysqli_real_escape_string($func->con, $_GET['disease_id']);
 
-		//if($process == 'delete'){
-			if($func->deleteDisease($disease_id)){
-			header("location:disease.php?deleted=1");
-			}
-		//}
-				
+		if($func->deleteDisease($disease_id)){
+		header("location:disease.php?deleted=1");
+		}				
 	}
 
 

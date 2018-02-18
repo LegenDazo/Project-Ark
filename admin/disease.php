@@ -66,7 +66,7 @@ include 'functions/retrieveDisease.php'
                                      <td>
                                       <div class="row">
                                       <a href="disease.php?deleteDisease=1&disease_id=<?php echo $row['disease_id'];?>" class="btn btn-danger col-md-5">DELETE</a>&nbsp;
-                                      <a href="updateDiseases.php?process=update&disease_id=<?php echo $disease_id?>" class="btn btn-success btn-block col-md-5">Update</a>
+                                      <a href="updateDiseases.php?disease_id=<?php echo $disease_id?>" class="btn btn-success btn-block col-md-5">Update</a>
                                       </div>
                                       </td>
                                    </tr>
@@ -78,7 +78,7 @@ include 'functions/retrieveDisease.php'
                           </table>
                         </div>
 
-                        <div class="modal" id="viewkey" role="dialog">
+                        <div class="modal" id="viewkey" role="dialog"> 
                               <div class="modal-dialog modal-md">
                                   <div class="modal-content">
                                     <div class='modal-header'>
@@ -86,12 +86,12 @@ include 'functions/retrieveDisease.php'
                                       <button type="button" class="close" data-dismiss="modal" aria-label="Close"><h6>Close</h6></button>                                          
                                     </div>
                                     <div class="modal-body">
-                                        <h3>Disease Added!</h3>
+                                        <h3>Disease Successfully Added!</h3>
                                     </div>
                                     <div class="modal-footer"></div>
                                   </div>
                               </div>
-                        </div>
+                        </div>  
 
                       </div>
                     </div>

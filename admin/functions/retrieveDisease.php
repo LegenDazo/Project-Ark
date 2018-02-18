@@ -53,12 +53,30 @@
 
 	$obj = new DataOperations();
 
-			if(isset($_POST['updateDisease'])){
-				$disease_id = mysqli_real_escape_string($obj->conn, $_POST['disease_id']);
-				$disease_name = mysqli_real_escape_string($obj->conn, $_POST['disease_name']);
+		if(isset($_POST['updateDisease'])){
 
-				if($obj->updateDisease($disease_id, $disease_name)){
-					header("location:../disease.php?disease_id=$disease_id&msg=updated");
-				}
+			$disease_id = mysqli_real_escape_string($obj->conn, $_POST['disease_id']);
+			$disease_name = mysqli_real_escape_string($obj->conn, $_POST['disease_name']);
+
+			if(empty($_POST['disease_name'])){
+				session_start();
+				$_SESSION['error'] = "Please fill out this field!";
+				header("location:../updateDiseases.php");
 			}
+
+			else if(!preg_match("/^[a-zA-Z]*$/", $disease_name)){
+				session_start();
+				$_SESSION['disease_name'] = $disease_name;
+				$_SESSION['error'] = "Only letters and white space is allowed!";
+				header("location:../updateDiseases.php");
+			}
+
+			else {
+
+				$obj->updateDisease($disease_id, $disease_name);
+				header("location:../disease.php?disease_id=$disease_id&msg=updated");
+			}
+			
+			
+		}
 ?>

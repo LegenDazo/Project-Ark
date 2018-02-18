@@ -53,18 +53,27 @@
                   <div class="container" style="margin-top: 25px; margin-bottom: 25px;">
                       <center><h5>Update Announcement Details</h5></center>
                       <div class="container" style="margin-top: 5%">
+                        <center>
+                          <div class="form-group col-md-6"> 
+                            <?php if(isset($_SESSION['error'])){
+                              echo "<div class='alert alert-danger' role='alert'>".$_SESSION['error']."</div>";
+                              unset($_SESSION['error']);
+                            }
+                              ?>
+                            </div> 
+                        </center>
                         <div class="col-md-12">
                               <form method="post" action="functions/newannounceFunctions.php?announce_id=<?php echo $announce_id;?>">
                                 <div class="panel-body"> 
 
                                   <div class="form-group col-md-12">
                                     <label for="an_about">About</label>
-                                    <input type="text" class="form-control" value="<?php echo $an_about;?>" id="an_about" name="an_about" required>
+                                    <input type="text" class="form-control" id="an_about" name="an_about" value="<?php echo $an_about;?>" maxlength="500">
                                   </div>
                                     
                                   <div class="form-group col-md-12">
                                     <label for="an_what">What</label>
-                                    <textarea class="form-control" rows="9" id="an_what" name="an_what" required><?php echo $an_what;?></textarea>  
+                                    <textarea class="form-control" rows="9" maxlength="1000" name="an_what"><?php echo $an_what;?></textarea>  
                                   </div>
 
                                 </div>  <!--End of .panel-body--> 

@@ -62,6 +62,17 @@ class Functions
 				echo mysqli_error($this->con);
 			}
 		}
+
+		public function checkBarangayName($brgy_name)
+		{
+	 		$sql = "SELECT brgy_name FROM barangay WHERE brgy_name='".$brgy_name."'";
+	 		$query = mysqli_query($this->conn, $sql);
+	 		if (mysqli_num_rows($query) > 0) {
+	 			return true;
+	 		} else {
+	 			return false;
+	 		}			
+		}
 }
 
 $Functions = new Functions;
@@ -86,6 +97,11 @@ if(isset($_POST['RegisterBarangay'])){
 					session_start();
  					$_SESSION['Error'] = "Province must not be empty!";
  					header("location:../barangayRegistration.php");
+				}
+				elseif($Functions->checkBarangayName($brgy_name)){
+					session_start();
+		 			$_SESSION['Error'] = "Barangay name already exist!";
+		 			header("location:barangayRegistration.php");
 				}
 				else($Functions->registerBarangay($brgy_name, $city, $province));{
 					session_start();

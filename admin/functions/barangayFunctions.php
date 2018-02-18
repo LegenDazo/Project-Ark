@@ -72,17 +72,26 @@ if(isset($_POST['RegisterBarangay'])){
 	$city = $_POST['city'];
 	$province = $_POST['province'];
 
-	if(empty($_POST['brgy_name'])){
-		echo "hehehehehe";
-	}else{
-
-		$Functions->registerBarangay($brgy_name, $city, $province);
-				header("location:../barangay.php?inserted=1");
-	}
-
-}else{
-
-	//echo "No data received.";
+				if(empty($_POST['brgy_name'])){
+					session_start();
+ 					$_SESSION['Error'] = "Barangay must not be empty!";
+ 					header("location:../barangayRegistration.php");
+				}
+				elseif(empty($_POST['city'])){
+					session_start();
+ 					$_SESSION['Error'] = "City must not be empty!";
+ 					header("location:../barangayRegistration.php");
+				}
+				elseif(empty($_POST['province'])){
+					session_start();
+ 					$_SESSION['Error'] = "Province must not be empty!";
+ 					header("location:../barangayRegistration.php");
+				}
+				else($Functions->registerBarangay($brgy_name, $city, $province));{
+					session_start();
+					$_SESSION['Success'] = "Barangay $brgy_name has been added!";
+					header("location:../barangayRegistration.php");
+				}
 }
 
 if(isset($_GET['process'])){
@@ -107,9 +116,31 @@ if(isset($_GET['process'])){
 				$city = mysqli_real_escape_string($Functions->con, $_POST['city']);
 				$province = mysqli_real_escape_string($Functions->con, $_POST['province']);
 
-				if($Functions->updateBarangayRecord($brgy_id, $brgy_name, $city, $province)){
-					header("location:../barangay.php?brgy_id=$brgy_id&msg=updated");
+				if(empty($_POST['brgy_name'])){
+					session_start();
+ 					$_SESSION['Error'] = "Barangay must not be empty!";
+ 					header("location:../updateBarangayProfile.php?brgy_id=$brgy_id");
 				}
+				elseif(empty($_POST['city'])){
+					session_start();
+ 					$_SESSION['Error'] = "City must not be empty!";
+ 					header("location:../updateBarangayProfile.php?brgy_id=$brgy_id");
+				}
+				elseif(empty($_POST['province'])){
+					session_start();
+ 					$_SESSION['Error'] = "Province must not be empty!";
+ 					header("location:../updateBarangayProfile.php?brgy_id=$brgy_id");
+				}
+				elseif($Functions->updateBarangayRecord($brgy_id, $brgy_name, $city, $province)){
+					session_start();
+					$_SESSION['Success'] = "Barangay data has been updated!";
+					header("location:../updateBarangayProfile.php?brgy_id=$brgy_id&msg=updated");
+				}
+				else {
+					session_start();
+					$_SESSION['Error'] = "Something went wrong. Please provide a valid input!";
+					header("location:../updateBarangayProfile.php?brgy_id=$brgy_id");
+					}
 			}
 		}
 	}

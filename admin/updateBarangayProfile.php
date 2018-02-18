@@ -43,14 +43,24 @@ include 'functions/barangayFunctions.php';
                           $brgy_id = $_GET['brgy_id'];
                         }
                       ?>
-                        <h2>Update Resident Record &nbsp;<a href="barangayProfile.php?brgy_id=<?php echo $brgy_id;?>" class="btn btn-warning">Cancel</a></h2>
-
+                        <h2>Update Resident Record &nbsp;<a href="barangayProfile.php?brgy_id=<?php echo $brgy_id;?>" class="btn btn-warning">Back</a></h2>
+                          <label><?php
+                            if(isset($_SESSION['Error'])){
+                              echo "<div class='alert alert-danger' role='alert'>".$_SESSION['Error']."</div>";
+                              unset($_SESSION['Error']);
+                            }
+                            else if(isset($_SESSION['Success'])){
+                              echo "<div class='alert alert-success' role='alert'>".$_SESSION['Success']."</div>";
+                              unset($_SESSION['Success']);
+                            }
+                          ?>
+                          </label>                        
                       <?php
                         if (isset($_GET['brgy_id'])) {
                             $brgy_id = $_GET['brgy_id'];
-                            $process = $_GET['process'];
+                            //$process = $_GET['process'];
 
-                            if($process == 'update'){
+                            //if($process == 'update'){
 
                           $myrow = $Functions->retrieve_barangayItemData2($brgy_id);
 
@@ -60,7 +70,7 @@ include 'functions/barangayFunctions.php';
                             $city = $row['city'];
                             $province = $row['province'];
                           }
-                        }
+                        //}
                       }
                       ?> 
 

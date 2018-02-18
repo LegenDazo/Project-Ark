@@ -43,6 +43,17 @@ include 'functions/barangayFunctions.php';
                       <div class="container" style="margin-top: 5%">
                         <div class="col-md-12">
                           <center><h4>ADD BARANGAY &nbsp;<a href="barangayRegistration.php" class="btn btn-success"><i class="material-icons">add</i></a></h4></center>
+                          <label><?php
+                            if(isset($_SESSION['Error'])){
+                              echo "<div class='alert alert-danger' role='alert'>".$_SESSION['Error']."</div>";
+                              unset($_SESSION['Error']);
+                            }
+                            else if(isset($_SESSION['Success'])){
+                              echo "<div class='alert alert-success' role='alert'>".$_SESSION['Success']."</div>";
+                              unset($_SESSION['Success']);
+                            }
+                          ?>
+                          </label>
                           <table class="table table-hovered" id="registerBarangay">
                               <thead>
                                 <tr>

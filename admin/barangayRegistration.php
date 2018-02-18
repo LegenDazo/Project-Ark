@@ -33,7 +33,17 @@
             <div class="col-md-9"><!-- START of RIGHT COLUMN-->
               <div class="card" style="margin-top: 25px; margin-bottom: 25px;" ><!--START OF RIGHTCARD-->
               <div class="container" style="margin-top: 25px; margin-bottom: 25px;">
-                      <center><h6>Register Barangay</h6></center>
+                      <center><h4>Register Barangay</h4></center>
+                          <?php
+                            if(isset($_SESSION['Error'])){
+                              echo "<div class='alert alert-danger' role='alert'>".$_SESSION['Error']."</div>";
+                              unset($_SESSION['Error']);
+                            }
+                            else if(isset($_SESSION['Success'])){
+                              echo "<div class='alert alert-success' role='alert'>".$_SESSION['Success']."</div>";
+                              unset($_SESSION['Success']);
+                            }
+                          ?>
                       <div class="container" style="margin-top: 5%;">
                         <div class="col-md-12">
                             <form method="post" action="functions/barangayFunctions.php">
@@ -52,7 +62,7 @@
                                       <td><input type="text" name="province"></td>
                                     </tr>
                                 </table><br>
-                                <a href="barangay.php" class="btn btn-warning">Cancel</a>&nbsp;
+                                <a href="barangay.php" class="btn btn-warning">Back</a>&nbsp;
                                 <button class="btn btn-primary" name="RegisterBarangay">Add Barangay</button>
                                 </center>
                              </form>

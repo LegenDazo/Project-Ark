@@ -41,15 +41,15 @@
                                 <table>
                                     <tr>
                                       <td>Barangay Name</td>
-                                      <td><input type="text" name="brgy_name" required></td>
+                                      <td><input type="text" name="brgy_name"></td>
                                     </tr>
                                     <tr>
                                       <td>City</td>
-                                      <td><input type="text" name="city" required></td>
+                                      <td><input type="text" name="city"></td>
                                     </tr>
                                     <tr>
                                       <td>Province</td>
-                                      <td><input type="text" name="province" required></td>
+                                      <td><input type="text" name="province"></td>
                                     </tr>
                                 </table><br>
                                 <a href="barangay.php" class="btn btn-warning">Cancel</a>&nbsp;

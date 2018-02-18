@@ -35,8 +35,9 @@ $msg = new Message;
 if (isset($_POST['sendmessage'])) {
 
 	$ch = curl_init();
-	$message = "PROJECTARK ADVISORY! ";
+	$message = "";
 	$message .= mysqli_real_escape_string($msg->conn, $_POST['message']);
+	$message .= "-FROM PROJECT ARK";
 	$id = mysqli_real_escape_string($msg->conn, $_POST['id']);
 	$contact = "";
 	$user_id = "";

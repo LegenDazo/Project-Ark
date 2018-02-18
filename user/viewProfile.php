@@ -47,7 +47,7 @@
               <?php
                 $myrow = $login->retrieveUserInfo($_SESSION['id']);
                 foreach ($myrow as $row) {
-                  $username = $row['username'];
+          
                   $fname = $row['fname'];
                   $lname = $row['lname'];
                   $mname = $row['mname'];
@@ -57,12 +57,7 @@
               ?>
               <center><form method="post" action="functions/updateProfile.php">
                 <input type="hidden" name="user_id" value="<?php echo $_SESSION['id'];?>">
-                <div class="col-md-5">
-                  <div class="form-group">
-                    <label>Username</label>
-                    <input type="text" name="username" class="form-control" value="<?php echo $username;?>">
-                  </div>
-                </div> 
+              
                 <div class="col-md-5">
                   <div class="form-group">
                     <label>First Name</label>

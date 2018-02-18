@@ -72,9 +72,14 @@ if(isset($_POST['RegisterBarangay'])){
 	$city = $_POST['city'];
 	$province = $_POST['province'];
 
+	if(empty($_POST['brgy_name'])){
+		echo "hehehehehe";
+	}else{
 
 		$Functions->registerBarangay($brgy_name, $city, $province);
 				header("location:../barangay.php?inserted=1");
+	}
+
 }else{
 
 	//echo "No data received.";

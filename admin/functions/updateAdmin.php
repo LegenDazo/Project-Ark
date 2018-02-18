@@ -45,29 +45,13 @@ $admin = new AdminInfo;
 
 if (isset($_POST['updateadmin'])) {
 	$id = mysqli_real_escape_string($admin->conn, $_POST['id']);
-	$username = mysqli_real_escape_string($admin->conn, $_POST['username']);
+
 	$fname = mysqli_real_escape_string($admin->conn, $_POST['fname']);
 	$mname = mysqli_real_escape_string($admin->conn, $_POST['mname']);
 	$lname = mysqli_real_escape_string($admin->conn, $_POST['lname']);
 	$bdate = mysqli_real_escape_string($admin->conn, $_POST['bdate']);
 
-		if (strpos($username, " ") !== false)
-		{
-			session_start();
- 			$_SESSION['Error'] = "No space allowed.";
- 			header("location:../viewAdminProfile.php");
-		}
-		else if($admin->checkIfUsernameExistsInUser($username)){
-			session_start();
- 			$_SESSION['Error'] = "Username already exists.";
- 			header("location:../viewAdminProfile.php");
-		} 
-		else if($admin->checkIfUsernameExistsInAdmin($username)){
-			session_start();
- 			$_SESSION['Error'] = "Username already exists.";
- 			header("location:../viewAdminProfile.php");
-		}
-		else if (!preg_match("/^[a-zA-Z ]*$/",$fname)) {
+	if (!preg_match("/^[a-zA-Z ]*$/",$fname)) {
  			session_start();
  			$_SESSION['Error'] = "Only letters and white space is allowed for First Name!";
  			header("location:../viewAdminProfile.php");

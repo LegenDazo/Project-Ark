@@ -45,31 +45,15 @@ $user = new UserInfo;
 
 if (isset($_POST['updateuser'])) {
 	$id = mysqli_real_escape_string($user->conn, $_POST['user_id']);
-	$username = mysqli_real_escape_string($user->conn, $_POST['username']);
+
 	$fname = mysqli_real_escape_string($user->conn, $_POST['fname']);
 	$mname = mysqli_real_escape_string($user->conn, $_POST['mname']);
 	$lname = mysqli_real_escape_string($user->conn, $_POST['lname']);
 	$bdate = mysqli_real_escape_string($user->conn, $_POST['bdate']);
 	$contact_no = mysqli_real_escape_string($user->conn, $_POST['contact_no']);
 
-		
-		if (strpos($username, " ") !== false)
-		{
-			session_start();
- 			$_SESSION['Error'] = "No space allowed.";
- 			header("location:../viewProfile.php");
-		}
-		else if($user->checkIfUsernameExistsInUser($username)){
-			session_start();
- 			$_SESSION['Error'] = "Username already exists.";
- 			header("location:../viewProfile.php");
-		} 
-		else if($user->checkIfUsernameExistsInAdmin($username)){
-			session_start();
- 			$_SESSION['Error'] = "Username already exists.";
- 			header("location:../viewProfile.php");
-		}
-		else if (!preg_match("/^[a-zA-Z ]*$/",$fname)) {
+	
+		if (!preg_match("/^[a-zA-Z ]*$/",$fname)) {
  			session_start();
  			$_SESSION['Error'] = "Only letters and white space is allowed for First Name!";
  			header("location:../viewProfile.php");

@@ -61,21 +61,20 @@
 			if(empty($_POST['disease_name'])){
 				session_start();
 				$_SESSION['error'] = "Please fill out this field!";
-				header("location:../updateDiseases.php");
+				header("location:../updateDiseases.php?disease_id=$disease_id");
 			}
-
-			else if(!preg_match("/^[a-zA-Z]*$/", $disease_name)){
+			
+			elseif($obj->updateDisease($disease_id, $disease_name)){
 				session_start();
-				$_SESSION['disease_name'] = $disease_name;
-				$_SESSION['error'] = "Only letters and white space is allowed!";
-				header("location:../updateDiseases.php");
+				$_SESSION['success'] = "Disease name has been updated!";
+				header("location:../updateDiseases.php?disease_id=$disease_id");
 			}
 
 			else {
-
-				$obj->updateDisease($disease_id, $disease_name);
-				header("location:../disease.php?disease_id=$disease_id&msg=updated");
-			}
+				session_start();
+				$_SESSION['error'] = "Something went wrong. Please provide a valid input!";
+				header("location:../updateDiseases.php?disease_id=$disease_id");
+				}
 			
 			
 		}

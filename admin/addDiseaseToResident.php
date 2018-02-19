@@ -66,10 +66,19 @@ include 'functions/diseaseFunctions.php';
                                       <h6>Resident's Name:
                                       <?php echo $fname." ".$mname." ".$lname;?>
                                   </div>
+                        <div class="col-md-6">
+                        <center>
+                          <?php if(isset($_SESSION['error'])){
+                            echo "<div class='alert alert-danger' role='alert'>".$_SESSION['error']."</div>";
+                            unset($_SESSION['error']);
+                          }
+                            ?>
+                        </center>
+                      </div>
                                   <h6>Add Disease: </h6>  
                                   <div class="form-group col-md-3">
-                                    <select class="form-control" id="sel1" name="disease_id" required>
-                                  <option></option>
+                                    <select class="form-control" id="sel1" name="disease_id">
+                                  <option value=""></option>
                                     <?php
                                         $myrow = $func->retrieveDiseaseData();
                                         foreach ($myrow as $row) {
@@ -81,7 +90,11 @@ include 'functions/diseaseFunctions.php';
                                     </div>
                                     <h6>Date Acquired: </h6>  
                                     <div>
-                                      <input type="date" name="date_acquired" required>
+                                      <input type="date" name="date_acquired" value="<?php if (isset($_SESSION['date_acquired'])){
+                                        echo $_SESSION['date_acquired']; 
+                                        unset($_SESSION['date_acquired']);
+                                      }
+                                      ?>">
                                     </div>
 
                                 <div style="margin-top: 7%;">

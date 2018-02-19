@@ -115,12 +115,32 @@ if(isset($_POST['submitdisease'])){
 	$disease_id = $_POST['disease_id'];
 	$date_acquired = $_POST['date_acquired'];
 
+	if($_POST['disease_id'] == ""){		
+		session_start();
+		$_SESSION['disease_id'] = $disease_id;
+			$_SESSION['date_acquired'] = $date_acquired;
+			$_SESSION['error'] = "Please select a Disease!";
+		header("location:../addDiseaseToResident.php?resident_id=$resident_id");
+	}
 
-		$Functions->insertDisease($date_acquired,$resident_id, $disease_id);
-				header("location:../diseaseacquired.php?added=1");
-}else{
+	else if(empty($_POST['date_acquired'])){		
+		session_start();
+		$_SESSION['disease_id'] = $disease_id;
+			$_SESSION['date_acquired'] = $date_acquired;
+			$_SESSION['error'] = "Please select a Disease and enter the Date Acquired!";
+		header("location:../addDiseaseToResident.php?resident_id=$resident_id");
+	}
 
-	//echo "No data received.";
-}
+	else if($Functions->insertDisease($date_acquired,$resident_id, $disease_id)){
+		session_start();
+		header("location:../diseaseacquired.php?added=1");
+	}		
+		
+	else{
+		session_start();
+		$_SESSION['error'] = "Something went wrong. Please provide a valid input!";
+		header("location:../addDiseaseToResident.php?resident_id=$resident_id");
+	}	
+}	
 
 ?>

@@ -35,10 +35,15 @@ include 'functions/retrieveDisease.php';
                 <div class="container" style="margin-top: 25px; margin-bottom: 25px;">
                     <center><h4>Update Disease</h4>
                       <div class="form-group col-md-6"> 
-                        <?php if(isset($_SESSION['error'])){
-                          echo "<div class='alert alert-danger' role='alert'>".$_SESSION['error']."</div>";
-                          unset($_SESSION['error']);
-                        }
+                        <?php
+                            if(isset($_SESSION['error'])){
+                              echo "<div class='alert alert-danger' role='alert'>".$_SESSION['error']."</div>";
+                              unset($_SESSION['error']);
+                            }
+                            else if(isset($_SESSION['success'])){
+                              echo "<div class='alert alert-success' role='alert'>".$_SESSION['success']."</div>";
+                              unset($_SESSION['success']);
+                            }
                           ?>
                       </div>
                     </center>
@@ -61,7 +66,7 @@ include 'functions/retrieveDisease.php';
                                       <input type="text" name="disease_name" id="disease_name" class="form-control" value="<?php echo $disease_name;?>" maxlength="50" minlength="2">
                                   </div>
                                   <div class="form-group col-md-12">
-                                    <a href="disease.php" class="btn btn-warning">Cancel</a>&nbsp;
+                                    <a href="disease.php" class="btn btn-warning">Back</a>&nbsp;
                                     <button class="btn btn-primary" type="submit" name="updateDisease">Update</button>
                                   </div>
 

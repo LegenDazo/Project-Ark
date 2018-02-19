@@ -61,7 +61,7 @@ if (isset($_POST['updateadmin'])) {
 		header("location:../viewAdminProfile.php");
 	}
 
-	if(empty($_POST['mname'])){		
+	else if(empty($_POST['mname'])){		
 		session_start();
 		$_SESSION['fname'] = $fname;
 		$_SESSION['mname'] = $mname;

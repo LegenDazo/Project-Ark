@@ -51,17 +51,20 @@
             <div class="col-md-9"><!-- START of RIGHT COLUMN-->
               <div class="card" style="margin-top: 25px;"><!--START OF RIGHTCARD-->              
                   <div class="container" style="margin-top: 25px; margin-bottom: 25px;">
-                      <center><h5>Update Announcement Details</h5></center>
+                      <center><h5>Update Announcement Details</h5>
                       <div class="container" style="margin-top: 5%">
-                        <center>
-                          <div class="form-group col-md-6"> 
-                            <?php if(isset($_SESSION['error'])){
+                        <div class="col-md-6"> 
+                        <?php
+                            if(isset($_SESSION['error'])){
                               echo "<div class='alert alert-danger' role='alert'>".$_SESSION['error']."</div>";
                               unset($_SESSION['error']);
                             }
-                              ?>
-                            </div> 
-                        </center>
+                            else if(isset($_SESSION['success'])){
+                              echo "<div class='alert alert-success' role='alert'>".$_SESSION['success']."</div>";
+                              unset($_SESSION['success']);
+                            }
+                          ?>
+                        </div></center>
                         <div class="col-md-12">
                               <form method="post" action="functions/newannounceFunctions.php?announce_id=<?php echo $announce_id;?>">
                                 <div class="panel-body"> 
@@ -80,7 +83,7 @@
 
                                   <div class="panel-footer">
                                     <div class="text-right">
-                                    <a href="newviewAnnounceDetails.php?announce_id=<?php echo $announce_id;?>" class="btn btn-warning">Cancel</a>
+                                    <a href="newviewAnnounceDetails.php?announce_id=<?php echo $announce_id;?>" class="btn btn-warning">Back</a>
                                     <button type="submit" class="btn btn-primary" name="updateannounce">Update</button>
                                     </div>
                                   </div>

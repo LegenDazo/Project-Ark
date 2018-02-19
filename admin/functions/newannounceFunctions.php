@@ -106,18 +106,27 @@
 		if(empty($_POST['an_about'])){		
 			session_start();
 			$_SESSION['error'] = "Please fill out all of the fields!";
-			header("location:../newUpdateAnnounce.php");
+			header("location:../newUpdateAnnounce.php?announce_id=$announce_id");
 		} 
 
 		else if(empty($_POST['an_what'])){		
 			session_start();
 			$_SESSION['error'] = "Please fill out all of the fields!";
-			header("location:../newUpdateAnnounce.php");
+			header("location:../newUpdateAnnounce.php?announce_id=$announce_id");
 		}
 
+		else if($func->updateAnnounce($announce_id, $an_about, $an_what)){
+			session_start();
+			$_SESSION['success'] = "Announcement has been updated!";
+			header("location:../newUpdateAnnounce.php?announce_id=$announce_id");
+		}
+
+
 		else {
-			$func->updateAnnounce($announce_id, $an_about, $an_what);
-			header("location:../newviewAnnounceDetails.php?updated=1&announce_id=$announce_id");
+			session_start();
+			$_SESSION['error'] = "Something went wrong. Please provide a valid input!";
+			header("location:../newUpdateAnnounce.php?announce_id=$announce_id");
+			
 		}			
 		
 		

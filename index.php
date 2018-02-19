@@ -59,7 +59,7 @@
 
               <div class="form-group">
                   <label for="First Name">First Name</label>
-                      <input  type="text" class="form-control" placeholder="ex: Jon" name="fname" value="<?php if (isset($_SESSION['fname'])){
+                      <input  type="text" class="form-control" placeholder="ex: Jon" name="fname" maxlength="25" minlength="2" value="<?php if (isset($_SESSION['fname'])){
                         echo $_SESSION['fname']; 
                         unset($_SESSION['fname']);
                       }
@@ -84,7 +84,7 @@
                   <div class="form-group">
                   <label for="gender">Gender</label>
                    <select class="form-control" name="gender">
-                      <option>Select gender...</option>
+                      <option value="">Select gender...</option>
                       <option value="Male">Male</option>
                       <option value="Female">Female</option>
                    </select>  

@@ -39,7 +39,6 @@
 		$newPassword = mysqli_real_escape_string($pass->conn, $_POST['newPassword']);
 		$confirmPassword = mysqli_real_escape_string($pass->conn, $_POST['conPassword']);
 
-
 		if ($pass->confirmCurrentPassword(md5($currentPassword), $username)) {
 			if ($currentPassword == $newPassword) {
 					session_start();

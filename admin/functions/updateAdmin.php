@@ -51,31 +51,77 @@ if (isset($_POST['updateadmin'])) {
 	$lname = mysqli_real_escape_string($admin->conn, $_POST['lname']);
 	$bdate = mysqli_real_escape_string($admin->conn, $_POST['bdate']);
 
-	if (!preg_match("/^[a-zA-Z ]*$/",$fname)) {
- 			session_start();
- 			$_SESSION['Error'] = "Only letters and white space is allowed for First Name!";
- 			header("location:../viewAdminProfile.php");
- 		} 
- 		else if(!preg_match("/^[a-zA-Z ]*$/",$mname)) {
- 			session_start();
- 			$_SESSION['Error'] = "Only letters and white space is allowed for Middle Name!";
- 			header("location:../viewAdminProfile.php");
- 		} 
- 		else if(!preg_match("/^[a-zA-Z ]*$/",$lname)) {
- 		 	session_start();
- 			$_SESSION['Error'] = "Only letters and white space is allowed for Last Name!";
- 			header("location:../viewAdminProfile.php");
- 		} 
- 		
-		else if ($admin->updateAdminProfile($id, $username,$fname, $mname, $lname, $bdate)) {
-			session_start();
-			$_SESSION['Success'] = "Your profile has been updated!";
-			header("location:../viewAdminProfile.php");
-		}  else {
-			session_start();
-			$_SESSION['Error'] = "Something went wrong. Please provide a valid input!";
-			header("location:../viewAdminProfile.php");
-		}
+	if(empty($_POST['fname'])){		
+		session_start();
+		$_SESSION['fname'] = $fname;
+		$_SESSION['mname'] = $mname;
+		$_SESSION['lname'] = $lname;
+		$_SESSION['bdate'] = $bdate;		
+		$_SESSION['Error'] = "Please fill out First Name!";
+		header("location:../viewAdminProfile.php");
 	}
+
+	if(empty($_POST['mname'])){		
+		session_start();
+		$_SESSION['fname'] = $fname;
+		$_SESSION['mname'] = $mname;
+		$_SESSION['lname'] = $lname;
+		$_SESSION['bdate'] = $bdate;		
+		$_SESSION['Error'] = "Please fill out Middle Name!";
+		header("location:../viewAdminProfile.php");
+	}
+
+	else if(empty($_POST['lname'])){		
+		session_start();
+		$_SESSION['fname'] = $fname;
+		$_SESSION['mname'] = $mname;
+		$_SESSION['lname'] = $lname;
+		$_SESSION['bdate'] = $bdate;		
+		$_SESSION['Error'] = "Please fill out Last Name!";
+		header("location:../viewAdminProfile.php");
+	}
+
+	else if(empty($_POST['bdate'])){		
+		session_start();
+		$_SESSION['fname'] = $fname;
+		$_SESSION['mname'] = $mname;
+		$_SESSION['lname'] = $lname;
+		$_SESSION['bdate'] = $bdate;		
+		$_SESSION['Error'] = "Please enter Birthdate!";
+		header("location:../viewAdminProfile.php");
+	}
+
+	else if (!preg_match("/^[a-zA-Z ]*$/",$fname)) {
+		session_start();
+		$_SESSION['fname'] = $fname;
+		$_SESSION['mname'] = $mname;
+		$_SESSION['lname'] = $lname;
+		$_SESSION['bdate'] = $bdate;
+		$_SESSION['Error'] = "Only letters and white space is allowed for First Name!";
+		header("location:../viewAdminProfile.php");
+ 	} 
+
+	else if(!preg_match("/^[a-zA-Z ]*$/",$mname)) {
+		session_start();
+		$_SESSION['Error'] = "Only letters and white space is allowed for Middle Name!";
+		header("location:../viewAdminProfile.php");
+	} 
+
+ 	else if(!preg_match("/^[a-zA-Z ]*$/",$lname)) {
+	 	session_start();
+		$_SESSION['Error'] = "Only letters and white space is allowed for Last Name!";
+		header("location:../viewAdminProfile.php");
+	} 
+ 	
+	else if ($admin->updateAdminProfile($id, $username,$fname, $mname, $lname, $bdate)) {
+		session_start();
+		$_SESSION['Success'] = "Your profile has been updated!";
+		header("location:../viewAdminProfile.php");
+	}  else {
+		session_start();
+		$_SESSION['Error'] = "Something went wrong. Please provide a valid input!";
+		header("location:../viewAdminProfile.php");
+	}
+}
 
 ?>

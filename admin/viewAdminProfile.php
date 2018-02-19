@@ -32,7 +32,7 @@
             <div class="col-md-9"><!-- START of RIGHT COLUMN-->
               <div class="card" style="margin-top: 25px;" ><!--START OF RIGHTCARD-->    
               <div class="container" style="margin-top: 25px; margin-bottom: 25px;">
-              <center><h4>Profile</h4></center>
+              <center><h4>Profile</h4>
               <label><?php
                 if(isset($_SESSION['Error'])){
                   echo "<div class='alert alert-danger' role='alert'>".$_SESSION['Error']."</div>";
@@ -42,7 +42,7 @@
                   echo "<div class='alert alert-success' role='alert'>".$_SESSION['Success']."</div>";
                   unset($_SESSION['Success']);
                 }
-              ?>
+              ?></center>
               </label>
               <?php
                 $myrow = $login->retrieveAdminInfo($_SESSION['id']);

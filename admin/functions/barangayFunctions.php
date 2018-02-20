@@ -65,8 +65,8 @@ class Functions
 
 		public function checkBarangayName($brgy_name)
 		{
-	 		$sql = "SELECT brgy_name FROM barangay WHERE brgy_name='".$brgy_name."'";
-	 		$query = mysqli_query($this->conn, $sql);
+	 		$sql = "SELECT brgy_name FROM barangay WHERE brgy_name LIKE '".$brgy_name."'";
+	 		$query = mysqli_query($this->con, $sql);
 	 		if (mysqli_num_rows($query) > 0) {
 	 			return true;
 	 		} else {
@@ -101,7 +101,7 @@ if(isset($_POST['RegisterBarangay'])){
 				elseif($Functions->checkBarangayName($brgy_name)){
 					session_start();
 		 			$_SESSION['Error'] = "Barangay name already exist!";
-		 			header("location:barangayRegistration.php");
+		 			header("location:../barangayRegistration.php");
 				}
 				else($Functions->registerBarangay($brgy_name, $city, $province));{
 					session_start();

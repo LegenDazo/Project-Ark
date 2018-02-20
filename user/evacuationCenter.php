@@ -6,6 +6,7 @@
 <!DOCTYPE html>
 <?php
   
+  include '../admin/functions/barangayFunctions.php';
   include 'functions/retrieveEvacuationCenterFunction.php';
 
 ?>
@@ -43,9 +44,39 @@
 
                   <div class="container" style="margin-top: 15px; padding-bottom: 20px;">
                       <center><h3>Evacuation Center</h3></center>
-                      
-                      <button type="button" class="btn btn-primary" id="showNearby">Show Nearby</button>
-                      <br><br>
+                      <label>Meters: (for geofencing)</label>
+                     <div class="form-inline">
+                        <div class="form-group mb-2">
+
+                          <input type="number" class="form-control" id="meter">
+                        </div>
+                        
+                        &nbsp;<button type="submit" class="btn btn-primary mb-2" id="submit">Submit</button>
+                      </div>
+                     
+                      <br>
+                      <div class="form-inline">
+                        <div class="form-group">
+
+                          <select class="form-control" id="bar">
+                            <option></option>
+                            <?php
+                              $myrow = $Functions->retrieve_barangayData();
+                              foreach ($myrow as $row) {
+                                ?>
+                                  <option value="<?php echo $row['brgy_id'];?>"><?php echo $row['brgy_name'];?></option>
+
+                                <?php
+                              }
+
+                            ?>
+                          </select>
+                        </div>
+                           <button type="button" class="btn btn-primary" id="showNearby">Show Nearby</button>
+
+                          <br><br>   
+                      </div>
+                     
                       <div id="map"></div>
                       
                       
@@ -77,7 +108,13 @@
       var map;
       var pos;
       var radius = 2500;
+      var geofence;
 
+
+      $('#submit').click(function(){
+         radius = $('#meter').val();
+
+      });
 
           if (navigator.geolocation) {
               navigator.geolocation.getCurrentPosition(showPosition);
@@ -121,7 +158,7 @@
             google.maps.event.removeListener(map, 'click');
           });
 
-          var geofence = new google.maps.Circle({
+          geofence = new google.maps.Circle({
               strokeColor: '#FF0000',
               strokeOpacity: 0.3,
               strokeWeight: 2,
@@ -148,7 +185,7 @@
               $brgy_name = $row['brgy_name'];
               $city = $row['city'];
               $province = $row['province'];
-              
+              $brgy_id = $row['brgy_id'];
         
               $address = $house_no.", ".$street.", ".$brgy_name.", ".$city.", ".$province;
 
@@ -177,7 +214,7 @@
 
                 console.log('location: ".$location." has a distance of ' + dist);
 
-                if((minDist == -1 || minDist > dist) && $population != $capacity )  {
+                if((minDist == -1 || minDist > dist) && $population != $capacity)  {
                   minDist = dist;
                   nearby = '".$location."';
                 }
@@ -282,6 +319,7 @@
    }
 
    $('#showNearby').click(function(){
+
     for(ndx = 0; ndx < allMarkers.length; ndx++) {
       if(allMarkers[ndx].location == nearby) {
         map.panTo(allMarkers[ndx].position);

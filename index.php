@@ -108,7 +108,7 @@
                   </div>
               <div class="form-group">
                 <label for="username">Username</label>
-                <input type="text" class="form-control" placeholder="ex: KingInTheNorth" name="username" maxlength="25" minlength="6" value="<?php if (isset($_SESSION['username'])){
+                <input type="text" class="form-control" placeholder="ex: KingInTheNorth" name="username" maxlength="25" minlength="4" value="<?php if (isset($_SESSION['username'])){
                         echo $_SESSION['username']; 
                         unset($_SESSION['username']);
                       }

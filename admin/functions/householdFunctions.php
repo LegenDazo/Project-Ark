@@ -49,10 +49,10 @@
 			return $row;
 		}
 
-		public function updateHousehold($brgy_id, $admin_id, $household_id, $user_id, $house_no, $street)						
+		public function updateHousehold($brgy_id, $household_id, $street, $house_no)						
 		{
 
-			$sql = "UPDATE resident SET id='".$id."',brgy_id='".$brgy_id."',admin_id='".$admin_id."',household_id='".$household_id."',user_id='".$user_id."',house_no='".$house_no."',street='".$street."'";
+			$sql = "UPDATE household SET brgy_id=".$brgy_id.", house_no=".$house_no.", street='".$street."' WHERE household_id = ".$household_id."";
 			$query = mysqli_query($this->conn, $sql);
 			if ($query) {
 				return true;
@@ -100,9 +100,11 @@
 		$street = mysqli_real_escape_string($house->conn, $_POST['street']);
 		$health_status = mysqli_real_escape_string($house->conn, $_POST['health_status']);		
 		
+		
 		if ($house->insertHousehold($brgy_id, $admin_id, $household_id, $user_id, $house_no, $street)) {
 			header("location:reliefHousehold.php?inserted=1");
-		}
+		} 
+
 	}
 
 	if (isset($_POST['updatehousehold'])) {
@@ -112,11 +114,23 @@
 		$house_no = mysqli_real_escape_string($house->conn, $_POST['house_no']);
 		$street = mysqli_real_escape_string($house->conn, $_POST['street']);
 		
-		$sql = "UPDATE household SET brgy_id=".$brgy_id.", house_no=".$house_no.", street='".$street."' WHERE household_id = ".$household_id."";
-		$query = mysqli_query($house->conn, $sql);
-		if ($query) {
-			header("location: ../updateHousehold.php?household_id=".$household_id."");
-		} else {
+	//	$sql = "UPDATE household SET brgy_id=".$brgy_id.", house_no=".$house_no.", street='".$street."' WHERE household_id = ".$household_id."";
+	//	$query = mysqli_query($house->conn, $sql);
+	//	if ($query) {
+	//		header("location: ../updateHousehold.php?household_id=".$household_id."");
+	//	} 
+
+		if(empty($_POST['house_no']) || empty($_POST['street']) || empty($_POST['brgy_id']) ){		
+			session_start();
+			$_SESSION['error'] = "Please fill out this field!";
+			header("location:../updateHousehold.php?household_id=$household_id");
+		} else if($house->updateHousehold($brgy_id, $household_id, $street, $house_no)) {
+			session_start();
+			$_SESSION['success'] = "Household has been updated!";
+			header("location:../updateHousehold.php?household_id=$household_id");
+		}
+
+		else {
 			echo mysqli_error($house->conn);
 		}	
 	}

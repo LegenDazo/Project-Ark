@@ -1,5 +1,5 @@
 <?php session_start();
-  if ($_SESSION['username'] == "" && $_SESSION['type'] == "" || $_SESSION['type'] == "normal") {
+  if (isset($_SESSION['username']) && $_SESSION['username'] == "" && $_SESSION['type'] == "" || $_SESSION['type'] == "normal") {
       header("location:../logout.php");
   }
 ?>
@@ -50,7 +50,24 @@
             <div class="col-md-9"><!-- START of RIGHT COLUMN-->
               <div class="card" style="margin-top: 25px; margin-bottom: 25px;"><!--START OF RIGHTCARD-->
                 <div class="container" style="margin-top: 25px; margin-bottom: 25px;">
-                      <center><h4>Update Household Details</h4></center>
+                  <center><h4>Update Household Details</h4>
+
+                  <div class="form-group col-md-6">                    
+                    <div id="error" class='alert alert-danger' role='alert' style="visibility: hidden; display: none;"></div>
+                    <div id="success" class='alert alert-success' role='alert' style="visibility: hidden; display: none;"></div>
+                    <?php
+                      if(isset($_SESSION['error'])){
+                        echo "<div class='alert alert-danger' role='alert'>".$_SESSION['error']."</div>";
+                        unset($_SESSION['error']);
+                      }
+                      else if(isset($_SESSION['success'])){
+                        echo "<div class='alert alert-success' role='alert'>".$_SESSION['success']."</div>";
+                        unset($_SESSION['success']);
+                      }
+                    ?>
+                  </div>
+                  </center>
+
                       <div class="container" style="margin-top: 3%">
                         <div class="col-md-12">
                         <div class="panel-body"> 
@@ -204,7 +221,7 @@
     </div><!--END OF MAIN CONTIANER-->
 
     <footer class="footer">
-        <p>Project Ark © 2017 All Rights Reserved</p>
+        <p>Project Ark © 2018 All Rights Reserved</p>
       </footer>
 
 <div class="modal" id="viewConfirm" role="dialog">
@@ -503,10 +520,18 @@
 
             $('#table').append(html);
             $("#add").attr("disabled", false);
+
+            $("#success").html("New Household Member Added!");
+            $("#success").css("visibility", "visible");
+            $("#success").css("display", "block");
+
            }
           });
       } else {
-        alert("Please fill up all of the fields!");
+        $("#error").html("Please fill up all of the fields!");
+        $("#error").css("visibility", "visible");
+        $("#error").css("display", "block");
+    //    alert("Please fill up all of the fields!");
       }
 
      });

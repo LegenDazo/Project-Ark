@@ -6,10 +6,11 @@
 <!DOCTYPE html>
 <?php 
 include 'functions/barangayFunctions.php';
+include 'functions/addHouseholdFunctions.php';
+include 'functions/insert.php';
 ?>
 <html lang="en">
   <head>
-    <link rel="icon" type="image/gif/png" href="../logo.png">
     <title>Project Ark</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -24,7 +25,7 @@ include 'functions/barangayFunctions.php';
   <body>
     <nav class="navbar navbar-light bg-faded">
       <img src="../images/ARK1.png">
-      <a href="../logout.php" style="color: white">Logout</a>
+      <a href="../logout.php" style="color: white">Log Out</a>
     </nav>
     <div class="container-fluid">
       <!--START OF CONTAINER FLUID-->
@@ -43,6 +44,10 @@ include 'functions/barangayFunctions.php';
             <div class="container" style="margin-top: 25px; margin-bottom: 25px;">
               <center>
                 <h4>Household Details</h4>
+                <div class="form-group col-md-6"> 
+
+                  <div id="error" class='alert alert-danger' role='alert' style="visibility: hidden; display: none;"></div>
+                  </div>
               </center>
               <div class="container" style="margin-top: 5%">
                 <div class="col-md-12">
@@ -54,7 +59,7 @@ include 'functions/barangayFunctions.php';
                     <div class="row">
                       <label><b>Adult/s</b></label><br>                           
                       <div class="form-group col-md-12">
-                        <div class="table-responsive">
+                         <div class="table-responsive">
                           <table class="table table-bordered" id="table">
                             <tr>
                               <th width="20%">First Name</th>
@@ -76,7 +81,7 @@ include 'functions/barangayFunctions.php';
                                 </select>
                               </td>
 
-                              <td><input class="bday" type="date" required=""></td>
+                              <td><input class="bday" type="date"></td>
 
                               <td class="house_memship">
                                 <select class="membship">
@@ -109,7 +114,7 @@ include 'functions/barangayFunctions.php';
                       </div>
                       <div class="form-group col-md-4">
                         <label for="brgy_name">Barangay</label>
-                        <select id="brgy" name="barangay" class="form-control" required>
+                        <select id="brgy" name="barangay" class="form-control">
                           <option value="">Select a Barangay</option> 
                           <?php
                             $barangay = $Functions->retrieve_barangayData();
@@ -130,6 +135,7 @@ include 'functions/barangayFunctions.php';
                       <button type="submit" class="btn btn-primary" id="submithousehold" name="submithousehold">Submit</button> 
                     </div>
                   </div>
+              
                   <!--End of .panel-body-->     
                   <div class="panel-footer">
                   </div>
@@ -145,8 +151,8 @@ include 'functions/barangayFunctions.php';
     </div><!--end of row-->
     </div><!--END OF MAIN CONTIANER-->
 
-    <footer class="footer">
-        <p>Project Ark © 2017 All Rights Reserved</p>
+    <footer id="footer" style="background-color: #2C3E50; height: 40px; bottom: 0; position: relative; width: 100%;">
+        <p>All Rights Reserved</p>
       </footer>
       
     <script src="../js/jquery.min.js"></script>
@@ -202,42 +208,59 @@ include 'functions/barangayFunctions.php';
         console.log(length);
 
         admin_id = $("#admin_id").val();
+
         house_no = $("#house_no").val();
         if(house_no == "") {
-            alert("Please fill up house number");
+            $("#error").html("Please fill up house number");
+            $("#error").css("visibility", "visible");
+            $("#error").css("display", "block");            
             return;
-        }
+        } 
 
         if(house_no.match("[A-Za-z]+")) {
-            alert("House numbers can't have letters");
+            $("#error").html("House numbers can't have letters");
+            $("#error").css("visibility", "visible");
+            $("#error").css("display", "block");            
+            //alert("House numbers can't have letters");
             return;
         } 
 
         street = $("#street").val();
         if(street == "") {
-            alert("Please fill up all streets");
+            $("#error").html("Please fill up all streets");
+            $("#error").css("visibility", "visible");
+            $("#error").css("display", "block");           
             return;
         } 
 
         brgy_id = $("#brgy").val();
         if(brgy_id == "") {
-            alert("Please select a barangay");
+            $("#error").html("Please select a barangay");
+            $("#error").css("visibility", "visible");
+            $("#error").css("display", "block");
             return;
         }
 
         for(i = 0; i < length; i++) {
           if($(".fname:eq("+i+")").text() == "") {
-            alert("Fill up all first names!");
+            $("#error").html("Fill up all first names!");
+            $("#error").css("visibility", "visible");
+            $("#error").css("display", "block");
             return;
           }
           if($(".lname:eq("+i+")").text() == "") {
-            alert("Fill up all last names!");
+            $("#error").html("Fill up all last names!");
+            $("#error").css("visibility", "visible");
+            $("#error").css("display", "block");
             return;
-          }
+          }         
+
           if($(".bday:eq("+i+")").val() == "") {
-            alert("Fill up all birthdays correctly!");
+            $("#error").html("Fill up all birthdays correctly!");
+            $("#error").css("visibility", "visible");
+            $("#error").css("display", "block");
             return;
-          }
+          } 
 
           fname.push($(".fname:eq("+i+")").text());
           mname.push($(".mname:eq("+i+")").text());
@@ -261,27 +284,35 @@ include 'functions/barangayFunctions.php';
                 $.ajax({
                  url:"functions/insert.php",
                  method:"POST",
-                  data: {                     //array
+                  data: {                     
                    fname:fname, mname:mname, lname:lname, gender:gender, bday:bday, house_memship:house_memship, house_no: house_no, street: street, brgy_id: brgy_id, admin_id: admin_id  },
-                 success:function(data) {      //if post is successful 
-                 // alert(data);
+                 success:function(data) {       
                   if(data === 'Item Data Inserted') {
                     window.location.href = "household.php";
                   } else {
-                    alert("An erorr has occurred please contact your system administrator");
+                    $("#error").html("New Household Inserted");
+                    $("#error").css("visibility", "visible");
+                    $("#error").css("display", "block");
+                    //alert("An erorr has occurred please contact your system administrator");
                   }
                 }
               });
             } else {
-              alert("There can only be one spouse!");
+              $("#error").html("There can only be one spouse!");
+              $("#error").css("visibility", "visible");
+              $("#error").css("display", "block"); 
             }
           } else {
-            alert("There can only be one head!");
+            $("#error").html("There can only be one head!");
+            $("#error").css("visibility", "visible");
+            $("#error").css("display", "block");
           }
         } else {
-          alert("There must be a head in the household");
+          $("#error").html("There must be a head in the household");
+          $("#error").css("visibility", "visible");
+          $("#error").css("display", "block");
         }
-       });
+       }); 
        
        function fetch_item_data()
        {

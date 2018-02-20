@@ -47,21 +47,7 @@ include 'functions/retrieveEvacuationCenterFunction.php';
                                             <label for="operation_name">Operation Name</label>
                                             <input  data-target="operation_name" type="text" class="form-control" id="operation_name" name="operation_name"> 
                                           </div>
-
-                                          <div class="form-group col-md-4" style="margin-top: 5%">
-                                            <label for="evac_id">Evacuation Location</label>
-                                            <select id="evac" name="evac_id" class="form-control" required>
-                                              <option value="">Select a Evacuation</option>
-                                              <?php
-                                                $evac = $obj->retrieveEvacuationCenter();
-                                                foreach($evac as $bar) {
-                                                  echo "<option value='".$bar["evac_id"]."'>";
-                                                  echo $bar["location_name"];
-                                                  echo "</option>";
-                                                }
-                                              ?>
-                                            </select>
-                                          </div>       
+      
                                            
                                            <div style="margin-top: 5%;">
                                            <a href="reliefOperation.php" class="btn btn-warning">Cancel</a>&nbsp;

@@ -55,16 +55,23 @@ include 'functions/reliefSponsorsFunctions.php';
                                   <label for="sponsor_id">Sponsor Name</label>
                                   <select id="sponsor_id" name="sponsor_id" class="form-control" required>
                                     <option value="">Select a Sponsor</option>
-                                    <option value="annonymous">Annonymous</option>
                                     <?php
                                       $sponsor = $dataOperation->retrieveSponsorData();
                                       foreach($sponsor as $bar) {
                                         echo "<option value='".$bar["sponsor_id"]."'>";
                                         echo $bar["sponsor_name"];
                                         echo "</option>";
+
                                       }
                                     ?>
                                   </select>
+
+                                <?php
+                                if(sizeof($sponsor)== 0) {
+                                  echo "<a href='addreliefSponsors.php'>*Click to add sponsor</a>";
+                                }
+
+                                ?>
                                 </div>
 
                                 <div class="form-group col-md-4">
@@ -80,6 +87,12 @@ include 'functions/reliefSponsorsFunctions.php';
                                     }
                                   ?>
                                 </select>
+                                <?php
+                                if(sizeof($sponsor)== 0) {
+                                  echo "<a href='addOperation.php'><button type='button' class='btn btn-primary'>Add Sponsor</button></a>";
+                                }
+
+                                ?>
                                 </div>
                               </div><br><br>
 

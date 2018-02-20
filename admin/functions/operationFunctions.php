@@ -7,9 +7,9 @@
 			$this->conn = mysqli_connect("localhost", "root", "", "ark");
 		}
 
-		public function insertOperation($operation_name, $evac_id)
+		public function insertOperation($operation_name)
 		{
-			$sql = "INSERT INTO reliefoperation (operation_name, evac_id) VALUES ('".$operation_name."','".$evac_id."')";
+			$sql = "INSERT INTO reliefoperation (operation_name) VALUES ('".$operation_name."')";
 			$query = mysqli_query($this->conn, $sql);
 			if ($query) {
 				return true;
@@ -31,7 +31,7 @@
 
 		public function retrieveOperationData()
 		{
-			$sql = "SELECT * FROM reliefoperation as a JOIN evacuationcenter as b on a.evac_id = b.evac_id";
+			$sql = "SELECT * FROM reliefoperation";
 			$query = mysqli_query($this->conn, $sql);
 			$itemArray = array();
 			while ($row = mysqli_fetch_assoc($query)) {

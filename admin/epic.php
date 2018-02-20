@@ -49,22 +49,21 @@ include 'functions/itemResidentsFunctions.php';
                           <div class="container" align="center">
 
 
-                            <th>Relief Package Name</th>
+                            <th>Relief Package Name</th><br>
                              <div class="form-group col-md-5">
                                 <form id="packageForm" method="POST" action="reliefHousehold.php">
-                                  <select class="form-control" id="package" name="package_id">
-                                    <option value="">Please select a package...</option>
-                                      <?php
+
+                                    <?php
                                           $myrow = $function->retrieveReliefPackage();
                                           foreach ($myrow as $row) {
                                       ?>
-                                      <option value="<?php echo $row['package_id'];?>" 
+                                      <input type="checkbox" name="package" value="<?php echo $row['package_id'];?>" 
                                           <?php 
                                             if(isset($_POST["package_id"]) && $_POST["package_id"] == $row["package_id"]) { 
                                               echo "selected"; 
-                                            } ?>><?php echo $row['package_name'];?></option>
+                                            } ?>><?php echo $row['package_name'];?>
                                       <?php }?>
-                                    </select>
+
                                 </form>
                               </div>
 
@@ -72,6 +71,7 @@ include 'functions/itemResidentsFunctions.php';
                               <table class="display responsive nowrap" id="household">
                                   <thead>
                                     <tr>
+                                      <th>HH ID</th>
                                       <th>Household Head</th>
                                       <th>Head Spouse</th>
                                       
@@ -85,43 +85,43 @@ include 'functions/itemResidentsFunctions.php';
                                     foreach($myrow as $row ) { ?>
 
                                       <tr id="<?php echo $row['household_id']; ?>"> 
-                                      <form method="POST" action="functions/distributionFunction.php">
+                                   <!--   <form method="POST" action="functions/distributionFunction.php">
                                       <input type="hidden" name="package_id" value="<?php echo $package_id; ?>">       
-      
+-->
+                               <td data-target="household_id"><?php echo $row['household_id']; ?></td>         
+                               <td><?php 
+                                $result = mysqli_query($house->conn, "SELECT * FROM resident WHERE household_id = ".$row['household_id']." AND house_memship = 'head'");
+                                $rowH = mysqli_fetch_assoc($result);
+                                if($rowH['house_memship'] == 'head'){
+                                echo $rowH['fname'];
+                                echo " "; 
+                                echo $rowH['mname'];
+                                echo " "; 
+                                echo $rowH['lname'];
+                                }?>
+                             </td>
+                             <td>
                                <?php 
-                                $result = mysqli_query($house->conn, "SELECT * FROM resident as r INNER JOIN attendance as a ON r.resident_id = a.resident_id WHERE r.household_id = ".$row['household_id']." AND r.house_memship = 'head' AND a.date IS NOT NULL AND a.date_out IS NULL");
+                                $result = mysqli_query($house->conn, "SELECT * FROM resident WHERE household_id = ".$row['household_id']." AND house_memship = 'head\'s spouse'");
+                                $rowH = mysqli_fetch_assoc($result);
+                                $household_id = $row["household_id"];
 
-                                if(mysqli_num_rows($result) != 0) {
-                                  $rowH = mysqli_fetch_assoc($result);
-                                  if($rowH['house_memship'] == 'head') {
-                                    echo "<td>";
-                                    echo $rowH['fname'];
-                                    echo " "; 
-                                    echo $rowH['mname']; 
-                                    echo " "; 
-                                    echo $rowH['lname'];
-                                   } 
-                                echo "</td>
-                                 <td>";
-                                 
-                                  $result = mysqli_query($house->conn, "SELECT * FROM resident WHERE household_id = ".$row['household_id']." AND house_memship = 'head\'s spouse'");
-                                  $rowH = mysqli_fetch_assoc($result);
-                                  $household_id = $row["household_id"];
+                               if($rowH['house_memship'] == "head's spouse"){
+                                echo $rowH['fname']; 
+                                echo " "; 
+                                echo $rowH['mname']; 
+                                echo " "; 
+                                echo $rowH['lname'];
+                              }
+                               ?>
+                             </td>
 
-                                 if($rowH['house_memship'] == "head's spouse"){
-                                  echo $rowH['fname']; 
-                                  echo " "; 
-                                  echo $rowH['mname']; 
-                                  echo " "; 
-                                  echo $rowH['lname'];
-                                  echo "</td>";
 
-                                }
-
-                               echo "<td>";
+                               <td>
+                                <?php
 
                                   if(!isset($_POST["package_id"]) || $_POST["package_id"] == "") {
-                                    echo "No Package Selected";
+                                    //echo "No Package Selected";
                                   } else {
                                     $package_id = $_POST["package_id"];
                                     $result = mysqli_query($house->conn, "SELECT * FROM packagedistribution WHERE household_id = ".$row['household_id']." AND package_id = ".$package_id."");
@@ -134,13 +134,9 @@ include 'functions/itemResidentsFunctions.php';
                                     echo $rowNew["date_dist"];
                                   }
                                 }
-                              echo "</td>";
-
-
-                            }
-                               ?>
-                             
-   </form>                       
+                                
+                                ?>
+                              </td>   <!--</form> -->                      
                                 </tr>
                               
                                   <?php }
@@ -159,7 +155,7 @@ include 'functions/itemResidentsFunctions.php';
 
 
       <footer class="footer">
-        <p>Project Ark © 2017 All Rights Reserved</p>
+        <p>Project Ark © 2018 All Rights Reserved</p>
       </footer>
 
 
@@ -192,6 +188,17 @@ include 'functions/itemResidentsFunctions.php';
     $("#packageForm").submit();
 
   });
+
+  $(".received").click(function(){
+    household_id = $(this).val();
+    packages = $('input:checkbox:checked').map(function() {
+      return this.value;
+    }).get();
+
+    console.log(household_id);
+    console.log(packages);
+  });
+  
 
 
     $('#household').DataTable();

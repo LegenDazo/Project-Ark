@@ -46,7 +46,6 @@
                                 <tr>
                                   <th>ID</th>
                                   <th>Operation Name</th>
-                                  <th>Evacuation Name</th>
                                   <th>Action</th>
                                   
                                 </tr>
@@ -60,7 +59,6 @@
                                       <tr>
                                         <td><?php echo $row['operation_id']?></td>
                                         <td><?php echo $row['operation_name']?></td>
-                                        <td><?php echo $row['location_name']?></td>
                                         
 
                                         <td><a href="reliefOperation.php?deleteoperation=1&operation_id=<?php echo $row['operation_id'];?>" class="btn btn-danger">DELETE</a></td>

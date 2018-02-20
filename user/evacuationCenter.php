@@ -44,39 +44,33 @@
 
                   <div class="container" style="margin-top: 15px; padding-bottom: 20px;">
                       <center><h3>Evacuation Center</h3></center>
-                      <label>Meters: (for geofencing)</label>
-                     <div class="form-inline">
-                        <div class="form-group mb-2">
 
-                          <input type="number" class="form-control" id="meter">
+                      <form method="post" action="evacuationCenter.php">
+                        <div class="form-inline">
+                          Meters:&nbsp;<input type="number" name="meter">&nbsp;<input type="submit" name="submitmeter" class="btn btn-primary">
                         </div>
-                        
-                        &nbsp;<button type="submit" class="btn btn-primary mb-2" id="submit">Submit</button>
-                      </div>
-                     
-                      <br>
-                      <div class="form-inline">
-                        <div class="form-group">
+                      </form>
 
-                          <select class="form-control" id="bar">
-                            <option></option>
-                            <?php
+                      
+ 
+                      <div class="form-inline">
+                        <select class="form-control" name="brgy" id="brgy">
+                          <option></option>
+                          <?php
                               $myrow = $Functions->retrieve_barangayData();
                               foreach ($myrow as $row) {
                                 ?>
                                   <option value="<?php echo $row['brgy_id'];?>"><?php echo $row['brgy_name'];?></option>
-
                                 <?php
                               }
 
-                            ?>
-                          </select>
-                        </div>
-                           <button type="button" class="btn btn-primary" id="showNearby">Show Nearby</button>
-
-                          <br><br>   
+                          ?>
+                        </select>
+                        <button type="button" class="btn btn-primary" id="showNearby">Show Nearby</button>
                       </div>
-                     
+         
+
+                      <br><br>
                       <div id="map"></div>
                       
                       
@@ -92,7 +86,7 @@
 
 
     <footer class="footer">
-        <p>Project Ark © 2017 All Rights Reserved</p>
+        <p>Project Ark © 2018 All Rights Reserved</p>
       </footer>
 
 
@@ -111,10 +105,12 @@
       var geofence;
 
 
-      $('#submit').click(function(){
-         radius = $('#meter').val();
+      <?php
 
-      });
+        if (isset($_POST['submitmeter'])) {
+          echo "radius = ".$_POST['meter'];
+        }
+      ?>
 
           if (navigator.geolocation) {
               navigator.geolocation.getCurrentPosition(showPosition);
@@ -183,6 +179,7 @@
               $house_no = $row['house_no'];
               $street = $row['street'];
               $brgy_name = $row['brgy_name'];
+              $brgy_id = $row['brgy_id'];
               $city = $row['city'];
               $province = $row['province'];
               $brgy_id = $row['brgy_id'];
@@ -210,16 +207,7 @@
                 // Construct the polygon.
 
                 echo "
-                dist = Math.sqrt(Math.pow(lat - $lat, 2) + Math.pow(lng - $lng, 2));
-
-                console.log('location: ".$location." has a distance of ' + dist);
-
-                if((minDist == -1 || minDist > dist) && $population != $capacity)  {
-                  minDist = dist;
-                  nearby = '".$location."';
-                }
-
-                
+            
                   var distance = calculateDistance(
                     ".$lat.",
                     ".$lng.",
@@ -227,9 +215,11 @@
                     lng
                   );
                   if (distance * 1000 < radius) {  // radius is in meter; distance in km
-                    //markers[i].setIcon('http://maps.gstatic.com/mapfiles/icon_green.png');      // make or find a better icon
-                    addMarker(new google.maps.LatLng(".$lat.",".$lng."),map,'$location','$population','$capacity','$address');;
-                                    evaccenter[j] = new google.maps.Polygon({
+                    dist = calculateDistance(lat, lng, $lat, $lng) * 1000;
+                  //  dist = Math.sqrt(Math.pow(lat - $lat, 2) + Math.pow(lng - $lng, 2));
+                    addMarker(new google.maps.LatLng(".$lat.",".$lng."),map,'$location','$population','$capacity','$address', dist, '$brgy_id');
+                
+                evaccenter[j] = new google.maps.Polygon({
                   paths: coords,
                   strokeColor: '#FF0000',
                   strokeOpacity: 0.8,
@@ -250,39 +240,44 @@
               
             }
 
-            echo "console.log('Closest: ' + nearby);";
+            /*echo "console.log('Closest: ' + nearby);";*/
 
             ?>
       }
 
        function calculateDistance(lat1, lon1, lat2, lon2) {
-      var radlat1 = Math.PI * lat1/180;
-      var radlat2 = Math.PI * lat2/180;
-      var radlon1 = Math.PI * lon1/180;
-      var radlon2 = Math.PI * lon2/180;
-      var theta = lon1-lon2;
-      var radtheta = Math.PI * theta/180;
-      var dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
-      dist = Math.acos(dist);
-      dist = dist * 180/Math.PI;
-      dist = dist * 60 * 1.1515;
-      dist = dist * 1.609344;
-      return dist;
+          var radlat1 = Math.PI * lat1/180;
+          var radlat2 = Math.PI * lat2/180;
+          var radlon1 = Math.PI * lon1/180;
+          var radlon2 = Math.PI * lon2/180;
+          var theta = lon1-lon2;
+          var radtheta = Math.PI * theta/180;
+          var dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
+          dist = Math.acos(dist);
+          dist = dist * 180/Math.PI;
+          dist = dist * 60 * 1.1515;
+          dist = dist * 1.609344;
+          return dist;
     }
 
 
   //latitude, longitude, population, capacity, location_name, house_no, street, barangay, city, province
     var allMarkers = [];
-   function addMarker(latLng, map,location, population, capacity, address){
-    
+   function addMarker(latLng, map,location, population, capacity, address, distance, brgy_id){
+
+      var full = (capacity == population);
+
       var marker = new google.maps.Marker({
         position: latLng,
         map:map,
         animation: google.maps.Animation.DROP,
-        location: location
+        location: location,
+        distance: distance,
+        brgy_id: brgy_id,
+        full: full
       });
 
-      var contentString = "<label><b>"+location+"</b></label>"+"<br>"+"<label>Address: "+address+"</label>"+"<br>"+"<label>Current Population: "+population+" / "+capacity+"</label>";
+      var contentString = "<label><b>"+location+"</b></label>"+"<br>"+"<label>Address: "+address+"</label>"+"<br>"+"<label>Current Population: "+population+" / "+capacity+"</label><br><label>Distance: "+distance.toFixed(2)+"m</label>";
 
       var infoWindow = new google.maps.InfoWindow({
         content: contentString
@@ -318,15 +313,28 @@
       allMarkers.push(marker);
    }
 
-   $('#showNearby').click(function(){
+
+   $('#showNearby').click(function() {
+    var brgy = $("#brgy").val();
+    var distance = 99999999;
+    var minNdx = -1;
 
     for(ndx = 0; ndx < allMarkers.length; ndx++) {
-      if(allMarkers[ndx].location == nearby) {
-        map.panTo(allMarkers[ndx].position);
-        map.setZoom(20);
-        allMarkers[ndx].infoWindow.open(map, allMarkers[ndx]);
+      if((brgy == "" || allMarkers[ndx].brgy_id == brgy) && allMarkers[ndx].distance < distance && !allMarkers[ndx].full) {
+        minNdx = ndx;
+        distance = allMarkers[ndx].distance;
       }
     }
+
+    if(minNdx != -1) {
+      map.panTo(allMarkers[minNdx].position);
+      map.setZoom(20);
+      allMarkers[minNdx].infoWindow.open(map, allMarkers[minNdx]);      
+    } else {
+      alert("There is no nearest evacuation center!");      
+    }
+
+
    });
 
  

@@ -47,30 +47,14 @@
                       
                       <form method="post" action="evacuationCenter.php">
                         <div class="form-inline">
-                          Meters:&nbsp;<input type="number" name="meter">&nbsp;<input type="submit" name="submitmeter" class="btn btn-primary">
+                          Meters:&nbsp;<input type="number" name="meter">&nbsp;<input type="submit" name="submitmeter" class="btn btn-primary">&nbsp;<label><i>Default geofence radius is 2500 meters</i></label>
                         </div>
                       </form>
+                      <br>
 
-                      
- 
-                      <div class="form-inline">
-                        <select class="form-control" name="brgy" id="brgy">
-                          <option></option>
-                          <?php
-                              $myrow = $Functions->retrieve_barangayData();
-                              foreach ($myrow as $row) {
-                                ?>
-                                  <option value="<?php echo $row['brgy_id'];?>"><?php echo $row['brgy_name'];?></option>
-                                <?php
-                              }
-
-                          ?>
-                        </select>
-                        <button type="button" class="btn btn-primary" id="showNearby">Show Nearby</button>
-                      </div>
-         
-
-                      <br><br>
+                      <form method="post" action="evacuationCenter.php">
+                        <button type="submit" name="showAll" class="btn btn-success">Show All</button>
+                      </form>
                       <div id="map"></div>
                       
                       
@@ -102,12 +86,20 @@
       var map;
       var pos;
       var radius = 2500;
+      var showAll = false;
 
       <?php
 
         if (isset($_POST['submitmeter'])) {
           echo "radius = ".$_POST['meter'];
         }
+      ?>
+
+      <?php
+        if (isset($_POST['showAll'])) {
+          echo "showAll = true;";
+        }
+
       ?>
 
        
@@ -154,6 +146,8 @@
             google.maps.event.removeListener(map, 'click');
           });
 
+        if(!showAll) {
+
           var geofence = new google.maps.Circle({
               strokeColor: '#FF0000',
               strokeOpacity: 0.3,
@@ -164,6 +158,7 @@
               center: pos,
               radius: radius //meters
           }); 
+        }
 
         var j = 0;
         var evaccenter = [];
@@ -214,7 +209,7 @@
                     lat,
                     lng
                   );
-                  if (distance * 1000 < radius) {  // radius is in meter; distance in km
+                  if (showAll || distance * 1000 < radius) {  // radius is in meter; distance in km
                     dist = calculateDistance(lat, lng, $lat, $lng) * 1000;
                   //  dist = Math.sqrt(Math.pow(lat - $lat, 2) + Math.pow(lng - $lng, 2));
                     addMarker(new google.maps.LatLng(".$lat.",".$lng."),map,'$location','$population','$capacity','$address', dist, '$brgy_id');
@@ -313,7 +308,7 @@
       allMarkers.push(marker);
    }
 
-   $('#showNearby').click(function() {
+   /*$('#showNearby').click(function() {
     var brgy = $("#brgy").val();
     var distance = 99999999;
     var minNdx = -1;
@@ -334,7 +329,7 @@
     }
 
 
-   });
+   });*/
 
  
   }

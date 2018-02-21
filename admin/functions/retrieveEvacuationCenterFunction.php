@@ -21,7 +21,7 @@
 		}
 
 		public function retrieveEvacuationCenterAll(){
-			$sql = "SELECT * FROM evacuationcenter as a JOIN barangay as b ON a.brgy_id = b.brgy_id ORDER BY location_name ASC";
+			$sql = "SELECT * FROM evacuationcenter as a JOIN barangay as b ON a.brgy_id = b.brgy_id WHERE status != 'delete' ORDER BY location_name ASC";
 			$itemArray = array();
 			$query = mysqli_query($this->conn, $sql);
 			while ($row = mysqli_fetch_assoc($query)) {
@@ -31,7 +31,7 @@
 		}
 
 		public function retrieveEvacuationCenter2(){
-			$sql = "SELECT * FROM evacuationcenter as a JOIN barangay as b ON a.brgy_id = b.brgy_id ORDER BY location_name ASC";
+			$sql = "SELECT * FROM evacuationcenter as a JOIN barangay as b ON a.brgy_id = b.brgy_id WHERE status != 'delete' ORDER BY location_name ASC";
 			$itemArray = array();
 			$query = mysqli_query($this->conn, $sql);
 			while ($row = mysqli_fetch_assoc($query)) {
@@ -92,6 +92,16 @@
 			$row = mysqli_fetch_assoc($query);
 			return $row;
 		}
+		public function deleteEvacuation($evac_id)
+		{
+			$sql = "UPDATE evacuationcenter SET status = 'delete' WHERE evac_id = '".$evac_id."'";
+			$query = mysqli_query($this->conn, $sql);
+			if ($query) {
+				return true;
+			} else {
+				return false;
+			}
+		}
 	}
 
 	$obj = new DataOperation();
@@ -121,6 +131,15 @@
 			session_start();
 			$_SESSION['msg'] = "Failed";
 			header("location:../listOfEvacCenters.php");
+		}
+	}
+
+	if (isset($_GET['deleteevac'])) {
+		$evac_id = mysqli_real_escape_string($obj->conn, $_GET['evac_id']);
+		if ($obj->deleteEvacuation($evac_id)) {
+			header("location:../listOfEvacCenters.php?deleted=1");
+		} else {
+			header("location:../listOfEvacCenters.php?invalid=1");
 		}
 	}
 

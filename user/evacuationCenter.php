@@ -44,7 +44,7 @@
 
                   <div class="container" style="margin-top: 15px; padding-bottom: 20px;">
                       <center><h3>Evacuation Center</h3></center>
-                      
+
                       <form method="post" action="evacuationCenter.php">
                         <div class="form-inline">
                           Meters:&nbsp;<input type="number" name="meter">&nbsp;<input type="submit" name="submitmeter" class="btn btn-primary">&nbsp;<label><i>Default geofence radius is 2500 meters</i></label>
@@ -87,6 +87,8 @@
       var pos;
       var radius = 2500;
       var showAll = false;
+      var geofence;
+
 
       <?php
 
@@ -94,6 +96,7 @@
           echo "radius = ".$_POST['meter'];
         }
       ?>
+
 
       <?php
         if (isset($_POST['showAll'])) {
@@ -103,7 +106,6 @@
       ?>
 
        
-
           if (navigator.geolocation) {
               navigator.geolocation.getCurrentPosition(showPosition);
           } else {
@@ -129,7 +131,9 @@
             position:pos,
             map:map,
             animation:google.maps.Animation.BOUNCE,
-            icon: '../images/blue-pushpin.png',
+            size: new google.maps.Size(20, 32),
+            icon: '../images/mymarker.png'
+
             //icon: 'http://maps.gstatic.com/mapfiles/ms2/micons/blue-pushpin.png',
           });
 
@@ -148,7 +152,8 @@
 
         if(!showAll) {
 
-          var geofence = new google.maps.Circle({
+          geofence = new google.maps.Circle({
+
               strokeColor: '#FF0000',
               strokeOpacity: 0.3,
               strokeWeight: 2,
@@ -177,7 +182,7 @@
               $brgy_id = $row['brgy_id'];
               $city = $row['city'];
               $province = $row['province'];
-              
+      
         
               $address = $house_no.", ".$street.", ".$brgy_name.", ".$city.", ".$province;
 
@@ -309,6 +314,10 @@
    }
 
    /*$('#showNearby').click(function() {
+=======
+
+   $('#showNearby').click(function() {
+>>>>>>> 780c504e806cd607becaef0fae372d9eb3b57562
     var brgy = $("#brgy").val();
     var distance = 99999999;
     var minNdx = -1;

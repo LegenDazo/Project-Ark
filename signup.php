@@ -127,7 +127,8 @@
 			$_SESSION['error'] = "Please fill out Last Name!";
 			header("location:index.php");
 		}
-		 
+
+				 
 		else if(empty($_POST['bdate'])){		
 			session_start();
 			$_SESSION['fname'] = $fname;

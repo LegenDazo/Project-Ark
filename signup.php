@@ -65,7 +65,7 @@
  			$_SESSION['bdate'] = $bdate;
  			$_SESSION['contact_no'] = $contact_no;
  			$_SESSION['username'] = $username;
- 			$_SESSION['error'] = "Only letters and white space is allowed for First Name!";
+ 			$_SESSION['error'] = "Only letters and white space is allowed for First Name.";
  			header("location:index.php");
  		} 
 
@@ -77,7 +77,7 @@
  			$_SESSION['bdate'] = $bdate;
  			$_SESSION['contact_no'] = $contact_no;
  			$_SESSION['username'] = $username;
- 			$_SESSION['error'] = "Only letters and white space is allowed for Middle Name!";
+ 			$_SESSION['error'] = "Only letters and white space is allowed for Middle Name.";
  			header("location:index.php");
  		} 
  		else if(!preg_match("/^[a-zA-Z ]*$/",$lname)) {
@@ -88,7 +88,7 @@
  			$_SESSION['bdate'] = $bdate;
  			$_SESSION['contact_no'] = $contact_no;
  			$_SESSION['username'] = $username;
- 			$_SESSION['error'] = "Only letters and white space is allowed for Last Name!";
+ 			$_SESSION['error'] = "Only letters and white space is allowed for Last Name.";
  			header("location:index.php");
  		}
 
@@ -100,7 +100,7 @@
  			$_SESSION['bdate'] = $bdate;
  			$_SESSION['contact_no'] = $contact_no;
  			$_SESSION['username'] = $username;
-			$_SESSION['error'] = "Please fill out First Name!";
+			$_SESSION['error'] = "Please fill out First Name.";
 			header("location:index.php");
 		}
 
@@ -112,7 +112,7 @@
  			$_SESSION['bdate'] = $bdate;
  			$_SESSION['contact_no'] = $contact_no;
  			$_SESSION['username'] = $username;
-			$_SESSION['error'] = "Please fill out Middle Name!";
+			$_SESSION['error'] = "Please fill out Middle Name.";
 			header("location:index.php");
 		}		
 
@@ -124,7 +124,7 @@
  			$_SESSION['bdate'] = $bdate;
  			$_SESSION['contact_no'] = $contact_no;
  			$_SESSION['username'] = $username;
-			$_SESSION['error'] = "Please fill out Last Name!";
+			$_SESSION['error'] = "Please fill out Last Name.";
 			header("location:index.php");
 		}
 
@@ -138,9 +138,24 @@
  			$_SESSION['bdate'] = $bdate;
  			$_SESSION['contact_no'] = $contact_no;
  			$_SESSION['username'] = $username;
-			$_SESSION['error'] = "Please enter Birthdate!";
+			$_SESSION['error'] = "Please enter Birthdate.";
 			header("location:index.php");
 		}
+		/*
+		$bdate = new DateTime("22-10-1993");
+		$bdate->add(new DateInterval("P12Y"));
+		if($bdate < new DateTime()){
+			session_start();
+			$_SESSION['fname'] = $fname;
+			$_SESSION['mname'] = $mname;
+			$_SESSION['lname'] = $lname;
+			$_SESSION['gender'] = $gender;
+			$_SESSION['bdate'] = $bdate;
+			$_SESSION['contact_no'] = $contact_no;
+			$_SESSION['username'] = $username;
+			$_SESSION['error'] = "Below 12.";
+			header("location:index.php");
+		}*/
 
 		else if(empty($_POST['contact_no'])){		
 			session_start();
@@ -151,7 +166,7 @@
  			$_SESSION['bdate'] = $bdate;
  			$_SESSION['contact_no'] = $contact_no;
  			$_SESSION['username'] = $username;
-			$_SESSION['error'] = "Please enter a Contact Number!";
+			$_SESSION['error'] = "Please enter a Contact Number.";
 			header("location:index.php");
 		}
 
@@ -163,7 +178,7 @@
  			$_SESSION['bdate'] = $bdate;
  			$_SESSION['contact_no'] = $contact_no;
  			$_SESSION['username'] = $username;
-			$_SESSION['error'] = "Please enter a Username!";
+			$_SESSION['error'] = "Please enter a Username.";
 			header("location:index.php");
 		}
 
@@ -175,7 +190,7 @@
  			$_SESSION['bdate'] = $bdate;
  			$_SESSION['contact_no'] = $contact_no;
  			$_SESSION['username'] = $username;
- 			$_SESSION['error'] = "Please enter a Password and Confirm Password!";
+ 			$_SESSION['error'] = "Please enter a Password and Confirm Password.";
 			header("location:index.php");
 		}
 
@@ -187,7 +202,7 @@
  			$_SESSION['bdate'] = $bdate;
  			$_SESSION['contact_no'] = $contact_no;
  			$_SESSION['username'] = $username;
- 			$_SESSION['error'] = "Please enter a Password and Confirm Password!";
+ 			$_SESSION['error'] = "Please enter a Password and Confirm Password.";
 			header("location:index.php");
 		}
  
@@ -210,7 +225,7 @@
  			$_SESSION['bdate'] = $bdate;
  			$_SESSION['contact_no'] = $contact_no;
  			$_SESSION['username'] = $username;
- 			$_SESSION['error'] = "Username already taken!";
+ 			$_SESSION['error'] = "Username already taken.";
  			header("location:index.php");
  		}
  		else if ($signup->checkUsername($username)) {
@@ -221,7 +236,7 @@
  			$_SESSION['bdate'] = $bdate;
  			$_SESSION['contact_no'] = $contact_no;
  			$_SESSION['username'] = $username;
- 			$_SESSION['error'] = "Username already taken!";
+ 			$_SESSION['error'] = "Username already taken.";
  			header("location:index.php");
  		} 
  		else if(!preg_match('/^(?=.*\d)(?=.*[A-Za-z])[0-9A-Za-z]{8,50}$/', $password)){
@@ -232,7 +247,7 @@
  			$_SESSION['bdate'] = $bdate;
  			$_SESSION['contact_no'] = $contact_no;
  			$_SESSION['username'] = $username;
- 			$_SESSION['error'] = "Password must contain letters and numbers!";
+ 			$_SESSION['error'] = "Password must contain letters and numbers.";
  			header("location:index.php");
  		}
  		else if ($password == $confirmpassword) {
@@ -257,7 +272,7 @@
  			$_SESSION['bdate'] = $bdate;
  			$_SESSION['contact_no'] = $contact_no;
  			$_SESSION['username'] = $username;
-	 			$_SESSION['error'] = "Something went wrong! Please try again! ".$id;
+	 			$_SESSION['error'] = "Something went wrong. Please try again. ".$id;
 	 			header("location:index.php");
  			}
  		} 
@@ -269,10 +284,13 @@
  			$_SESSION['bdate'] = $bdate;
  			$_SESSION['contact_no'] = $contact_no;
  			$_SESSION['username'] = $username;
- 			$_SESSION['error'] = "Password and Confirm Password don't match!";
+ 			$_SESSION['error'] = "Password and Confirm Password don't match.";
  			header("location:index.php");
  		}
+
  	}
 
 
 ?>
+
+

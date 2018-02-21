@@ -134,7 +134,13 @@
             size: new google.maps.Size(20, 32),
             icon: '../images/mymarker.png'
 
+
             //icon: 'http://maps.gstatic.com/mapfiles/ms2/micons/blue-pushpin.png',
+          });
+
+          google.maps.event.addListener(mark,'click', function(){
+             map.panTo(mark.position); //pan to mark position
+            map.setZoom(20); // zoom in
           });
 
           google.maps.event.addListener(map, 'bounds_changed', function(event) {

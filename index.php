@@ -87,8 +87,7 @@
                       <option value="">Select gender...</option>
                       <option value="Male">Male</option>
                       <option value="Female">Female</option>
-                   </select>  
-                            
+                   </select>                              
                   </div>
                   <div class="form-group">
                   <label for="Birthdate">Birthdate</label>

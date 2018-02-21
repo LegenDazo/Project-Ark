@@ -243,20 +243,20 @@ include 'functions/insert.php';
 
         for(i = 0; i < length; i++) {
           if($(".fname:eq("+i+")").text() == "") {
-            $("#error").html("Fill up all first names!");
+            $("#error").html("Fill up all first names.");
             $("#error").css("visibility", "visible");
             $("#error").css("display", "block");
             return;
           }
           if($(".lname:eq("+i+")").text() == "") {
-            $("#error").html("Fill up all last names!");
+            $("#error").html("Fill up all last names.");
             $("#error").css("visibility", "visible");
             $("#error").css("display", "block");
             return;
           }         
 
           if($(".bday:eq("+i+")").val() == "") {
-            $("#error").html("Fill up all birthdays correctly!");
+            $("#error").html("Fill up all birthdays correctly.");
             $("#error").css("visibility", "visible");
             $("#error").css("display", "block");
             return;
@@ -298,17 +298,17 @@ include 'functions/insert.php';
                 }
               });
             } else {
-              $("#error").html("There can only be one spouse!");
+              $("#error").html("There can only be one spouse.");
               $("#error").css("visibility", "visible");
               $("#error").css("display", "block"); 
             }
           } else {
-            $("#error").html("There can only be one head!");
+            $("#error").html("There can only be one head.");
             $("#error").css("visibility", "visible");
             $("#error").css("display", "block");
           }
         } else {
-          $("#error").html("There must be a head in the household");
+          $("#error").html("There must be a head in the household.");
           $("#error").css("visibility", "visible");
           $("#error").css("display", "block");
         }

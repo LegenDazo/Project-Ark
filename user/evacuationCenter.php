@@ -47,30 +47,14 @@
 
                       <form method="post" action="evacuationCenter.php">
                         <div class="form-inline">
-                          Meters:&nbsp;<input type="number" name="meter">&nbsp;<input type="submit" name="submitmeter" class="btn btn-primary">
+                          Meters:&nbsp;<input type="number" name="meter">&nbsp;<input type="submit" name="submitmeter" class="btn btn-primary">&nbsp;<label><i>Default geofence radius is 2500 meters</i></label>
                         </div>
                       </form>
+                      <br>
 
-                      
- 
-                      <div class="form-inline">
-                        <select class="form-control" name="brgy" id="brgy">
-                          <option></option>
-                          <?php
-                              $myrow = $Functions->retrieve_barangayData();
-                              foreach ($myrow as $row) {
-                                ?>
-                                  <option value="<?php echo $row['brgy_id'];?>"><?php echo $row['brgy_name'];?></option>
-                                <?php
-                              }
-
-                          ?>
-                        </select>
-                        <button type="button" class="btn btn-primary" id="showNearby">Show Nearby</button>
-                      </div>
-         
-
-                      <br><br>
+                      <form method="post" action="evacuationCenter.php">
+                        <button type="submit" name="showAll" class="btn btn-success">Show All</button>
+                      </form>
                       <div id="map"></div>
                       
                       
@@ -102,6 +86,7 @@
       var map;
       var pos;
       var radius = 2500;
+      var showAll = false;
       var geofence;
 
 
@@ -112,6 +97,15 @@
         }
       ?>
 
+
+      <?php
+        if (isset($_POST['showAll'])) {
+          echo "showAll = true;";
+        }
+
+      ?>
+
+       
           if (navigator.geolocation) {
               navigator.geolocation.getCurrentPosition(showPosition);
           } else {
@@ -137,8 +131,16 @@
             position:pos,
             map:map,
             animation:google.maps.Animation.BOUNCE,
-            icon: '../images/blue-pushpin.png',
+            size: new google.maps.Size(20, 32),
+            icon: '../images/mymarker.png'
+
+
             //icon: 'http://maps.gstatic.com/mapfiles/ms2/micons/blue-pushpin.png',
+          });
+
+          google.maps.event.addListener(mark,'click', function(){
+             map.panTo(mark.position); //pan to mark position
+            map.setZoom(20); // zoom in
           });
 
           google.maps.event.addListener(map, 'bounds_changed', function(event) {
@@ -154,7 +156,10 @@
             google.maps.event.removeListener(map, 'click');
           });
 
+        if(!showAll) {
+
           geofence = new google.maps.Circle({
+
               strokeColor: '#FF0000',
               strokeOpacity: 0.3,
               strokeWeight: 2,
@@ -164,6 +169,7 @@
               center: pos,
               radius: radius //meters
           }); 
+        }
 
         var j = 0;
         var evaccenter = [];
@@ -182,7 +188,7 @@
               $brgy_id = $row['brgy_id'];
               $city = $row['city'];
               $province = $row['province'];
-              $brgy_id = $row['brgy_id'];
+      
         
               $address = $house_no.", ".$street.", ".$brgy_name.", ".$city.", ".$province;
 
@@ -214,7 +220,7 @@
                     lat,
                     lng
                   );
-                  if (distance * 1000 < radius) {  // radius is in meter; distance in km
+                  if (showAll || distance * 1000 < radius) {  // radius is in meter; distance in km
                     dist = calculateDistance(lat, lng, $lat, $lng) * 1000;
                   //  dist = Math.sqrt(Math.pow(lat - $lat, 2) + Math.pow(lng - $lng, 2));
                     addMarker(new google.maps.LatLng(".$lat.",".$lng."),map,'$location','$population','$capacity','$address', dist, '$brgy_id');
@@ -313,8 +319,11 @@
       allMarkers.push(marker);
    }
 
+   /*$('#showNearby').click(function() {
+=======
 
    $('#showNearby').click(function() {
+>>>>>>> 780c504e806cd607becaef0fae372d9eb3b57562
     var brgy = $("#brgy").val();
     var distance = 99999999;
     var minNdx = -1;
@@ -335,7 +344,7 @@
     }
 
 
-   });
+   });*/
 
  
   }

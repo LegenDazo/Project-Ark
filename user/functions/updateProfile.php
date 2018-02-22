@@ -52,20 +52,60 @@ if (isset($_POST['updateuser'])) {
 	$bdate = mysqli_real_escape_string($user->conn, $_POST['bdate']);
 	$contact_no = mysqli_real_escape_string($user->conn, $_POST['contact_no']);
 
-	
+	if(empty($_POST['fname'])){		
+		session_start();
+		$_SESSION['fname'] = $fname;
+		$_SESSION['mname'] = $mname;
+		$_SESSION['lname'] = $lname;
+		$_SESSION['bdate'] = $bdate;
+		$_SESSION['contact_no'] = $contact_no;		
+		$_SESSION['Error'] = "Please fill out First Name.";
+		header("location:../viewProfile.php");
+	}
+
+	else if(empty($_POST['mname'])){		
+		session_start();
+		$_SESSION['fname'] = $fname;
+		$_SESSION['mname'] = $mname;
+		$_SESSION['lname'] = $lname;
+		$_SESSION['bdate'] = $bdate;		
+		$_SESSION['Error'] = "Please fill out Middle Name.";
+		header("location:../viewProfile.php");
+	}
+
+	else if(empty($_POST['lname'])){		
+		session_start();
+		$_SESSION['fname'] = $fname;
+		$_SESSION['mname'] = $mname;
+		$_SESSION['lname'] = $lname;
+		$_SESSION['bdate'] = $bdate;		
+		$_SESSION['Error'] = "Please fill out Last Name.";
+		header("location:../viewProfile.php");
+	}
+
+	else if(empty($_POST['bdate'])){		
+		session_start();
+		$_SESSION['fname'] = $fname;
+		$_SESSION['mname'] = $mname;
+		$_SESSION['lname'] = $lname;
+		$_SESSION['bdate'] = $bdate;		
+		$_SESSION['Error'] = "Please enter Birthdate.";
+		header("location:../viewProfile.php");
+	}
+
 		if (!preg_match("/^[a-zA-Z ]*$/",$fname)) {
  			session_start();
- 			$_SESSION['Error'] = "Only letters and white space is allowed for First Name!";
+ 			$_SESSION['Error'] = "Only letters and white space is allowed for First Name.";
  			header("location:../viewProfile.php");
  		} 
  		else if(!preg_match("/^[a-zA-Z ]*$/",$mname)) {
  			session_start();
- 			$_SESSION['Error'] = "Only letters and white space is allowed for Middle Name!";
+ 			$_SESSION['Error'] = "Only letters and white space is allowed for Middle Name.";
  			header("location:../viewProfile.php");
  		} 
  		else if(!preg_match("/^[a-zA-Z ]*$/",$lname)) {
  		 	session_start();
- 			$_SESSION['Error'] = "Only letters and white space is allowed for Last Name!";
+ 			$_SESSION['Error'] = "Only letters and white space is allowed for Last Name.";
  			header("location:../viewProfile.php");
  		} 
  		else if(!preg_match("/([0]\d{3}\d{3}\d{4})/", $contact_no)){
@@ -76,11 +116,11 @@ if (isset($_POST['updateuser'])) {
  		
 		else if ($user->updateUserProfile($id,$username,$fname, $mname, $lname, $bdate, $contact_no)) {
 			session_start();
-			$_SESSION['Success'] = "User profile has been updated!";
+			$_SESSION['Success'] = "User profile has been updated.";
 			header("location:../viewProfile.php");
 		}  else {
 			session_start();
-			$_SESSION['Error'] = "Something went wrong. Please provide a valid input!";
+			$_SESSION['Error'] = "Something went wrong. Please provide a valid input.";
 			header("location:../viewProfile.php");
 		}
 	}

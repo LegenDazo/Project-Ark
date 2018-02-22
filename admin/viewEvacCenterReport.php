@@ -127,7 +127,7 @@
 
                       echo '<h3>Demographics</h3>
                         <table class="table">
-                          <tr><td>Total No. of Evacuees:</td><td><b>'.$totalEvacs.'</b></td></tr>
+                          <tr id="noEvacuees"><td>Total No. of Evacuees:</td><td><b>'.$totalEvacs.'</b></td></tr>
                           <tr><td>Total No. of Families Evacuated:</td><td><b>'.$totalFam.'</b></td></tr>
                           <tr><td>Total No. of Female Evacuees:<td><b>'.$totalFem.'</b></td></tr>
                           <tr><td>Total No. of Male Evacuees:</td><td><b>'.$totalMal.'</b></td></tr>
@@ -183,8 +183,28 @@
 
 
 
+
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+<!-- Modal content-->
+    <div class="modal-content">
+      <h1>List of Evacuees</h1>
+      <table class="table table-hovered" id="myTable">
+        <tr>
+          <th>First Name</th>
+          <th>Middle Name</th>
+          <th>Last Name</th>
+        </tr>
+
+      </table>
+    </div>
+  </div>
+</div>
+
       <footer class="footer">
-        <p>Project Ark © 2017 All Rights Reserved</p>
+        <p>Project Ark © 2018 All Rights Reserved</p>
       </footer>
 
 
@@ -203,6 +223,32 @@ $(document).ready(function(){
       $("#period").submit();
     }
   });
+
+  $('#noEvacuees').click(function() {
+    <?php
+
+      $myrow = $demog->retrieveEvacueesInSpecificEvac1($evac_id, $time);
+      foreach ($myrow as $row) {
+        $fname = $row['fname'];
+        $lname = $row['lname'];
+        $mname = $row['mname'];
+
+         echo "
+         var html_code = '<tr>';
+          html_code += '<td>".$fname."</td>';
+          html_code += '<td>".$mname."</td>';
+          html_code += '<td>".$lname."</td>';
+          html_code += '</tr>';
+
+          $('#myTable').append(html_code);
+         ";
+
+      }
+    ?>
+
+
+    $('#myModal').modal('toggle');
+    });
 });
 
 </script>

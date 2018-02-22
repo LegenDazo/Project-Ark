@@ -53,8 +53,7 @@ include 'functions/retrieveEvacuationCenterFunction.php';
                           foreach ($myrow as $key => $row) {
                             $location_name = $row['location_name'];
                             $capacity = $row['capacity'];
-                            $latitude = $row['latitude'];
-                            $longitude = $row['longitude'];
+                           
                             $brgy_id = $row['brgy_id'];
                             $brgy_name = $row['brgy_name'];
                             $house_no = $row['house_no'];
@@ -95,19 +94,7 @@ include 'functions/retrieveEvacuationCenterFunction.php';
                           </div>
                         </div>
 
-                        <div class="col-md-5">
-                          <div class="form-group">
-                            <label for="lat">Latitude</label>
-                            <input type="lat" class="form-control" id="lat" name="lat" value="<?php echo $latitude;?>" readonly>
-                          </div>
-                        </div>
-
-                        <div class="col-md-5">
-                          <div class="form-group">
-                            <label for="lng">Longitude</label>
-                            <input type="lng" class="form-control" id="lng" name="lng" value="<?php echo $longitude;?>" readonly>
-                          </div>
-                        </div>
+                       
                                  
                         </div>
 

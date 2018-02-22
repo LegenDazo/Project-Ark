@@ -75,6 +75,27 @@ class Demographics
 		$result = mysqli_fetch_assoc($query);
 		return $result['totalEvacuees'];
 	}
+	public function retrieveEvacueesInSpecificEvac1($evac_id, $time)
+	{
+		$sql = "SELECT * FROM attendance as a JOIN resident as b ON a.resident_id = b.resident_id WHERE evac_id='".$evac_id."'";
+		$itemArray = array();
+		// "SELECT COUNT(*) AS totalEvacuees FROM attendance WHERE evac_id = $evac_id"
+		if($time != "showAll") {
+			$period = explode(",", $time);
+			$sql .= " AND date >= '".$period[0]."'";
+			// "SELECT COUNT(*) AS totalEvacuees FROM attendance WHERE evac_id = $evac_id AND DATE >= $start_date"
+			if($period[1] != "") {
+				// "SELECT COUNT(*) AS totalEvacuees FROM attendance WHERE evac_id = $evac_id AND date >= $start_date AND date <= $end_date"
+				$sql .= " AND date <= '".$period[1]."'";
+			}
+		}
+
+		$query = mysqli_query($this->conn, $sql);
+		while ($row = mysqli_fetch_assoc($query)) {
+			$itemArray[] = $row;
+		}
+		return $itemArray;
+	}
 	public function retrieveNumberOfFemaleEvacueesInSpecificEvac($evac_id, $time)
 	{
 		$sql = "SELECT count(*) as totalFemaleEvacuees FROM attendance as a JOIN resident as b ON a.resident_id = b.resident_id WHERE b.gender = 'Female' AND a.evac_id='".$evac_id."'";

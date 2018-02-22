@@ -55,8 +55,8 @@ include 'functions/itemResidentsFunctions.php';
                                   <select class="form-control" id="package" name="package_id">
                                     <option value="">Please select a package...</option>
                                       <?php
-                                          $myrow = $function->retrieveReliefPackage();
-                                          foreach ($myrow as $row) {
+                                          $package = $function->retrieveReliefPackage();
+                                          foreach ($package as $row) {
                                       ?>
                                       <option value="<?php echo $row['package_id'];?>" 
                                           <?php 
@@ -65,6 +65,14 @@ include 'functions/itemResidentsFunctions.php';
                                             } ?>><?php echo $row['package_name'];?></option>
                                       <?php }?>
                                     </select>
+
+                                    <?php
+                                if(sizeof($package)== 0) {
+                                  echo "<a href='addRelief.php'>*Click to add package</a>";
+                                }
+
+                                ?>
+
                                 </form>
                               </div>
 

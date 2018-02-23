@@ -51,50 +51,38 @@ include 'functions/reliefSponsorsFunctions.php';
                                     <input data-target="relief_name" type="text" class="form-control" id="relief_name" name="relief_name"> 
                                   </div>
                                 
-                                <div class="form-group col-md-4">
-                                  <label for="sponsor_id">Sponsor Name</label>
-                                  <select id="sponsor_id" name="sponsor_id" class="form-control" required>
-                                    <option value="">Select a Sponsor</option>
-                                    <?php
-                                      $sponsor = $dataOperation->retrieveSponsorData();
-                                      foreach($sponsor as $bar) {
-                                        echo "<option value='".$bar["sponsor_id"]."'>";
-                                        echo $bar["sponsor_name"];
-                                        echo "</option>";
+                                    <div class="form-group col-md-4">
+                                      <label for="sponsor_id">Sponsor Name</label>
+                                      <select id="sponsor_id" name="sponsor_id" class="form-control" required>
+                                        <option value="">Select a Sponsor</option>
+                                        <?php
+                                          $sponsor = $dataOperation->retrieveSponsorData();
+                                          foreach($sponsor as $bar) {
+                                            echo "<option value='".$bar["sponsor_id"]."'>";
+                                            echo $bar["sponsor_name"];
+                                            echo "</option>";
 
-                                      }
-                                    ?>
-                                  </select>
+                                          }
+                                        ?>
 
-                                <?php
-                                if(sizeof($sponsor)== 0) {
-                                  echo "<a href='addreliefSponsors.php'>*Click to add sponsor</a>";
-                                }
+                                      </select>
+                                    </div><a href="addreliefSponsors_2.php" class="btn btn-success" style="height:3%; margin-top: 3%;"><i class="material-icons">add</i></a>
 
-                                ?>
-                                </div>
-
-                                <div class="form-group col-md-4">
-                                <label for="operation_id">Operation Name</label>
-                                <select id="operation_id" name="operation_id" class="form-control" required>
-                                  <option value="">Select a Operation</option>
-                                  <?php
-                                    $operation = $obj->retrieveOperationData();
-                                    foreach($operation as $bar) {
-                                      echo "<option value='".$bar["operation_id"]."'>";
-                                      echo $bar["operation_name"];
-                                      echo "</option>";
-                                    }
-                                  ?>
-                                </select>
-                                <?php
-                                if(sizeof($sponsor)== 0) {
-                                  echo "<a href='addOperation.php'><button type='button' class='btn btn-primary'>Add Sponsor</button></a>";
-                                }
-
-                                ?>
-                                </div>
-                              </div><br><br>
+                                    <div class="form-group col-md-4">
+                                    <label for="operation_id">Operation Name</label>
+                                    <select id="operation_id" name="operation_id" class="form-control" required>
+                                      <option value="">Select a Operation</option>
+                                      <?php
+                                        $operation = $obj->retrieveOperationData();
+                                        foreach($operation as $bar) {
+                                          echo "<option value='".$bar["operation_id"]."'>";
+                                          echo $bar["operation_name"];
+                                          echo "</option>";
+                                        }
+                                      ?>
+                                    </select>
+                                    </div><a href="addOperation_2.php" class="btn btn-success" style="height:3%; margin-top: 3%;"><i class="material-icons">add</i></a>
+                                  </div>
 
                                 <center>
                                   <a href="reliefpackage.php" class="btn btn-warning">Cancel</a>&nbsp;

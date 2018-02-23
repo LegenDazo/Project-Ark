@@ -4,11 +4,7 @@
   }
 ?>
 <!DOCTYPE html>
-<?php
 
-include 'functions/reliefpackageFunctions.php';
-
-?>
 <html lang="en">
 <head>
   <link rel="icon" type="image/gif/png" href="../logo.png">
@@ -59,25 +55,7 @@ include 'functions/reliefpackageFunctions.php';
                                        
                               </div>
 
-                              <div class="row"> 
-
-
-                              <div class="form-group col-md-4">
-                                <label for="package_id">Package</label>
-                                <select id="package" name="package_id" class="form-control" required>
-                                  <option value="">Select a Package</option>
-                                  <?php
-                                    $package = $obj->retrieveReliefData();
-                                    foreach($package as $bar) {
-                                      echo "<option value='".$bar["package_id"]."'>";
-                                      echo $bar["package_name"];
-                                      echo "</option>";
-                                    }
-                                  ?>
-                                </select>
-                              </div>       
-                                               
-                              </div><br>
+                              <br>
 
                                 <center><a href="reliefItems.php" class="btn btn-warning">Cancel</a>&nbsp;
                                         <button class="btn btn-primary" name="insertItem">Add Item</button></center>

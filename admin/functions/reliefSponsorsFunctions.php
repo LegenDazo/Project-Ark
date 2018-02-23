@@ -60,6 +60,20 @@ if (isset($_POST['addSponsor'])) {
 }	
 //}else{
 
+
+if (isset($_POST['addSponsor2'])) {
+	
+	$sponsor_id = mysqli_real_escape_string($dataOperation->conn, $_POST['sponsor_id']);
+	$sponsor_name = mysqli_real_escape_string($dataOperation->conn, $_POST['sponsor_name']);
+	$sponsor_type = mysqli_real_escape_string($dataOperation->conn, $_POST['sponsor_type']);
+	$sponsor_address = mysqli_real_escape_string($dataOperation->conn, $_POST['sponsor_address']);
+	$sponsor_contNum = mysqli_real_escape_string($dataOperation->conn, $_POST['sponsor_contNum']);
+
+	$dataOperation->InsertSponsor($sponsor_id, $sponsor_name, $sponsor_type,$sponsor_address, $sponsor_contNum );
+			header("location:../addRelief.php?inserted=1");	
+}	
+//}else{
+
 if (isset($_GET['deletesponsor'])) {
 		$sponsor_id = mysqli_real_escape_string($dataOperation->conn, $_GET['sponsor_id']);
 

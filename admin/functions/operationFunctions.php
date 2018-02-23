@@ -64,6 +64,15 @@
 			header("location:../reliefOperation.php?inserted=1");
 	}
 
+	if (isset($_POST['submitoperation2'])) {
+
+		$operation_name = mysqli_real_escape_string($obj->conn, $_POST['operation_name']);
+		$evac_id = mysqli_real_escape_string($obj->conn, $_POST['evac_id']);
+		
+		$obj->insertOperation($operation_name, $evac_id);
+			header("location:../addRelief.php?inserted=1");
+	}
+
 
 	if (isset($_GET['deleteoperation'])) {
 		$operation_id = mysqli_real_escape_string($obj->conn, $_GET['operation_id']);

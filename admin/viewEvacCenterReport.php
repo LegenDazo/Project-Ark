@@ -8,6 +8,8 @@
   } else if(isset($_POST["showAll"])) {
     $showAll = $_POST["showAll"];
   }
+
+  
 ?>
 <!DOCTYPE html>
 <?php
@@ -26,6 +28,8 @@
   <link rel="stylesheet" href="../bootstrap/css/bootstrap.css">
   <link rel="stylesheet" href="../style.css">
   <link rel="stylesheet" href="../materialize/icons.css">
+    <link rel="stylesheet" type="text/css" href="../datatables/datatables.css">
+  <link rel="stylesheet" type="text/css" href="../datatables/datatables-bootstrap.css">  
 
 </head>
 
@@ -126,28 +130,28 @@
                       $myrow = $dist->retrieveDistributionList($evac_id, $time);
 
                       echo '<h3>Demographics</h3>
-                        <table class="table">
+                        <table class="table table-hover">
                           <tr id="noEvacuees"><td>Total No. of Evacuees:</td><td><b>'.$totalEvacs.'</b></td></tr>
-                          <tr><td>Total No. of Families Evacuated:</td><td><b>'.$totalFam.'</b></td></tr>
+                          <tr id="familiesEvacuated"><td>Total No. of Families Evacuated:</td><td><b>'.$totalFam.'</b></td></tr>
                           <tr id="noFemaleEvacuees"><td>Total No. of Female Evacuees:<td><b>'.$totalFem.'</b></td></tr>
                           <tr id="noMaleEvacuees"><td>Total No. of Male Evacuees:</td><td><b>'.$totalMal.'</b></td></tr>
                         </table>
                       <h3>Package Distribution</h3>
-                        <table class="table">
+                        <table class="table table-hover" id="package_distribution">
+                          <thead>
                           <tr>
-                            <th>Package ID</th>
                             <th>Package Name</th>
                             <th>Date Received</th>
                             <th>Relief Operation</th>
                             <th>No. of Families</th>
-                          </tr>';
+                          </tr>
+                          </thead>';
           
                         
                       foreach ($myrow as $row) {
                           
                         echo '
-                        <tr id="distList">
-                          <td>'.$row['package_id'].'</td>
+                        <tr class="distList" data-value="'.$row['package_id'].'">
                           <td>'.$row['package_name'].'</td>
                           <td>'.date_format(new DateTime($row['date_dist']), 'M d Y').'</td>
                           <td>'.$row['operation_name'].'</td>
@@ -159,14 +163,16 @@
                       
                       echo '</table>
                       <h3>Health Status</h3>
-                      <table class="table">
+                      <table class="table table-hover" id="health_status">
+                      <thead>
                         <tr>
                           <th>Disease Name</th>
                           <th>Infected</th>
-                        </tr>';
+                        </tr>
+                        </thead>';
                           foreach ($myrow as $row) {
                             echo '
-                            <tr>
+                            <tr class="healthStatus" data-value="'.$row['disease_id'].'">
                               <td>'.$row['disease_name'].'</td>
                               <td>'.$row['infected'].'</td>
                             </tr>';
@@ -193,69 +199,74 @@
   <div class="modal-dialog">
 <!-- Modal content-->
     <div class="modal-content">
-      <h1>List of Evacuees</h1>
-      <table class="table table-striped table-hover" id="myTable">
-        <thead>
-        <tr>
-          <th>First Name</th>
-          <th>Middle Name</th>
-          <th>Last Name</th>
-        </tr>
-      </thead>
+      <div class="modal-header">
+        <h5 class="modal-title">List of Evacuees</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <table class="table table-striped" id="myTable">
+          <thead>
+            <tr>
+              <th>First Name</th>
+              <th>Middle Name</th>
+              <th>Last Name</th>
+              <th>Date Evacuated</th>
+            </tr>
+          </thead>
 
       </table>
+      </div>
+ 
+        
+ 
+      
     </div>
   </div>
 </div>
 
-<!-- Modal Female Evacuees-->
+
+<!-- Modal All Evacuees-->
 <div id="myModal2" class="modal fade" role="dialog">
   <div class="modal-dialog">
 <!-- Modal content-->
     <div class="modal-content">
-      <h1>List of Female Evacuees</h1>
-      <table class="table table-striped table-hover" id="myTable2">
-        <thead>
-        <tr>
-          <th>First Name</th>
-          <th>Middle Name</th>
-          <th>Last Name</th>
-        </tr>
-      </thead>
+      <div class="modal-header">
+        <h5 class="modal-title">List of Families Evacuated</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <table class="table table-striped" id="myTable2">
+          <thead>
+            <tr>
+              <th>Household Name</th>
+             
+            </tr>
+          </thead>
 
       </table>
+      </div>     
     </div>
   </div>
 </div>
+
 
 <!-- Modal Male Evacuees-->
 <div id="myModal3" class="modal fade" role="dialog">
   <div class="modal-dialog">
 <!-- Modal content-->
     <div class="modal-content">
-      <h1>List of Male Evacuees</h1>
-      <table class="table table-striped table-hover" id="myTable3">
-        <thead>
-        <tr>
-          <th>First Name</th>
-          <th>Middle Name</th>
-          <th>Last Name</th>
-        </tr>
-      </thead>
-
-      </table>
-    </div>
-  </div>
-</div>
-
-
-<!-- Modal Male Evacuees-->
-<div id="myModal4" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-<!-- Modal content-->
-    <div class="modal-content">
-      <h1>Distribution List</h1>
-      <table class="table table-striped table-hover" id="myTable4">
+      <div class="modal-header">
+        <h5 class="modal-title">Distribution List</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <table class="table table-striped" id="myTable3">
         <thead>
         <tr>
           <th>Package Name</th>
@@ -264,8 +275,36 @@
           <th>Household</th>
         </tr>
       </thead>
-
       </table>
+    </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal Health Status-->
+<div id="myModal4" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+<!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Distribution List</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <table class="table table-striped" id="myTable4">
+        <thead>
+        <tr>
+          <th>Disease</th>
+          <th>Evacuee Name</th>
+          <th>Date Acquired</th>
+          <th>Date Cured</th>
+        </tr>
+      </thead>
+      </table>
+    </div>
     </div>
   </div>
 </div>
@@ -278,13 +317,22 @@
 <script src="../js/jquery.min.js"></script>
 <script src="../bootstrap/js/bootstrap.js"></script>
 <script src="../bootstrap/js/bootstrap_alpha6.min.js"></script>
-
-
+<script src="../datatables/datatables-bootstrap.js"></script>
+<script type="text/javascript" charset="utf8" src="../datatables/datatables-jquery.js"></script>  
 
 </body>
 </html>
 <script>
 $(document).ready(function(){
+
+  $('#package_distribution').DataTable();
+  $('#health_status').DataTable();
+
+  var evacueesTable = $('#myTable').DataTable();
+  var familiesEvacuated = $('#myTable2').DataTable();
+  var packageDist = $('#myTable3').DataTable();
+  var healthStatusTable = $('#myTable4').DataTable();
+
 
   $("#date").change(function() {
     if($("#date").val() != "") {
@@ -296,6 +344,9 @@ $(document).ready(function(){
 //EVACUEES
   $('#noEvacuees').click(function() {
 
+    evacueesTable.clear().draw();
+
+
     <?php
 
       $myrow = $demog->retrieveEvacueesInSpecificEvac1($evac_id, $time);
@@ -303,45 +354,38 @@ $(document).ready(function(){
         $fname = $row['fname'];
         $lname = $row['lname'];
         $mname = $row['mname'];
-
-         echo "
-         var html_code = '<tr>';
-          html_code += '<td>".$fname."</td>';
-          html_code += '<td>".$mname."</td>';
-          html_code += '<td>".$lname."</td>';
-          html_code += '</tr>';
-
-          $('#myTable').append(html_code);
-
-         ";
+        $date_evacuated = $row['date'];
+        echo '
+        evacueesTable.row.add([
+          "'.$fname.'",
+          "'.$mname.'",
+          "'.$lname.'",
+          "'.$date_evacuated.'"
+        ]).draw();';
 
       }
     ?>
+
 
     $('#myModal').modal('toggle');
    
     
     });
 
-
-//FEMALE 
+  //MALE
 //EVACUEES
-    $('#noFemaleEvacuees').click(function() {
-    <?php
-      $myrow = $demog->retrieveFemaleEvacueesInSpecificEvac1($evac_id, $time);
-      foreach ($myrow as $row) {
-        $fname = $row['fname'];
-        $lname = $row['lname'];
-        $mname = $row['mname'];
+    $('#familiesEvacuated').click(function() {
 
-         echo "
-         var html_code = '<tr>';
-          html_code += '<td>".$fname."</td>';
-          html_code += '<td>".$mname."</td>';
-          html_code += '<td>".$lname."</td>';
-          html_code += '</tr>';
-          $('#myTable2').append(html_code);
-         ";
+      familiesEvacuated.clear().draw();
+    <?php
+      $myrow = $demog->retrieveFamiliesEvacuated($evac_id, $time);
+      foreach ($myrow as $row) {
+        $householdname = $row['household_name'];
+
+         echo '
+        familiesEvacuated.row.add([
+          "'.$householdname.' household"
+        ]).draw();';
       }
     ?>
 
@@ -349,54 +393,135 @@ $(document).ready(function(){
     
     });
 
+
+//FEMALE 
+//EVACUEES
+    $('#noFemaleEvacuees').click(function() {
+
+      evacueesTable.clear().draw();
+
+    <?php
+      $myrow = $demog->retrieveFemaleEvacueesInSpecificEvac1($evac_id, $time);
+      foreach ($myrow as $row) {
+        $fname = $row['fname'];
+        $lname = $row['lname'];
+        $mname = $row['mname'];
+        $date_evacuated = $row['date'];
+         echo '
+        evacueesTable.row.add([
+          "'.$fname.'",
+          "'.$mname.'",
+          "'.$lname.'",
+          "'.$date_evacuated.'"
+        ]).draw();';
+      }
+    ?>
+
+    $('#myModal').modal('toggle');
+    
+    });
+
 //MALE
 //EVACUEES
     $('#noMaleEvacuees').click(function() {
+
+      evacueesTable.clear().draw();
     <?php
       $myrow = $demog->retrieveMaleEvacueesInSpecificEvac1($evac_id, $time);
       foreach ($myrow as $row) {
         $fname = $row['fname'];
         $lname = $row['lname'];
         $mname = $row['mname'];
-
-         echo "
-         var html_code = '<tr>';
-          html_code += '<td>".$fname."</td>';
-          html_code += '<td>".$mname."</td>';
-          html_code += '<td>".$lname."</td>';
-          html_code += '</tr>';
-          $('#myTable3').append(html_code);
-         ";
+        $date_evacuated = $row['date'];
+         echo '
+        evacueesTable.row.add([
+          "'.$fname.'",
+          "'.$mname.'",
+          "'.$lname.'",
+          "'.$date_evacuated.'"
+        ]).draw();';
       }
     ?>
 
-    $('#myModal3').modal('toggle');
+    $('#myModal').modal('toggle');
     
     });
+
+
 //DISTRIBUTION
 //LIST
-    $('#distList').click(function() {
-    <?php
-      $myrow = $dist->retrieveDistributionList1($evac_id, $time, $package_id);
-      foreach ($myrow as $row) {
-        $fname = $row['fname'];
-        $lname = $row['lname'];
-        $mname = $row['mname'];
+    $('.distList').click(function() {
+      packageDist.clear().draw();
 
-         echo "
-         var html_code = '<tr>';
-          html_code += '<td>".$fname."</td>';
-          html_code += '<td>".$mname."</td>';
-          html_code += '<td>".$lname."</td>';
-          html_code += '</tr>';
-          $('#myTable4').append(html_code);
-         ";
-      }
-    ?>
-
-    $('#myModal4').modal('toggle');
+      var package_id = $(this).data('value');
+     
     
-    });
+     <?php
+
+     echo " 
+     $.ajax({
+        url: 'functions/reliefDistributionFunction.php',
+        method: 'post',
+        data: {package_id: package_id, evac_id: ".$evac_id.", time: '".$time."', packageList: 1},";
+
+        ?>
+        success: function(response) {
+
+            households = JSON.parse(response);
+
+            console.log(households);
+
+            for(var i = 0; i < households.length; i++) {
+              packageDist.row.add([
+                households[i]["package_name"],
+                households[i]["date_dist"],
+                households[i]["operation_name"],
+                households[i]["household_name"]
+              ]).draw();
+            }
+
+            $('#myModal3').modal('toggle');           
+        } //success 
+      }); //ajax call      
+    }); //.distList
+
+
+//Health 
+//Status
+
+ $('.healthStatus').click(function() {
+      healthStatusTable.clear().draw();
+
+      var disease_id = $(this).data('value');
+     
+     <?php
+
+     echo " 
+     $.ajax({
+        url: 'functions/demographicsFunction.php',
+        method: 'post',
+        data: {disease_id: disease_id, evac_id: ".$evac_id.", time: '".$time."', healthStat: 1},";
+
+        ?>
+        success: function(response) {
+          console.log(response);
+            health = JSON.parse(response);
+
+            console.log(health);
+
+            for(var i = 0; i < health.length; i++) {
+              healthStatusTable.row.add([
+                health[i]["disease_name"],
+                health[i]["resident_name"],
+                health[i]["date_acquired"],
+                health[i]["date_cured"]
+              ]).draw();
+            }
+
+            $('#myModal4').modal('toggle');           
+        } //success 
+      }); //ajax call      
+    }); //.distList
 
 });
 

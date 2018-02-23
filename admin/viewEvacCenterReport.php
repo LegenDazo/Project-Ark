@@ -129,12 +129,13 @@
                         <table class="table">
                           <tr id="noEvacuees"><td>Total No. of Evacuees:</td><td><b>'.$totalEvacs.'</b></td></tr>
                           <tr><td>Total No. of Families Evacuated:</td><td><b>'.$totalFam.'</b></td></tr>
-                          <tr><td>Total No. of Female Evacuees:<td><b>'.$totalFem.'</b></td></tr>
-                          <tr><td>Total No. of Male Evacuees:</td><td><b>'.$totalMal.'</b></td></tr>
+                          <tr id="noFemaleEvacuees"><td>Total No. of Female Evacuees:<td><b>'.$totalFem.'</b></td></tr>
+                          <tr id="noMaleEvacuees"><td>Total No. of Male Evacuees:</td><td><b>'.$totalMal.'</b></td></tr>
                         </table>
                       <h3>Package Distribution</h3>
                         <table class="table">
                           <tr>
+                            <th>Package ID</th>
                             <th>Package Name</th>
                             <th>Date Received</th>
                             <th>Relief Operation</th>
@@ -143,8 +144,10 @@
           
                         
                       foreach ($myrow as $row) {
+                          
                         echo '
-                        <tr>
+                        <tr id="distList">
+                          <td>'.$row['package_id'].'</td>
                           <td>'.$row['package_name'].'</td>
                           <td>'.date_format(new DateTime($row['date_dist']), 'M d Y').'</td>
                           <td>'.$row['operation_name'].'</td>
@@ -185,18 +188,82 @@
 
 
 
-<!-- Modal -->
+<!-- Modal All Evacuees-->
 <div id="myModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
 <!-- Modal content-->
     <div class="modal-content">
       <h1>List of Evacuees</h1>
-      <table class="table table-hovered" id="myTable">
+      <table class="table table-striped table-hover" id="myTable">
+        <thead>
         <tr>
           <th>First Name</th>
           <th>Middle Name</th>
           <th>Last Name</th>
         </tr>
+      </thead>
+
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Female Evacuees-->
+<div id="myModal2" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+<!-- Modal content-->
+    <div class="modal-content">
+      <h1>List of Female Evacuees</h1>
+      <table class="table table-striped table-hover" id="myTable2">
+        <thead>
+        <tr>
+          <th>First Name</th>
+          <th>Middle Name</th>
+          <th>Last Name</th>
+        </tr>
+      </thead>
+
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Male Evacuees-->
+<div id="myModal3" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+<!-- Modal content-->
+    <div class="modal-content">
+      <h1>List of Male Evacuees</h1>
+      <table class="table table-striped table-hover" id="myTable3">
+        <thead>
+        <tr>
+          <th>First Name</th>
+          <th>Middle Name</th>
+          <th>Last Name</th>
+        </tr>
+      </thead>
+
+      </table>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal Male Evacuees-->
+<div id="myModal4" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+<!-- Modal content-->
+    <div class="modal-content">
+      <h1>Distribution List</h1>
+      <table class="table table-striped table-hover" id="myTable4">
+        <thead>
+        <tr>
+          <th>Package Name</th>
+          <th>Date Received</th>
+          <th>Relief Operation</th>
+          <th>Household</th>
+        </tr>
+      </thead>
 
       </table>
     </div>
@@ -218,13 +285,17 @@
 </html>
 <script>
 $(document).ready(function(){
+
   $("#date").change(function() {
     if($("#date").val() != "") {
       $("#period").submit();
     }
   });
 
+//ALL
+//EVACUEES
   $('#noEvacuees').click(function() {
+
     <?php
 
       $myrow = $demog->retrieveEvacueesInSpecificEvac1($evac_id, $time);
@@ -241,14 +312,92 @@ $(document).ready(function(){
           html_code += '</tr>';
 
           $('#myTable').append(html_code);
+
          ";
 
       }
     ?>
 
-
     $('#myModal').modal('toggle');
+   
+    
     });
+
+
+//FEMALE 
+//EVACUEES
+    $('#noFemaleEvacuees').click(function() {
+    <?php
+      $myrow = $demog->retrieveFemaleEvacueesInSpecificEvac1($evac_id, $time);
+      foreach ($myrow as $row) {
+        $fname = $row['fname'];
+        $lname = $row['lname'];
+        $mname = $row['mname'];
+
+         echo "
+         var html_code = '<tr>';
+          html_code += '<td>".$fname."</td>';
+          html_code += '<td>".$mname."</td>';
+          html_code += '<td>".$lname."</td>';
+          html_code += '</tr>';
+          $('#myTable2').append(html_code);
+         ";
+      }
+    ?>
+
+    $('#myModal2').modal('toggle');
+    
+    });
+
+//MALE
+//EVACUEES
+    $('#noMaleEvacuees').click(function() {
+    <?php
+      $myrow = $demog->retrieveMaleEvacueesInSpecificEvac1($evac_id, $time);
+      foreach ($myrow as $row) {
+        $fname = $row['fname'];
+        $lname = $row['lname'];
+        $mname = $row['mname'];
+
+         echo "
+         var html_code = '<tr>';
+          html_code += '<td>".$fname."</td>';
+          html_code += '<td>".$mname."</td>';
+          html_code += '<td>".$lname."</td>';
+          html_code += '</tr>';
+          $('#myTable3').append(html_code);
+         ";
+      }
+    ?>
+
+    $('#myModal3').modal('toggle');
+    
+    });
+//DISTRIBUTION
+//LIST
+    $('#distList').click(function() {
+    <?php
+      $myrow = $dist->retrieveDistributionList1($evac_id, $time, $package_id);
+      foreach ($myrow as $row) {
+        $fname = $row['fname'];
+        $lname = $row['lname'];
+        $mname = $row['mname'];
+
+         echo "
+         var html_code = '<tr>';
+          html_code += '<td>".$fname."</td>';
+          html_code += '<td>".$mname."</td>';
+          html_code += '<td>".$lname."</td>';
+          html_code += '</tr>';
+          $('#myTable4').append(html_code);
+         ";
+      }
+    ?>
+
+    $('#myModal4').modal('toggle');
+    
+    });
+
 });
 
 </script>

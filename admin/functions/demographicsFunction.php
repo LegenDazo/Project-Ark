@@ -112,9 +112,28 @@ class Demographics
 		$result = mysqli_fetch_assoc($query);
 		return $result['totalFemaleEvacuees'];
 	}
+	public function retrieveFemaleEvacueesInSpecificEvac1($evac_id, $time)
+	{
+		$sql = "SELECT * FROM attendance as a JOIN resident as b ON a.resident_id = b.resident_id WHERE b.gender = 'Female' AND a.evac_id='".$evac_id."'";
+		$itemArray = array();
+		if($time != "showAll") {
+			$period = explode(",", $time);
+			$sql .= " AND a.date >= '".$period[0]."'";
+			if($period[1] != "") {
+				$sql .= " AND a.date <= '".$period[1]."'";
+			}
+		}
+
+		$query = mysqli_query($this->conn, $sql);
+		while ($row = mysqli_fetch_assoc($query)) {
+			$itemArray[] = $row;
+		}
+		
+		return $itemArray;
+	}
 	public function retrieveNumberOfMaleEvacueesInSpecificEvac($evac_id, $time)
 	{
-		$sql = "SELECT count(*) as totalMaleEvacuees FROM attendance as a JOIN resident as b ON a.resident_id = b.resident_id WHERE b.gender = 'Female' AND a.evac_id='".$evac_id."'";
+		$sql = "SELECT count(*) as totalMaleEvacuees FROM attendance as a JOIN resident as b ON a.resident_id = b.resident_id WHERE b.gender = 'Male' AND a.evac_id='".$evac_id."'";
 
 		if($time != "showAll") {
 			$period = explode(",", $time);
@@ -127,6 +146,25 @@ class Demographics
 		$query = mysqli_query($this->conn, $sql);
 		$result = mysqli_fetch_assoc($query);
 		return $result['totalMaleEvacuees'];
+	}
+	public function retrieveMaleEvacueesInSpecificEvac1($evac_id, $time)
+	{
+		$sql = "SELECT * FROM attendance as a JOIN resident as b ON a.resident_id = b.resident_id WHERE b.gender = 'Male' AND a.evac_id='".$evac_id."'";
+		$itemArray = array();
+		if($time != "showAll") {
+			$period = explode(",", $time);
+			$sql .= " AND a.date >= '".$period[0]."'";
+			if($period[1] != "") {
+				$sql .= " AND a.date <= '".$period[1]."'";
+			}
+		}
+
+		$query = mysqli_query($this->conn, $sql);
+		while ($row = mysqli_fetch_assoc($query)) {
+			$itemArray[] = $row;
+		}
+		
+		return $itemArray;
 	}
 	public function retrieveNumberOfInfected($evac_id, $time)
 	{

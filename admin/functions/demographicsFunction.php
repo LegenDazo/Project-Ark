@@ -227,6 +227,28 @@ class Demographics
 		}		
 		return $itemArray;
 	}
+
+	public function retrieveInfected1($evac_id, $time)
+	{
+		$sql = "SELECT CONCAT(c.lname, ', ', c.fname, ' ') as resident_name, b.disease_name, a.date_acquired, a.date_cured FROM diseaseacquired as a JOIN disease as b ON a.disease_id = b.disease_id JOIN resident as c ON a.resident_id = c.resident_id JOIN attendance as d ON c.resident_id = d.resident_id WHERE d.evac_id ='".$evac_id."'";
+
+		if($time != "showAll") {
+			$period = explode(",", $time);
+			$sql .= " AND a.date_acquired >= '".$period[0]."'";
+			if($period[1] != "") {
+				$sql .= " AND a.date_acquired <= '".$period[1]."'";
+			}
+		}
+
+		//$sql .= " ORDER BY b.disease_name";
+
+		$itemArray = array();
+		$query = mysqli_query($this->conn, $sql);
+		while ($row = mysqli_fetch_assoc($query)) {
+			$itemArray[] = $row;
+		}		
+		return $itemArray;
+	}
 	public function retrieveNumberOfInfected2()
 	{
 		$sql = "SELECT COUNT(a.resident_id) as infected, b.disease_name FROM diseaseacquired as a JOIN disease as b ON a.disease_id = b.disease_id JOIN resident as c ON a.resident_id = c.resident_id JOIN attendance as d ON c.resident_id = d.resident_id GROUP BY b.disease_name";

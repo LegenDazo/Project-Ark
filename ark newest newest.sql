@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.1
--- http://www.phpmyadmin.net
+-- version 4.7.0
+-- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 22, 2018 at 03:26 AM
--- Server version: 10.1.13-MariaDB
--- PHP Version: 5.6.21
+-- Generation Time: Feb 25, 2018 at 05:46 AM
+-- Server version: 10.1.26-MariaDB
+-- PHP Version: 7.1.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -108,7 +110,85 @@ CREATE TABLE `barangay` (
 
 INSERT INTO `barangay` (`brgy_id`, `brgy_name`, `city`, `province`) VALUES
 (1, 'Talamban', 'Cebu', 'Cebu'),
-(2, 'Banilad', 'Cebu', 'Cebu');
+(2, 'Banilad', 'Cebu', 'Cebu'),
+(3, 'Adlaon', 'Cebu', 'Cebu'),
+(4, 'Agsungot', 'Cebu', 'Cebu'),
+(5, 'Apas', 'Cebu', 'Cebu'),
+(6, 'Bacayan', 'Cebu', 'Cebu'),
+(7, 'Binaliw', 'Cebu', 'Cebu'),
+(8, 'Budlaan', 'Cebu', 'Cebu'),
+(9, 'Busay', 'Cebu', 'Cebu'),
+(10, 'Cambinocot', 'Cebu', 'Cebu'),
+(11, 'Capitol Site', 'Cebu', 'Cebu'),
+(12, 'Carreta', 'Cebu', 'Cebu'),
+(13, 'Cogonâ€‘Ramos', 'Cebu', 'Cebu'),
+(14, 'Dayâ€‘as', 'Cebu', 'Cebu'),
+(15, 'Ermita', 'Cebu', 'Cebu'),
+(16, 'Guba', 'Cebu', 'Cebu'),
+(17, 'Hipodromo', 'Cebu', 'Cebu'),
+(18, 'Kalubihan', 'Cebu', 'Cebu'),
+(19, 'Kamagayan', 'Cebu', 'Cebu'),
+(20, 'Kamputhaw ', 'Cebu', 'Cebu'),
+(21, 'Kasambagan', 'Cebu', 'Cebu'),
+(22, 'Lahug', 'Cebu', 'Cebu'),
+(23, 'Loregaâ€‘San Miguel', 'Cebu', 'Cebu'),
+(24, 'Lusaran', 'Cebu', 'Cebu'),
+(25, 'Luz', 'Cebu', 'Cebu'),
+(26, 'Mabini', 'Cebu', 'Cebu'),
+(27, 'Mabolo', 'Cebu', 'Cebu'),
+(28, 'Malubog', 'Cebu', 'Cebu'),
+(29, 'Pahina Central', 'Cebu', 'Cebu'),
+(30, 'Parian', 'Cebu', 'Cebu'),
+(31, 'Paril', 'Cebu', 'Cebu'),
+(32, 'Pitâ€‘os', 'Cebu', 'Cebu'),
+(33, 'Pulangbato', 'Cebu', 'Cebu'),
+(34, 'Sambag I', 'Cebu', 'Cebu'),
+(35, 'Sambag II', 'Cebu', 'Cebu'),
+(36, 'San Antonio', 'Cebu', 'Cebu'),
+(37, 'San Jose', 'Cebu', 'Cebu'),
+(38, 'San Roque', 'Cebu', 'Cebu'),
+(39, 'Santa Cruz', 'Cebu', 'Cebu'),
+(40, 'Santo NiÃ±o', 'Cebu', 'Cebu'),
+(41, 'Sirao', 'Cebu', 'Cebu'),
+(42, 'T. Padilla', 'Cebu', 'Cebu'),
+(43, 'Taptap', 'Cebu', 'Cebu'),
+(44, 'Tejero ', 'Cebu', 'Cebu'),
+(45, 'Tinago', 'Cebu', 'Cebu'),
+(46, 'Zapatera', 'Cebu', 'Cebu'),
+(47, 'Babag', 'Cebu', 'Cebu'),
+(48, 'Basak Pardo', 'Cebu', 'Cebu'),
+(49, 'Basak San Nicolas', 'Cebu', 'Cebu'),
+(50, 'Bonbon', 'Cebu', 'Cebu'),
+(51, 'Buhisan', 'Cebu', 'Cebu'),
+(52, 'Bulacao', 'Cebu', 'Cebu'),
+(53, 'Buot-Taop', 'Cebu', 'Cebu'),
+(54, 'Calamba', 'Cebu', 'Cebu'),
+(55, 'Cogon Pardo', 'Cebu', 'Cebu'),
+(56, 'Duljo Fatima', 'Cebu', 'Cebu'),
+(57, 'Guadalupe', 'Cebu', 'Cebu'),
+(58, 'Inayawan ', 'Cebu', 'Cebu'),
+(59, 'Kalunasan', 'Cebu', 'Cebu'),
+(60, 'Kinasangâ€‘an', 'Cebu', 'Cebu'),
+(61, 'Labangon', 'Cebu', 'Cebu'),
+(62, 'Mambaling', 'Cebu', 'Cebu'),
+(63, 'Pahina San Nicolas', 'Cebu', 'Cebu'),
+(64, 'Pamutan', 'Cebu', 'Cebu'),
+(65, 'Pasil', 'Cebu', 'Cebu'),
+(66, 'Poblacion Pardo', 'Cebu', 'Cebu'),
+(67, 'Pungâ€‘ol Sibugay', 'Cebu', 'Cebu'),
+(68, 'Punta Princesa', 'Cebu', 'Cebu'),
+(69, 'Quiot', 'Cebu', 'Cebu'),
+(70, 'San Nicolas Proper', 'Cebu', 'Cebu'),
+(71, 'Sapangdaku', 'Cebu', 'Cebu'),
+(72, 'Sawang Calero', 'Cebu', 'Cebu'),
+(73, 'Sinsin', 'Cebu', 'Cebu'),
+(74, 'Suba ', 'Cebu', 'Cebu'),
+(75, 'Sudlon I', 'Cebu', 'Cebu'),
+(76, 'Sudlon II', 'Cebu', 'Cebu'),
+(77, 'Tabunan', 'Cebu', 'Cebu'),
+(78, 'Tag-bao', 'Cebu', 'Cebu'),
+(79, 'Tisa', 'Cebu', 'Cebu'),
+(80, 'Toong', 'Cebu', 'Cebu');
 
 -- --------------------------------------------------------
 
@@ -406,25 +486,25 @@ CREATE TABLE `resident` (
 
 INSERT INTO `resident` (`resident_id`, `fname`, `mname`, `lname`, `gender`, `bday`, `admin_id`, `house_memship`, `household_id`) VALUES
 (1, 'Jon', 'Lukas', 'Doe', 'Male', '1990-04-05', 2, 'head', 1),
-(2, 'Jane', 'Styles', 'Doe', 'Female', '1992-01-02', 2, 'head''s spouse', 1),
+(2, 'Jane', 'Styles', 'Doe', 'Female', '1992-01-02', 2, 'head\'s spouse', 1),
 (3, 'Lia', 'Styles', 'Doe', 'Female', '2016-07-08', 2, 'dependent', 1),
 (4, 'a', 'b', 'c', 'Male', '1988-08-09', 2, 'head', 2),
-(5, 'd', 'e', 'f', 'Female', '1990-07-09', 2, 'head''s spouse', 2),
+(5, 'd', 'e', 'f', 'Female', '1990-07-09', 2, 'head\'s spouse', 2),
 (6, 'g', 'h', 'i', 'Female', '2016-06-03', 2, 'dependent', 2),
 (7, 'mark', 'marky', 'marcus', '\n     ', '1970-07-09', 2, 'head', 3),
-(8, 'ma', 'may', 'mayy', 'Female', '1975-03-04', 2, 'head''s spouse', 3),
+(8, 'ma', 'may', 'mayy', 'Female', '1975-03-04', 2, 'head\'s spouse', 3),
 (9, 'jo', 'ma', 'rie', 'Male', '2000-09-05', 2, 'dependent', 3),
 (10, 'ka', 'the', 'rin', 'male', '1995-04-07', 2, 'head', 4),
-(11, 'dee', 'jay', 'pi', 'Male', '1991-08-07', 2, 'head''s spouse', 4),
+(11, 'dee', 'jay', 'pi', 'Male', '1991-08-07', 2, 'head\'s spouse', 4),
 (12, 'kar', 'la', 'lou', 'Female', '2014-06-01', 2, 'dependent', 4),
 (13, 'bea', 'st', 'ty', 'Female', '1990-06-03', 2, 'head', 5),
 (14, 'virt', 'virt', 'virt', 'Female', '1990-07-08', 2, 'head', 6),
 (15, 'ken', 'deee', 'gorro', 'Female', '1999-07-08', 3, 'head', 7),
 (16, 'joemarie', 'ra', 'mos', 'Male', '1990-06-05', 3, 'head', 8),
-(17, 'mylene', 'deli', 'ma', 'Female', '1990-03-02', 3, 'head''s spouse', 8),
+(17, 'mylene', 'deli', 'ma', 'Female', '1990-03-02', 3, 'head\'s spouse', 8),
 (19, 'Max', '', 'Zuorba', 'Male', '2000-05-06', 3, 'head', 9),
-(21, 'Wargreymon', '', 'Digimon', 'Male', '2015-11-28', 3, 'head''s spouse', NULL),
-(22, 'Wargreymon', '', 'Courage', 'Male', '2015-09-29', 3, 'head''s spouse', 9),
+(21, 'Wargreymon', '', 'Digimon', 'Male', '2015-11-28', 3, 'head\'s spouse', NULL),
+(22, 'Wargreymon', '', 'Courage', 'Male', '2015-09-29', 3, 'head\'s spouse', 9),
 (23, 'Metalgarurumon', '', 'Friendship', 'Male', '2016-08-27', 3, 'dependent', 9);
 
 -- --------------------------------------------------------
@@ -656,7 +736,7 @@ ALTER TABLE `attendance`
 -- AUTO_INCREMENT for table `barangay`
 --
 ALTER TABLE `barangay`
-  MODIFY `brgy_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `brgy_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=81;
 --
 -- AUTO_INCREMENT for table `disease`
 --
@@ -832,6 +912,7 @@ ALTER TABLE `resident`
 ALTER TABLE `sms`
   ADD CONSTRAINT `sms_ibfk_2` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`id`),
   ADD CONSTRAINT `sms_ibfk_3` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`);
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

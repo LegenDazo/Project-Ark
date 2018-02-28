@@ -75,7 +75,7 @@
                         <?php
                           }
                           ?>
-                          &nbsp;<a href="updateEvacCenter.php?evac_id=<?php echo $evac_id;?>" class="btn btn-info">Update</a>&nbsp;<a href="functions/retrieveEvacuationCenterFunction.php?deleteevac=1&evac_id=<?php echo $evac_id;?>" class="btn btn-danger">Delete</a></td>
+                          &nbsp;<a href="updateEvacCenter.php?evac_id=<?php echo $evac_id;?>" class="btn btn-info">Update</a></td>&nbsp;<!--<a href="functions/retrieveEvacuationCenterFunction.php?deleteevac=1&evac_id=<?php echo $evac_id;?>" class="btn btn-danger">Delete</a></td>-->
                       </tr>
                       <?php    
                         }

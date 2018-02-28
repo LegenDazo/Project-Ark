@@ -85,8 +85,22 @@
                   <label for="gender">Gender</label>
                    <select class="form-control" name="gender">
                       <option value="">Select gender...</option>
-                      <option value="Male">Male</option>
-                      <option value="Female">Female</option>
+                      <option value="Male" <?php
+                        if (isset($_SESSION['gender'])) {
+                          $gender = $_SESSION['gender'];
+                          if ($gender == 'Male') {
+                            echo "selected";
+                          }
+                        }
+                      ?>>Male</option>
+                      <option value="Female" <?php
+                        if (isset($_SESSION['gender'])) {
+                          $gender = $_SESSION['gender'];
+                          if ($gender == 'Female') {
+                            echo "selected";
+                          }
+                        }
+                      ?>>Female</option>
                    </select>                              
                   </div>
                   <div class="form-group">

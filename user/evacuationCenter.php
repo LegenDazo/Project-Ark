@@ -47,7 +47,7 @@
 
                       <form method="post" action="evacuationCenter.php">
                         <div class="form-inline">
-                          Meters:&nbsp;<input type="number" name="meter">&nbsp;<input type="submit" name="submitmeter" class="btn btn-primary">&nbsp;<label><i>Default geofence radius is 2500 meters</i></label>
+                          Meters:&nbsp;<input type="number" name="meter" min="250" required>&nbsp;<input type="submit" name="submitmeter" class="btn btn-primary">&nbsp;<label><i>Default geofence radius is 2500 meters</i></label>
                         </div>
                       </form>
                       <br>
@@ -132,7 +132,7 @@
             map:map,
             animation:google.maps.Animation.BOUNCE,
             size: new google.maps.Size(20, 32),
-            icon: '../images/mymarker.png'
+            icon: '../images/blue-pin.png'
 
 
             //icon: 'http://maps.gstatic.com/mapfiles/ms2/micons/blue-pushpin.png',

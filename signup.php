@@ -75,6 +75,7 @@
  			$_SESSION['mname'] = $mname;
  			$_SESSION['lname'] = $lname;
  			$_SESSION['bdate'] = $bdate;
+ 			$_SESSION['gender'] = $gender;
  			$_SESSION['contact_no'] = $contact_no;
  			$_SESSION['username'] = $username;
  			$_SESSION['error'] = "Only letters and white space is allowed for Middle Name.";
@@ -85,6 +86,7 @@
  		 	$_SESSION['fname'] = $fname;
  			$_SESSION['mname'] = $mname;
  			$_SESSION['lname'] = $lname;
+ 			$_SESSION['gender'] = $gender;
  			$_SESSION['bdate'] = $bdate;
  			$_SESSION['contact_no'] = $contact_no;
  			$_SESSION['username'] = $username;
@@ -97,6 +99,7 @@
 			$_SESSION['fname'] = $fname;
  			$_SESSION['mname'] = $mname;
  			$_SESSION['lname'] = $lname;
+ 			$_SESSION['gender'] = $gender;
  			$_SESSION['bdate'] = $bdate;
  			$_SESSION['contact_no'] = $contact_no;
  			$_SESSION['username'] = $username;
@@ -109,6 +112,7 @@
 			$_SESSION['fname'] = $fname;
  			$_SESSION['mname'] = $mname;
  			$_SESSION['lname'] = $lname;
+ 			$_SESSION['gender'] = $gender;
  			$_SESSION['bdate'] = $bdate;
  			$_SESSION['contact_no'] = $contact_no;
  			$_SESSION['username'] = $username;
@@ -122,9 +126,23 @@
  			$_SESSION['mname'] = $mname;
  			$_SESSION['lname'] = $lname;
  			$_SESSION['bdate'] = $bdate;
+ 			$_SESSION['gender'] = $gender;
  			$_SESSION['contact_no'] = $contact_no;
  			$_SESSION['username'] = $username;
 			$_SESSION['error'] = "Please fill out Last Name.";
+			header("location:index.php");
+		}
+
+		else if(empty($_POST['gender'])){		
+			session_start();
+			$_SESSION['fname'] = $fname;
+ 			$_SESSION['mname'] = $mname;
+ 			$_SESSION['lname'] = $lname;
+ 			$_SESSION['gender'] = $gender;
+ 			$_SESSION['bdate'] = $bdate;
+ 			$_SESSION['contact_no'] = $contact_no;
+ 			$_SESSION['username'] = $username;
+			$_SESSION['error'] = "Please select a gender.";
 			header("location:index.php");
 		}
 
@@ -176,6 +194,7 @@
  			$_SESSION['mname'] = $mname;
  			$_SESSION['lname'] = $lname;
  			$_SESSION['bdate'] = $bdate;
+ 			$_SESSION['gender'] = $gender;
  			$_SESSION['contact_no'] = $contact_no;
  			$_SESSION['username'] = $username;
 			$_SESSION['error'] = "Please enter a Username.";
@@ -188,6 +207,7 @@
  			$_SESSION['mname'] = $mname;
  			$_SESSION['lname'] = $lname;
  			$_SESSION['bdate'] = $bdate;
+ 			$_SESSION['gender'] = $gender;
  			$_SESSION['contact_no'] = $contact_no;
  			$_SESSION['username'] = $username;
  			$_SESSION['error'] = "Please enter a Password and Confirm Password.";
@@ -200,6 +220,7 @@
  			$_SESSION['mname'] = $mname;
  			$_SESSION['lname'] = $lname;
  			$_SESSION['bdate'] = $bdate;
+ 			$_SESSION['gender'] = $gender;
  			$_SESSION['contact_no'] = $contact_no;
  			$_SESSION['username'] = $username;
  			$_SESSION['error'] = "Please enter a Password and Confirm Password.";
@@ -212,6 +233,7 @@
  			$_SESSION['mname'] = $mname;
  			$_SESSION['lname'] = $lname;
  			$_SESSION['bdate'] = $bdate;
+ 			$_SESSION['gender'] = $gender;
  			$_SESSION['contact_no'] = $contact_no;
  			$_SESSION['username'] = $username;
  			$_SESSION['error'] = "Invalid contact number.Please refer to the example below.";
@@ -223,6 +245,7 @@
  			$_SESSION['mname'] = $mname;
  			$_SESSION['lname'] = $lname;
  			$_SESSION['bdate'] = $bdate;
+ 			$_SESSION['gender'] = $gender;
  			$_SESSION['contact_no'] = $contact_no;
  			$_SESSION['username'] = $username;
  			$_SESSION['error'] = "Username already taken.";
@@ -234,6 +257,7 @@
  			$_SESSION['mname'] = $mname;
  			$_SESSION['lname'] = $lname;
  			$_SESSION['bdate'] = $bdate;
+ 			$_SESSION['gender'] = $gender;
  			$_SESSION['contact_no'] = $contact_no;
  			$_SESSION['username'] = $username;
  			$_SESSION['error'] = "Username already taken.";
@@ -245,6 +269,7 @@
  			$_SESSION['mname'] = $mname;
  			$_SESSION['lname'] = $lname;
  			$_SESSION['bdate'] = $bdate;
+ 			$_SESSION['gender'] = $gender;
  			$_SESSION['contact_no'] = $contact_no;
  			$_SESSION['username'] = $username;
  			$_SESSION['error'] = "Password must contain letters and numbers.";
@@ -259,6 +284,7 @@
 	 			$_SESSION['mname'] = $mname;
 	 			$_SESSION['lname'] = $lname;
 	 			$_SESSION['bdate'] = $bdate;
+	 			$_SESSION['gender'] = $gender;
 	 			$_SESSION['contact_no'] = $contact_no;
 	 			$_SESSION['username'] = $username;
 	 				$_SESSION['username'] = $username;
@@ -270,6 +296,7 @@
  			$_SESSION['mname'] = $mname;
  			$_SESSION['lname'] = $lname;
  			$_SESSION['bdate'] = $bdate;
+ 			$_SESSION['gender'] = $gender;
  			$_SESSION['contact_no'] = $contact_no;
  			$_SESSION['username'] = $username;
 	 			$_SESSION['error'] = "Something went wrong. Please try again. ".$id;
@@ -282,6 +309,7 @@
  			$_SESSION['mname'] = $mname;
  			$_SESSION['lname'] = $lname;
  			$_SESSION['bdate'] = $bdate;
+ 			$_SESSION['gender'] = $gender;
  			$_SESSION['contact_no'] = $contact_no;
  			$_SESSION['username'] = $username;
  			$_SESSION['error'] = "Password and Confirm Password don't match.";

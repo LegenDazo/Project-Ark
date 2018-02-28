@@ -1,5 +1,5 @@
 <?php session_start();
-  if ($_SESSION['username'] == "" && $_SESSION['type'] == "" || $_SESSION['type'] == "normal") {
+  if ($_SESSION['id'] == "" && $_SESSION['type'] == "" || $_SESSION['type'] == "normal") {
       header("location:../logout.php");
   }
 ?>

@@ -47,13 +47,14 @@ include 'functions/insert.php';
                 <div class="form-group col-md-6"> 
 
                   <div id="error" class='alert alert-danger' role='alert' style="visibility: hidden; display: none;"></div>
+                  <div id="success" class='alert alert-success' role='alert' style="visibility: hidden; display: none;"></div>
                   </div>
               </center>
               <div class="container" style="margin-top: 5%">
                 <div class="col-md-12">
                   <div class="panel-body">
                     <div class="text-left">
-                      <a href="household.php" class="btn btn-warning">Cancel</a>
+                      <a href="household.php" class="btn btn-warning">Back</a>
                     </div>
                     <br>
                     <div class="row">
@@ -290,9 +291,9 @@ include 'functions/insert.php';
                   if(data === 'Item Data Inserted') {
                     window.location.href = "household.php";
                   } else {
-                    $("#error").html("New Household Inserted");
-                    $("#error").css("visibility", "visible");
-                    $("#error").css("display", "block");
+                    $("#success").html("New Household Inserted");
+                    $("#success").css("visibility", "visible");
+                    $("#success").css("display", "block");
                     //alert("An erorr has occurred please contact your system administrator");
                   }
                 }
